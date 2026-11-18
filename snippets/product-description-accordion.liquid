@@ -1,0 +1,68 @@
+{% style %}
+  .product-accordion {
+  border-top: 1px solid #e5e5e5;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 12px 0;
+}
+
+.accordion-title {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-title::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-title::after {
+  content: "+";
+  float: right;
+  font-size: 18px;
+}
+
+details[open] .accordion-title::after {
+  content: "−";
+}
+
+.accordion-content {
+  margin-top: 12px;
+}
+
+{% endstyle %}
+{% liquid
+  assign html = product.description
+
+  if html == blank
+  endif
+
+  assign sections = html | split: '<h2>'
+%}
+
+<div class="product-accordion">
+
+  {% for section in sections %}
+    {% if forloop.first %}
+      {%- continue -%}
+    {% endif %}
+
+    {% assign parts = section | split: '</h2>' %}
+    {% assign title = parts[0] | strip_html | strip %}
+    {% assign content = parts[1] %}
+
+    <details class="accordion-item" {% if forloop.first %}open{% endif %}>
+      <summary class="accordion-title">
+        {{ title }}
+      </summary>
+
+      <div class="accordion-content rte">
+        {{ content }}
+      </div>
+    </details>
+
+  {% endfor %}
+
+</div>

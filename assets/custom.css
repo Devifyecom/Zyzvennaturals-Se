@@ -1,0 +1,80 @@
+/* hero section */
+
+@media screen and (min-width: 1024px) {
+  .hero_content-width{
+    width: 40% !important;
+}
+}
+
+/* blog divider */
+
+.zyzven-blog-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+}
+
+.zyzven-blog-title::before,
+.zyzven-blog-title::after {
+  content: "";
+  width: 36px;        /* small line */
+  height: 1px;
+  background-color: #000000;
+
+
+}
+
+.zyzven-blog-title h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+.ps-collection-list rte-formatter h3, .ps-product-list rte-formatter h3  {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ps-collection-list rte-formatter h3::before , .ps-product-list rte-formatter h3::before ,
+.ps-collection-list rte-formatter h3::after , .ps-product-list rte-formatter h3::after{
+  content: "";
+  flex: 1;
+  height: 1.5px;
+  width: 45px;
+  background-color: #000000;
+}
+ 
+
+/* Footer email css  */
+/* .ps-email {
+    width: 206px;
+    border-bottom: 1px solid black;
+} */
+
+.ps-font-family {
+   font-family: "poppins" !important;
+}
+
+/* newsletter css */
+.ps-email-button{
+  position: relative;;
+  padding: 9px !important;
+  width: 210px;
+  height: 44px;
+  margin-left: 10px;
+}
+
+/* footer css */
+@media screen and (max-width: 1024px) {
+  .ps-footer-content {
+    display: flex;
+    flex-direction: column;
+}
+}

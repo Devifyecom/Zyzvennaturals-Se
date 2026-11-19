@@ -9,6 +9,71 @@
  */
 {
   "sections": {
+    "ws_feature_banner_7TGcKD": {
+      "type": "ws-feature-banner",
+      "disabled": true,
+      "name": "WS · Feature banner",
+      "settings": {
+        "layout": "split",
+        "panel_color": "#ECE8E0",
+        "image_link": "",
+        "image_ratio": "1 / 1",
+        "image_position": "right",
+        "mobile_image_first": false,
+        "text_align": "center",
+        "eyebrow": "Nyhet",
+        "heading": "Fertility, Pregnancy & Postpartum Supplement",
+        "heading_size": "h2",
+        "heading_italic": false,
+        "text": "<p>Lyft fram en hjälteprodukt eller en kategori – vem den är för, vad den gör och varför den är unik.</p>",
+        "button_label": "Läs mer",
+        "button_link": "",
+        "button_style": "primary",
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "ws_hero_FkJRJm": {
+      "type": "ws-hero",
+      "name": "WS · Hero",
+      "settings": {
+        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "height": "medium",
+        "height_mobile": "medium",
+        "overlay_color": "#000000",
+        "overlay_opacity": 15,
+        "text_position": "center",
+        "text_position_mobile": "center",
+        "eyebrow": "",
+        "heading": "För ett liv i synk med din kvinnliga biologi",
+        "heading_size": "medium",
+        "heading_italic": true,
+        "heading_is_h1": false,
+        "text": "",
+        "button_1_label": "Se produkter",
+        "button_1_link": "",
+        "button_1_style": "light",
+        "button_2_label": "",
+        "button_2_link": "",
+        "button_2_style": "secondary",
+        "background_color": "#D9D2C7",
+        "text_color": "#FFFFFF",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -81,6 +146,7 @@
         "ai_gen_block_d2d67de_dEKcVe",
         "button_H9gpTf"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "t:names.hero",
       "settings": {
@@ -3242,161 +3308,11 @@
         "padding-block-start": 20,
         "padding-block-end": 60
       }
-    },
-    "ws_announcement_bar": {
-      "type": "ws-announcement-bar",
-      "disabled": true,
-      "settings": {},
-      "blocks": {
-        "message_1": {
-          "type": "message",
-          "settings": {
-            "icon": "check",
-            "text": "Leverans inom 1–3 vardagar"
-          }
-        },
-        "message_2": {
-          "type": "message",
-          "settings": {
-            "icon": "return",
-            "text": "Fri retur inom 30 dagar"
-          }
-        }
-      },
-      "block_order": [
-        "message_1",
-        "message_2"
-      ]
-    },
-    "ws_hero": {
-      "type": "ws-hero",
-      "disabled": true,
-      "settings": {
-        "button_1_link": "shopify://collections/all"
-      }
-    },
-    "ws_press_logos": {
-      "type": "ws-press-logos",
-      "disabled": true,
-      "settings": {},
-      "blocks": {
-        "logo_1": {
-          "type": "logo",
-          "settings": {
-            "name": "Vogue"
-          }
-        },
-        "logo_2": {
-          "type": "logo",
-          "settings": {
-            "name": "Elle"
-          }
-        },
-        "logo_3": {
-          "type": "logo",
-          "settings": {
-            "name": "Expressen"
-          }
-        },
-        "logo_4": {
-          "type": "logo",
-          "settings": {
-            "name": "Femina"
-          }
-        },
-        "logo_5": {
-          "type": "logo",
-          "settings": {
-            "name": "Hälsa"
-          }
-        },
-        "logo_6": {
-          "type": "logo",
-          "settings": {
-            "name": "Amelia"
-          }
-        }
-      },
-      "block_order": [
-        "logo_1",
-        "logo_2",
-        "logo_3",
-        "logo_4",
-        "logo_5",
-        "logo_6"
-      ]
-    },
-    "ws_founder_story": {
-      "type": "ws-founder-story",
-      "disabled": true,
-      "settings": {}
-    },
-    "ws_product_grid": {
-      "type": "ws-product-grid",
-      "disabled": true,
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "view_all_link": "shopify://collections/all"
-      }
-    },
-    "ws_reviews_carousel": {
-      "type": "ws-reviews-carousel",
-      "disabled": true,
-      "settings": {},
-      "blocks": {
-        "review_1": {
-          "type": "review",
-          "settings": {
-            "author": "Henrietta",
-            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>"
-          }
-        },
-        "review_2": {
-          "type": "review",
-          "settings": {
-            "author": "Sofia",
-            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>"
-          }
-        },
-        "review_3": {
-          "type": "review",
-          "settings": {
-            "author": "Maria",
-            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>"
-          }
-        },
-        "review_4": {
-          "type": "review",
-          "settings": {
-            "author": "Olivia",
-            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "review_1",
-        "review_2",
-        "review_3",
-        "review_4"
-      ]
-    },
-    "ws_feature_banner": {
-      "type": "ws-feature-banner",
-      "disabled": true,
-      "settings": {
-        "button_link": "shopify://collections/all"
-      }
-    },
-    "ws_blog_cards": {
-      "type": "ws-blog-cards",
-      "disabled": true,
-      "settings": {
-        "blog": "news"
-      }
     }
   },
   "order": [
+    "ws_feature_banner_7TGcKD",
+    "ws_hero_FkJRJm",
     "hero_jVaWmY",
     "section_8kNV6X",
     "collection_list_JnMyq7",
@@ -3412,14 +3328,6 @@
     "section_YUF9B7",
     "hero_slider_aDWHVG",
     "section_WFf7TR",
-    "section_xrqBVY",
-    "ws_announcement_bar",
-    "ws_hero",
-    "ws_press_logos",
-    "ws_founder_story",
-    "ws_product_grid",
-    "ws_reviews_carousel",
-    "ws_feature_banner",
-    "ws_blog_cards"
+    "section_xrqBVY"
   ]
 }

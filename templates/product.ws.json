@@ -1,8 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "ws-main-product",
-      "settings": {},
       "blocks": {
         "breadcrumb": {
           "type": "breadcrumb",
@@ -155,14 +163,11 @@
         "acc_storage",
         "acc_origin",
         "trust"
-      ]
+      ],
+      "settings": {}
     },
     "ws_usp_bar": {
       "type": "ws-usp-bar",
-      "settings": {
-        "padding_top": 32,
-        "padding_bottom": 32
-      },
       "blocks": {
         "usp_1": {
           "type": "usp",
@@ -202,47 +207,45 @@
         "usp_2",
         "usp_3",
         "usp_4"
-      ]
+      ],
+      "settings": {
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
     },
     "ws_reviews": {
       "type": "ws-reviews",
-      "settings": {},
-      "blocks": {},
-      "block_order": []
+      "settings": {}
     },
     "ws_reviews_carousel": {
       "type": "ws-reviews-carousel",
-      "settings": {
-        "heading": "Våra kunder säger",
-        "summary_rating": 0
-      },
       "blocks": {
         "review_1": {
           "type": "review",
           "settings": {
-            "author": "Henrietta",
-            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>"
+            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>",
+            "author": "Henrietta"
           }
         },
         "review_2": {
           "type": "review",
           "settings": {
-            "author": "Sofia",
-            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>"
+            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>",
+            "author": "Sofia"
           }
         },
         "review_3": {
           "type": "review",
           "settings": {
-            "author": "Maria",
-            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>"
+            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>",
+            "author": "Maria"
           }
         },
         "review_4": {
           "type": "review",
           "settings": {
-            "author": "Olivia",
-            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>"
+            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>",
+            "author": "Olivia"
           }
         }
       },
@@ -251,7 +254,11 @@
         "review_2",
         "review_3",
         "review_4"
-      ]
+      ],
+      "settings": {
+        "heading": "Våra kunder säger",
+        "summary_rating": 0
+      }
     },
     "ws_product_tabs": {
       "type": "ws-product-tabs",

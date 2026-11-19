@@ -9,39 +9,9 @@
  */
 {
   "sections": {
-    "ws_feature_banner_7TGcKD": {
-      "type": "ws-feature-banner",
-      "disabled": true,
-      "name": "WS · Feature banner",
-      "settings": {
-        "layout": "split",
-        "panel_color": "#ECE8E0",
-        "image_link": "",
-        "image_ratio": "1 / 1",
-        "image_position": "right",
-        "mobile_image_first": false,
-        "text_align": "center",
-        "eyebrow": "Nyhet",
-        "heading": "Fertility, Pregnancy & Postpartum Supplement",
-        "heading_size": "h2",
-        "heading_italic": false,
-        "text": "<p>Lyft fram en hjälteprodukt eller en kategori – vem den är för, vad den gör och varför den är unik.</p>",
-        "button_label": "Läs mer",
-        "button_link": "",
-        "button_style": "primary",
-        "background_color": "#F3F0EB",
-        "text_color": "#111111",
-        "accent_color": "#000000",
-        "accent_text_color": "#FFFFFF",
-        "container_width": "normal",
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
-      }
-    },
     "ws_hero_FkJRJm": {
       "type": "ws-hero",
+      "disabled": true,
       "name": "WS · Hero",
       "settings": {
         "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
@@ -146,7 +116,6 @@
         "ai_gen_block_d2d67de_dEKcVe",
         "button_H9gpTf"
       ],
-      "disabled": true,
       "custom_css": [],
       "name": "t:names.hero",
       "settings": {
@@ -3311,7 +3280,6 @@
     }
   },
   "order": [
-    "ws_feature_banner_7TGcKD",
     "ws_hero_FkJRJm",
     "hero_jVaWmY",
     "section_8kNV6X",

@@ -893,6 +893,51 @@
         "section_heading": "Lösningar för alla hudbehov"
       }
     },
+    "17670913507ee9f697": {
+      "type": "_blocks",
+      "blocks": {
+        "okendo_reviews_carousel_it9PKY": {
+          "type": "shopify://apps/okendo/blocks/reviews-carousel/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "show_heading": true,
+            "heading": "Reviews",
+            "badge_link": "",
+            "product": "{{closest.product}}"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_carousel_it9PKY"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "product_list_KEtwTQ": {
       "type": "product-list",
       "blocks": {
@@ -1172,6 +1217,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.products_carousel",
       "settings": {
         "collection": "all",
@@ -1519,51 +1565,6 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 12
-      }
-    },
-    "17670913507ee9f697": {
-      "type": "_blocks",
-      "blocks": {
-        "okendo_reviews_carousel_it9PKY": {
-          "type": "shopify://apps/okendo/blocks/reviews-carousel/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
-          "settings": {
-            "show_heading": true,
-            "heading": "Reviews",
-            "badge_link": "",
-            "product": "{{closest.product}}"
-          }
-        }
-      },
-      "block_order": [
-        "okendo_reviews_carousel_it9PKY"
-      ],
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 0
       }
     },
     "section_JRmFVE": {
@@ -3367,9 +3368,9 @@
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
     "hero_slider_WaUDdM",
+    "17670913507ee9f697",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",
-    "17670913507ee9f697",
     "section_JRmFVE",
     "featured_blog_posts_CrWHWh",
     "section_zrTQGm",

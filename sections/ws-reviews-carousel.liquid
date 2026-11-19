@@ -5,7 +5,29 @@
   assign gaps = per_view | minus: 1
 -%}
 
-{%- if section.blocks.size == 0 -%}
+{%- if s.source == 'okendo' -%}
+{% render 'ws-assets' %}
+<section
+  class="ws-section ws-rc ws-rc--okendo"
+  style="{% render 'ws-section-style', settings: s %}"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ s.aria_label | escape }}"{% endif %}
+>
+  <div class="ws-container">
+    {%- if s.eyebrow != blank or s.heading != blank -%}
+      <div class="ws-head">
+        {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
+      </div>
+    {%- endif -%}
+    {%- comment -%} Okendo Reviews Carousel – docs.okendo.io/docs/on-site/on-site-widgets/reviews-carousel-widget {%- endcomment -%}
+    <div
+      class="ws-rc__okendo"
+      data-oke-carousel
+      {% if s.okendo_scope == 'product' and product != blank %}data-oke-reviews-product-id="shopify-{{ product.id }}"{% endif %}
+    ></div>
+  </div>
+</section>
+{%- elsif section.blocks.size == 0 -%}
   {%- if request.design_mode -%}
     <p style="padding: 24px; text-align: center; font-size: 13px; opacity: 0.7;">WS · Reviews carousel: add real customer quotes as "Review" blocks. Hidden on the storefront while empty.</p>
   {%- endif -%}
@@ -163,6 +185,12 @@
   "disabled_on": { "groups": ["header"] },
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+    { "type": "select", "id": "source", "label": "Reviews source", "default": "manual", "options": [
+      { "value": "okendo", "label": "Okendo – real customer reviews" }, { "value": "manual", "label": "Quotes added as blocks below" }
+    ] },
+    { "type": "select", "id": "okendo_scope", "label": "Okendo reviews to show", "info": "\"This product\" only works on product pages.", "default": "store", "options": [
+      { "value": "store", "label": "Best reviews across the store" }, { "value": "product", "label": "This product" }
+    ] },
     { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Recensioner" },
     { "type": "select", "id": "heading_style", "label": "Heading style", "default": "label", "options": [
       { "value": "label", "label": "Small uppercase label" }, { "value": "serif", "label": "Large serif" }

@@ -19,6 +19,8 @@
   @param {string} [sizes] - Image sizes attribute
   @param {string} [heading_tag] - Title tag (default h3)
   @param {number} [placeholder_index] - Placeholder SVG index when product is blank (onboarding)
+  @param {string} [url] - Link override, e.g. product.url | within: collection (keeps collection context)
+  @param {boolean} [show_recommended] - Show "Rekommenderas" badge + reason for recommended products (default true)
 
   @example
   {% render 'ws-product-card', product: product, image_ratio: '4 / 5', loading: 'lazy' %}
@@ -52,6 +54,10 @@
   if open_drawer == false
     assign opt_drawer = false
   endif
+  assign opt_recommended = true
+  if show_recommended == false
+    assign opt_recommended = false
+  endif
 -%}
 
 {%- if product == blank or product.id == blank -%}
@@ -66,7 +72,14 @@
     </div>
   </article>
 {%- else -%}
+  {%- capture is_recommended -%}{% render 'ws-recommended-flag', product: product %}{%- endcapture -%}
   {%- liquid
+    assign card_url = url | default: product.url
+    assign recommended = false
+    if opt_recommended and is_recommended == '1'
+      assign recommended = true
+    endif
+    assign recommended_reason = product.metafields.custom.ws_recommended_reason.value
     assign variant = product.selected_or_first_available_variant
 
     # ---------- Media
@@ -157,6 +170,7 @@
   <article
     class="ws-card ws-card--align-{{ t_align }}{% if media_2 != blank %} ws-card--has-hover{% endif %}"
     data-product-id="{{ product.id }}"
+    {% if recommended %}data-recommended="true"{% endif %}
   >
     <div class="ws-card__media" style="--ws-ratio: {{ ratio }};">
       {%- if media_1 != blank -%}
@@ -187,8 +201,11 @@
         }}
       {%- endif -%}
 
-      {%- if badge_text != blank or savings_percent > 0 -%}
+      {%- if badge_text != blank or savings_percent > 0 or recommended -%}
         <div class="ws-card__badges">
+          {%- if recommended -%}
+            <span class="ws-badge ws-badge--recommended">{% render 'ws-icon', name: 'check', size: 11 %}{{ 'ws.badges.recommended' | t }}</span>
+          {%- endif -%}
           {%- if badge_text != blank -%}
             <span class="ws-badge ws-badge--{{ badge_type }}">{{ badge_text | escape }}</span>
           {%- endif -%}
@@ -216,7 +233,7 @@
           </ws-add-button>
         {%- else -%}
           <div class="ws-card__quick">
-            <a href="{{ product.url }}" class="ws-card__quick-btn" tabindex="-1" aria-hidden="true">
+            <a href="{{ card_url }}" class="ws-card__quick-btn" tabindex="-1" aria-hidden="true">
               <span class="ws-card__quick-icon">{% render 'ws-icon', name: 'plus', size: 18 %}</span>
               <span class="ws-card__quick-label">{{ 'ws.card.choose_options' | t }}</span>
             </a>
@@ -230,8 +247,11 @@
         {% render 'ws-stars', product: product, class: 'ws-card__stars' %}
       {%- endif -%}
       <{{ h_tag }} class="ws-card__title ws-card__title--{{ t_style }}">
-        <a href="{{ product.url }}" class="ws-card__link">{{ product.title | escape }}</a>
+        <a href="{{ card_url }}" class="ws-card__link">{{ product.title | escape }}</a>
       </{{ h_tag }}>
+      {%- if recommended and recommended_reason != blank -%}
+        <p class="ws-card__reason">{% render 'ws-icon', name: 'check', size: 12 %}<span>{{ recommended_reason | escape }}</span></p>
+      {%- endif -%}
       <div class="ws-price">
         {%- if product.price_varies -%}
           <span class="ws-price__current">{{ 'ws.card.from_price' | t: price: price_min }}</span>

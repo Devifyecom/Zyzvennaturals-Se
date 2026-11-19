@@ -1,0 +1,26 @@
+{%- doc -%}
+  Outputs "1" when a product is marked as recommended, otherwise nothing. Use with capture.
+  A product is recommended when the boolean metafield custom.ws_recommended is true, or it has
+  one of the tags: recommended, rekommenderas, rekommenderad (any letter case).
+
+  @param {object} product - The product
+
+  @example
+  {%- capture is_rec -%}{% render 'ws-recommended-flag', product: product %}{%- endcapture -%}
+{%- enddoc -%}
+
+{%- liquid
+  assign ws_rec = false
+  if product.metafields.custom.ws_recommended.value == true
+    assign ws_rec = true
+  else
+    for tag in product.tags
+      assign ws_tag = tag | downcase | strip
+      if ws_tag == 'recommended' or ws_tag == 'rekommenderas' or ws_tag == 'rekommenderad'
+        assign ws_rec = true
+        break
+      endif
+    endfor
+  endif
+-%}
+{%- if ws_rec -%}1{%- endif -%}

@@ -15,8 +15,13 @@
   assign histogram = product.metafields.custom.ws_review_histogram.value
   assign app_blocks = section.blocks | where: 'type', '@app'
 
+  assign use_okendo = false
+  if s.okendo_widget and app_blocks.size == 0
+    assign use_okendo = true
+  endif
+
   assign show_section = false
-  if rating != blank or app_blocks.size > 0 or request.design_mode
+  if rating != blank or app_blocks.size > 0 or use_okendo or request.design_mode
     assign show_section = true
   endif
 -%}
@@ -85,7 +90,12 @@
           {% render block %}
         {%- endif -%}
       {%- endfor -%}
-      {%- if app_blocks.size == 0 and request.design_mode -%}
+      {%- if use_okendo -%}
+        {%- comment -%} Okendo Reviews Widget – docs.okendo.io/docs/on-site/on-site-widgets/reviews-widget {%- endcomment -%}
+        <div data-oke-widget data-oke-reviews-product-id="shopify-{{ product.id }}">
+          {{- product.metafields.okendo.ReviewsWidgetSnippet -}}
+        </div>
+      {%- elsif app_blocks.size == 0 and request.design_mode -%}
         <p class="ws-reviews__notice">Add your review app's widget here: click "Add block" in this section → Apps → Okendo "Reviews Widget". The summary above reads the reviews.rating metafields Okendo syncs.</p>
       {%- endif -%}
     </div>
@@ -141,7 +151,8 @@
   "settings": [
     { "type": "paragraph", "content": "Add your review app (Okendo Reviews Widget) as an app block in this section. The rating links on the product page scroll here." },
     { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Kundrecensioner" },
-    { "type": "checkbox", "id": "show_summary", "label": "Show rating summary", "info": "If your review widget already shows its own summary, turn this off to avoid duplicates.", "default": true },
+    { "type": "checkbox", "id": "okendo_widget", "label": "Show Okendo reviews automatically", "info": "Places the Okendo Reviews Widget for the current product (needs the Okendo app embed on). Ignored if you add an Okendo app block to this section.", "default": true },
+    { "type": "checkbox", "id": "show_summary", "label": "Show rating summary", "info": "Okendo's widget has its own summary, so this is off by default to avoid duplicates.", "default": false },
     { "type": "text", "id": "out_of_text", "label": "\"out of\" text", "info": "[max] is replaced.", "default": "av [max]" },
     { "type": "text", "id": "based_on_text", "label": "\"Based on\" text", "info": "[count] is replaced.", "default": "Baserat på [count] recensioner" },
     { "type": "checkbox", "id": "decimal_comma", "label": "Use decimal comma (4,73)", "default": true },

@@ -32,7 +32,12 @@
   endif
 -%}
 
-{%- if r_value != blank and r_value != 0 -%}
+{%- if product != blank and r_value == blank and product.metafields.okendo.StarRatingSnippet != blank -%}
+  {%- comment -%} Okendo Widget Plus star rating (docs.okendo.io/docs/on-site/on-site-widgets/star-rating) {%- endcomment -%}
+  <div class="ws-stars ws-stars--okendo{% if class != blank %} {{ class }}{% endif %}" data-oke-star-rating data-oke-reviews-product-id="shopify-{{ product.id }}">
+    {{- product.metafields.okendo.StarRatingSnippet -}}
+  </div>
+{%- elsif r_value != blank and r_value != 0 -%}
   {%- liquid
     assign r_float = r_value | times: 1.0
     assign fill_percent = r_float | divided_by: r_max | times: 100 | round: 1

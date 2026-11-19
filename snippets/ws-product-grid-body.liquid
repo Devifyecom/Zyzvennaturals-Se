@@ -61,46 +61,70 @@
     </div>
   {%- endif -%}
 
-  <ul
-    class="ws-grid ws-pgrid__grid{% if s.mobile_layout == 'carousel' %} ws-pgrid__grid--carousel{% endif %}"
-    style="--ws-cols: {{ s.columns }}; --ws-cols-m: {{ cols_m }};"
-    role="list"
-    {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
-  >
-    {%- liquid
-      if use_manual
-        assign items = s.products
-      elsif source_collection != blank
-        assign items = source_collection.products
-      else
-        assign items = nil
-      endif
-    -%}
+  {%- liquid
+    if use_manual
+      assign items = s.products
+    elsif source_collection != blank
+      assign items = source_collection.products
+    else
+      assign items = nil
+    endif
+    assign shown = 0
+    assign rec_count = 0
+    assign grid_id = 'ws-grid-' | append: section_obj.id
+  -%}
+
+  {%- capture grid_items -%}
     {%- if items != nil -%}
-      {%- for product in items limit: limit -%}
-        {%- liquid
-          assign loading = 'lazy'
-          if forloop.index <= eager_count
-            assign loading = 'eager'
-          endif
-        -%}
-        <li class="ws-grid__item">
-          {% render 'ws-product-card',
-            product: product,
-            image_ratio: s.image_ratio,
-            show_secondary_image: s.show_secondary_image,
-            show_quick_add: s.show_quick_add,
-            show_rating: s.show_rating,
-            show_badge: s.show_badge,
-            show_bundle_savings: show_savings,
-            open_drawer: s.open_drawer,
-            title_style: s.title_style,
-            text_align: s.card_align,
-            loading: loading,
-            sizes: sizes
-          %}
-        </li>
-      {%- endfor -%}
+      {%- if s.recommended_first -%}
+        {%- comment -%} Pass 1: recommended products first (scans up to 50 products) {%- endcomment -%}
+        {%- for product in items limit: 50 -%}
+          {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+          {%- capture flag -%}{% render 'ws-recommended-flag', product: product %}{%- endcapture -%}
+          {%- if flag == '1' -%}
+            {%- liquid
+              assign shown = shown | plus: 1
+              assign rec_count = rec_count | plus: 1
+              assign loading = 'lazy'
+              if shown <= eager_count
+                assign loading = 'eager'
+              endif
+            -%}
+            {% render 'ws-product-grid-item', product: product, s: s, recommended: true, loading: loading, sizes: sizes, show_savings: show_savings %}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- comment -%} Pass 2: everything else {%- endcomment -%}
+        {%- for product in items limit: 50 -%}
+          {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+          {%- capture flag -%}{% render 'ws-recommended-flag', product: product %}{%- endcapture -%}
+          {%- if flag != '1' -%}
+            {%- liquid
+              assign shown = shown | plus: 1
+              assign loading = 'lazy'
+              if shown <= eager_count
+                assign loading = 'eager'
+              endif
+            -%}
+            {% render 'ws-product-grid-item', product: product, s: s, recommended: false, loading: loading, sizes: sizes, show_savings: show_savings %}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for product in items limit: limit -%}
+          {%- capture flag -%}{% render 'ws-recommended-flag', product: product %}{%- endcapture -%}
+          {%- liquid
+            assign is_rec = false
+            if flag == '1'
+              assign is_rec = true
+              assign rec_count = rec_count | plus: 1
+            endif
+            assign loading = 'lazy'
+            if forloop.index <= eager_count
+              assign loading = 'eager'
+            endif
+          -%}
+          {% render 'ws-product-grid-item', product: product, s: s, recommended: is_rec, loading: loading, sizes: sizes, show_savings: show_savings %}
+        {%- endfor -%}
+      {%- endif -%}
     {%- else -%}
       {%- for i in (1..limit) -%}
         <li class="ws-grid__item">
@@ -108,6 +132,28 @@
         </li>
       {%- endfor -%}
     {%- endif -%}
+  {%- endcapture -%}
+
+  {%- if s.show_recommended_filter and rec_count > 0 and rec_count < shown -%}
+    <ws-grid-filter class="ws-filter" data-target="{{ grid_id }}" role="group" aria-label="{{ 'ws.filter.label' | t | escape }}">
+      <button type="button" class="ws-filter__chip" data-filter="all" aria-pressed="true">{{ 'ws.filter.all' | t }}</button>
+      <button type="button" class="ws-filter__chip" data-filter="recommended" aria-pressed="false">
+        {%- render 'ws-icon', name: 'check', size: 12 -%}
+        {{ 'ws.filter.recommended' | t }} ({{ rec_count }})
+      </button>
+      <span class="ws-sr-only" role="status" data-ws-filter-status></span>
+    </ws-grid-filter>
+    <script src="{{ 'ws-grid-filter.js' | asset_url }}" type="module" defer></script>
+  {%- endif -%}
+
+  <ul
+    id="{{ grid_id }}"
+    class="ws-grid ws-pgrid__grid{% if s.mobile_layout == 'carousel' %} ws-pgrid__grid--carousel{% endif %}"
+    style="--ws-cols: {{ s.columns }}; --ws-cols-m: {{ cols_m }};"
+    role="list"
+    {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  >
+    {{- grid_items -}}
   </ul>
 
   {%- if s.view_all_label != blank and view_all_url != blank -%}

@@ -17,7 +17,12 @@ class WsProductTabs extends HTMLElement {
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           this.observer.disconnect();
-          Promise.all([this.load('related'), this.load('recent')]).then(() => this.finalize());
+          Promise.all([this.load('related'), this.load('recent')]).then(() => {
+            this.finalize();
+            try {
+              window.okeWidgetApi?.initAllWidgets?.();
+            } catch {}
+          });
         }
       },
       { rootMargin: '400px 0px' }

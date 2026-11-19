@@ -73,6 +73,7 @@
 }
 
 .ws-container {
+  display: block; /* also used on custom elements (e.g. <ws-collection-tabs>), which default to inline */
   width: 100%;
   max-width: var(--ws-max-width);
   margin-inline: auto;
@@ -896,3 +897,55 @@ a.ws-stars:hover .ws-stars__count { text-decoration: underline; text-underline-o
 .ws-bundle__saved:empty { display: none; }
 .ws-bundle__note { margin: 0; font-size: 11px; text-align: center; }
 .ws-bundle__placeholder { display: block; width: 100%; height: 100%; fill: color-mix(in srgb, var(--ws-fg) 22%, transparent); }
+
+/* ---------- Recommended ---------- */
+.ws-badge--recommended {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #e3ebdf;
+  color: #1f3a2a;
+}
+
+.ws-card__reason {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #2c5a3c;
+}
+
+.ws-card--align-center .ws-card__reason { justify-content: center; }
+
+.ws-stars--okendo { display: block; }
+
+/* ---------- Grid filter chips ---------- */
+.ws-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 clamp(20px, 3vw, 32px);
+}
+
+.ws-filter__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--ws-border);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.ws-filter__chip:hover { border-color: var(--ws-fg); }
+.ws-filter__chip[aria-pressed='true'] { background-color: var(--ws-fg); border-color: var(--ws-fg); color: var(--ws-bg); }

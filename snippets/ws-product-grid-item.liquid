@@ -1,0 +1,28 @@
+{%- doc -%}
+  One grid <li> with a ws-product-card, using the shared ws- grid settings.
+
+  @param {object} product - The product
+  @param {object} s - Section settings (ws-product-grid / ws-bundles-grid / ws-collection-tabs)
+  @param {boolean} [recommended] - Product is recommended (adds data attribute for the filter)
+  @param {string} [loading] - 'lazy' | 'eager'
+  @param {string} [sizes] - Image sizes attribute
+  @param {boolean} [show_savings] - Bundle "Spara X%" pill
+  @param {string} [url] - Link override (e.g. within collection)
+{%- enddoc -%}
+<li class="ws-grid__item"{% if recommended %} data-recommended="true"{% endif %} data-product-id="{{ product.id }}">
+  {% render 'ws-product-card',
+    product: product,
+    url: url,
+    image_ratio: s.image_ratio,
+    show_secondary_image: s.show_secondary_image,
+    show_quick_add: s.show_quick_add,
+    show_rating: s.show_rating,
+    show_badge: s.show_badge,
+    show_bundle_savings: show_savings,
+    open_drawer: s.open_drawer,
+    title_style: s.title_style,
+    text_align: s.card_align,
+    loading: loading,
+    sizes: sizes
+  %}
+</li>

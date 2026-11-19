@@ -94,7 +94,10 @@
     },
     "ws_reviews_carousel": {
       "type": "ws-reviews-carousel",
-      "settings": {},
+      "settings": {
+        "source": "okendo",
+        "okendo_scope": "store"
+      },
       "blocks": {
         "review_1": {
           "type": "review",
@@ -240,6 +243,42 @@
     "ws_newsletter": {
       "type": "ws-newsletter",
       "settings": {}
+    },
+    "ws_collection_tabs": {
+      "type": "ws-collection-tabs",
+      "blocks": {
+        "collection_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "teas"
+          }
+        },
+        "collection_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "moisturisers"
+          }
+        },
+        "collection_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_1",
+        "collection_2",
+        "collection_3",
+        "collection_4"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -254,6 +293,7 @@
     "ws_bundles_grid",
     "ws_recipe_feature",
     "ws_collection_tiles",
+    "ws_collection_tabs",
     "ws_usp_bar",
     "ws_newsletter"
   ]

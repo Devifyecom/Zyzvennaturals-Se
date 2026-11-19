@@ -1,0 +1,268 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-ctabs-h-' | append: section.id
+  assign panel_id = 'ws-ctabs-panel-' | append: section.id
+
+  # Active collection: when this section is re-rendered on /collections/<handle>?section_id=…
+  # (tab switch / load more), the global `collection` is that collection. Otherwise: first tab.
+  assign active = nil
+  for block in section.blocks
+    if block.settings.collection != blank and active == nil
+      assign active = block.settings.collection
+    endif
+  endfor
+  if collection != blank
+    for block in section.blocks
+      if block.settings.collection != blank and block.settings.collection.handle == collection.handle
+        assign active = collection
+      endif
+    endfor
+  endif
+  assign tab_prefix = 'ws-ctab-' | append: section.id | append: '-'
+
+  assign cols_m = s.columns_mobile | plus: 0
+  case s.columns
+    when 3
+      assign sizes = '(min-width: 990px) 30vw, (min-width: 750px) 30vw, 50vw'
+    when 5
+      assign sizes = '(min-width: 990px) 18vw, (min-width: 750px) 30vw, 50vw'
+    else
+      assign sizes = '(min-width: 990px) 23vw, (min-width: 750px) 30vw, 50vw'
+  endcase
+-%}
+
+{% render 'ws-assets', cart: true %}
+
+<section
+  class="ws-section ws-ctabs"
+  style="{% render 'ws-section-style', settings: s %}"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ s.aria_label | escape }}"{% endif %}
+>
+  <ws-collection-tabs
+    class="ws-container"
+    data-section-id="{{ section.id }}"
+    data-error-text="{{ 'ws.collection_tabs.error' | t | escape }}"
+    data-retry-text="{{ 'ws.collection_tabs.retry' | t | escape }}"
+  >
+    {%- if s.eyebrow != blank or s.heading != blank -%}
+      <div class="ws-head">
+        {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
+      </div>
+    {%- endif -%}
+
+    {%- if active == nil -%}
+      {%- if request.design_mode -%}
+        <p class="ws-ctabs__empty ws-muted">WS · Collection tabs: add "Collection" blocks and pick a collection in each.</p>
+      {%- endif -%}
+    {%- else -%}
+      <div class="ws-ctabs__tabs" role="tablist" aria-label="{{ s.aria_label | escape }}">
+        {%- for block in section.blocks -%}
+          {%- assign c = block.settings.collection -%}
+          {%- if c != blank -%}
+            {%- assign is_active = false -%}
+            {%- if c.handle == active.handle -%}{%- assign is_active = true -%}{%- endif -%}
+            <button
+              type="button"
+              role="tab"
+              class="ws-ctabs__tab"
+              id="{{ tab_prefix }}{{ c.handle }}"
+              aria-controls="{{ panel_id }}"
+              aria-selected="{{ is_active }}"
+              tabindex="{% if is_active %}0{% else %}-1{% endif %}"
+              data-url="{{ c.url }}"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label | default: c.title | escape -}}
+              {%- if s.show_counts -%}<span class="ws-ctabs__tab-count">{{ c.products_count }}</span>{%- endif -%}
+            </button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div
+        class="ws-ctabs__panel"
+        id="{{ panel_id }}"
+        role="tabpanel"
+        aria-labelledby="{{ tab_prefix }}{{ active.handle }}"
+        tabindex="-1"
+        data-ws-ctabs-panel
+      >
+        {%- paginate active.products by s.products_per_page -%}
+          {%- if active.products.size > 0 -%}
+            <ul class="ws-grid" style="--ws-cols: {{ s.columns }}; --ws-cols-m: {{ cols_m }};" role="list" data-ws-ctabs-grid>
+              {%- for product in active.products -%}
+                {%- capture flag -%}{% render 'ws-recommended-flag', product: product %}{%- endcapture -%}
+                {%- liquid
+                  assign is_rec = false
+                  if flag == '1'
+                    assign is_rec = true
+                  endif
+                  assign item_url = product.url | within: active
+                -%}
+                {% render 'ws-product-grid-item', product: product, s: s, recommended: is_rec, loading: 'lazy', sizes: sizes, url: item_url %}
+              {%- endfor -%}
+            </ul>
+            {%- liquid
+              assign shown = paginate.current_offset | plus: active.products.size
+            -%}
+            <div class="ws-ctabs__footer" data-ws-ctabs-footer>
+              <p class="ws-ctabs__count ws-muted" aria-live="polite">{{ 'ws.collection_tabs.showing' | t: shown: shown, total: paginate.items }}</p>
+              <div class="ws-ctabs__actions">
+                {%- if paginate.next -%}
+                  <button type="button" class="ws-btn ws-btn--secondary" data-ws-ctabs-more data-url="{{ active.url }}" data-next-page="{{ paginate.current_page | plus: 1 }}">
+                    {{- s.load_more_label | escape -}}
+                  </button>
+                {%- endif -%}
+                {%- if s.view_all_label != blank -%}
+                  <a href="{{ active.url }}" class="ws-btn ws-btn--link">{{ s.view_all_label | replace: '[collection]', active.title | escape }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- else -%}
+            <p class="ws-ctabs__empty ws-muted">{{ s.empty_text | escape }}</p>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    {%- endif -%}
+  </ws-collection-tabs>
+</section>
+
+<script src="{{ 'ws-collection-tabs.js' | asset_url }}" type="module" defer></script>
+
+{% stylesheet %}
+  .ws-ctabs__tabs {
+    display: flex;
+    gap: 8px;
+    margin: 0 calc(var(--ws-gutter) * -1) clamp(20px, 3vw, 32px);
+    padding: 2px var(--ws-gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+
+  .ws-ctabs__tabs::-webkit-scrollbar { display: none; }
+
+  @media screen and (min-width: 750px) {
+    .ws-ctabs__tabs { flex-wrap: wrap; justify-content: center; overflow: visible; margin-inline: 0; padding-inline: 0; }
+  }
+
+  .ws-ctabs__tab {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 1px solid var(--ws-border);
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .ws-ctabs__tab:hover { border-color: var(--ws-fg); }
+  .ws-ctabs__tab[aria-selected='true'] { background-color: var(--ws-fg); border-color: var(--ws-fg); color: var(--ws-bg); }
+
+  .ws-ctabs__tab-count {
+    min-width: 22px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .ws-ctabs__panel { transition: opacity 0.2s; }
+  .ws-ctabs__panel[aria-busy='true'] { opacity: 0.45; pointer-events: none; }
+  .ws-ctabs__panel:focus-visible { outline: 2px solid var(--ws-fg); outline-offset: 6px; }
+
+  .ws-ctabs__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: clamp(24px, 4vw, 40px);
+  }
+
+  .ws-ctabs__count { margin: 0; font-size: 13px; }
+  .ws-ctabs__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; }
+  .ws-ctabs__empty { margin: 0; padding: 40px 0; text-align: center; font-size: 14px; }
+  .ws-ctabs__error { text-align: center; padding: 32px 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Collection tabs",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Utforska våra kollektioner" },
+    { "type": "select", "id": "heading_style", "label": "Heading style", "default": "serif", "options": [
+      { "value": "label", "label": "Small uppercase label" }, { "value": "serif", "label": "Large serif" }
+    ] },
+    { "type": "text", "id": "aria_label", "label": "Accessible name for the tabs", "default": "Kollektioner" },
+    { "type": "checkbox", "id": "show_counts", "label": "Show product count on tabs", "default": true },
+    { "type": "header", "content": "Products" },
+    { "type": "range", "id": "products_per_page", "label": "Products per load", "info": "\"Visa fler\" loads the next batch until all products in the collection are shown.", "min": 4, "max": 24, "step": 1, "default": 8 },
+    { "type": "range", "id": "columns", "label": "Desktop columns", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "select", "id": "columns_mobile", "label": "Mobile columns", "default": "2", "options": [
+      { "value": "1", "label": "1" }, { "value": "2", "label": "2" }
+    ] },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "4 / 5", "options": [
+      { "value": "4 / 5", "label": "Portrait (4:5)" }, { "value": "3 / 4", "label": "Tall (3:4)" }, { "value": "1 / 1", "label": "Square" }
+    ] },
+    { "type": "checkbox", "id": "show_secondary_image", "label": "Show second image on hover", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Show star rating", "default": true },
+    { "type": "checkbox", "id": "show_badge", "label": "Show badges", "default": true },
+    { "type": "checkbox", "id": "show_quick_add", "label": "Show quick add", "default": true },
+    { "type": "checkbox", "id": "open_drawer", "label": "Open cart drawer after quick add", "default": true },
+    { "type": "select", "id": "title_style", "label": "Title style", "default": "uppercase", "options": [
+      { "value": "uppercase", "label": "Small uppercase" }, { "value": "serif", "label": "Serif" }
+    ] },
+    { "type": "select", "id": "card_align", "label": "Card text alignment", "default": "center", "options": [
+      { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" }
+    ] },
+    { "type": "header", "content": "Texts" },
+    { "type": "text", "id": "load_more_label", "label": "Load more button", "default": "Visa fler" },
+    { "type": "text", "id": "view_all_label", "label": "View collection link", "info": "[collection] is replaced with the collection name. Leave empty to hide.", "default": "Gå till [collection]" },
+    { "type": "text", "id": "empty_text", "label": "Empty collection text", "default": "Inga produkter i den här kollektionen ännu." },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 12,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "label", "label": "Tab label", "info": "Defaults to the collection title." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS · Collection tabs",
+      "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

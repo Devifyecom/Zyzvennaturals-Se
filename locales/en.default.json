@@ -417,7 +417,8 @@
       "new": "New",
       "limited": "Limited edition",
       "sale": "Sale",
-      "sold_out": "Sold out"
+      "sold_out": "Sold out",
+      "recommended": "Recommended"
     },
     "reviews": {
       "rating_label": "Rated {{ rating }} out of {{ max }} stars",
@@ -447,6 +448,16 @@
       "breadcrumb": "Breadcrumb",
       "payment_methods": "Payment methods",
       "choose_variant": "Choose variant"
+    },
+    "filter": {
+      "label": "Filter products",
+      "all": "All",
+      "recommended": "Recommended"
+    },
+    "collection_tabs": {
+      "showing": "Showing {{ shown }} of {{ total }} products",
+      "error": "Products could not be loaded. Please try again.",
+      "retry": "Try again"
     }
   }
 }

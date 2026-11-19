@@ -3421,6 +3421,42 @@
         "padding-block-start": 20,
         "padding-block-end": 60
       }
+    },
+    "ws_collection_tabs": {
+      "type": "ws-collection-tabs",
+      "blocks": {
+        "collection_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "teas"
+          }
+        },
+        "collection_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "moisturisers"
+          }
+        },
+        "collection_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_1",
+        "collection_2",
+        "collection_3",
+        "collection_4"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -3431,6 +3467,7 @@
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
     "ws_collection_tiles_h7NAL3",
+    "ws_collection_tabs",
     "hero_slider_WaUDdM",
     "17670913507ee9f697",
     "product_list_KEtwTQ",

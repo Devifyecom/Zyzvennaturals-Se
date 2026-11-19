@@ -396,7 +396,8 @@
       "new": "Nyhet",
       "limited": "Limited edition",
       "sale": "Rea",
-      "sold_out": "Slutsåld"
+      "sold_out": "Slutsåld",
+      "recommended": "Rekommenderas"
     },
     "reviews": {
       "rating_label": "Betyg {{ rating }} av {{ max }} stjärnor",
@@ -426,6 +427,16 @@
       "breadcrumb": "Brödsmulor",
       "payment_methods": "Betalningsmetoder",
       "choose_variant": "Välj variant"
+    },
+    "filter": {
+      "label": "Filtrera produkter",
+      "all": "Alla",
+      "recommended": "Rekommenderade"
+    },
+    "collection_tabs": {
+      "showing": "Visar {{ shown }} av {{ total }} produkter",
+      "error": "Produkterna kunde inte laddas. Försök igen.",
+      "retry": "Försök igen"
     }
   }
 }

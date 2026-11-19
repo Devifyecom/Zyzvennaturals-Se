@@ -150,6 +150,86 @@
         "padding-block-end": 100
       }
     },
+    "ws_press_logos_rkFL9Y": {
+      "type": "ws-press-logos",
+      "blocks": {
+        "logo_hRMf46": {
+          "type": "logo",
+          "settings": {
+            "name": "Vogue",
+            "link": "",
+            "new_tab": true
+          }
+        },
+        "logo_kUpcXA": {
+          "type": "logo",
+          "settings": {
+            "name": "Elle",
+            "link": "",
+            "new_tab": true
+          }
+        },
+        "logo_bVY9Cr": {
+          "type": "logo",
+          "settings": {
+            "name": "Expressen",
+            "link": "",
+            "new_tab": true
+          }
+        },
+        "logo_GJ6ta8": {
+          "type": "logo",
+          "settings": {
+            "name": "Femina",
+            "link": "",
+            "new_tab": true
+          }
+        },
+        "logo_UnY7TA": {
+          "type": "logo",
+          "settings": {
+            "name": "Hälsa",
+            "link": "",
+            "new_tab": true
+          }
+        },
+        "logo_Y6R8Ym": {
+          "type": "logo",
+          "settings": {
+            "name": "Amelia",
+            "link": "",
+            "new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "logo_hRMf46",
+        "logo_kUpcXA",
+        "logo_bVY9Cr",
+        "logo_GJ6ta8",
+        "logo_UnY7TA",
+        "logo_Y6R8Ym"
+      ],
+      "name": "WS · Press logos",
+      "settings": {
+        "heading": "",
+        "aria_label": "Som sett i",
+        "desktop_layout": "static",
+        "speed": 30,
+        "grayscale": true,
+        "logo_height": 30,
+        "logo_height_mobile": 22,
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
+      }
+    },
     "section_8kNV6X": {
       "type": "section",
       "blocks": {
@@ -3282,6 +3362,7 @@
   "order": [
     "ws_hero_FkJRJm",
     "hero_jVaWmY",
+    "ws_press_logos_rkFL9Y",
     "section_8kNV6X",
     "collection_list_JnMyq7",
     "product_list_MEVLcE",

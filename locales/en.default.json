@@ -400,5 +400,53 @@
       "default_title": "Default Title",
       "sticky_add_to_cart": "Quick add to cart bar"
     }
+  },
+  "ws": {
+    "card": {
+      "add_to_cart": "Add to cart",
+      "choose_options": "Choose options",
+      "added": "Added",
+      "from_price": "From {{ price }}",
+      "save_percent": "Save {{ percent }}%",
+      "sale_price": "Sale price",
+      "regular_price": "Regular price",
+      "placeholder_title": "Product title"
+    },
+    "badges": {
+      "bestseller": "Bestseller",
+      "new": "New",
+      "limited": "Limited edition",
+      "sale": "Sale",
+      "sold_out": "Sold out"
+    },
+    "reviews": {
+      "rating_label": "Rated {{ rating }} out of {{ max }} stars",
+      "count_text": "{{ count }} reviews"
+    },
+    "cart": {
+      "error": "Something went wrong. Please try again."
+    },
+    "a11y": {
+      "previous": "Previous",
+      "next": "Next",
+      "close": "Close"
+    },
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "save_percent": "Save {{ percent }}%",
+      "quantity": "Quantity",
+      "increase": "Increase quantity",
+      "decrease": "Decrease quantity",
+      "gallery": "Product images",
+      "media_n": "Media {{ n }} of {{ total }}",
+      "zoom": "Zoom image",
+      "play_video": "Play video",
+      "view_3d": "View in 3D",
+      "breadcrumb": "Breadcrumb",
+      "payment_methods": "Payment methods",
+      "choose_variant": "Choose variant"
+    }
   }
 }

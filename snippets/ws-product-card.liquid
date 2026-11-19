@@ -1,0 +1,249 @@
+{%- doc -%}
+  ws- product card. Used by ws-product-grid, ws-bundles-grid, ws-product-tabs and the bundle builder.
+  Requires ws-base.css, and ws-cart.js for the quick add button (load both via the 'ws-assets' snippet).
+
+  Badge priority: metafield custom.ws_badge (text) > tag "badge:Your text" > tags bestseller / new / limited
+  > automatic Sale (compare-at > price) > Sold out.
+
+  @param {object} [product] - The product (omit to render a placeholder card)
+  @param {string} [image_ratio] - CSS aspect ratio for the media, e.g. '4 / 5' (default), '1 / 1', '3 / 4'
+  @param {boolean} [show_secondary_image] - Show the second image on hover (default true)
+  @param {boolean} [show_quick_add] - Show quick add button (default true)
+  @param {boolean} [show_rating] - Show star rating (default true)
+  @param {boolean} [show_badge] - Show badge (default true)
+  @param {boolean} [show_bundle_savings] - Show a "Save X%" pill (metafield custom.ws_bundle_savings or compare-at)
+  @param {boolean} [open_drawer] - Open the cart drawer after quick add (default true)
+  @param {string} [title_style] - 'uppercase' (default) or 'serif'
+  @param {string} [text_align] - 'center' (default) or 'left'
+  @param {string} [loading] - Image loading: 'lazy' (default) or 'eager'
+  @param {string} [sizes] - Image sizes attribute
+  @param {string} [heading_tag] - Title tag (default h3)
+  @param {number} [placeholder_index] - Placeholder SVG index when product is blank (onboarding)
+
+  @example
+  {% render 'ws-product-card', product: product, image_ratio: '4 / 5', loading: 'lazy' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign ratio = image_ratio | default: '4 / 5'
+  assign img_sizes = sizes | default: '(min-width: 1200px) 22vw, (min-width: 750px) 30vw, 50vw'
+  assign img_loading = loading | default: 'lazy'
+  assign h_tag = heading_tag | default: 'h3'
+  assign t_style = title_style | default: 'uppercase'
+  assign t_align = text_align | default: 'center'
+
+  assign opt_secondary = true
+  if show_secondary_image == false
+    assign opt_secondary = false
+  endif
+  assign opt_quick = true
+  if show_quick_add == false
+    assign opt_quick = false
+  endif
+  assign opt_rating = true
+  if show_rating == false
+    assign opt_rating = false
+  endif
+  assign opt_badge = true
+  if show_badge == false
+    assign opt_badge = false
+  endif
+  assign opt_drawer = true
+  if open_drawer == false
+    assign opt_drawer = false
+  endif
+-%}
+
+{%- if product == blank or product.id == blank -%}
+  {%- assign ph = placeholder_index | default: 1 | modulo: 6 | plus: 1 -%}
+  <article class="ws-card ws-card--placeholder ws-card--align-{{ t_align }}">
+    <div class="ws-card__media" style="--ws-ratio: {{ ratio }};">
+      {{ 'product-' | append: ph | placeholder_svg_tag: 'ws-card__placeholder' }}
+    </div>
+    <div class="ws-card__info">
+      <{{ h_tag }} class="ws-card__title ws-card__title--{{ t_style }}">{{ 'ws.card.placeholder_title' | t }}</{{ h_tag }}>
+      <div class="ws-price"><span class="ws-price__current">{{ 2900 | money }}</span></div>
+    </div>
+  </article>
+{%- else -%}
+  {%- liquid
+    assign variant = product.selected_or_first_available_variant
+
+    # ---------- Media
+    assign media_1 = product.featured_media
+    assign media_2 = nil
+    if opt_secondary and product.media.size > 1
+      assign media_2 = product.media[1]
+    endif
+
+    # ---------- Badge
+    assign badge_text = ''
+    assign badge_type = ''
+    if opt_badge
+      if product.metafields.custom.ws_badge != blank
+        assign badge_text = product.metafields.custom.ws_badge.value
+        assign badge_type = 'custom'
+      else
+        for tag in product.tags
+          assign tag_down = tag | downcase
+          if tag_down contains 'badge:'
+            assign badge_text = tag | split: ':' | last | strip
+            assign badge_type = 'custom'
+            break
+          elsif tag_down == 'bestseller' or tag_down == 'bästsäljare'
+            assign badge_text = 'ws.badges.bestseller' | t
+            assign badge_type = 'bestseller'
+            break
+          elsif tag_down == 'new' or tag_down == 'nyhet'
+            assign badge_text = 'ws.badges.new' | t
+            assign badge_type = 'new'
+            break
+          elsif tag_down == 'limited' or tag_down == 'limited-edition' or tag_down == 'limited edition'
+            assign badge_text = 'ws.badges.limited' | t
+            assign badge_type = 'limited'
+            break
+          endif
+        endfor
+      endif
+
+      if badge_text == blank
+        if product.available == false
+          assign badge_text = 'ws.badges.sold_out' | t
+          assign badge_type = 'sold-out'
+        elsif product.compare_at_price > product.price
+          assign badge_text = 'ws.badges.sale' | t
+          assign badge_type = 'sale'
+        endif
+      endif
+    endif
+
+    # ---------- Savings pill (bundles)
+    assign savings_percent = 0
+    if show_bundle_savings
+      if product.metafields.custom.ws_bundle_savings != blank
+        assign savings_percent = product.metafields.custom.ws_bundle_savings.value
+      elsif variant.compare_at_price > variant.price
+        assign diff = variant.compare_at_price | minus: variant.price | times: 100.0
+        assign savings_percent = diff | divided_by: variant.compare_at_price | round
+      endif
+    endif
+
+    # ---------- Price
+    assign use_currency = settings.currency_code_enabled_product_cards
+    if use_currency
+      assign price_now = variant.price | money_with_currency
+      assign price_min = product.price_min | money_with_currency
+      assign price_compare = variant.compare_at_price | money_with_currency
+    else
+      assign price_now = variant.price | money
+      assign price_min = product.price_min | money
+      assign price_compare = variant.compare_at_price | money
+    endif
+    assign on_sale = false
+    if variant.compare_at_price > variant.price
+      assign on_sale = true
+    endif
+
+    # ---------- Quick add
+    assign single_variant = false
+    if product.has_only_default_variant or product.variants.size == 1
+      assign single_variant = true
+    endif
+    if product.requires_selling_plan
+      assign single_variant = false
+    endif
+  -%}
+
+  <article
+    class="ws-card ws-card--align-{{ t_align }}{% if media_2 != blank %} ws-card--has-hover{% endif %}"
+    data-product-id="{{ product.id }}"
+  >
+    <div class="ws-card__media" style="--ws-ratio: {{ ratio }};">
+      {%- if media_1 != blank -%}
+        {%- assign ws_img_alt = media_1.alt | default: product.title -%}
+        {{
+          media_1.preview_image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '240, 360, 480, 640, 800, 960, 1200',
+            sizes: img_sizes,
+            loading: img_loading,
+            class: 'ws-card__img ws-card__img--primary',
+            alt: ws_img_alt
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'ws-card__placeholder' }}
+      {%- endif -%}
+      {%- if media_2 != blank -%}
+        {{
+          media_2.preview_image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '240, 360, 480, 640, 800, 960, 1200',
+            sizes: img_sizes,
+            loading: 'lazy',
+            class: 'ws-card__img ws-card__img--secondary',
+            alt: ''
+        }}
+      {%- endif -%}
+
+      {%- if badge_text != blank or savings_percent > 0 -%}
+        <div class="ws-card__badges">
+          {%- if badge_text != blank -%}
+            <span class="ws-badge ws-badge--{{ badge_type }}">{{ badge_text | escape }}</span>
+          {%- endif -%}
+          {%- if savings_percent > 0 -%}
+            <span class="ws-badge ws-badge--save">{{ 'ws.card.save_percent' | t: percent: savings_percent }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if opt_quick and product.available -%}
+        {%- if single_variant -%}
+          <ws-add-button
+            class="ws-card__quick"
+            data-variant-id="{{ variant.id }}"
+            data-open-drawer="{{ opt_drawer }}"
+            data-added-text="{{ 'ws.card.added' | t | escape }}"
+            data-error-text="{{ 'ws.cart.error' | t | escape }}"
+          >
+            <button type="button" class="ws-card__quick-btn">
+              <span class="ws-card__quick-icon">{% render 'ws-icon', name: 'plus', size: 18 %}</span>
+              <span class="ws-card__quick-label" data-label>{{ 'ws.card.add_to_cart' | t }}</span>
+              <span class="ws-sr-only">: {{ product.title | escape }}</span>
+            </button>
+            <span class="ws-sr-only" role="status" aria-live="polite" data-status></span>
+          </ws-add-button>
+        {%- else -%}
+          <div class="ws-card__quick">
+            <a href="{{ product.url }}" class="ws-card__quick-btn" tabindex="-1" aria-hidden="true">
+              <span class="ws-card__quick-icon">{% render 'ws-icon', name: 'plus', size: 18 %}</span>
+              <span class="ws-card__quick-label">{{ 'ws.card.choose_options' | t }}</span>
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    <div class="ws-card__info">
+      {%- if opt_rating -%}
+        {% render 'ws-stars', product: product, class: 'ws-card__stars' %}
+      {%- endif -%}
+      <{{ h_tag }} class="ws-card__title ws-card__title--{{ t_style }}">
+        <a href="{{ product.url }}" class="ws-card__link">{{ product.title | escape }}</a>
+      </{{ h_tag }}>
+      <div class="ws-price">
+        {%- if product.price_varies -%}
+          <span class="ws-price__current">{{ 'ws.card.from_price' | t: price: price_min }}</span>
+        {%- elsif on_sale -%}
+          <span class="ws-sr-only">{{ 'ws.card.sale_price' | t }}</span>
+          <span class="ws-price__current ws-price__current--sale">{{ price_now }}</span>
+          <span class="ws-sr-only">{{ 'ws.card.regular_price' | t }}</span>
+          <s class="ws-price__compare">{{ price_compare }}</s>
+        {%- else -%}
+          <span class="ws-price__current">{{ price_now }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </article>
+{%- endif -%}

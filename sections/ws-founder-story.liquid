@@ -1,0 +1,140 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-founder-h-' | append: section.id
+  case s.image_width
+    when '40'
+      assign cols = 'minmax(0, 2fr) minmax(0, 3fr)'
+      assign cols_r = 'minmax(0, 3fr) minmax(0, 2fr)'
+    when '60'
+      assign cols = 'minmax(0, 3fr) minmax(0, 2fr)'
+      assign cols_r = 'minmax(0, 2fr) minmax(0, 3fr)'
+    else
+      assign cols = 'minmax(0, 1fr) minmax(0, 1fr)'
+      assign cols_r = cols
+  endcase
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  class="ws-section ws-founder"
+  style="{% render 'ws-section-style', settings: s %} --ws-split-cols: {{ cols }}; --ws-split-cols-r: {{ cols_r }}; --ws-align: {{ s.vertical_align }};"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+>
+  <div class="ws-container">
+    <div class="ws-split{% if s.image_position == 'right' %} ws-split--image-right{% endif %}{% unless s.mobile_image_first %} ws-split--m-text-first{% endunless %}">
+      <div class="ws-split__media">
+        <div class="ws-media" style="--ws-ratio: {% if s.image_ratio == 'adapt' and s.image != blank %}{{ s.image.aspect_ratio }}{% elsif s.image_ratio == 'adapt' %}4 / 5{% else %}{{ s.image_ratio }}{% endif %};">
+          {%- if s.image != blank -%}
+            {%- assign ws_img_alt = s.image.alt -%}
+            {{
+              s.image
+              | image_url: width: 1600
+              | image_tag:
+                widths: '375, 550, 750, 1000, 1300, 1600',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                loading: 'lazy',
+                alt: ws_img_alt
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'ws-placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="ws-split__content ws-text-{{ s.text_align }}">
+        {%- if s.eyebrow != blank -%}
+          <p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>
+        {%- endif -%}
+        {% render 'ws-heading', text: s.heading, look: 'serif', size: s.heading_size, italic: s.heading_italic, id: heading_id %}
+        {%- if s.text != blank -%}
+          <div class="ws-rte">{{ s.text }}</div>
+        {%- endif -%}
+        {%- if s.signature != blank -%}
+          <div class="ws-founder__signature" style="--ws-sig-w: {{ s.signature_width }}px;">
+            {%- assign ws_sig_alt = s.signature_name | default: s.signature.alt -%}
+            {{ s.signature | image_url: width: 600 | image_tag: loading: 'lazy', alt: ws_sig_alt }}
+          </div>
+        {%- endif -%}
+        {%- if s.signature_name != blank -%}
+          <p class="ws-founder__name">{{ s.signature_name | escape }}</p>
+        {%- endif -%}
+        {%- if s.button_label != blank -%}
+          <div class="ws-btn-group">
+            <a {% if s.button_link != blank %}href="{{ s.button_link }}"{% else %}role="link" aria-disabled="true"{% endif %} class="ws-btn ws-btn--{{ s.button_style }}">{{ s.button_label | escape }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ws-founder__signature { margin-top: 24px; }
+  .ws-founder__signature img { display: block; width: var(--ws-sig-w, 160px); max-width: 100%; height: auto; }
+  .ws-founder__name {
+    margin: 10px 0 0;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Founder story",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "4 / 5", "options": [
+      { "value": "4 / 5", "label": "Portrait (4:5)" }, { "value": "3 / 4", "label": "Tall (3:4)" }, { "value": "1 / 1", "label": "Square" },
+      { "value": "4 / 3", "label": "Landscape (4:3)" }, { "value": "adapt", "label": "Adapt to image" }
+    ] },
+    { "type": "select", "id": "image_position", "label": "Desktop image position", "default": "left", "options": [
+      { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" }
+    ] },
+    { "type": "select", "id": "image_width", "label": "Desktop image width", "default": "50", "options": [
+      { "value": "40", "label": "40%" }, { "value": "50", "label": "50%" }, { "value": "60", "label": "60%" }
+    ] },
+    { "type": "checkbox", "id": "mobile_image_first", "label": "Show image first on mobile", "default": true },
+    { "type": "header", "content": "Text" },
+    { "type": "select", "id": "vertical_align", "label": "Vertical alignment", "default": "center", "options": [
+      { "value": "start", "label": "Top" }, { "value": "center", "label": "Middle" }, { "value": "end", "label": "Bottom" }
+    ] },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "left", "options": [
+      { "value": "left", "label": "Left" }, { "value": "center", "label": "Centre" }
+    ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label", "default": "Om oss" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Vi skapade det vi själva saknade" },
+    { "type": "select", "id": "heading_size", "label": "Heading size", "default": "h3", "options": [
+      { "value": "h2", "label": "Large" }, { "value": "h3", "label": "Medium" }, { "value": "h4", "label": "Small" }
+    ] },
+    { "type": "checkbox", "id": "heading_italic", "label": "Italic heading", "default": false },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Berätta historien bakom varumärket – varför ni startade, vilket problem ni löser och vad som gör era produkter annorlunda.</p><p>Personliga berättelser bygger förtroende och ökar konverteringen.</p>" },
+    { "type": "image_picker", "id": "signature", "label": "Signature image", "info": "Optional handwritten signature (transparent PNG)." },
+    { "type": "range", "id": "signature_width", "label": "Signature width", "min": 60, "max": 300, "step": 10, "unit": "px", "default": 160 },
+    { "type": "text", "id": "signature_name", "label": "Signature name / title" },
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "link", "options": [
+      { "value": "primary", "label": "Solid" }, { "value": "secondary", "label": "Outline" }, { "value": "link", "label": "Text link" }
+    ] },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "narrow", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Founder story" }]
+}
+{% endschema %}

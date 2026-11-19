@@ -1,0 +1,260 @@
+{
+  "sections": {
+    "ws_announcement_bar": {
+      "type": "ws-announcement-bar",
+      "settings": {},
+      "blocks": {
+        "message_1": {
+          "type": "message",
+          "settings": {
+            "icon": "check",
+            "text": "Leverans inom 1–3 vardagar"
+          }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": {
+            "icon": "return",
+            "text": "Fri retur inom 30 dagar"
+          }
+        }
+      },
+      "block_order": [
+        "message_1",
+        "message_2"
+      ]
+    },
+    "ws_hero": {
+      "type": "ws-hero",
+      "settings": {
+        "button_1_link": "shopify://collections/all"
+      }
+    },
+    "ws_press_logos": {
+      "type": "ws-press-logos",
+      "settings": {},
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "name": "Vogue"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Elle"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "name": "Expressen"
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "name": "Femina"
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "name": "Hälsa"
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "name": "Amelia"
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
+      ]
+    },
+    "ws_founder_story": {
+      "type": "ws-founder-story",
+      "settings": {}
+    },
+    "ws_product_grid": {
+      "type": "ws-product-grid",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "view_all_link": "shopify://collections/all"
+      }
+    },
+    "ws_reviews_carousel": {
+      "type": "ws-reviews-carousel",
+      "settings": {},
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "author": "Henrietta",
+            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "author": "Sofia",
+            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "author": "Maria",
+            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "author": "Olivia",
+            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4"
+      ]
+    },
+    "ws_feature_banner": {
+      "type": "ws-feature-banner",
+      "settings": {
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "ws_blog_cards": {
+      "type": "ws-blog-cards",
+      "settings": {
+        "blog": "news"
+      }
+    },
+    "ws_bundles_grid": {
+      "type": "ws-bundles-grid",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 3,
+        "columns": 3,
+        "view_all_label": ""
+      }
+    },
+    "ws_recipe_feature": {
+      "type": "ws-recipe-feature",
+      "settings": {}
+    },
+    "ws_collection_tiles": {
+      "type": "ws-collection-tiles",
+      "settings": {},
+      "blocks": {
+        "tile_1": {
+          "type": "tile",
+          "settings": {
+            "collection": "all"
+          }
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {
+            "collection": "teas"
+          }
+        },
+        "tile_4": {
+          "type": "tile",
+          "settings": {
+            "collection": "moisturisers"
+          }
+        }
+      },
+      "block_order": [
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4"
+      ]
+    },
+    "ws_usp_bar": {
+      "type": "ws-usp-bar",
+      "settings": {},
+      "blocks": {
+        "usp_1": {
+          "type": "usp",
+          "settings": {
+            "icon": "truck",
+            "title": "Fri frakt",
+            "text": "<p>På beställningar över 499 kr</p>"
+          }
+        },
+        "usp_2": {
+          "type": "usp",
+          "settings": {
+            "icon": "clock",
+            "title": "Snabb leverans",
+            "text": "<p>Leverans inom 1–3 vardagar</p>"
+          }
+        },
+        "usp_3": {
+          "type": "usp",
+          "settings": {
+            "icon": "return",
+            "title": "Enkla returer",
+            "text": "<p>30 dagars öppet köp</p>"
+          }
+        },
+        "usp_4": {
+          "type": "usp",
+          "settings": {
+            "icon": "lock",
+            "title": "Säker betalning",
+            "text": "<p>Klarna, kort & Swish</p>"
+          }
+        }
+      },
+      "block_order": [
+        "usp_1",
+        "usp_2",
+        "usp_3",
+        "usp_4"
+      ]
+    },
+    "ws_newsletter": {
+      "type": "ws-newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "ws_announcement_bar",
+    "ws_hero",
+    "ws_press_logos",
+    "ws_founder_story",
+    "ws_product_grid",
+    "ws_reviews_carousel",
+    "ws_feature_banner",
+    "ws_blog_cards",
+    "ws_bundles_grid",
+    "ws_recipe_feature",
+    "ws_collection_tiles",
+    "ws_usp_bar",
+    "ws_newsletter"
+  ]
+}

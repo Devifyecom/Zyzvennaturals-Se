@@ -1,0 +1,327 @@
+{%- liquid
+  assign s = section.settings
+  assign is_first = false
+  if section.index == 1 or section.index == 2
+    assign is_first = true
+  endif
+  assign img_loading = 'lazy'
+  if is_first
+    assign img_loading = 'eager'
+  endif
+
+  assign heading_tag = 'h2'
+  if section.index == 1 or s.heading_is_h1
+    assign heading_tag = 'h1'
+  endif
+
+  assign img_m = s.image_mobile | default: s.image
+  assign overlay = s.overlay_opacity | divided_by: 100.0
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  id="ws-hero-{{ section.id }}"
+  class="ws-section ws-hero ws-hero--{{ s.text_position }} ws-hero--m-{{ s.text_position_mobile }} ws-hero--h-{{ s.height }} ws-hero--hm-{{ s.height_mobile }}"
+  style="{% render 'ws-section-style', settings: s %} --ws-overlay-color: {{ s.overlay_color }}; --ws-overlay: {{ overlay }};{% if s.image != blank %} --ws-hero-ratio: {{ s.image.aspect_ratio }};{% endif %}{% if img_m != blank %} --ws-hero-ratio-m: {{ img_m.aspect_ratio }};{% endif %}"
+>
+  {%- liquid
+    # Mobile media priority: mobile video > mobile image > desktop image > desktop video
+    if s.video_mobile != blank
+      assign m_src = 'video_mobile'
+    elsif s.image_mobile != blank
+      assign m_src = 'image_mobile'
+    elsif s.image != blank
+      assign m_src = 'image'
+    elsif s.video != blank
+      assign m_src = 'video'
+    else
+      assign m_src = 'none'
+    endif
+    # Desktop media priority: desktop video > desktop image > mobile image
+    if s.video != blank
+      assign d_src = 'video'
+    elsif s.image != blank
+      assign d_src = 'image'
+    elsif s.image_mobile != blank
+      assign d_src = 'image_mobile'
+    else
+      assign d_src = 'none'
+    endif
+    assign priority = 'auto'
+    if is_first
+      assign priority = 'high'
+    endif
+  -%}
+  <div class="ws-hero__media">
+    {%- if d_src == 'video' -%}
+      <div class="ws-hero__video{% unless m_src == 'video' %} ws-hero__desktop-only{% endunless %}">
+        {{ s.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '1920x', class: 'ws-hero__video-el' }}
+      </div>
+    {%- endif -%}
+    {%- if m_src == 'video_mobile' -%}
+      <div class="ws-hero__video ws-hero__mobile-only">
+        {{ s.video_mobile | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '900x', class: 'ws-hero__video-el' }}
+      </div>
+    {%- endif -%}
+
+    {%- liquid
+      assign d_is_img = false
+      if d_src == 'image' or d_src == 'image_mobile'
+        assign d_is_img = true
+      endif
+      assign m_is_img = false
+      if m_src == 'image' or m_src == 'image_mobile'
+        assign m_is_img = true
+      endif
+      assign pic_class = ''
+      if d_is_img and m_is_img == false
+        assign pic_class = ' ws-hero__desktop-only'
+      elsif m_is_img and d_is_img == false
+        assign pic_class = ' ws-hero__mobile-only'
+      endif
+      if d_is_img
+        assign base_img = s.image | default: s.image_mobile
+      else
+        assign base_img = img_m
+      endif
+    -%}
+    {%- if d_is_img or m_is_img -%}
+      <picture class="ws-hero__picture{{ pic_class }}">
+        {%- if d_is_img and m_src == 'image_mobile' and s.image != blank -%}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ s.image_mobile | image_url: width: 450 }} 450w, {{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1100 }} 1100w, {{ s.image_mobile | image_url: width: 1500 }} 1500w"
+            sizes="100vw"
+            width="{{ s.image_mobile.width }}"
+            height="{{ s.image_mobile.height }}"
+          >
+        {%- endif -%}
+        {%- assign ws_img_alt = base_img.alt -%}
+        {{
+          base_img
+          | image_url: width: 3000
+          | image_tag:
+            widths: '450, 750, 1100, 1500, 1920, 2400, 3000',
+            sizes: '100vw',
+            loading: img_loading,
+            fetchpriority: priority,
+            class: 'ws-hero__img',
+            alt: ws_img_alt
+        }}
+      </picture>
+    {%- elsif d_src == 'none' and m_src == 'none' -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'ws-hero__img ws-placeholder' }}
+    {%- endif -%}
+  </div>
+
+  {%- if s.overlay_opacity > 0 -%}
+    <div class="ws-hero__overlay" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="ws-hero__content">
+    <div class="ws-container ws-hero__container">
+      <div class="ws-hero__inner">
+        {%- if s.eyebrow != blank -%}
+          <p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if s.heading != blank -%}
+          <{{ heading_tag }} class="ws-heading ws-hero__heading ws-hero__heading--{{ s.heading_size }}{% if s.heading_italic %} ws-heading--italic{% endif %}">
+            {{- s.heading -}}
+          </{{ heading_tag }}>
+        {%- endif -%}
+        {%- if s.text != blank -%}
+          <div class="ws-rte ws-hero__text">{{ s.text }}</div>
+        {%- endif -%}
+        {%- if s.button_1_label != blank or s.button_2_label != blank -%}
+          <div class="ws-btn-group ws-hero__buttons">
+            {%- if s.button_1_label != blank -%}
+              <a
+                {% if s.button_1_link != blank %}href="{{ s.button_1_link }}"{% else %}role="link" aria-disabled="true"{% endif %}
+                class="ws-btn ws-btn--{{ s.button_1_style }}"
+              >{{ s.button_1_label | escape }}</a>
+            {%- endif -%}
+            {%- if s.button_2_label != blank -%}
+              <a
+                {% if s.button_2_link != blank %}href="{{ s.button_2_link }}"{% else %}role="link" aria-disabled="true"{% endif %}
+                class="ws-btn ws-btn--{{ s.button_2_style }}"
+              >{{ s.button_2_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ws-hero {
+    display: grid;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .ws-hero__media,
+  .ws-hero__overlay,
+  .ws-hero__content {
+    grid-area: 1 / 1;
+  }
+
+  .ws-hero__media {
+    position: relative;
+    z-index: -2;
+    min-height: 100%;
+  }
+
+  .ws-hero__picture,
+  .ws-hero__video,
+  .ws-hero__media > .ws-placeholder {
+    position: absolute;
+    inset: 0;
+  }
+
+  .ws-hero__img,
+  .ws-hero__video-el {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-hero__overlay {
+    z-index: -1;
+    background-color: var(--ws-overlay-color, #000);
+    opacity: var(--ws-overlay, 0.2);
+  }
+
+  .ws-hero__content {
+    display: flex;
+    padding-block: 40px;
+  }
+
+  .ws-hero__container { display: flex; width: 100%; }
+
+  .ws-hero__inner {
+    display: flex;
+    flex-direction: column;
+    max-width: 40rem;
+  }
+
+  .ws-hero__heading { margin: 0; }
+  .ws-hero__heading--small { font-size: clamp(2rem, 1.5rem + 2.2vw, 3.25rem); }
+  .ws-hero__heading--medium { font-size: clamp(2.25rem, 1.6rem + 3.2vw, 4.5rem); }
+  .ws-hero__heading--large { font-size: clamp(2.75rem, 1.8rem + 4.6vw, 6rem); }
+  .ws-hero__heading p { margin: 0; }
+
+  .ws-hero__text { margin-top: 18px; max-width: 32rem; }
+
+  /* Heights — mobile first */
+  .ws-hero--hm-small { min-height: 420px; }
+  .ws-hero--hm-medium { min-height: 560px; }
+  .ws-hero--hm-large { min-height: 680px; }
+  .ws-hero--hm-full { min-height: calc(100svh - var(--header-group-height, 0px)); }
+  .ws-hero--hm-adapt .ws-hero__media { aspect-ratio: var(--ws-hero-ratio-m, 4 / 5); }
+
+  /* Text position — mobile */
+  .ws-hero--m-center .ws-hero__container { align-items: center; justify-content: center; }
+  .ws-hero--m-center .ws-hero__inner { align-items: center; text-align: center; margin-inline: auto; }
+  .ws-hero--m-bottom-center .ws-hero__container { align-items: flex-end; justify-content: center; }
+  .ws-hero--m-bottom-center .ws-hero__inner { align-items: center; text-align: center; }
+  .ws-hero--m-bottom-left .ws-hero__container { align-items: flex-end; justify-content: flex-start; }
+  .ws-hero--m-bottom-left .ws-hero__inner { align-items: flex-start; text-align: left; }
+
+  .ws-hero__desktop-only { display: none; }
+
+  @media screen and (min-width: 750px) {
+    .ws-hero__desktop-only { display: block; }
+    .ws-hero__mobile-only { display: none; }
+
+    .ws-hero { min-height: 0; }
+    .ws-hero--hm-adapt .ws-hero__media { aspect-ratio: auto; }
+    .ws-hero--h-small { min-height: 480px; }
+    .ws-hero--h-medium { min-height: 640px; }
+    .ws-hero--h-large { min-height: 780px; }
+    .ws-hero--h-full { min-height: calc(100svh - var(--header-group-height, 0px)); }
+    .ws-hero--h-adapt .ws-hero__media { aspect-ratio: var(--ws-hero-ratio, 16 / 9); }
+
+    .ws-hero__content { padding-block: 64px; }
+
+    .ws-hero .ws-hero__container,
+    .ws-hero .ws-hero__inner { margin-inline: 0; }
+
+    .ws-hero--center .ws-hero__container { align-items: center; justify-content: center; }
+    .ws-hero--center .ws-hero__inner { align-items: center; text-align: center; margin-inline: auto; }
+    .ws-hero--left .ws-hero__container { align-items: center; justify-content: flex-start; }
+    .ws-hero--left .ws-hero__inner { align-items: flex-start; text-align: left; }
+    .ws-hero--bottom-center .ws-hero__container { align-items: flex-end; justify-content: center; }
+    .ws-hero--bottom-center .ws-hero__inner { align-items: center; text-align: center; }
+    .ws-hero--bottom-left .ws-hero__container { align-items: flex-end; justify-content: flex-start; }
+    .ws-hero--bottom-left .ws-hero__inner { align-items: flex-start; text-align: left; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Hero",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "header", "content": "Media" },
+    { "type": "image_picker", "id": "image", "label": "Desktop image" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Mobile image", "info": "Optional. Portrait 4:5 recommended." },
+    { "type": "video", "id": "video", "label": "Desktop video", "info": "Optional. Plays muted on loop and replaces the desktop image." },
+    { "type": "video", "id": "video_mobile", "label": "Mobile video", "info": "Optional." },
+    { "type": "select", "id": "height", "label": "Desktop height", "default": "medium", "options": [
+      { "value": "small", "label": "Small" }, { "value": "medium", "label": "Medium" }, { "value": "large", "label": "Large" },
+      { "value": "full", "label": "Full screen" }, { "value": "adapt", "label": "Adapt to image" }
+    ] },
+    { "type": "select", "id": "height_mobile", "label": "Mobile height", "default": "medium", "options": [
+      { "value": "small", "label": "Small" }, { "value": "medium", "label": "Medium" }, { "value": "large", "label": "Large" },
+      { "value": "full", "label": "Full screen" }, { "value": "adapt", "label": "Adapt to image" }
+    ] },
+    { "type": "header", "content": "Overlay" },
+    { "type": "color", "id": "overlay_color", "label": "Overlay colour", "default": "#000000" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 15 },
+    { "type": "header", "content": "Content" },
+    { "type": "select", "id": "text_position", "label": "Desktop text position", "default": "center", "options": [
+      { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" },
+      { "value": "bottom-center", "label": "Bottom centre" }, { "value": "bottom-left", "label": "Bottom left" }
+    ] },
+    { "type": "select", "id": "text_position_mobile", "label": "Mobile text position", "default": "center", "options": [
+      { "value": "center", "label": "Centre" }, { "value": "bottom-center", "label": "Bottom centre" }, { "value": "bottom-left", "label": "Bottom left" }
+    ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "För ett liv i synk med din kvinnliga biologi" },
+    { "type": "select", "id": "heading_size", "label": "Heading size", "default": "medium", "options": [
+      { "value": "small", "label": "Small" }, { "value": "medium", "label": "Medium" }, { "value": "large", "label": "Large" }
+    ] },
+    { "type": "checkbox", "id": "heading_italic", "label": "Italic heading", "default": true },
+    { "type": "checkbox", "id": "heading_is_h1", "label": "Use H1 for the heading", "info": "Automatically on when this is the first section on the page.", "default": false },
+    { "type": "richtext", "id": "text", "label": "Subtext" },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "button_1_label", "label": "Button 1 label", "default": "Se produkter" },
+    { "type": "url", "id": "button_1_link", "label": "Button 1 link" },
+    { "type": "select", "id": "button_1_style", "label": "Button 1 style", "default": "light", "options": [
+      { "value": "primary", "label": "Solid (button colour)" }, { "value": "light", "label": "Solid white" }, { "value": "secondary", "label": "Outline" }, { "value": "link", "label": "Text link" }
+    ] },
+    { "type": "text", "id": "button_2_label", "label": "Button 2 label" },
+    { "type": "url", "id": "button_2_link", "label": "Button 2 link" },
+    { "type": "select", "id": "button_2_style", "label": "Button 2 style", "default": "secondary", "options": [
+      { "value": "primary", "label": "Solid (button colour)" }, { "value": "light", "label": "Solid white" }, { "value": "secondary", "label": "Outline" }, { "value": "link", "label": "Text link" }
+    ] },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#D9D2C7"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#FFFFFF"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0}
+  ],
+  "presets": [{ "name": "WS · Hero" }]
+}
+{% endschema %}

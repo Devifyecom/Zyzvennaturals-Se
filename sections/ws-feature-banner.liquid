@@ -1,0 +1,141 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-feature-h-' | append: section.id
+  if s.image_ratio == 'adapt' and s.image != blank
+    assign ratio = s.image.aspect_ratio
+  elsif s.image_ratio == 'adapt'
+    assign ratio = '1 / 1'
+  else
+    assign ratio = s.image_ratio
+  endif
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  class="ws-section ws-feature ws-feature--{{ s.layout }}"
+  style="{% render 'ws-section-style', settings: s %} --ws-panel-bg: {{ s.panel_color }};"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+>
+  <div class="ws-container{% if s.layout == 'edge' %} ws-container--bleed{% endif %}">
+    <div class="ws-split ws-feature__split{% if s.image_position == 'right' %} ws-split--image-right{% endif %}{% unless s.mobile_image_first %} ws-split--m-text-first{% endunless %}">
+      <div class="ws-split__media">
+        {%- if s.image_link != blank -%}<a href="{{ s.image_link }}" class="ws-feature__media-link" tabindex="-1" aria-hidden="true">{%- endif -%}
+        <div class="ws-media" style="--ws-ratio: {{ ratio }};">
+          {%- if s.image != blank -%}
+            {%- assign ws_img_alt = s.image.alt -%}
+            {{
+              s.image
+              | image_url: width: 2000
+              | image_tag:
+                widths: '375, 550, 750, 1000, 1300, 1600, 2000',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                loading: 'lazy',
+                alt: ws_img_alt
+            }}
+          {%- else -%}
+            {{ 'product-apparel-2' | placeholder_svg_tag: 'ws-placeholder' }}
+          {%- endif -%}
+        </div>
+        {%- if s.image_link != blank -%}</a>{%- endif -%}
+      </div>
+
+      <div class="ws-split__content ws-feature__content ws-text-{{ s.text_align }}">
+        {%- if s.eyebrow != blank -%}
+          <p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>
+        {%- endif -%}
+        {% render 'ws-heading', text: s.heading, look: 'serif', size: s.heading_size, italic: s.heading_italic, id: heading_id %}
+        {%- if s.text != blank -%}
+          <div class="ws-rte">{{ s.text }}</div>
+        {%- endif -%}
+        {%- if s.button_label != blank -%}
+          <div class="ws-btn-group">
+            <a {% if s.button_link != blank %}href="{{ s.button_link }}"{% else %}role="link" aria-disabled="true"{% endif %} class="ws-btn ws-btn--{{ s.button_style }}">{{ s.button_label | escape }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ws-feature__media-link { display: block; }
+
+  .ws-feature--panel .ws-feature__split,
+  .ws-feature--edge .ws-feature__split {
+    gap: 0;
+    background-color: var(--ws-panel-bg, transparent);
+  }
+
+  .ws-feature--panel .ws-feature__content,
+  .ws-feature--edge .ws-feature__content {
+    max-width: none;
+    padding: 40px var(--ws-gutter);
+  }
+
+  @media screen and (min-width: 750px) {
+    .ws-feature--panel .ws-feature__content,
+    .ws-feature--edge .ws-feature__content {
+      padding: clamp(40px, 6vw, 96px);
+    }
+
+    .ws-feature--panel .ws-feature__content > *,
+    .ws-feature--edge .ws-feature__content > * { max-width: 32rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Feature banner",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "split", "options": [
+      { "value": "split", "label": "Image + text (no panel)" },
+      { "value": "panel", "label": "Image + text on colour panel" },
+      { "value": "edge", "label": "Edge to edge panel" }
+    ] },
+    { "type": "color", "id": "panel_color", "label": "Panel colour", "default": "#ECE8E0" },
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "url", "id": "image_link", "label": "Image link (optional)" },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "1 / 1", "options": [
+      { "value": "1 / 1", "label": "Square" }, { "value": "4 / 5", "label": "Portrait (4:5)" },
+      { "value": "4 / 3", "label": "Landscape (4:3)" }, { "value": "adapt", "label": "Adapt to image" }
+    ] },
+    { "type": "select", "id": "image_position", "label": "Desktop image position", "default": "right", "options": [
+      { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" }
+    ] },
+    { "type": "checkbox", "id": "mobile_image_first", "label": "Show image first on mobile", "default": false },
+    { "type": "header", "content": "Text" },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "center", "options": [
+      { "value": "left", "label": "Left" }, { "value": "center", "label": "Centre" }
+    ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label", "default": "Nyhet" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Fertility, Pregnancy & Postpartum Supplement" },
+    { "type": "select", "id": "heading_size", "label": "Heading size", "default": "h2", "options": [
+      { "value": "h1", "label": "Extra large" }, { "value": "h2", "label": "Large" }, { "value": "h3", "label": "Medium" }
+    ] },
+    { "type": "checkbox", "id": "heading_italic", "label": "Italic heading", "default": false },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Lyft fram en hjälteprodukt eller en kategori – vem den är för, vad den gör och varför den är unik.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Läs mer" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "primary", "options": [
+      { "value": "primary", "label": "Solid" }, { "value": "secondary", "label": "Outline" }, { "value": "link", "label": "Text link" }
+    ] },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Feature banner" }]
+}
+{% endschema %}

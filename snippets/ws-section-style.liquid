@@ -1,0 +1,32 @@
+{%- doc -%}
+  Outputs the inline CSS custom properties every ws- section shares (colours, padding, width).
+  Use inside a style="" attribute on the section root. Reads standard ws setting ids:
+  background_color, text_color, accent_color, accent_text_color, padding_top, padding_bottom,
+  padding_top_mobile, padding_bottom_mobile, container_width.
+
+  @param {object} settings - The section settings object
+
+  @example
+  <section class="ws-section" style="{% render 'ws-section-style', settings: section.settings %}">
+{%- enddoc -%}
+
+{%- liquid
+  assign w = settings.container_width | default: 'normal'
+  case w
+    when 'narrow'
+      assign max_w = '72rem'
+    when 'full'
+      assign max_w = 'none'
+    else
+      assign max_w = '90rem'
+  endcase
+-%}
+{%- if settings.background_color != blank -%}--ws-bg: {{ settings.background_color }};{%- endif -%}
+{%- if settings.text_color != blank -%}--ws-fg: {{ settings.text_color }};{%- endif -%}
+{%- if settings.accent_color != blank -%}--ws-btn-bg: {{ settings.accent_color }};{%- endif -%}
+{%- if settings.accent_text_color != blank -%}--ws-btn-fg: {{ settings.accent_text_color }};{%- endif -%}
+--ws-pt: {{ settings.padding_top | default: 0 }}px;
+--ws-pb: {{ settings.padding_bottom | default: 0 }}px;
+--ws-pt-m: {{ settings.padding_top_mobile | default: settings.padding_top | default: 0 }}px;
+--ws-pb-m: {{ settings.padding_bottom_mobile | default: settings.padding_bottom | default: 0 }}px;
+--ws-max-width: {{ max_w }};

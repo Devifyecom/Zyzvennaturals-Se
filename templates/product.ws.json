@@ -1,0 +1,273 @@
+{
+  "sections": {
+    "main": {
+      "type": "ws-main-product",
+      "settings": {},
+      "blocks": {
+        "breadcrumb": {
+          "type": "breadcrumb",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "style": "pills"
+          }
+        },
+        "subscription": {
+          "type": "subscription",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {}
+        },
+        "bundle": {
+          "type": "bundle",
+          "settings": {
+            "collection": "all"
+          }
+        },
+        "stock": {
+          "type": "stock",
+          "settings": {}
+        },
+        "payment_icons": {
+          "type": "payment_icons",
+          "settings": {}
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🤍",
+            "text": "Med balanserade nivåer av natrium, kalium, magnesium och kalcium"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "💧",
+            "text": "För daglig vätskebalans – inte bara vid träning"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🤰",
+            "text": "Passar även vid graviditet, amning och klimakteriet"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🍃",
+            "text": "Sötad med inulin och stevia – fri från socker och koffein"
+          }
+        },
+        "acc_info": {
+          "type": "accordion",
+          "settings": {
+            "title": "Information",
+            "metafield_key": "custom.ws_info"
+          }
+        },
+        "acc_usage": {
+          "type": "accordion",
+          "settings": {
+            "title": "Användning",
+            "metafield_key": "custom.ws_usage"
+          }
+        },
+        "acc_pregnancy": {
+          "type": "accordion",
+          "settings": {
+            "title": "Vid graviditet & amning",
+            "metafield_key": "custom.ws_pregnancy"
+          }
+        },
+        "acc_ingredients": {
+          "type": "accordion",
+          "settings": {
+            "title": "Ingredienser",
+            "metafield_key": "custom.ws_ingredients"
+          }
+        },
+        "acc_storage": {
+          "type": "accordion",
+          "settings": {
+            "title": "Förvaring",
+            "metafield_key": "custom.ws_storage"
+          }
+        },
+        "acc_origin": {
+          "type": "accordion",
+          "settings": {
+            "title": "Ursprung",
+            "metafield_key": "custom.ws_origin"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "breadcrumb",
+        "title",
+        "rating",
+        "price",
+        "variant_picker",
+        "subscription",
+        "buy_buttons",
+        "bundle",
+        "stock",
+        "payment_icons",
+        "delivery",
+        "description",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4",
+        "acc_info",
+        "acc_usage",
+        "acc_pregnancy",
+        "acc_ingredients",
+        "acc_storage",
+        "acc_origin",
+        "trust"
+      ]
+    },
+    "ws_usp_bar": {
+      "type": "ws-usp-bar",
+      "settings": {
+        "padding_top": 32,
+        "padding_bottom": 32
+      },
+      "blocks": {
+        "usp_1": {
+          "type": "usp",
+          "settings": {
+            "icon": "truck",
+            "title": "Fri frakt",
+            "text": "<p>På beställningar över 499 kr</p>"
+          }
+        },
+        "usp_2": {
+          "type": "usp",
+          "settings": {
+            "icon": "clock",
+            "title": "Snabb leverans",
+            "text": "<p>Leverans inom 1–3 vardagar</p>"
+          }
+        },
+        "usp_3": {
+          "type": "usp",
+          "settings": {
+            "icon": "return",
+            "title": "Enkla returer",
+            "text": "<p>30 dagars öppet köp</p>"
+          }
+        },
+        "usp_4": {
+          "type": "usp",
+          "settings": {
+            "icon": "lock",
+            "title": "Säker betalning",
+            "text": "<p>Klarna, kort & Swish</p>"
+          }
+        }
+      },
+      "block_order": [
+        "usp_1",
+        "usp_2",
+        "usp_3",
+        "usp_4"
+      ]
+    },
+    "ws_reviews": {
+      "type": "ws-reviews",
+      "settings": {},
+      "blocks": {},
+      "block_order": []
+    },
+    "ws_reviews_carousel": {
+      "type": "ws-reviews-carousel",
+      "settings": {
+        "heading": "Våra kunder säger",
+        "summary_rating": 0
+      },
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "author": "Henrietta",
+            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "author": "Sofia",
+            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "author": "Maria",
+            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "author": "Olivia",
+            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4"
+      ]
+    },
+    "ws_product_tabs": {
+      "type": "ws-product-tabs",
+      "settings": {}
+    },
+    "ws_sticky_atc": {
+      "type": "ws-sticky-atc",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "ws_usp_bar",
+    "ws_reviews",
+    "ws_reviews_carousel",
+    "ws_product_tabs",
+    "ws_sticky_atc"
+  ]
+}

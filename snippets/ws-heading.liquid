@@ -1,0 +1,29 @@
+{%- doc -%}
+  Renders a ws- section heading in either the small letter-spaced "label" style (Womensync's
+  "VÅRA PRODUKTER") or a large serif style.
+
+  @param {string} text - Heading text (inline richtext allowed)
+  @param {string} [look] - 'label' (default) or 'serif'
+  @param {string} [size] - Serif size: 'h1' | 'h2' (default) | 'h3' | 'h4'
+  @param {boolean} [italic] - Italic serif
+  @param {string} [tag] - HTML tag (default h2)
+  @param {string} [id] - Element id (for aria-labelledby)
+  @param {string} [class] - Extra classes
+
+  @example
+  {% render 'ws-heading', text: section.settings.heading, look: 'serif', size: 'h2', id: heading_id %}
+{%- enddoc -%}
+
+{%- if text != blank -%}
+  {%- liquid
+    assign h_tag = tag | default: 'h2'
+    assign h_style = look | default: 'label'
+    assign h_size = size | default: 'h2'
+  -%}
+  <{{ h_tag }}
+    {% if id != blank %}id="{{ id }}"{% endif %}
+    class="{% if h_style == 'serif' %}ws-heading ws-{{ h_size }}{% if italic %} ws-heading--italic{% endif %}{% else %}ws-section-title{% endif %}{% if class != blank %} {{ class }}{% endif %}"
+  >
+    {{- text -}}
+  </{{ h_tag }}>
+{%- endif -%}

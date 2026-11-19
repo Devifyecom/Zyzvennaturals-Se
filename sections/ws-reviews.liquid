@@ -1,0 +1,161 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-reviews-h-' | append: section.id
+  assign app_id = 'ws-reviews-app-' | append: section.id
+
+  assign rating = product.metafields.reviews.rating.value.rating
+  assign scale_max = product.metafields.reviews.rating.value.scale_max | default: 5
+  assign count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count | default: 0
+
+  assign rating_display = rating | round: 2 | append: ''
+  if s.decimal_comma
+    assign rating_display = rating_display | replace: '.', ','
+  endif
+
+  assign histogram = product.metafields.custom.ws_review_histogram.value
+  assign app_blocks = section.blocks | where: 'type', '@app'
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  id="ws-reviews"
+  class="ws-section ws-reviews"
+  style="{% render 'ws-section-style', settings: s %}"
+  aria-labelledby="{{ heading_id }}"
+>
+  <div class="ws-container">
+    {% render 'ws-heading', text: s.heading, look: 'serif', size: 'h3', id: heading_id, class: 'ws-reviews__heading' %}
+
+    {%- if s.show_summary and rating != blank -%}
+      <div class="ws-reviews__summary{% if histogram == blank %} ws-reviews__summary--no-hist{% endif %}">
+        <div class="ws-reviews__avg">
+          {% render 'ws-stars', rating: rating, scale_max: scale_max, show_count: false, class: 'ws-reviews__stars' %}
+          <p class="ws-reviews__avg-text">
+            <strong>{{ rating_display }}</strong> {{ s.out_of_text | replace: '[max]', scale_max }}
+          </p>
+          <p class="ws-reviews__based ws-muted">{{ s.based_on_text | replace: '[count]', count }}</p>
+        </div>
+
+        {%- if histogram != blank -%}
+          {%- liquid
+            assign hist_total = 0
+            for n in (1..5)
+              assign k = n | append: ''
+              assign hist_total = hist_total | plus: histogram[k]
+            endfor
+          -%}
+          <ul class="ws-reviews__hist" role="list">
+            {%- for i in (1..5) -%}
+              {%- liquid
+                assign star = 6 | minus: i
+                assign k = star | append: ''
+                assign n = histogram[k] | default: 0
+                assign pct = 0
+                if hist_total > 0
+                  assign pct = n | times: 100.0 | divided_by: hist_total | round
+                endif
+              -%}
+              <li class="ws-reviews__hist-row">
+                <span class="ws-reviews__hist-label">{% render 'ws-stars', rating: star, scale_max: 5, show_count: false %}</span>
+                <span class="ws-reviews__bar" aria-hidden="true"><span style="width: {{ pct }}%;"></span></span>
+                <span class="ws-reviews__hist-count">{{ n }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if s.write_label != blank -%}
+          <div class="ws-reviews__cta">
+            <a href="{% if s.write_link != blank %}{{ s.write_link }}{% else %}#{{ app_id }}{% endif %}" class="ws-btn ws-btn--primary">{{ s.write_label | escape }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ws-reviews__app" id="{{ app_id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          {% render block %}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if app_blocks.size == 0 and request.design_mode -%}
+        <p class="ws-reviews__notice">Add your review app's widget here: click "Add block" in this section → Apps → Okendo "Reviews Widget". The summary above reads the reviews.rating metafields Okendo syncs.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ws-reviews__heading { margin-bottom: 28px; text-align: center; }
+
+  .ws-reviews__summary {
+    display: grid;
+    gap: 24px;
+    align-items: center;
+    justify-items: center;
+    max-width: 60rem;
+    margin: 0 auto 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--ws-border);
+  }
+
+  .ws-reviews__avg { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  .ws-reviews__stars { --ws-star-size: 18px; }
+  .ws-reviews__avg-text { margin: 0; font-size: 14px; }
+  .ws-reviews__avg-text strong { font-family: var(--ws-font-heading); font-size: 22px; font-weight: 400; }
+  .ws-reviews__based { margin: 0; font-size: 12px; }
+
+  .ws-reviews__hist { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 320px; margin: 0; padding: 0; list-style: none; }
+  .ws-reviews__hist-row { display: grid; grid-template-columns: auto minmax(0, 1fr) 2.5em; align-items: center; gap: 10px; font-size: 12px; }
+  .ws-reviews__hist-label .ws-stars { --ws-star-size: 11px; }
+  .ws-reviews__bar { display: block; height: 8px; background: color-mix(in srgb, var(--ws-fg) 10%, transparent); }
+  .ws-reviews__bar > span { display: block; height: 100%; background: var(--ws-fg); }
+  .ws-reviews__hist-count { color: var(--ws-muted); text-align: right; }
+
+  .ws-reviews__notice {
+    padding: 16px;
+    border: 1px dashed var(--ws-border);
+    font-size: 13px;
+    text-align: center;
+    color: var(--ws-muted);
+  }
+
+  @media screen and (min-width: 750px) {
+    .ws-reviews__summary { grid-template-columns: 1fr 1.2fr 1fr; }
+    .ws-reviews__summary--no-hist { grid-template-columns: 1fr 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Reviews",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Add your review app (Okendo Reviews Widget) as an app block in this section. The rating links on the product page scroll here." },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Kundrecensioner" },
+    { "type": "checkbox", "id": "show_summary", "label": "Show rating summary", "info": "If your review widget already shows its own summary, turn this off to avoid duplicates.", "default": true },
+    { "type": "text", "id": "out_of_text", "label": "\"out of\" text", "info": "[max] is replaced.", "default": "av [max]" },
+    { "type": "text", "id": "based_on_text", "label": "\"Based on\" text", "info": "[count] is replaced.", "default": "Baserat på [count] recensioner" },
+    { "type": "checkbox", "id": "decimal_comma", "label": "Use decimal comma (4,73)", "default": true },
+    { "type": "paragraph", "content": "Star histogram: shown when the product has the custom.ws_review_histogram JSON metafield, e.g. {\"5\":12,\"4\":2,\"3\":1,\"2\":0,\"1\":0}." },
+    { "type": "text", "id": "write_label", "label": "\"Write a review\" button", "default": "Skriv en recension" },
+    { "type": "url", "id": "write_link", "label": "\"Write a review\" link", "info": "Leave empty to scroll to the review widget." },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "WS · Reviews" }]
+}
+{% endschema %}

@@ -1,0 +1,150 @@
+{%- liquid
+  assign s = section.settings
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+
+{% render 'ws-assets' %}
+
+<ws-sticky-atc
+  class="ws-scope ws-sticky ws-sticky--{{ s.show_on }}"
+  style="--ws-bg: {{ s.background_color }}; --ws-fg: {{ s.text_color }}; --ws-btn-bg: {{ s.accent_color }}; --ws-btn-fg: {{ s.accent_text_color }};"
+  role="region"
+  aria-label="{{ s.aria_label | escape }}"
+  data-product-id="{{ product.id }}"
+  aria-hidden="true"
+  inert
+>
+  <div class="ws-sticky__inner">
+    <div class="ws-sticky__product">
+      {%- if s.show_image and product.featured_media != blank -%}
+        {{ product.featured_media.preview_image | image_url: width: 120 | image_tag: width: 48, height: 48, loading: 'lazy', alt: '', class: 'ws-sticky__img' }}
+      {%- endif -%}
+      <div class="ws-sticky__text">
+        <p class="ws-sticky__title">{{ product.title | escape }}</p>
+        <p class="ws-sticky__price" data-ws-sticky-price>{% render 'ws-money', amount: current_variant.price %}</p>
+      </div>
+    </div>
+
+    {%- if s.show_variant_select and product.has_only_default_variant == false -%}
+      <div class="ws-sticky__select-wrap">
+        <label class="ws-sr-only" for="ws-sticky-variant-{{ section.id }}">{{ 'ws.product.choose_variant' | t }}</label>
+        <select id="ws-sticky-variant-{{ section.id }}" class="ws-sticky__select" data-ws-sticky-variant>
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}"{% if variant.id == current_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>
+              {{- variant.title | escape -}}
+              {%- unless variant.available %} – {{ 'ws.product.sold_out' | t }}{% endunless -%}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    {%- endif -%}
+
+    <button
+      type="button"
+      class="ws-btn ws-btn--primary ws-sticky__atc"
+      data-ws-sticky-atc
+      {% unless current_variant.available %}disabled{% endunless %}
+    >
+      <span data-ws-sticky-label>
+        {%- if current_variant.available -%}{{ 'ws.product.add_to_cart' | t }}{%- else -%}{{ 'ws.product.sold_out' | t }}{%- endif -%}
+      </span>
+    </button>
+  </div>
+</ws-sticky-atc>
+
+<script src="{{ 'ws-sticky-atc.js' | asset_url }}" type="module" defer></script>
+
+{% stylesheet %}
+  .ws-sticky {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 7;
+    display: block;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background-color: var(--ws-bg);
+    color: var(--ws-fg);
+    font-family: var(--ws-font-body);
+    border-top: 1px solid var(--ws-border);
+    box-shadow: 0 -6px 20px rgb(0 0 0 / 0.06);
+    transform: translateY(110%);
+    transition: transform 0.35s var(--ws-ease);
+  }
+
+  .ws-sticky.is-visible { transform: none; }
+
+  .ws-sticky__inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 90rem;
+    margin-inline: auto;
+  }
+
+  .ws-sticky__product { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1 1 auto; }
+  .ws-sticky__img { width: 48px; height: 48px; object-fit: cover; flex: none; }
+  .ws-sticky__text { min-width: 0; }
+
+  .ws-sticky__title {
+    margin: 0;
+    overflow: hidden;
+    font-family: var(--ws-font-heading);
+    font-size: 15px;
+    line-height: 1.25;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .ws-sticky__price { margin: 2px 0 0; font-size: 13px; }
+
+  .ws-sticky__select {
+    min-height: 44px;
+    max-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid var(--ws-border);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 14px;
+  }
+
+  .ws-sticky__atc { flex: none; min-height: 48px; }
+
+  /* Mobile: thumb-friendly full-width button */
+  @media screen and (max-width: 749px) {
+    .ws-sticky__inner { flex-wrap: wrap; gap: 8px; }
+    .ws-sticky__img { display: none; }
+    .ws-sticky__select-wrap { flex: 1 1 100%; order: 2; }
+    .ws-sticky__select { width: 100%; max-width: none; }
+    .ws-sticky__atc { flex: 1 1 100%; order: 3; }
+    .ws-sticky--desktop { display: none; }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ws-sticky { padding-inline: 32px; }
+    .ws-sticky__atc { min-width: 240px; }
+    .ws-sticky--mobile { display: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Sticky add to cart",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Slides in once the main Add to cart button scrolls out of view, and hides near the footer." },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Snabbköp" },
+    { "type": "select", "id": "show_on", "label": "Show on", "default": "all", "options": [
+      { "value": "all", "label": "Mobile and desktop" }, { "value": "mobile", "label": "Mobile only" }, { "value": "desktop", "label": "Desktop only" }
+    ] },
+    { "type": "checkbox", "id": "show_image", "label": "Show product image", "default": true },
+    { "type": "checkbox", "id": "show_variant_select", "label": "Show variant select", "default": true },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
+    { "type": "color", "id": "accent_color", "label": "Button background", "default": "#000000" },
+    { "type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF" }
+  ],
+  "presets": [{ "name": "WS · Sticky add to cart" }]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+{%- doc -%}
+  One product row in the ws- bundle builder.
+
+  @param {object} p - Product
+  @param {string} add_label - "Add" button text
+{%- enddoc -%}
+
+{%- liquid
+  assign v = p.selected_or_first_available_variant
+  assign row_id = 'ws-bundle-row-' | append: p.id
+-%}
+<li class="ws-bundle__item" data-ws-bundle-item data-variant-id="{{ v.id }}" data-price="{{ v.price }}" data-qty="0">
+  <div class="ws-bundle__thumb">
+    {%- if p.featured_media != blank -%}
+      {{ p.featured_media.preview_image | image_url: width: 160 | image_tag: width: 64, height: 64, loading: 'lazy', alt: '' }}
+    {%- endif -%}
+  </div>
+  <div class="ws-bundle__item-info">
+    <p class="ws-bundle__item-title" id="{{ row_id }}-title">{{ p.title | escape }}</p>
+    {%- if p.has_only_default_variant == false and p.variants.size > 1 -%}
+      <label class="ws-sr-only" for="{{ row_id }}-variant">{{ p.title | escape }}</label>
+      <select class="ws-bundle__variant" id="{{ row_id }}-variant" data-ws-bundle-variant>
+        {%- for variant in p.variants -%}
+          {%- if variant.available -%}
+            <option value="{{ variant.id }}" data-price="{{ variant.price }}"{% if variant.id == v.id %} selected{% endif %}>{{ variant.title | escape }}</option>
+          {%- endif -%}
+        {%- endfor -%}
+      </select>
+    {%- endif -%}
+    <span class="ws-bundle__item-price" data-ws-bundle-item-price>{% render 'ws-money', amount: v.price %}</span>
+  </div>
+  <div class="ws-bundle__controls">
+    <button type="button" class="ws-bundle__add-btn" data-ws-bundle-inc aria-describedby="{{ row_id }}-title">{{ add_label | escape }}</button>
+    <div class="ws-bundle__stepper" data-ws-bundle-stepper hidden>
+      <button type="button" class="ws-bundle__step" data-ws-bundle-dec aria-label="{{ 'ws.product.decrease' | t | escape }}: {{ p.title | escape }}">{% render 'ws-icon', name: 'minus', size: 14 %}</button>
+      <span class="ws-bundle__qty" data-ws-bundle-qty>0</span>
+      <button type="button" class="ws-bundle__step" data-ws-bundle-inc aria-label="{{ 'ws.product.increase' | t | escape }}: {{ p.title | escape }}">{% render 'ws-icon', name: 'plus', size: 14 %}</button>
+    </div>
+  </div>
+</li>

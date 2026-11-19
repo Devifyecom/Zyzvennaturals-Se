@@ -1,0 +1,266 @@
+{%- liquid
+  assign s = section.settings
+  assign show_shipping = s.enable_free_shipping
+  assign slide_count = section.blocks.size
+  if show_shipping
+    assign slide_count = slide_count | plus: 1
+  endif
+
+  assign threshold_cents = s.free_shipping_threshold | times: 100
+  assign remaining = threshold_cents | minus: cart.total_price
+  if remaining < 0
+    assign remaining = 0
+  endif
+  assign progress = 100
+  if threshold_cents > 0
+    assign progress = cart.total_price | times: 100 | divided_by: threshold_cents
+    if progress > 100
+      assign progress = 100
+    endif
+  endif
+  assign remaining_money = remaining | money
+  if remaining > 0
+    assign shipping_text = s.shipping_progress_text | replace: '[remaining]', remaining_money
+  else
+    assign shipping_text = s.shipping_reached_text
+  endif
+-%}
+
+{% render 'ws-assets' %}
+
+{%- if slide_count > 0 -%}
+  <div
+    class="ws-section ws-announce{% if s.uppercase %} ws-announce--upper{% endif %}"
+    style="{% render 'ws-section-style', settings: s %} --ws-announce-size: {{ s.font_size }}px;"
+    role="region"
+    aria-label="{{ s.aria_label | escape }}"
+  >
+    <ws-announcement
+      class="ws-container ws-announce__inner"
+      data-interval="{{ s.interval | times: 1000 }}"
+      data-autoplay="{{ s.autoplay }}"
+    >
+      {%- if slide_count > 1 and s.show_arrows -%}
+        <button type="button" class="ws-announce__arrow" data-ws-prev aria-label="{{ 'ws.a11y.previous' | t }}">
+          {%- render 'ws-icon', name: 'arrow-left', size: 16 -%}
+        </button>
+      {%- endif -%}
+
+      <div class="ws-announce__slides">
+        {%- if show_shipping -%}
+          <div class="ws-announce__slide is-active" data-ws-slide aria-hidden="false" style="--ws-progress: {{ progress }}%;">
+            <p
+              class="ws-announce__text{% if remaining == 0 %} is-reached{% endif %}"
+              data-ws-shipping
+              data-threshold="{{ threshold_cents }}"
+              data-total="{{ cart.total_price }}"
+              data-currency="{{ cart.currency.iso_code }}"
+              data-format="{{ shop.money_format | strip_html | escape }}"
+              data-progress-msg="{{ s.shipping_progress_text | escape }}"
+              data-reached-msg="{{ s.shipping_reached_text | escape }}"
+            >
+              {%- if s.shipping_icon != 'none' -%}
+                {%- render 'ws-icon', name: s.shipping_icon, size: 16 -%}
+              {%- endif -%}
+              <span data-ws-shipping-text>{{ shipping_text }}</span>
+            </p>
+            {%- if s.show_progress_bar -%}
+              <span class="ws-announce__progress" aria-hidden="true"><span></span></span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign active = false
+            if forloop.first and show_shipping == false
+              assign active = true
+            endif
+          -%}
+          <div
+            class="ws-announce__slide{% if active %} is-active{% endif %}"
+            data-ws-slide
+            aria-hidden="{% if active %}false{% else %}true{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="ws-announce__text ws-announce__text--link"{% unless active %} tabindex="-1"{% endunless %}>
+            {%- else -%}
+              <p class="ws-announce__text">
+            {%- endif -%}
+            {%- if block.settings.icon != 'none' -%}
+              {%- render 'ws-icon', name: block.settings.icon, size: 16 -%}
+            {%- endif -%}
+            <span>{{ block.settings.text }}</span>
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
+              </p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if slide_count > 1 and s.show_arrows -%}
+        <button type="button" class="ws-announce__arrow" data-ws-next aria-label="{{ 'ws.a11y.next' | t }}">
+          {%- render 'ws-icon', name: 'arrow-right', size: 16 -%}
+        </button>
+      {%- endif -%}
+    </ws-announcement>
+  </div>
+  <script src="{{ 'ws-announcement.js' | asset_url }}" type="module" defer></script>
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-announce__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 38px;
+  }
+
+  .ws-announce__slides {
+    display: grid;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .ws-announce__slide {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding-block: 9px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s var(--ws-ease), visibility 0.45s;
+  }
+
+  .ws-announce__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ws-announce__text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    color: inherit;
+    font-size: var(--ws-announce-size, 12px);
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .ws-announce--upper .ws-announce__text {
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ws-announce__text p { margin: 0; }
+  .ws-announce__text .ws-icon { flex: none; }
+  .ws-announce__text--link:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+  .ws-announce__progress {
+    display: block;
+    width: min(220px, 70%);
+    height: 2px;
+    background-color: color-mix(in srgb, var(--ws-fg) 18%, transparent);
+    overflow: hidden;
+  }
+
+  .ws-announce__progress > span {
+    display: block;
+    width: var(--ws-progress, 0%);
+    height: 100%;
+    background-color: currentColor;
+    transition: width 0.6s var(--ws-ease);
+  }
+
+  .ws-announce__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .ws-announce__arrow:hover { opacity: 1; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Announcement bar",
+  "tag": "aside",
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Accessible region name", "default": "Meddelanden" },
+    { "type": "header", "content": "Rotation" },
+    { "type": "checkbox", "id": "autoplay", "label": "Auto-rotate messages", "default": true },
+    { "type": "range", "id": "interval", "label": "Seconds per message", "min": 3, "max": 10, "step": 1, "unit": "s", "default": 5 },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+    { "type": "range", "id": "font_size", "label": "Text size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
+    { "type": "checkbox", "id": "uppercase", "label": "Uppercase text", "default": false },
+    { "type": "header", "content": "Free shipping progress" },
+    { "type": "checkbox", "id": "enable_free_shipping", "label": "Show live free-shipping message", "info": "Updates instantly as the cart changes.", "default": true },
+    { "type": "number", "id": "free_shipping_threshold", "label": "Free shipping threshold", "info": "In your store's default currency (e.g. 499 = 499 kr). Must match your shipping rate settings.", "default": 499 },
+    { "type": "select", "id": "shipping_icon", "label": "Icon", "default": "truck", "options": [
+      { "value": "none", "label": "None" }, { "value": "truck", "label": "Truck" }, { "value": "package", "label": "Package" }, { "value": "gift", "label": "Gift" }
+    ] },
+    { "type": "text", "id": "shipping_progress_text", "label": "Message below threshold", "info": "Use [remaining] for the amount left.", "default": "Du är [remaining] från gratis frakt (inom Sverige)" },
+    { "type": "text", "id": "shipping_reached_text", "label": "Message when reached", "default": "Grattis – du har gratis frakt!" },
+    { "type": "checkbox", "id": "show_progress_bar", "label": "Show progress bar", "default": false },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#EAE5DD"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "full", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0}
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "limit": 6,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "none", "options": [
+          { "value": "none", "label": "None" }, { "value": "truck", "label": "Truck" }, { "value": "package", "label": "Package" },
+          { "value": "gift", "label": "Gift" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" },
+          { "value": "sparkle", "label": "Sparkle" }, { "value": "check", "label": "Check" }, { "value": "clock", "label": "Clock" },
+          { "value": "star", "label": "Star" }, { "value": "return", "label": "Returns" }, { "value": "shield", "label": "Shield" }
+        ] },
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Leverans inom 1–3 vardagar" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS · Announcement bar",
+      "blocks": [
+        { "type": "message", "settings": { "icon": "check", "text": "Leverans inom 1–3 vardagar" } },
+        { "type": "message", "settings": { "icon": "return", "text": "Fri retur inom 30 dagar" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

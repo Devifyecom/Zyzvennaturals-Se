@@ -1,0 +1,116 @@
+{%- doc -%}
+  "Bundle & save" builder used by the bundle block in ws-main-product. DISPLAY ONLY – the actual
+  discount must be created as Shopify automatic discounts (see setup guide). Logic in ws-bundle.js.
+
+  Product source: product metafield custom.ws_bundle_collection (collection reference) > block collection.
+
+  @param {object} product - Current product
+  @param {object} block - The bundle block
+  @param {string} money_format - Shop money format to use in JS
+{%- enddoc -%}
+
+{%- liquid
+  assign b = block.settings
+  assign bundle_collection = product.metafields.custom.ws_bundle_collection.value | default: b.collection
+
+  assign tiers_json = ''
+  assign tier_count = 0
+  for i in (1..3)
+    assign q_key = 'tier_' | append: i | append: '_qty'
+    assign p_key = 'tier_' | append: i | append: '_percent'
+    assign q = b[q_key] | default: 0
+    assign pc = b[p_key] | default: 0
+    if q > 1 and pc > 0
+      if tiers_json != ''
+        assign tiers_json = tiers_json | append: ','
+      endif
+      assign tiers_json = tiers_json | append: '{"qty":' | append: q | append: ',"percent":' | append: pc | append: '}'
+      assign tier_count = tier_count | plus: 1
+    endif
+  endfor
+
+  assign first_tier_qty = b.tier_1_qty | default: 2
+  assign first_tier_pct = b.tier_1_percent | default: 0
+  assign hint_initial = b.hint_start | replace: '[count]', first_tier_qty | replace: '[percent]', first_tier_pct
+  assign list_id = 'ws-bundle-list-' | append: block.id
+-%}
+
+{%- if bundle_collection != blank and tier_count > 0 -%}
+  <ws-bundle
+    class="ws-bundle"
+    data-tiers="{{ tiers_json | prepend: '[' | append: ']' | escape }}"
+    data-money-format="{{ money_format | strip_html | escape }}"
+    data-currency="{{ cart.currency.iso_code }}"
+    data-products-label="{{ b.products_label | escape }}"
+    data-off-label="{{ b.off_label | escape }}"
+    data-hint-start="{{ b.hint_start | escape }}"
+    data-hint-next="{{ b.hint_next | escape }}"
+    data-hint-max="{{ b.hint_max | escape }}"
+    data-saved-label="{{ b.saved_label | escape }}"
+    data-discount-label="{{ b.discount_label | escape }}"
+    data-added-text="{{ 'ws.card.added' | t | escape }}"
+    data-error-text="{{ 'ws.cart.error' | t | escape }}"
+  >
+    {%- if b.heading != blank -%}
+      <p class="ws-bundle__heading">{{ b.heading | escape }}</p>
+    {%- endif -%}
+
+    <ul class="ws-bundle__tiers" role="list">
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign q_key = 'tier_' | append: i | append: '_qty'
+          assign p_key = 'tier_' | append: i | append: '_percent'
+          assign q = b[q_key] | default: 0
+          assign pc = b[p_key] | default: 0
+        -%}
+        {%- if q > 1 and pc > 0 -%}
+          <li class="ws-bundle__tier" data-ws-tier="{{ q }}">
+            <span class="ws-bundle__tier-qty"><strong>{{ q }}</strong> {{ b.products_label | escape }}</span>
+            <span class="ws-bundle__tier-off">{{ b.off_label | replace: '[percent]', pc | escape }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    <ul class="ws-bundle__list" id="{{ list_id }}" role="list" aria-label="{{ b.heading | escape }}">
+      {%- assign listed = 0 -%}
+      {%- if b.include_current and product.available -%}
+        {% render 'ws-bundle-row', p: product, add_label: b.add_label %}
+        {%- assign listed = 1 -%}
+      {%- endif -%}
+      {%- for p in bundle_collection.products -%}
+        {%- if listed >= b.max_products -%}{%- break -%}{%- endif -%}
+        {%- if p.available and p.requires_selling_plan == false -%}
+          {%- unless b.include_current and p.id == product.id -%}
+            {% render 'ws-bundle-row', p: p, add_label: b.add_label %}
+            {%- assign listed = listed | plus: 1 -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    <div class="ws-bundle__summary">
+      <p class="ws-bundle__hint" data-ws-bundle-hint aria-live="polite">{{ hint_initial | escape }}</p>
+      <div class="ws-bundle__totals" data-ws-bundle-totals hidden>
+        <p class="ws-bundle__line">
+          <span data-ws-bundle-count></span>
+          <span class="ws-bundle__discount" data-ws-bundle-discount></span>
+        </p>
+        <p class="ws-bundle__line ws-bundle__line--total">
+          <s class="ws-muted" data-ws-bundle-original></s>
+          <strong data-ws-bundle-total></strong>
+        </p>
+        <p class="ws-bundle__saved" data-ws-bundle-saved></p>
+      </div>
+      <button type="button" class="ws-btn ws-btn--primary ws-btn--full ws-bundle__add" data-ws-bundle-add disabled aria-describedby="{{ list_id }}-status">
+        <span data-label>{{ b.button_label | escape }}</span>
+      </button>
+      <p class="ws-sr-only" id="{{ list_id }}-status" role="status" data-ws-bundle-status></p>
+      {%- if b.note != blank -%}
+        <p class="ws-bundle__note ws-muted">{{ b.note | escape }}</p>
+      {%- endif -%}
+    </div>
+  </ws-bundle>
+{%- elsif request.design_mode -%}
+  <p class="ws-pm__editor-note">Bundle builder: choose a bundle collection in the block settings (or set the product's custom.ws_bundle_collection metafield) and at least one tier.</p>
+{%- endif -%}

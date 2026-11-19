@@ -1,0 +1,187 @@
+{%- liquid
+  assign s = section.settings
+  assign form_id = 'ws-newsletter-' | append: section.id
+  assign heading_id = 'ws-news-h-' | append: section.id
+  assign email_id = 'ws-news-email-' | append: section.id
+  assign error_id = 'ws-news-error-' | append: section.id
+  assign tags = 'newsletter'
+  if s.extra_tags != blank
+    assign tags = tags | append: ',' | append: s.extra_tags
+  endif
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  class="ws-section ws-news ws-news--{{ s.layout }}"
+  style="{% render 'ws-section-style', settings: s %}"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ s.email_label | escape }}"{% endif %}
+>
+  <div class="ws-container">
+    <div class="ws-news__inner">
+      <div class="ws-news__content">
+        {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {% render 'ws-heading', text: s.heading, look: 'serif', size: s.heading_size, italic: s.heading_italic, id: heading_id %}
+        {%- if s.text != blank -%}<div class="ws-rte ws-news__text">{{ s.text }}</div>{%- endif -%}
+        {%- if s.incentive != blank -%}
+          <p class="ws-news__incentive">{% render 'ws-icon', name: 'gift', size: 16 %}<span>{{ s.incentive | escape }}</span></p>
+        {%- endif -%}
+      </div>
+
+      <div class="ws-news__form-wrap">
+        {%- form 'customer', id: form_id, class: 'ws-news__form', novalidate: 'novalidate' -%}
+          <input type="hidden" name="contact[tags]" value="{{ tags | escape }}">
+          {%- if form.posted_successfully? -%}
+            <p class="ws-news__success" role="status" tabindex="-1">
+              {%- render 'ws-icon', name: 'check', size: 18 -%}
+              <span>{{ s.success_message | escape }}</span>
+            </p>
+          {%- else -%}
+            {%- if s.show_name -%}
+              <div class="ws-news__field">
+                <label for="{{ form_id }}-name" class="ws-sr-only">{{ s.name_label | escape }}</label>
+                <input id="{{ form_id }}-name" type="text" name="contact[first_name]" class="ws-input" autocomplete="given-name" placeholder="{{ s.name_label | escape }}">
+              </div>
+            {%- endif -%}
+            <div class="ws-news__row">
+              <div class="ws-news__field">
+                <label for="{{ email_id }}" class="ws-sr-only">{{ s.email_label | escape }}</label>
+                <input
+                  id="{{ email_id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="ws-input"
+                  required
+                  autocomplete="email"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  placeholder="{{ s.email_label | escape }}"
+                  value="{{ form.email }}"
+                  {% if form.errors %}
+                    aria-invalid="true" aria-describedby="{{ error_id }}"
+                  {% endif %}
+                >
+              </div>
+              <button type="submit" class="ws-btn ws-btn--primary ws-news__submit">{{ s.button_label | escape }}</button>
+            </div>
+            {%- if form.errors -%}
+              <p id="{{ error_id }}" class="ws-news__error" role="alert">
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </p>
+            {%- endif -%}
+            {%- if s.privacy_text != blank -%}
+              <div class="ws-news__privacy ws-muted">{{ s.privacy_text }}</div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ws-news__inner {
+    display: grid;
+    gap: 28px;
+  }
+
+  .ws-news--center .ws-news__inner { justify-items: center; text-align: center; max-width: 40rem; margin-inline: auto; }
+
+  .ws-news__content .ws-heading { margin-bottom: 12px; }
+  .ws-news__text { max-width: 32rem; }
+  .ws-news--center .ws-news__text { margin-inline: auto; }
+
+  .ws-news__incentive {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 8px 12px;
+    background-color: var(--ws-surface);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ws-news__form-wrap { width: 100%; max-width: 32rem; }
+
+  .ws-news__form { display: flex; flex-direction: column; gap: 14px; }
+
+  .ws-news__row { display: flex; flex-direction: column; gap: 14px; }
+
+  .ws-news__field { flex: 1 1 auto; }
+
+  .ws-news--center .ws-news__form { text-align: left; }
+
+  .ws-news__success {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 14px 16px;
+    border: 1px solid var(--ws-border);
+    font-size: 14px;
+  }
+
+  .ws-news__error { margin: 0; color: #a3271a; font-size: 13px; }
+
+  .ws-news__privacy { font-size: 12px; line-height: 1.5; }
+  .ws-news__privacy p { margin: 0; }
+  .ws-news__privacy a { color: inherit; }
+
+  @media screen and (min-width: 750px) {
+    .ws-news__row { flex-direction: row; align-items: flex-end; }
+    .ws-news__submit { flex: none; }
+
+    .ws-news--split .ws-news__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 64px;
+    }
+
+    .ws-news--split .ws-news__form-wrap { justify-self: end; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Newsletter",
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "split", "options": [
+      { "value": "split", "label": "Text left, form right" }, { "value": "center", "label": "Centred" }
+    ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Prenumerera på vårt nyhetsbrev" },
+    { "type": "select", "id": "heading_size", "label": "Heading size", "default": "h3", "options": [
+      { "value": "h2", "label": "Large" }, { "value": "h3", "label": "Medium" }, { "value": "h4", "label": "Small" }
+    ] },
+    { "type": "checkbox", "id": "heading_italic", "label": "Italic heading", "default": false },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Få tips om hälsa, recept och exklusiva erbjudanden direkt i inkorgen.</p>" },
+    { "type": "text", "id": "incentive", "label": "Incentive line", "info": "e.g. \"10 % rabatt på din första beställning\". Leave empty to hide.", "default": "10 % rabatt på din första beställning" },
+    { "type": "header", "content": "Form" },
+    { "type": "checkbox", "id": "show_name", "label": "Ask for first name", "default": false },
+    { "type": "text", "id": "name_label", "label": "Name placeholder", "default": "Förnamn" },
+    { "type": "text", "id": "email_label", "label": "Email placeholder", "default": "E-postadress" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Prenumerera" },
+    { "type": "text", "id": "success_message", "label": "Success message", "default": "Tack! Kolla din inkorg – din rabattkod är på väg." },
+    { "type": "richtext", "id": "privacy_text", "label": "Privacy text", "default": "<p>Genom att prenumerera godkänner du vår integritetspolicy. Avsluta när du vill.</p>" },
+    { "type": "text", "id": "extra_tags", "label": "Extra customer tags", "info": "Comma separated. \"newsletter\" is always added. Useful for triggering a welcome-discount flow in Shopify Email / Klaviyo." },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#ECE8E0"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Newsletter" }]
+}
+{% endschema %}

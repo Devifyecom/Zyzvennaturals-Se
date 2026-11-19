@@ -1,0 +1,206 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+  assign limit = s.products_to_show
+
+  assign show_related = s.show_related
+  assign show_recent = s.show_recent
+  assign tab_count = 0
+  if show_related
+    assign tab_count = tab_count | plus: 1
+  endif
+  if show_recent
+    assign tab_count = tab_count | plus: 1
+  endif
+
+  case s.columns
+    when 3
+      assign sizes = '(min-width: 990px) 30vw, (min-width: 750px) 30vw, 50vw'
+    when 5
+      assign sizes = '(min-width: 990px) 18vw, (min-width: 750px) 30vw, 50vw'
+    else
+      assign sizes = '(min-width: 990px) 23vw, (min-width: 750px) 30vw, 50vw'
+  endcase
+-%}
+
+{% render 'ws-assets', cart: true %}
+
+{%- if tab_count > 0 -%}
+  <section class="ws-section ws-ptabs" style="{% render 'ws-section-style', settings: s %}" aria-label="{{ s.aria_label | escape }}">
+    <ws-product-tabs
+      class="ws-container"
+      data-section-id="{{ section.id }}"
+      data-product-id="{{ product.id }}"
+      data-limit="{{ limit }}"
+      data-intent="{{ s.intent }}"
+      data-reco-url="{{ routes.product_recommendations_url }}"
+      data-search-url="{{ routes.search_url }}"
+    >
+      <div class="ws-ptabs__tablist" {% if tab_count > 1 %}role="tablist" aria-label="{{ s.aria_label | escape }}"{% endif %}>
+        {%- if show_related -%}
+          <button
+            type="button"
+            class="ws-ptabs__tab"
+            id="ws-tab-related-{{ uid }}"
+            {% if tab_count > 1 %}role="tab" aria-controls="ws-panel-related-{{ uid }}" aria-selected="true" tabindex="0"{% endif %}
+            data-ws-tab="related"
+          >{{ s.related_label | escape }}</button>
+        {%- endif -%}
+        {%- if show_recent -%}
+          <button
+            type="button"
+            class="ws-ptabs__tab"
+            id="ws-tab-recent-{{ uid }}"
+            {% if tab_count > 1 %}role="tab" aria-controls="ws-panel-recent-{{ uid }}" aria-selected="{% if show_related %}false{% else %}true{% endif %}" tabindex="{% if show_related %}-1{% else %}0{% endif %}"{% endif %}
+            data-ws-tab="recent"
+          >{{ s.recent_label | escape }}</button>
+        {%- endif -%}
+      </div>
+
+      {%- if show_related -%}
+        <div
+          class="ws-ptabs__panel"
+          id="ws-panel-related-{{ uid }}"
+          data-ws-panel="related"
+          {% if tab_count > 1 %}role="tabpanel" aria-labelledby="ws-tab-related-{{ uid }}" tabindex="0"{% endif %}
+        >
+          {%- if recommendations.performed? -%}
+            {%- if recommendations.products_count > 0 -%}
+              <ul class="ws-grid" style="--ws-cols: {{ s.columns }}; --ws-cols-m: 2;" role="list">
+                {%- for rec in recommendations.products limit: limit -%}
+                  <li class="ws-grid__item" data-product-id="{{ rec.id }}">
+                    {% render 'ws-product-card', product: rec, image_ratio: s.image_ratio, show_quick_add: s.show_quick_add, title_style: s.title_style, sizes: sizes %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- else -%}
+              <p class="ws-ptabs__empty ws-muted" data-ws-empty>{{ s.related_empty | escape }}</p>
+            {%- endif -%}
+          {%- else -%}
+            <div class="ws-ptabs__loading" data-ws-loading aria-hidden="true">
+              <ul class="ws-grid" style="--ws-cols: {{ s.columns }}; --ws-cols-m: 2;" role="list">
+                {%- for i in (1..s.columns) -%}<li class="ws-ptabs__skeleton" style="--ws-ratio: {{ s.image_ratio }};"></li>{%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if show_recent -%}
+        <div
+          class="ws-ptabs__panel"
+          id="ws-panel-recent-{{ uid }}"
+          data-ws-panel="recent"
+          {% if tab_count > 1 %}role="tabpanel" aria-labelledby="ws-tab-recent-{{ uid }}" tabindex="0"{% endif %}
+          {% if show_related %}hidden{% endif %}
+        >
+          {%- if search.performed -%}
+            {%- assign recent_items = search.results | where: 'object_type', 'product' -%}
+            {%- if recent_items.size > 0 -%}
+              <ul class="ws-grid" style="--ws-cols: {{ s.columns }}; --ws-cols-m: 2;" role="list">
+                {%- for item in recent_items limit: limit -%}
+                  <li class="ws-grid__item" data-product-id="{{ item.id }}">
+                    {% render 'ws-product-card', product: item, image_ratio: s.image_ratio, show_quick_add: s.show_quick_add, title_style: s.title_style, sizes: sizes %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- else -%}
+              <p class="ws-ptabs__empty ws-muted" data-ws-empty>{{ s.recent_empty | escape }}</p>
+            {%- endif -%}
+          {%- else -%}
+            <p class="ws-ptabs__empty ws-muted" data-ws-empty>{{ s.recent_empty | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </ws-product-tabs>
+  </section>
+  <script src="{{ 'ws-product-tabs.js' | asset_url }}" type="module" defer></script>
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-ptabs__tablist {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: clamp(24px, 4vw, 36px);
+  }
+
+  .ws-ptabs__tab {
+    min-height: 44px;
+    padding: 8px 0;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    background: none;
+    color: var(--ws-muted);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .ws-ptabs__tab[aria-selected='true'],
+  .ws-ptabs__tablist:not([role]) .ws-ptabs__tab {
+    color: var(--ws-fg);
+    border-bottom-color: currentColor;
+    cursor: default;
+  }
+
+  .ws-ptabs__tablist:not([role]) .ws-ptabs__tab { pointer-events: none; }
+
+  .ws-ptabs__panel:focus-visible { outline: 2px solid var(--ws-fg); outline-offset: 6px; }
+
+  .ws-ptabs__empty { margin: 0; text-align: center; font-size: 14px; }
+
+  .ws-ptabs__skeleton {
+    aspect-ratio: var(--ws-ratio, 4 / 5);
+    background: var(--ws-surface);
+    animation: ws-ptabs-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes ws-ptabs-pulse { 50% { opacity: 0.55; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Product tabs",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Fler produkter" },
+    { "type": "checkbox", "id": "show_related", "label": "Show related products", "default": true },
+    { "type": "text", "id": "related_label", "label": "Related tab label", "default": "Relaterade produkter" },
+    { "type": "select", "id": "intent", "label": "Recommendation type", "default": "related", "options": [
+      { "value": "related", "label": "Related" }, { "value": "complementary", "label": "Complementary (Search & Discovery app)" }
+    ] },
+    { "type": "text", "id": "related_empty", "label": "Related – empty text", "default": "Inga relaterade produkter just nu." },
+    { "type": "checkbox", "id": "show_recent", "label": "Show recently viewed", "default": true },
+    { "type": "text", "id": "recent_label", "label": "Recently viewed tab label", "default": "Senast visade" },
+    { "type": "text", "id": "recent_empty", "label": "Recently viewed – empty text", "default": "Du har inte tittat på några andra produkter ännu." },
+    { "type": "header", "content": "Grid" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 10, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns", "label": "Desktop columns", "min": 3, "max": 5, "step": 1, "default": 4 },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "4 / 5", "options": [
+      { "value": "4 / 5", "label": "Portrait (4:5)" }, { "value": "3 / 4", "label": "Tall (3:4)" }, { "value": "1 / 1", "label": "Square" }
+    ] },
+    { "type": "checkbox", "id": "show_quick_add", "label": "Show quick add", "default": true },
+    { "type": "select", "id": "title_style", "label": "Title style", "default": "uppercase", "options": [
+      { "value": "uppercase", "label": "Small uppercase" }, { "value": "serif", "label": "Serif" }
+    ] },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Product tabs" }]
+}
+{% endschema %}

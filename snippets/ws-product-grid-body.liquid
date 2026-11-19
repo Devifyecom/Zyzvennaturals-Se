@@ -1,0 +1,118 @@
+{%- doc -%}
+  Shared body for ws-product-grid and ws-bundles-grid. Renders header, grid of ws-product-card,
+  and the "View all" button.
+
+  @param {object} section_obj - The section object (pass `section`)
+  @param {boolean} [bundles] - Bundle mode: shows "Save X%" pill on cards
+{%- enddoc -%}
+
+{%- liquid
+  assign s = section_obj.settings
+  assign heading_id = 'ws-grid-h-' | append: section_obj.id
+  assign limit = s.products_to_show | default: 8
+
+  assign use_manual = false
+  if s.source == 'manual' and s.products != blank
+    assign use_manual = true
+  endif
+
+  assign source_collection = s.collection
+  assign view_all_url = s.view_all_link
+  if view_all_url == blank and source_collection != blank
+    assign view_all_url = source_collection.url
+  endif
+
+  assign cols_m = s.columns_mobile | plus: 0
+  assign eager_count = 0
+  if section_obj.index <= 2
+    assign eager_count = cols_m
+  endif
+
+  case s.columns
+    when 2
+      assign sizes = '(min-width: 990px) 45vw, (min-width: 750px) 45vw, 50vw'
+    when 3
+      assign sizes = '(min-width: 990px) 30vw, (min-width: 750px) 30vw, 50vw'
+    when 5
+      assign sizes = '(min-width: 990px) 18vw, (min-width: 750px) 30vw, 50vw'
+    else
+      assign sizes = '(min-width: 990px) 23vw, (min-width: 750px) 30vw, 50vw'
+  endcase
+  if cols_m == 1
+    assign sizes = sizes | replace: ', 50vw', ', 92vw'
+  endif
+
+  assign show_savings = false
+  if bundles and s.show_savings
+    assign show_savings = true
+  endif
+-%}
+
+<div class="ws-container">
+  {%- if s.eyebrow != blank or s.heading != blank -%}
+    <div class="ws-head ws-head--{{ s.heading_align }}">
+      {%- if s.eyebrow != blank -%}
+        <p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+      {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
+      {%- if s.subheading != blank -%}
+        <div class="ws-rte ws-muted ws-pgrid__sub">{{ s.subheading }}</div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <ul
+    class="ws-grid ws-pgrid__grid{% if s.mobile_layout == 'carousel' %} ws-pgrid__grid--carousel{% endif %}"
+    style="--ws-cols: {{ s.columns }}; --ws-cols-m: {{ cols_m }};"
+    role="list"
+    {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  >
+    {%- liquid
+      if use_manual
+        assign items = s.products
+      elsif source_collection != blank
+        assign items = source_collection.products
+      else
+        assign items = nil
+      endif
+    -%}
+    {%- if items != nil -%}
+      {%- for product in items limit: limit -%}
+        {%- liquid
+          assign loading = 'lazy'
+          if forloop.index <= eager_count
+            assign loading = 'eager'
+          endif
+        -%}
+        <li class="ws-grid__item">
+          {% render 'ws-product-card',
+            product: product,
+            image_ratio: s.image_ratio,
+            show_secondary_image: s.show_secondary_image,
+            show_quick_add: s.show_quick_add,
+            show_rating: s.show_rating,
+            show_badge: s.show_badge,
+            show_bundle_savings: show_savings,
+            open_drawer: s.open_drawer,
+            title_style: s.title_style,
+            text_align: s.card_align,
+            loading: loading,
+            sizes: sizes
+          %}
+        </li>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..limit) -%}
+        <li class="ws-grid__item">
+          {% render 'ws-product-card', placeholder_index: i, image_ratio: s.image_ratio, title_style: s.title_style, text_align: s.card_align %}
+        </li>
+      {%- endfor -%}
+    {%- endif -%}
+  </ul>
+
+  {%- if s.view_all_label != blank and view_all_url != blank -%}
+    <div class="ws-footer-cta">
+      <a href="{{ view_all_url }}" class="ws-btn ws-btn--{{ s.view_all_style }}">{{ s.view_all_label | escape }}</a>
+    </div>
+  {%- endif -%}
+</div>

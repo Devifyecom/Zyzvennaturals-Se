@@ -370,5 +370,53 @@
       "default_title": "Standardtitel",
       "sticky_add_to_cart": "Fält för att lägga till snabbt i varukorgen"
     }
+  },
+  "ws": {
+    "card": {
+      "add_to_cart": "Lägg i varukorg",
+      "choose_options": "Välj alternativ",
+      "added": "Tillagd",
+      "from_price": "Från {{ price }}",
+      "save_percent": "Spara {{ percent }}%",
+      "sale_price": "Reapris",
+      "regular_price": "Ordinarie pris",
+      "placeholder_title": "Produktnamn"
+    },
+    "badges": {
+      "bestseller": "Bästsäljare",
+      "new": "Nyhet",
+      "limited": "Limited edition",
+      "sale": "Rea",
+      "sold_out": "Slutsåld"
+    },
+    "reviews": {
+      "rating_label": "Betyg {{ rating }} av {{ max }} stjärnor",
+      "count_text": "{{ count }} recensioner"
+    },
+    "cart": {
+      "error": "Något gick fel. Försök igen."
+    },
+    "a11y": {
+      "previous": "Föregående",
+      "next": "Nästa",
+      "close": "Stäng"
+    },
+    "product": {
+      "add_to_cart": "Lägg i varukorg",
+      "sold_out": "Slutsåld",
+      "unavailable": "Ej tillgänglig",
+      "save_percent": "Spara {{ percent }}%",
+      "quantity": "Antal",
+      "increase": "Öka antal",
+      "decrease": "Minska antal",
+      "gallery": "Produktbilder",
+      "media_n": "Media {{ n }} av {{ total }}",
+      "zoom": "Zooma bild",
+      "play_video": "Spela video",
+      "view_3d": "Visa i 3D",
+      "breadcrumb": "Brödsmulor",
+      "payment_methods": "Betalningsmetoder",
+      "choose_variant": "Välj variant"
+    }
   }
 }

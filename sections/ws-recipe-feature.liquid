@@ -1,0 +1,115 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-recipe-h-' | append: section.id
+  assign art = s.article
+
+  assign heading = s.heading
+  if heading == blank and art != blank
+    assign heading = art.title | escape
+  endif
+
+  assign link = s.link
+  if link == blank and art != blank
+    assign link = art.url
+  endif
+
+  assign img = s.image
+  if img == blank and art != blank
+    assign img = art.image
+  endif
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  class="ws-section ws-recipe"
+  style="{% render 'ws-section-style', settings: s %}"
+  {% if heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+>
+  <div class="ws-container">
+    <div class="ws-split{% if s.image_position == 'right' %} ws-split--image-right{% endif %}{% unless s.mobile_image_first %} ws-split--m-text-first{% endunless %}">
+      <div class="ws-split__media">
+        <div class="ws-media" style="--ws-ratio: {{ s.image_ratio }};">
+          {%- if img != blank -%}
+            {%- assign ws_img_alt = img.alt | default: heading | strip_html -%}
+            {{
+              img
+              | image_url: width: 1600
+              | image_tag:
+                widths: '375, 550, 750, 1000, 1300, 1600',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                loading: 'lazy',
+                alt: ws_img_alt
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'ws-placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="ws-split__content ws-text-{{ s.text_align }}">
+        {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {% render 'ws-heading', text: heading, look: 'serif', size: s.heading_size, italic: s.heading_italic, id: heading_id %}
+        {%- if s.text != blank -%}
+          <div class="ws-rte">{{ s.text }}</div>
+        {%- elsif art != blank -%}
+          <div class="ws-rte"><p>{{ art.excerpt_or_content | strip_html | truncatewords: 40 }}</p></div>
+        {%- endif -%}
+        {%- if s.button_label != blank and link != blank -%}
+          <div class="ws-btn-group">
+            <a href="{{ link }}" class="ws-btn ws-btn--{{ s.button_style }}">
+              {{- s.button_label | escape -}}
+              {%- if heading != blank %}<span class="ws-sr-only">: {{ heading | strip_html }}</span>{% endif -%}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WS · Recipe feature",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "article", "id": "article", "label": "Article (optional)", "info": "Fills in heading, text, image and link automatically – anything you type below overrides it." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "4 / 3", "options": [
+      { "value": "1 / 1", "label": "Square" }, { "value": "4 / 5", "label": "Portrait (4:5)" }, { "value": "4 / 3", "label": "Landscape (4:3)" }
+    ] },
+    { "type": "select", "id": "image_position", "label": "Desktop image position", "default": "right", "options": [
+      { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" }
+    ] },
+    { "type": "checkbox", "id": "mobile_image_first", "label": "Show image first on mobile", "default": true },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "left", "options": [
+      { "value": "left", "label": "Left" }, { "value": "center", "label": "Centre" }
+    ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label", "default": "Recept & inspiration" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Hormonvänliga Snickers Bars" },
+    { "type": "select", "id": "heading_size", "label": "Heading size", "default": "h3", "options": [
+      { "value": "h2", "label": "Large" }, { "value": "h3", "label": "Medium" }, { "value": "h4", "label": "Small" }
+    ] },
+    { "type": "checkbox", "id": "heading_italic", "label": "Italic heading", "default": false },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Ett nyttigt och gott alternativ till godis – fullt av protein, nyttiga fetter och smak.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Läs mer" },
+    { "type": "url", "id": "link", "label": "Link", "info": "Defaults to the selected article." },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "link", "options": [
+      { "value": "primary", "label": "Solid" }, { "value": "secondary", "label": "Outline" }, { "value": "link", "label": "Text link" }
+    ] },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "narrow", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Recipe feature" }]
+}
+{% endschema %}

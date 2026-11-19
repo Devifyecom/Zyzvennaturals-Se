@@ -1,0 +1,15 @@
+{%- doc -%}
+  Loads the shared ws- stylesheet (and optionally ws-cart.js) from inside a ws- section, so
+  layout/theme.liquid never needs editing. Browsers fetch each file once even if several
+  sections render this snippet.
+
+  @param {boolean} [cart] - Also load ws-cart.js (quick add / bundle add-to-cart)
+
+  @example
+  {% render 'ws-assets', cart: true %}
+{%- enddoc -%}
+
+{{ 'ws-base.css' | asset_url | stylesheet_tag: preload: true }}
+{%- if cart -%}
+  <script src="{{ 'ws-cart.js' | asset_url }}" type="module" defer></script>
+{%- endif -%}

@@ -1,0 +1,212 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-blog-h-' | append: section.id
+  assign blog = s.blog
+  assign count = s.post_count | default: 4
+  assign view_all_url = s.view_all_link
+  if view_all_url == blank and blog != blank
+    assign view_all_url = blog.url
+  endif
+  assign overlay = s.overlay_opacity | divided_by: 100.0
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  class="ws-section ws-blog"
+  style="{% render 'ws-section-style', settings: s %} --ws-overlay: {{ overlay }};"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+>
+  <div class="ws-container">
+    {%- if s.eyebrow != blank or s.heading != blank -%}
+      <div class="ws-head">
+        {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
+      </div>
+    {%- endif -%}
+
+    <ul
+      class="ws-grid ws-blog__grid{% if s.mobile_layout == 'carousel' %} ws-pgrid__grid--carousel{% endif %}"
+      style="--ws-cols: {{ count }}; --ws-cols-m: {% if s.mobile_layout == 'stack' %}1{% else %}2{% endif %};"
+      role="list"
+    >
+      {%- if blog != blank and blog.articles_count > 0 -%}
+        {%- for article in blog.articles limit: count -%}
+          {%- liquid
+            assign category = nil
+            if s.category_source == 'tag' and article.tags.size > 0
+              assign category = article.tags.first
+            elsif s.category_source == 'blog'
+              assign category = blog.title
+            endif
+          -%}
+          <li class="ws-grid__item">
+            <article class="ws-blog__card">
+              <div class="ws-media ws-blog__media" style="--ws-ratio: {{ s.image_ratio }};">
+                {%- if article.image != blank -%}
+                  {%- assign ws_img_alt = article.image.alt | default: article.title -%}
+                  {{
+                    article.image
+                    | image_url: width: 1000
+                    | image_tag:
+                      widths: '300, 450, 600, 800, 1000',
+                      sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 60vw',
+                      loading: 'lazy',
+                      alt: ws_img_alt
+                  }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'ws-placeholder' }}
+                {%- endif -%}
+                {%- if s.show_overlay_title -%}
+                  <span class="ws-blog__overlay" aria-hidden="true">
+                    <span class="ws-blog__overlay-title">{{ article.title | escape }}</span>
+                  </span>
+                {%- endif -%}
+              </div>
+              <div class="ws-blog__info">
+                {%- if category != blank -%}
+                  <p class="ws-blog__category">{{ category | escape }}</p>
+                {%- endif -%}
+                <h3 class="ws-blog__title">
+                  <a href="{{ article.url }}" class="ws-blog__link">{{ article.title | escape }}</a>
+                </h3>
+                {%- if s.show_date -%}
+                  <p class="ws-blog__date ws-muted">{{ article.published_at | time_tag: format: 'date' }}</p>
+                {%- endif -%}
+              </div>
+            </article>
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..count) -%}
+          <li class="ws-grid__item">
+            <article class="ws-blog__card">
+              <div class="ws-media ws-blog__media" style="--ws-ratio: {{ s.image_ratio }};">
+                {{ 'image' | placeholder_svg_tag: 'ws-placeholder' }}
+                {%- if s.show_overlay_title -%}
+                  <span class="ws-blog__overlay" aria-hidden="true"><span class="ws-blog__overlay-title">{{ s.placeholder_title | escape }}</span></span>
+                {%- endif -%}
+              </div>
+              <div class="ws-blog__info">
+                <p class="ws-blog__category">{{ s.eyebrow | default: s.heading | strip_html }}</p>
+                <h3 class="ws-blog__title">{{ s.placeholder_title | escape }}</h3>
+              </div>
+            </article>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+
+    {%- if s.view_all_label != blank and view_all_url != blank -%}
+      <div class="ws-footer-cta">
+        <a href="{{ view_all_url }}" class="ws-btn ws-btn--{{ s.view_all_style }}">{{ s.view_all_label | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .ws-blog__card { position: relative; display: flex; flex-direction: column; height: 100%; }
+
+  .ws-blog__media img { transition: transform 0.8s var(--ws-ease); }
+  .ws-blog__card:hover .ws-blog__media img { transform: scale(1.03); }
+
+  .ws-blog__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: rgb(0 0 0 / var(--ws-overlay, 0.25));
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .ws-blog__overlay-title {
+    font-family: var(--ws-font-heading);
+    font-style: italic;
+    font-size: clamp(1.125rem, 0.9rem + 1vw, 1.625rem);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .ws-blog__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 14px;
+  }
+
+  .ws-blog__category {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ws-blog__title {
+    margin: 0;
+    font-family: var(--ws-font-heading);
+    font-weight: var(--ws-font-heading-weight);
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+    line-height: 1.3;
+  }
+
+  .ws-blog__link { color: inherit; text-decoration: none; }
+  .ws-blog__link::after { content: ''; position: absolute; inset: 0; }
+  .ws-blog__card:hover .ws-blog__link { text-decoration: underline; text-underline-offset: 3px; }
+  .ws-blog__card:has(.ws-blog__link:focus-visible) { outline: 2px solid var(--ws-fg); outline-offset: 4px; }
+  .ws-blog__link:focus-visible { outline: none; }
+
+  .ws-blog__date { margin: 0; font-size: 12px; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Blog cards",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Tips & lärdomar" },
+    { "type": "select", "id": "heading_style", "label": "Heading style", "default": "label", "options": [
+      { "value": "label", "label": "Small uppercase label" }, { "value": "serif", "label": "Large serif" }
+    ] },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "post_count", "label": "Number of posts", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "1 / 1", "options": [
+      { "value": "1 / 1", "label": "Square" }, { "value": "4 / 5", "label": "Portrait (4:5)" }, { "value": "4 / 3", "label": "Landscape (4:3)" }
+    ] },
+    { "type": "checkbox", "id": "show_overlay_title", "label": "Show title over image", "default": true },
+    { "type": "range", "id": "overlay_opacity", "label": "Image overlay opacity", "min": 0, "max": 70, "step": 5, "unit": "%", "default": 25 },
+    { "type": "select", "id": "category_source", "label": "Label above title", "default": "tag", "options": [
+      { "value": "tag", "label": "First article tag" }, { "value": "blog", "label": "Blog name" }, { "value": "none", "label": "None" }
+    ] },
+    { "type": "checkbox", "id": "show_date", "label": "Show date", "default": false },
+    { "type": "select", "id": "mobile_layout", "label": "Mobile layout", "default": "carousel", "options": [
+      { "value": "carousel", "label": "Swipe carousel" }, { "value": "grid", "label": "2-column grid" }, { "value": "stack", "label": "1 column" }
+    ] },
+    { "type": "text", "id": "placeholder_title", "label": "Placeholder title (shown until a blog is selected)", "default": "Artikelns rubrik" },
+    { "type": "text", "id": "view_all_label", "label": "\"View all\" label", "default": "Alla artiklar" },
+    { "type": "url", "id": "view_all_link", "label": "\"View all\" link", "info": "Defaults to the selected blog." },
+    { "type": "select", "id": "view_all_style", "label": "\"View all\" style", "default": "secondary", "options": [
+      { "value": "primary", "label": "Solid" }, { "value": "secondary", "label": "Outline" }, { "value": "link", "label": "Text link" }
+    ] },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Blog cards" }]
+}
+{% endschema %}

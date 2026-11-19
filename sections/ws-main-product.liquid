@@ -1,0 +1,1373 @@
+{%- liquid
+  assign s = section.settings
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'ws-form-' | append: section.id
+
+  assign money_format = shop.money_format
+  if settings.currency_code_enabled_product_pages
+    assign money_format = shop.money_with_currency_format
+  endif
+
+  assign featured_media = current_variant.featured_media | default: product.featured_media
+  assign has_plans = false
+  if product.selling_plan_groups.size > 0
+    assign has_plans = true
+  endif
+
+  assign initial_plan = ''
+  if product.requires_selling_plan and has_plans
+    assign initial_plan = product.selling_plan_groups.first.selling_plans.first.id
+  endif
+
+  case s.media_width
+    when '50'
+      assign cols = 'minmax(0, 1fr) minmax(0, 1fr)'
+    when '60'
+      assign cols = 'minmax(0, 3fr) minmax(0, 2fr)'
+    else
+      assign cols = 'minmax(0, 11fr) minmax(0, 9fr)'
+  endcase
+-%}
+
+{% render 'ws-assets', cart: true %}
+
+<ws-product
+  id="ws-product-{{ section.id }}"
+  class="ws-section ws-pm"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-product-url="{{ product.url }}"
+  data-form-id="{{ form_id }}"
+  data-money-format="{{ money_format | strip_html | escape }}"
+  data-currency="{{ cart.currency.iso_code }}"
+  data-update-url="{{ s.update_url }}"
+  data-open-drawer="{{ s.open_drawer }}"
+  data-label-add="{{ 'ws.product.add_to_cart' | t | escape }}"
+  data-label-sold-out="{{ 'ws.product.sold_out' | t | escape }}"
+  data-label-unavailable="{{ 'ws.product.unavailable' | t | escape }}"
+  data-label-added="{{ 'ws.card.added' | t | escape }}"
+  data-label-error="{{ 'ws.cart.error' | t | escape }}"
+  data-save-template="{{ 'ws.product.save_percent' | t: percent: '[percent]' | escape }}"
+  style="{% render 'ws-section-style', settings: s %} --ws-pm-cols: {{ cols }}; --ws-pm-gap: {{ s.block_gap }}px;"
+>
+  <div class="ws-container">
+    <div class="ws-pm__grid{% if s.media_position == 'right' %} ws-pm__grid--media-right{% endif %}">
+      {%- comment -%} ======================= MEDIA ======================= {%- endcomment -%}
+      <div class="ws-pm__media{% if s.sticky_media %} ws-pm__media--sticky{% endif %}">
+        <ws-gallery
+          class="ws-gallery ws-gallery--thumbs-{{ s.thumbnails }} ws-gallery--m-{{ s.mobile_nav }}"
+          data-ws-gallery
+          data-initial-media="{{ featured_media.id }}"
+          style="--ws-gallery-ratio: {% if s.media_ratio == 'adapt' and product.featured_media != blank %}{{ product.featured_media.aspect_ratio }}{% elsif s.media_ratio == 'adapt' %}1{% else %}{{ s.media_ratio }}{% endif %};"
+        >
+          <div class="ws-gallery__main">
+            <ul class="ws-gallery__track" data-ws-track tabindex="0" role="list" aria-label="{{ 'ws.product.gallery' | t | escape }}">
+              {%- for media in product.media -%}
+                {%- liquid
+                  assign loading = 'lazy'
+                  assign priority = 'auto'
+                  if forloop.first
+                    assign loading = 'eager'
+                    if section.index == 1
+                      assign priority = 'high'
+                    endif
+                  endif
+                  assign media_label = 'ws.product.media_n' | t: n: forloop.index, total: product.media.size
+                -%}
+                <li
+                  class="ws-gallery__slide"
+                  data-media-id="{{ media.id }}"
+                  data-index="{{ forloop.index0 }}"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label="{{ media_label | escape }}"
+                >
+                  {%- case media.media_type -%}
+                    {%- when 'image' -%}
+                      {%- if s.enable_zoom -%}
+                        <button type="button" class="ws-gallery__zoom" data-ws-zoom-open="{{ forloop.index0 }}" aria-label="{{ 'ws.product.zoom' | t | escape }}: {{ media_label | escape }}">
+                      {%- endif -%}
+                      {%- assign ws_img_alt = media.alt | default: product.title -%}
+                      {{
+                        media
+                        | image_url: width: 1800
+                        | image_tag:
+                          widths: '375, 550, 750, 900, 1100, 1400, 1800',
+                          sizes: '(min-width: 990px) 55vw, 100vw',
+                          loading: loading,
+                          fetchpriority: priority,
+                          class: 'ws-gallery__img',
+                          alt: ws_img_alt
+                      }}
+                      {%- if s.enable_zoom -%}
+                        <span class="ws-gallery__zoom-icon" aria-hidden="true">{% render 'ws-icon', name: 'plus', size: 18 %}</span>
+                        </button>
+                      {%- endif -%}
+                    {%- when 'video', 'external_video', 'model' -%}
+                      <ws-deferred-media class="ws-gallery__deferred" data-type="{{ media.media_type }}">
+                        <button type="button" class="ws-gallery__poster" data-ws-poster>
+                          {{
+                            media.preview_image
+                            | image_url: width: 1400
+                            | image_tag: widths: '550, 750, 1100, 1400', sizes: '(min-width: 990px) 55vw, 100vw', loading: loading, class: 'ws-gallery__img', alt: ''
+                          }}
+                          <span class="ws-gallery__play">
+                            {%- if media.media_type == 'model' -%}
+                              {% render 'ws-icon', name: 'package', size: 22 %}<span>{{ 'ws.product.view_3d' | t }}</span>
+                            {%- else -%}
+                              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span>{{ 'ws.product.play_video' | t }}</span>
+                            {%- endif -%}
+                          </span>
+                          <span class="ws-sr-only">: {{ media.alt | default: product.title | escape }}</span>
+                        </button>
+                        <template>
+                          {%- case media.media_type -%}
+                            {%- when 'video' -%}
+                              {{ media | video_tag: autoplay: true, controls: true, playsinline: true, muted: false, image_size: '1400x', class: 'ws-gallery__video' }}
+                            {%- when 'external_video' -%}
+                              {{ media | external_video_url: autoplay: true | external_video_tag: class: 'ws-gallery__video', loading: 'lazy' }}
+                            {%- when 'model' -%}
+                              {{ media | model_viewer_tag: reveal: 'interaction', toggleable: true, class: 'ws-gallery__model' }}
+                          {%- endcase -%}
+                        </template>
+                      </ws-deferred-media>
+                  {%- endcase -%}
+                </li>
+              {%- else -%}
+                <li class="ws-gallery__slide">{{ 'product-1' | placeholder_svg_tag: 'ws-gallery__img ws-placeholder' }}</li>
+              {%- endfor -%}
+            </ul>
+
+            {%- if product.media.size > 1 -%}
+              <button type="button" class="ws-gallery__arrow ws-gallery__arrow--prev" data-ws-prev aria-label="{{ 'ws.a11y.previous' | t }}">{% render 'ws-icon', name: 'arrow-left', size: 18 %}</button>
+              <button type="button" class="ws-gallery__arrow ws-gallery__arrow--next" data-ws-next aria-label="{{ 'ws.a11y.next' | t }}">{% render 'ws-icon', name: 'arrow-right', size: 18 %}</button>
+              <div class="ws-gallery__dots" aria-hidden="true">
+                {%- for media in product.media -%}
+                  <span class="ws-gallery__dot{% if forloop.first %} is-active{% endif %}"></span>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- if product.media.size > 1 and s.thumbnails != 'hidden' -%}
+            <ul class="ws-gallery__thumbs" role="list">
+              {%- for media in product.media -%}
+                <li>
+                  <button
+                    type="button"
+                    class="ws-gallery__thumb"
+                    data-ws-thumb="{{ forloop.index0 }}"
+                    aria-label="{{ 'ws.product.media_n' | t: n: forloop.index, total: product.media.size | escape }}"
+                    {% if forloop.first %}aria-current="true"{% endif %}
+                  >
+                    {{ media.preview_image | image_url: width: 200 | image_tag: width: 100, height: 100, loading: 'lazy', alt: '', class: 'ws-gallery__thumb-img' }}
+                    {%- if media.media_type != 'image' -%}
+                      <span class="ws-gallery__thumb-badge" aria-hidden="true">{% if media.media_type == 'model' %}3D{% else %}▶{% endif %}</span>
+                    {%- endif -%}
+                  </button>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {%- if s.enable_zoom -%}
+            <dialog class="ws-zoom ws-scope" data-ws-zoom-dialog aria-label="{{ 'ws.product.zoom' | t | escape }}">
+              <button type="button" class="ws-zoom__close" data-ws-zoom-close aria-label="{{ 'ws.a11y.close' | t }}">{% render 'ws-icon', name: 'close', size: 22 %}</button>
+              <div class="ws-zoom__list">
+                {%- for media in product.media -%}
+                  {%- if media.media_type == 'image' -%}
+                    <img
+                      class="ws-zoom__img"
+                      data-ws-zoom-index="{{ forloop.index0 }}"
+                      data-src="{{ media | image_url: width: 2400 }}"
+                      width="{{ media.width }}"
+                      height="{{ media.height }}"
+                      alt="{{ media.alt | default: product.title | escape }}"
+                    >
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </dialog>
+          {%- endif -%}
+        </ws-gallery>
+      </div>
+
+      {%- comment -%} ======================= INFO ======================= {%- endcomment -%}
+      <div class="ws-pm__info{% if s.sticky_info %} ws-pm__info--sticky{% endif %}">
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="ws-pm__block ws-pm__app">{% render block %}</div>
+
+            {%- when 'breadcrumb' -%}
+              {%- liquid
+                assign crumb_collection = collection
+                if crumb_collection == blank and b.fallback_collection
+                  assign crumb_collection = product.collections.first
+                endif
+              -%}
+              <nav class="ws-pm__block ws-pm__breadcrumb" aria-label="{{ 'ws.product.breadcrumb' | t | escape }}" {{ block.shopify_attributes }}>
+                <ol role="list">
+                  <li><a href="{{ routes.root_url }}">{{ b.home_label | escape }}</a></li>
+                  {%- if crumb_collection != blank -%}
+                    <li><a href="{{ crumb_collection.url }}">{{ crumb_collection.title | escape }}</a></li>
+                  {%- endif -%}
+                  <li><span aria-current="page">{{ product.title | escape }}</span></li>
+                </ol>
+              </nav>
+
+            {%- when 'title' -%}
+              <div class="ws-pm__block ws-pm__title-wrap" {{ block.shopify_attributes }}>
+                {%- if b.show_vendor and product.vendor != blank -%}
+                  <p class="ws-eyebrow ws-pm__vendor">{{ product.vendor | escape }}</p>
+                {%- endif -%}
+                <h1 class="ws-heading ws-pm__title ws-pm__title--{{ b.size }}">{{ product.title | escape }}</h1>
+              </div>
+
+            {%- when 'rating' -%}
+              {%- capture stars -%}{% render 'ws-stars', product: product, link: '#ws-reviews', count_style: b.count_style %}{%- endcapture -%}
+              {%- if stars != blank -%}
+                <div class="ws-pm__block ws-pm__rating" {{ block.shopify_attributes }}>{{ stars }}</div>
+              {%- elsif request.design_mode -%}
+                <p class="ws-pm__block ws-pm__editor-note" {{ block.shopify_attributes }}>Star rating appears once the product has reviews (reviews.rating metafield from Okendo).</p>
+              {%- endif -%}
+
+            {%- when 'price' -%}
+              {%- liquid
+                assign price = current_variant.price
+                assign compare = current_variant.compare_at_price
+                assign alloc = nil
+                if initial_plan != ''
+                  for a in current_variant.selling_plan_allocations
+                    if a.selling_plan.id == initial_plan
+                      assign alloc = a
+                    endif
+                  endfor
+                endif
+                if alloc
+                  assign price = alloc.price
+                  assign compare = alloc.compare_at_price
+                endif
+                assign on_sale = false
+                if compare > price
+                  assign on_sale = true
+                  assign save_pct = compare | minus: price | times: 100.0 | divided_by: compare | round
+                endif
+              -%}
+              <div class="ws-pm__block ws-pm__price-wrap" {{ block.shopify_attributes }}>
+                <div class="ws-pm__price" data-ws-price>
+                  <span class="ws-pm__price-current{% if on_sale %} is-sale{% endif %}" data-ws-price-current>{% render 'ws-money', amount: price %}</span>
+                  <span class="ws-pm__compare-wrap"{% unless on_sale %} hidden{% endunless %} data-ws-price-compare-wrap>
+                    <span class="ws-sr-only">{{ 'ws.card.regular_price' | t }}</span>
+                    <s class="ws-pm__price-compare" data-ws-price-compare>{% render 'ws-money', amount: compare %}</s>
+                  </span>
+                  {%- if b.show_save -%}
+                    <span class="ws-badge ws-badge--sale ws-pm__save" data-ws-price-save{% unless on_sale %} hidden{% endunless %}>
+                      {%- if on_sale -%}{{ 'ws.product.save_percent' | t: percent: save_pct }}{%- endif -%}
+                    </span>
+                  {%- endif -%}
+                </div>
+                {%- if current_variant.unit_price_measurement -%}
+                  <p class="ws-pm__unit ws-muted" data-ws-unit-price>
+                    {%- render 'ws-money', amount: current_variant.unit_price -%}/
+                    {%- if current_variant.unit_price_measurement.reference_value != 1 -%}{{ current_variant.unit_price_measurement.reference_value }}{%- endif -%}
+                    {{ current_variant.unit_price_measurement.reference_unit }}
+                  </p>
+                {%- else -%}
+                  <p class="ws-pm__unit ws-muted" data-ws-unit-price hidden></p>
+                {%- endif -%}
+                {%- if b.tax_text != blank -%}
+                  <p class="ws-pm__tax ws-muted">{{ b.tax_text }}</p>
+                {%- endif -%}
+              </div>
+
+            {%- when 'variant_picker' -%}
+              {%- unless product.has_only_default_variant -%}
+                <div class="ws-pm__block ws-pm__variants ws-pm__variants--{{ b.style }}" {{ block.shopify_attributes }}>
+                  {%- for option in product.options_with_values -%}
+                    {%- assign opt_name = 'ws-opt-' | append: section.id | append: '-' | append: option.position -%}
+                    {%- if b.style == 'dropdown' -%}
+                      <div class="ws-opt">
+                        <label class="ws-opt__label" for="{{ opt_name }}">{{ option.name | escape }}</label>
+                        <div class="ws-select">
+                          <select id="{{ opt_name }}" class="ws-select__el" data-ws-option data-position="{{ option.position }}">
+                            {%- for value in option.values -%}
+                              <option value="{{ value | escape }}"{% if value.selected %} selected{% endif %}>
+                                {{- value | escape -}}
+                                {%- unless value.available %} – {{ 'ws.product.sold_out' | t }}{% endunless -%}
+                              </option>
+                            {%- endfor -%}
+                          </select>
+                          {% render 'ws-icon', name: 'chevron-down', size: 16, class: 'ws-select__icon' %}
+                        </div>
+                      </div>
+                    {%- else -%}
+                      <fieldset class="ws-opt">
+                        <legend class="ws-opt__label">
+                          {{ option.name | escape }}: <span class="ws-opt__current" data-ws-opt-current="{{ option.position }}">{{ option.selected_value | escape }}</span>
+                        </legend>
+                        <div class="ws-opt__values">
+                          {%- for value in option.values -%}
+                            {%- assign input_id = opt_name | append: '-' | append: forloop.index -%}
+                            <input
+                              type="radio"
+                              class="ws-opt__input"
+                              id="{{ input_id }}"
+                              name="{{ opt_name }}"
+                              value="{{ value | escape }}"
+                              data-ws-option
+                              data-position="{{ option.position }}"
+                              {% if value.selected %}checked{% endif %}
+                            >
+                            {%- if b.style == 'swatch' -%}
+                              {%- liquid
+                                assign swatch_style = ''
+                                if value.swatch.image
+                                  assign swatch_url = value.swatch.image | image_url: width: 120
+                                  assign swatch_style = 'background-image: url(' | append: swatch_url | append: ');'
+                                elsif value.swatch.color
+                                  assign swatch_style = 'background-color: ' | append: value.swatch.color | append: ';'
+                                elsif value.variant.featured_media
+                                  assign swatch_url = value.variant.featured_media.preview_image | image_url: width: 120
+                                  assign swatch_style = 'background-image: url(' | append: swatch_url | append: ');'
+                                endif
+                              -%}
+                              <label for="{{ input_id }}" class="ws-swatch{% unless value.available %} is-unavailable{% endunless %}" title="{{ value | escape }}" data-ws-value-label>
+                                <span class="ws-swatch__fill" style="{{ swatch_style }}" aria-hidden="true"></span>
+                                <span class="ws-sr-only">{{ value | escape }}</span>
+                              </label>
+                            {%- else -%}
+                              <label for="{{ input_id }}" class="ws-pill{% unless value.available %} is-unavailable{% endunless %}" data-ws-value-label>{{ value | escape }}</label>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </div>
+                      </fieldset>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+
+            {%- when 'subscription' -%}
+              {%- if has_plans -%}
+                <fieldset class="ws-pm__block ws-sub" {{ block.shopify_attributes }}>
+                  <legend class="ws-opt__label">{{ b.heading | escape }}</legend>
+                  {%- unless product.requires_selling_plan -%}
+                    <label class="ws-sub__option">
+                      <input type="radio" name="ws-plan-{{ section.id }}" value="" data-ws-plan checked>
+                      <span class="ws-sub__text">{{ b.one_time_label | escape }}</span>
+                      <span class="ws-sub__price" data-ws-plan-price="">{% render 'ws-money', amount: current_variant.price %}</span>
+                    </label>
+                  {%- endunless -%}
+                  {%- for group in product.selling_plan_groups -%}
+                    {%- for plan in group.selling_plans -%}
+                      {%- liquid
+                        assign plan_price = current_variant.price
+                        for a in current_variant.selling_plan_allocations
+                          if a.selling_plan.id == plan.id
+                            assign plan_price = a.price
+                          endif
+                        endfor
+                        assign plan_pct = 0
+                        assign adj = plan.price_adjustments.first
+                        if adj.value_type == 'percentage'
+                          assign plan_pct = adj.value
+                        endif
+                      -%}
+                      <label class="ws-sub__option">
+                        <input type="radio" name="ws-plan-{{ section.id }}" value="{{ plan.id }}" data-ws-plan{% if initial_plan == plan.id %} checked{% endif %}>
+                        <span class="ws-sub__text">
+                          {{- plan.name | escape -}}
+                          {%- if plan.description != blank %}<small class="ws-muted">{{ plan.description | escape }}</small>{% endif -%}
+                        </span>
+                        <span class="ws-sub__price" data-ws-plan-price="{{ plan.id }}">{% render 'ws-money', amount: plan_price %}</span>
+                        {%- if plan_pct > 0 -%}
+                          <span class="ws-badge ws-badge--save">{{ 'ws.product.save_percent' | t: percent: plan_pct }}</span>
+                        {%- endif -%}
+                      </label>
+                    {%- endfor -%}
+                  {%- endfor -%}
+                  {%- if b.note != blank -%}<p class="ws-sub__note ws-muted">{{ b.note }}</p>{%- endif -%}
+                </fieldset>
+              {%- endif -%}
+
+            {%- when 'buy_buttons' -%}
+              <div class="ws-pm__block ws-pm__buy" {{ block.shopify_attributes }}>
+                {%- form 'product', product, id: form_id, class: 'ws-pm__form', novalidate: 'novalidate' -%}
+                  <input type="hidden" name="id" value="{{ current_variant.id }}" data-ws-variant-input>
+                  {%- if has_plans -%}
+                    <input type="hidden" name="selling_plan" value="{{ initial_plan }}" data-ws-plan-input>
+                  {%- endif -%}
+                  <div class="ws-pm__buy-row">
+                    {%- if b.show_quantity -%}
+                      <div class="ws-qty" data-ws-qty-wrap>
+                        <button type="button" class="ws-qty__btn" data-ws-qty="-1" aria-label="{{ 'ws.product.decrease' | t | escape }}">{% render 'ws-icon', name: 'minus', size: 16 %}</button>
+                        <input class="ws-qty__input" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="{{ 'ws.product.quantity' | t | escape }}">
+                        <button type="button" class="ws-qty__btn" data-ws-qty="1" aria-label="{{ 'ws.product.increase' | t | escape }}">{% render 'ws-icon', name: 'plus', size: 16 %}</button>
+                      </div>
+                    {%- endif -%}
+                    <button
+                      type="submit"
+                      name="add"
+                      class="ws-btn ws-btn--primary ws-btn--full ws-pm__atc"
+                      data-ws-main-atc
+                      {% unless current_variant.available %}disabled{% endunless %}
+                    >
+                      <span data-ws-atc-label>
+                        {%- if current_variant.available -%}{{ 'ws.product.add_to_cart' | t }}{%- else -%}{{ 'ws.product.sold_out' | t }}{%- endif -%}
+                      </span>
+                      {%- if b.show_price_in_button -%}
+                        <span class="ws-pm__atc-price" data-ws-atc-price>{% render 'ws-money', amount: current_variant.price %}</span>
+                      {%- endif -%}
+                    </button>
+                  </div>
+                  <p class="ws-pm__form-msg" role="status" aria-live="polite" data-ws-form-msg></p>
+                  {%- if b.show_dynamic_checkout -%}
+                    <div class="ws-pm__dynamic">{{ form | payment_button }}</div>
+                  {%- endif -%}
+                {%- endform -%}
+                {%- if b.social_proof_text != blank -%}
+                  <p class="ws-pm__proof">{% render 'ws-icon', name: 'heart', size: 14 %}<span>{{ b.social_proof_text }}</span></p>
+                {%- endif -%}
+              </div>
+
+            {%- when 'bundle' -%}
+              <div class="ws-pm__block" {{ block.shopify_attributes }}>
+                {% render 'ws-bundle-builder', product: product, block: block, money_format: money_format %}
+              </div>
+
+            {%- when 'stock' -%}
+              {%- liquid
+                assign stock_map = ''
+                for v in product.variants
+                  if v.inventory_management == 'shopify' and v.inventory_policy == 'deny' and v.inventory_quantity > 0 and v.inventory_quantity <= b.threshold
+                    assign stock_map = stock_map | append: '"' | append: v.id | append: '":' | append: v.inventory_quantity | append: ','
+                  endif
+                endfor
+                assign stock_map = stock_map | remove_last: ','
+                assign low = false
+                if current_variant.inventory_management == 'shopify' and current_variant.inventory_policy == 'deny' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= b.threshold
+                  assign low = true
+                endif
+              -%}
+              <p
+                class="ws-pm__block ws-pm__stock"
+                data-ws-stock
+                data-template="{{ b.text | escape }}"
+                {% unless low %}hidden{% endunless %}
+                {{ block.shopify_attributes }}
+              >
+                <span class="ws-pm__stock-dot" aria-hidden="true"></span>
+                <span data-ws-stock-text>{{ b.text | replace: '[count]', current_variant.inventory_quantity }}</span>
+                <script type="application/json" data-ws-inventory>{ {{ stock_map }} }</script>
+              </p>
+
+            {%- when 'payment_icons' -%}
+              <ul class="ws-pm__block ws-pm__payments" role="list" aria-label="{{ 'ws.product.payment_methods' | t | escape }}" {{ block.shopify_attributes }}>
+                {%- for type in shop.enabled_payment_types -%}
+                  <li>{{ type | payment_type_svg_tag: class: 'ws-pm__pay-icon' }}</li>
+                {%- endfor -%}
+              </ul>
+
+            {%- when 'description' -%}
+              {%- if product.description != blank -%}
+                <div class="ws-pm__block ws-rte ws-pm__description" {{ block.shopify_attributes }}>{{ product.description }}</div>
+              {%- endif -%}
+
+            {%- when 'benefit' -%}
+              <p class="ws-pm__block ws-pm__benefit" {{ block.shopify_attributes }}>
+                {%- if b.emoji != blank -%}
+                  <span class="ws-pm__benefit-icon" aria-hidden="true">{{ b.emoji }}</span>
+                {%- elsif b.icon != 'none' -%}
+                  <span class="ws-pm__benefit-icon">{% render 'ws-icon', name: b.icon, size: 16 %}</span>
+                {%- endif -%}
+                <span>{{ b.text }}</span>
+              </p>
+
+            {%- when 'benefits_metafield' -%}
+              {%- assign items = product.metafields.custom.ws_benefits.value -%}
+              {%- if items != blank -%}
+                <ul class="ws-pm__block ws-pm__benefits" role="list" {{ block.shopify_attributes }}>
+                  {%- for item in items -%}
+                    <li class="ws-pm__benefit"><span>{{ item | escape }}</span></li>
+                  {%- endfor -%}
+                </ul>
+              {%- elsif request.design_mode -%}
+                <p class="ws-pm__block ws-pm__editor-note" {{ block.shopify_attributes }}>Benefits list: fill in the custom.ws_benefits metafield (list of single line text) for this product.</p>
+              {%- endif -%}
+
+            {%- when 'accordion' -%}
+              {%- liquid
+                assign acc_content = b.content
+                if b.metafield_key != blank and b.metafield_key contains '.'
+                  assign mf_ns = b.metafield_key | split: '.' | first | strip
+                  assign mf_key = b.metafield_key | split: '.' | last | strip
+                  assign mf = product.metafields[mf_ns][mf_key]
+                  if mf != blank
+                    assign acc_content = mf | metafield_tag
+                  endif
+                endif
+                if b.page != blank and acc_content == blank
+                  assign acc_content = b.page.content
+                endif
+              -%}
+              {%- if acc_content != blank or request.design_mode -%}
+                <details
+                  class="ws-pm__block ws-accordion ws-pm__accordion"
+                  {% if s.accordion_exclusive %}name="ws-acc-{{ section.id }}"{% endif %}
+                  {% if b.open %}open{% endif %}
+                  {{ block.shopify_attributes }}
+                >
+                  <summary class="ws-accordion__summary">
+                    <span class="ws-pm__acc-title">
+                      {%- if b.icon != 'none' -%}{% render 'ws-icon', name: b.icon, size: 16 %}{%- endif -%}
+                      {{ b.title | escape }}
+                    </span>
+                    {% render 'ws-icon', name: 'plus', size: 16, class: 'ws-accordion__icon' %}
+                  </summary>
+                  <div class="ws-accordion__content ws-rte">
+                    {%- if acc_content != blank -%}
+                      {{ acc_content }}
+                    {%- else -%}
+                      <p class="ws-pm__editor-note">Empty – add text, pick a page, or set the metafield key (e.g. custom.ws_ingredients). Hidden on the live store while empty.</p>
+                    {%- endif -%}
+                  </div>
+                </details>
+              {%- endif -%}
+
+            {%- when 'delivery' -%}
+              <div
+                class="ws-pm__block ws-pm__delivery"
+                {% if b.enable_countdown %}
+                  data-ws-countdown data-cutoff="{{ b.cutoff_hour }}" data-tz="{{ b.timezone | escape }}" data-days="{{ b.ship_days | escape }}" data-template="{{ b.countdown_text | escape }}"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <p class="ws-pm__delivery-line">{% render 'ws-icon', name: b.icon, size: 18 %}<span>{{ b.text }}</span></p>
+                {%- if b.enable_countdown -%}
+                  <p class="ws-pm__countdown" data-ws-countdown-text hidden></p>
+                {%- endif -%}
+              </div>
+
+            {%- when 'trust' -%}
+              <ul class="ws-pm__block ws-pm__trust" role="list" {{ block.shopify_attributes }}>
+                {%- for i in (1..3) -%}
+                  {%- liquid
+                    assign icon_key = 'icon_' | append: i
+                    assign label_key = 'label_' | append: i
+                  -%}
+                  {%- if b[label_key] != blank -%}
+                    <li class="ws-pm__trust-item">
+                      {%- if b[icon_key] != 'none' -%}{% render 'ws-icon', name: b[icon_key], size: 22 %}{%- endif -%}
+                      <span>{{ b[label_key] | escape }}</span>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+
+            {%- when 'text' -%}
+              <div class="ws-pm__block ws-rte ws-pm__text ws-pm__text--{{ b.style }}" {{ block.shopify_attributes }}>{{ b.text }}</div>
+
+            {%- when 'custom_liquid' -%}
+              <div class="ws-pm__block" {{ block.shopify_attributes }}>{{ b.custom_liquid }}</div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-ws-variants>{{ product.variants | json }}</script>
+</ws-product>
+
+<script src="{{ 'ws-product.js' | asset_url }}" type="module" defer></script>
+{%- assign bundle_blocks = section.blocks | where: 'type', 'bundle' -%}
+{%- if bundle_blocks.size > 0 -%}
+  <script src="{{ 'ws-bundle.js' | asset_url }}" type="module" defer></script>
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-pm { display: block; }
+
+  .ws-pm__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .ws-pm__grid {
+      grid-template-columns: var(--ws-pm-cols, minmax(0, 11fr) minmax(0, 9fr));
+      gap: clamp(40px, 5vw, 80px);
+    }
+
+    .ws-pm__grid--media-right .ws-pm__media { order: 2; }
+
+    .ws-pm__media--sticky,
+    .ws-pm__info--sticky {
+      position: sticky;
+      top: calc(var(--header-height, 0px) + 20px);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ws-pm__media { margin-inline: calc(var(--ws-gutter) * -1); }
+    .ws-pm__media .ws-gallery__thumbs { padding-inline: var(--ws-gutter); }
+  }
+
+  /* ---------- Gallery ---------- */
+  .ws-gallery { display: flex; flex-direction: column; gap: 12px; }
+
+  .ws-gallery__main { position: relative; }
+
+  .ws-gallery__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .ws-gallery__track::-webkit-scrollbar { display: none; }
+
+  .ws-gallery__slide {
+    position: relative;
+    aspect-ratio: var(--ws-gallery-ratio, 1);
+    scroll-snap-align: start;
+    background-color: var(--ws-surface);
+    overflow: hidden;
+  }
+
+  .ws-gallery__img,
+  .ws-gallery__slide > .ws-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-gallery__zoom,
+  .ws-gallery__poster {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+
+  .ws-gallery__poster { cursor: pointer; }
+
+  .ws-gallery__zoom-icon {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 0.9);
+    color: #111;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .ws-gallery__zoom:hover .ws-gallery__zoom-icon,
+  .ws-gallery__zoom:focus-visible .ws-gallery__zoom-icon { opacity: 1; }
+
+  .ws-gallery__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background-color: rgb(255 255 255 / 0.92);
+    color: #111;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+  }
+
+  .ws-gallery__deferred { position: absolute; inset: 0; display: block; }
+
+  .ws-gallery__video,
+  .ws-gallery__deferred iframe,
+  .ws-gallery__deferred video,
+  .ws-gallery__deferred model-viewer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: contain;
+    background: #000;
+  }
+
+  .ws-gallery__deferred model-viewer { background: var(--ws-surface); }
+
+  .ws-gallery__arrow {
+    position: absolute;
+    top: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 0.9);
+    color: #111;
+    cursor: pointer;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .ws-gallery__arrow--prev { left: 12px; }
+  .ws-gallery__arrow--next { right: 12px; }
+  .ws-gallery__arrow[disabled] { opacity: 0 !important; pointer-events: none; }
+
+  @media (hover: hover) and (min-width: 750px) {
+    .ws-gallery__arrow { display: inline-flex; }
+    .ws-gallery__main:hover .ws-gallery__arrow,
+    .ws-gallery__arrow:focus-visible { opacity: 1; }
+  }
+
+  .ws-gallery__dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    display: none;
+    gap: 6px;
+    transform: translateX(-50%);
+  }
+
+  .ws-gallery__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 0.6);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.15);
+  }
+
+  .ws-gallery__dot.is-active { background-color: #111; }
+
+  .ws-gallery__thumbs {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 72px;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .ws-gallery__thumbs::-webkit-scrollbar { display: none; }
+
+  .ws-gallery__thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 1px solid transparent;
+    background: var(--ws-surface);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, border-color 0.2s;
+  }
+
+  .ws-gallery__thumb[aria-current='true'] { border-color: var(--ws-fg); opacity: 1; }
+  .ws-gallery__thumb:hover { opacity: 1; }
+
+  .ws-gallery__thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .ws-gallery__thumb-badge {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    padding: 2px 4px;
+    background: #fff;
+    color: #111;
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ws-gallery--m-dots .ws-gallery__thumbs { display: none; }
+    .ws-gallery--m-dots .ws-gallery__dots { display: flex; }
+    .ws-gallery__thumbs { grid-auto-columns: 60px; }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ws-gallery__thumbs { grid-auto-columns: 84px; }
+  }
+
+  /* Zoom dialog */
+  .ws-zoom {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #fff;
+    color: #111;
+  }
+
+  .ws-zoom::backdrop { background: rgb(0 0 0 / 0.6); }
+
+  .ws-zoom__close {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+    cursor: pointer;
+  }
+
+  .ws-zoom__list { display: flex; flex-direction: column; gap: 8px; padding: 0; }
+  .ws-zoom__img { display: block; width: 100%; max-width: 1400px; height: auto; margin-inline: auto; }
+
+  /* ---------- Info column ---------- */
+  .ws-pm__info { display: flex; flex-direction: column; min-width: 0; }
+  .ws-pm__block + .ws-pm__block { margin-top: var(--ws-pm-gap, 20px); }
+
+  .ws-pm__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ws-pm__breadcrumb li + li::before { content: '/'; margin-right: 4px; opacity: 0.5; }
+  .ws-pm__breadcrumb a { color: inherit; text-decoration: none; }
+  .ws-pm__breadcrumb a:hover { text-decoration: underline; }
+  .ws-pm__breadcrumb [aria-current] { color: var(--ws-muted); }
+
+  @media screen and (max-width: 749px) {
+    /* The product title is the H1 right below; avoid a long wrapped duplicate on small screens */
+    .ws-pm__breadcrumb li:last-child { display: none; }
+  }
+
+  .ws-pm__breadcrumb + .ws-pm__title-wrap { margin-top: 12px; }
+
+  .ws-pm__vendor { margin-bottom: 8px; }
+  .ws-pm__title { margin: 0; }
+  .ws-pm__title--small { font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem); }
+  .ws-pm__title--medium { font-size: clamp(1.625rem, 1.3rem + 1.3vw, 2.25rem); }
+  .ws-pm__title--large { font-size: clamp(2rem, 1.5rem + 2vw, 3rem); }
+
+  .ws-pm__title-wrap + .ws-pm__rating { margin-top: 10px; }
+
+  .ws-pm__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+  }
+
+  .ws-pm__price-current.is-sale { color: var(--ws-sale); }
+  .ws-pm__price-compare { color: var(--ws-muted); font-size: 0.85em; }
+  .ws-pm__unit,
+  .ws-pm__tax { margin: 6px 0 0; font-size: 12px; }
+
+  .ws-pm__editor-note {
+    padding: 10px 12px;
+    border: 1px dashed var(--ws-border);
+    font-size: 12px;
+    color: var(--ws-muted);
+  }
+
+  /* Variant options */
+  .ws-opt { margin: 0; padding: 0; border: 0; min-width: 0; }
+  .ws-opt + .ws-opt { margin-top: 16px; }
+
+  .ws-opt__label {
+    display: block;
+    margin: 0 0 10px;
+    padding: 0;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ws-opt__current { font-weight: 400; letter-spacing: 0.04em; text-transform: none; color: var(--ws-muted); }
+
+  .ws-opt__values { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .ws-opt__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ws-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid var(--ws-border);
+    background-color: transparent;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  }
+
+  .ws-pill:hover { border-color: var(--ws-fg); }
+
+  .ws-opt__input:checked + .ws-pill {
+    border-color: var(--ws-fg);
+    background-color: var(--ws-fg);
+    color: var(--ws-bg);
+  }
+
+  .ws-pill.is-unavailable,
+  .ws-swatch.is-unavailable { opacity: 0.45; text-decoration: line-through; }
+
+  .ws-swatch {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    padding: 3px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .ws-swatch__fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--ws-surface);
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  }
+
+  .ws-opt__input:checked + .ws-swatch { border-color: var(--ws-fg); }
+
+  .ws-opt__input:focus-visible + .ws-pill,
+  .ws-opt__input:focus-visible + .ws-swatch { outline: 2px solid var(--ws-fg); outline-offset: 2px; }
+
+  .ws-select { position: relative; }
+
+  .ws-select__el {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 40px 10px 14px;
+    border: 1px solid var(--ws-border);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 15px;
+    appearance: none;
+  }
+
+  .ws-select__icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+
+  /* Subscription */
+  .ws-sub { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px; }
+
+  .ws-sub__option {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--ws-border);
+    cursor: pointer;
+  }
+
+  .ws-sub__option:has(input:checked) { border-color: var(--ws-fg); background-color: var(--ws-surface); }
+  .ws-sub__option input { width: 18px; height: 18px; margin: 0; accent-color: var(--ws-fg); }
+  .ws-sub__text { flex: 1 1 auto; display: flex; flex-direction: column; font-size: 14px; }
+  .ws-sub__text small { font-size: 12px; }
+  .ws-sub__price { font-size: 14px; }
+  .ws-sub__note { margin: 0; font-size: 12px; }
+
+  /* Buy buttons */
+  .ws-pm__buy-row { display: flex; gap: 10px; }
+  .ws-pm__atc { min-height: 54px; flex: 1 1 auto; }
+  .ws-pm__atc-price::before { content: '·'; margin-right: 8px; }
+  .ws-pm__atc[aria-busy='true'] { opacity: 0.7; cursor: progress; }
+
+  .ws-qty {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    border: 1px solid var(--ws-border);
+  }
+
+  .ws-qty__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 52px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .ws-qty__input {
+    width: 40px;
+    height: 52px;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: 15px;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+
+  .ws-qty__input::-webkit-outer-spin-button,
+  .ws-qty__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .ws-pm__form-msg { margin: 8px 0 0; font-size: 13px; min-height: 0; }
+  .ws-pm__form-msg:empty { display: none; }
+  .ws-pm__form-msg.is-error { color: #a3271a; }
+
+  .ws-pm__dynamic { margin-top: 10px; }
+
+  .ws-pm__proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: var(--ws-muted);
+  }
+
+  /* Stock */
+  .ws-pm__stock { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13px; }
+  .ws-pm__stock-dot { width: 8px; height: 8px; border-radius: 50%; background: #c46a1b; box-shadow: 0 0 0 3px rgb(196 106 27 / 0.2); }
+
+  /* Payments */
+  .ws-pm__payments { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .ws-pm__pay-icon { display: block; width: 38px; height: 24px; }
+
+  /* Benefits */
+  .ws-pm__benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .ws-pm__benefit + .ws-pm__benefit { margin-top: 6px; }
+  .ws-pm__benefit-icon { flex: none; display: inline-flex; width: 1.25em; justify-content: center; padding-top: 0.1em; }
+  .ws-pm__benefits { margin: 0; padding: 0; list-style: none; }
+  .ws-pm__benefits .ws-pm__benefit + .ws-pm__benefit { margin-top: 6px; }
+
+  /* Accordion – consecutive ones share borders */
+  .ws-pm__accordion + .ws-pm__accordion { margin-top: 0; border-top: 0; }
+  .ws-pm__accordion:has(+ .ws-pm__accordion) { border-bottom: 1px solid var(--ws-border); }
+  .ws-pm__acc-title { display: inline-flex; align-items: center; gap: 10px; }
+
+  /* Delivery */
+  .ws-pm__delivery-line,
+  .ws-pm__countdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .ws-pm__countdown { margin-top: 6px; padding-left: 28px; color: var(--ws-muted); }
+  .ws-pm__countdown strong { color: var(--ws-fg); font-weight: 500; }
+
+  /* Trust */
+  .ws-pm__trust {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 16px 0 0;
+    list-style: none;
+    border-top: 1px solid var(--ws-border);
+  }
+
+  .ws-pm__trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .ws-pm__text--small { font-size: 13px; }
+  .ws-pm__text--muted { color: var(--ws-muted); font-size: 13px; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Product",
+  "class": "ws-main-product-section",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "header", "content": "Media" },
+    { "type": "select", "id": "media_position", "label": "Desktop media position", "default": "left", "options": [
+      { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" }
+    ] },
+    { "type": "select", "id": "media_width", "label": "Desktop media width", "default": "55", "options": [
+      { "value": "50", "label": "50%" }, { "value": "55", "label": "55%" }, { "value": "60", "label": "60%" }
+    ] },
+    { "type": "select", "id": "media_ratio", "label": "Image ratio", "default": "1", "options": [
+      { "value": "1", "label": "Square" }, { "value": "4 / 5", "label": "Portrait (4:5)" }, { "value": "3 / 4", "label": "Tall (3:4)" }, { "value": "adapt", "label": "Adapt to first image" }
+    ] },
+    { "type": "select", "id": "thumbnails", "label": "Thumbnails", "default": "below", "options": [
+      { "value": "below", "label": "Below image" }, { "value": "hidden", "label": "Hidden" }
+    ] },
+    { "type": "select", "id": "mobile_nav", "label": "Mobile navigation", "default": "thumbs", "options": [
+      { "value": "thumbs", "label": "Thumbnails" }, { "value": "dots", "label": "Dots" }
+    ] },
+    { "type": "checkbox", "id": "enable_zoom", "label": "Zoom image on click", "default": true },
+    { "type": "checkbox", "id": "sticky_media", "label": "Sticky media on desktop scroll", "default": true },
+    { "type": "checkbox", "id": "sticky_info", "label": "Sticky product info on desktop", "info": "Use only one of the two sticky options.", "default": false },
+    { "type": "header", "content": "Behaviour" },
+    { "type": "checkbox", "id": "update_url", "label": "Update URL when a variant is selected", "default": true },
+    { "type": "checkbox", "id": "open_drawer", "label": "Open cart drawer after add to cart", "default": true },
+    { "type": "checkbox", "id": "accordion_exclusive", "label": "Only one accordion open at a time", "default": false },
+    { "type": "range", "id": "block_gap", "label": "Space between blocks", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 20 },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 32},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "breadcrumb", "name": "Breadcrumb", "limit": 1,
+      "settings": [
+        { "type": "text", "id": "home_label", "label": "Home label", "default": "Hem" },
+        { "type": "checkbox", "id": "fallback_collection", "label": "Show product's first collection when not browsing a collection", "default": true }
+      ]
+    },
+    {
+      "type": "title", "name": "Title", "limit": 1,
+      "settings": [
+        { "type": "select", "id": "size", "label": "Size", "default": "small", "options": [
+          { "value": "small", "label": "Small" }, { "value": "medium", "label": "Medium" }, { "value": "large", "label": "Large" }
+        ] },
+        { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": false }
+      ]
+    },
+    {
+      "type": "rating", "name": "Star rating",
+      "settings": [
+        { "type": "paragraph", "content": "Uses the reviews.rating and reviews.rating_count metafields (synced by Okendo). Clicking scrolls to the WS · Reviews section." },
+        { "type": "select", "id": "count_style", "label": "Count style", "default": "brackets", "options": [
+          { "value": "brackets", "label": "(15)" }, { "value": "text", "label": "15 recensioner" }
+        ] }
+      ]
+    },
+    {
+      "type": "price", "name": "Price", "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_save", "label": "Show \"Spara X%\" tag when on sale", "default": true },
+        { "type": "inline_richtext", "id": "tax_text", "label": "Tax / shipping note", "info": "Optional, e.g. \"Inkl. moms\"." }
+      ]
+    },
+    {
+      "type": "variant_picker", "name": "Variant picker", "limit": 1,
+      "settings": [
+        { "type": "select", "id": "style", "label": "Style", "default": "pills", "options": [
+          { "value": "pills", "label": "Pills" }, { "value": "swatch", "label": "Swatches (uses swatch or variant image)" }, { "value": "dropdown", "label": "Dropdown" }
+        ] }
+      ]
+    },
+    {
+      "type": "subscription", "name": "Subscribe & save", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Only shows when the product has a selling plan (subscription app). Place it above Buy buttons." },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Köpalternativ" },
+        { "type": "text", "id": "one_time_label", "label": "One-time label", "default": "Engångsköp" },
+        { "type": "richtext", "id": "note", "label": "Note", "default": "<p>Pausa eller avsluta när du vill.</p>" }
+      ]
+    },
+    {
+      "type": "buy_buttons", "name": "Buy buttons", "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": false },
+        { "type": "checkbox", "id": "show_price_in_button", "label": "Show price in button", "default": false },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "info": "Shop Pay / Apple Pay / Google Pay express buttons.", "default": false },
+        { "type": "inline_richtext", "id": "social_proof_text", "label": "Text under button", "info": "Real social proof only, e.g. \"Över 10 000 nöjda kunder\"." }
+      ]
+    },
+    {
+      "type": "bundle", "name": "Bundle & save", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Display only – create matching automatic discounts in Shopify (see setup guide). Products come from the product's custom.ws_bundle_collection metafield, or the collection below." },
+        { "type": "collection", "id": "collection", "label": "Bundle collection" },
+        { "type": "range", "id": "max_products", "label": "Max products listed", "min": 2, "max": 24, "step": 1, "default": 12 },
+        { "type": "checkbox", "id": "include_current", "label": "List current product first", "default": true },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Bygg ditt paket & spara" },
+        { "type": "header", "content": "Tiers" },
+        { "type": "number", "id": "tier_1_qty", "label": "Tier 1 – products", "default": 2 },
+        { "type": "number", "id": "tier_1_percent", "label": "Tier 1 – % off", "default": 10 },
+        { "type": "number", "id": "tier_2_qty", "label": "Tier 2 – products", "default": 3 },
+        { "type": "number", "id": "tier_2_percent", "label": "Tier 2 – % off", "default": 17 },
+        { "type": "number", "id": "tier_3_qty", "label": "Tier 3 – products (0 = off)", "default": 0 },
+        { "type": "number", "id": "tier_3_percent", "label": "Tier 3 – % off", "default": 20 },
+        { "type": "header", "content": "Texts" },
+        { "type": "text", "id": "products_label", "label": "\"products\" word", "default": "produkter" },
+        { "type": "text", "id": "off_label", "label": "\"% off\" text", "info": "[percent] is replaced.", "default": "[percent] % rabatt" },
+        { "type": "text", "id": "add_label", "label": "Add button", "default": "Lägg till" },
+        { "type": "text", "id": "hint_start", "label": "Hint – before first tier", "info": "[count] and [percent] are replaced.", "default": "Välj [count] till för att få [percent] % rabatt" },
+        { "type": "text", "id": "hint_next", "label": "Hint – next tier", "default": "Lägg till [count] till för [percent] % rabatt" },
+        { "type": "text", "id": "hint_max", "label": "Hint – max tier reached", "default": "Snyggt! Du får [percent] % rabatt" },
+        { "type": "text", "id": "discount_label", "label": "Discount label", "info": "Shown in the summary. Use the same name as your Shopify discount so checkout matches.", "default": "Paketrabatt" },
+        { "type": "text", "id": "saved_label", "label": "Saved text", "info": "[amount] is replaced.", "default": "Du sparar [amount]" },
+        { "type": "text", "id": "button_label", "label": "Add bundle button", "default": "Lägg paketet i varukorgen" },
+        { "type": "text", "id": "note", "label": "Small print", "default": "Rabatten dras automatiskt i kassan." }
+      ]
+    },
+    {
+      "type": "stock", "name": "Low stock notice", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Honest urgency: only shows when real tracked inventory is at or below the threshold." },
+        { "type": "range", "id": "threshold", "label": "Show when stock ≤", "min": 1, "max": 30, "step": 1, "default": 10 },
+        { "type": "text", "id": "text", "label": "Text", "info": "[count] is replaced.", "default": "Endast [count] kvar i lager" }
+      ]
+    },
+    { "type": "payment_icons", "name": "Payment icons", "limit": 1, "settings": [] },
+    { "type": "description", "name": "Description", "limit": 1, "settings": [] },
+    {
+      "type": "benefit", "name": "Benefit bullet",
+      "settings": [
+        { "type": "text", "id": "emoji", "label": "Emoji", "info": "Takes priority over the icon." },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "check", "options": [
+          { "value": "none", "label": "None" }, { "value": "check", "label": "Check" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" },
+          { "value": "droplet", "label": "Droplet" }, { "value": "sparkle", "label": "Sparkle" }, { "value": "shield", "label": "Shield" }, { "value": "star", "label": "Star" }
+        ] },
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Fördel med produkten" }
+      ]
+    },
+    {
+      "type": "benefits_metafield", "name": "Benefits (metafield)", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Renders the custom.ws_benefits metafield (list of single line text). Start each line with an emoji if you like." }
+      ]
+    },
+    {
+      "type": "accordion", "name": "Accordion",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Information" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "none", "options": [
+          { "value": "none", "label": "None" }, { "value": "leaf", "label": "Leaf" }, { "value": "droplet", "label": "Droplet" }, { "value": "heart", "label": "Heart" },
+          { "value": "package", "label": "Package" }, { "value": "truck", "label": "Truck" }, { "value": "globe", "label": "Globe" }, { "value": "clock", "label": "Clock" }
+        ] },
+        { "type": "text", "id": "metafield_key", "label": "Product metafield (namespace.key)", "info": "e.g. custom.ws_ingredients. Takes priority over the text below when filled for the product." },
+        { "type": "richtext", "id": "content", "label": "Content", "info": "Can also be connected to a metafield with the dynamic source button." },
+        { "type": "page", "id": "page", "label": "Or show a page's content" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "delivery", "name": "Delivery estimate", "limit": 1,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+          { "value": "truck", "label": "Truck" }, { "value": "package", "label": "Package" }, { "value": "clock", "label": "Clock" }
+        ] },
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Leverans med Budbee inom 1–3 vardagar" },
+        { "type": "checkbox", "id": "enable_countdown", "label": "Show order cutoff countdown", "default": true },
+        { "type": "range", "id": "cutoff_hour", "label": "Same-day dispatch cutoff (hour)", "min": 8, "max": 22, "step": 1, "default": 14 },
+        { "type": "text", "id": "ship_days", "label": "Dispatch days (1 = Mon … 7 = Sun)", "default": "1,2,3,4,5" },
+        { "type": "text", "id": "timezone", "label": "Warehouse time zone", "default": "Europe/Stockholm" },
+        { "type": "text", "id": "countdown_text", "label": "Countdown text", "info": "[time] is replaced, e.g. \"2 h 14 min\".", "default": "Beställ inom [time] så skickas din order idag" }
+      ]
+    },
+    {
+      "type": "trust", "name": "Trust icons", "limit": 1,
+      "settings": [
+        { "type": "select", "id": "icon_1", "label": "Icon 1", "default": "lock", "options": [
+          { "value": "none", "label": "None" }, { "value": "lock", "label": "Lock" }, { "value": "shield", "label": "Shield" }, { "value": "return", "label": "Returns" },
+          { "value": "award", "label": "Award" }, { "value": "truck", "label": "Truck" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" }
+        ] },
+        { "type": "text", "id": "label_1", "label": "Label 1", "default": "Säker betalning" },
+        { "type": "select", "id": "icon_2", "label": "Icon 2", "default": "return", "options": [
+          { "value": "none", "label": "None" }, { "value": "lock", "label": "Lock" }, { "value": "shield", "label": "Shield" }, { "value": "return", "label": "Returns" },
+          { "value": "award", "label": "Award" }, { "value": "truck", "label": "Truck" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" }
+        ] },
+        { "type": "text", "id": "label_2", "label": "Label 2", "default": "30 dagars öppet köp" },
+        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "award", "options": [
+          { "value": "none", "label": "None" }, { "value": "lock", "label": "Lock" }, { "value": "shield", "label": "Shield" }, { "value": "return", "label": "Returns" },
+          { "value": "award", "label": "Award" }, { "value": "truck", "label": "Truck" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" }
+        ] },
+        { "type": "text", "id": "label_3", "label": "Label 3", "default": "Nöjd-kund-garanti" }
+      ]
+    },
+    {
+      "type": "text", "name": "Text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Text</p>" },
+        { "type": "select", "id": "style", "label": "Style", "default": "body", "options": [
+          { "value": "body", "label": "Body" }, { "value": "small", "label": "Small" }, { "value": "muted", "label": "Small muted" }
+        ] }
+      ]
+    },
+    { "type": "custom_liquid", "name": "Custom Liquid", "settings": [ { "type": "liquid", "id": "custom_liquid", "label": "Liquid" } ] }
+  ]
+}
+{% endschema %}

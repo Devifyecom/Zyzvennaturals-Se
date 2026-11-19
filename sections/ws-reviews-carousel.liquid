@@ -1,0 +1,218 @@
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-rc-h-' | append: section.id
+  assign per_view = s.per_view | default: 4
+  assign gaps = per_view | minus: 1
+-%}
+
+{% render 'ws-assets' %}
+
+<section
+  class="ws-section ws-rc"
+  style="{% render 'ws-section-style', settings: s %} --ws-slide-d: calc((100% - var(--ws-gap) * {{ gaps }}) / {{ per_view }}); --ws-slide-t: calc((100% - var(--ws-gap)) / 2.2); --ws-slide-m: 82%;"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ s.aria_label | escape }}"{% endif %}
+>
+  <ws-carousel class="ws-rc__carousel">
+    <div class="ws-container">
+      <div class="ws-head{% if s.show_arrows %} ws-head--with-arrows{% endif %}">
+        <div class="ws-head__text">
+          {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+          {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
+          {%- if s.summary_rating > 0 and s.summary_text != blank -%}
+            <p class="ws-rc__summary">
+              {% render 'ws-stars', rating: s.summary_rating, show_count: false %}
+              <span>{{ s.summary_text | escape }}</span>
+            </p>
+          {%- endif -%}
+        </div>
+        {%- if s.show_arrows -%}
+          <div class="ws-arrows">
+            <button type="button" class="ws-arrow" data-ws-prev aria-label="{{ 'ws.a11y.previous' | t }}">{% render 'ws-icon', name: 'arrow-left', size: 18 %}</button>
+            <button type="button" class="ws-arrow" data-ws-next aria-label="{{ 'ws.a11y.next' | t }}">{% render 'ws-icon', name: 'arrow-right', size: 18 %}</button>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="ws-container ws-container--bleed">
+      <ul class="ws-scroller ws-rc__track" data-ws-track tabindex="0" role="list" aria-label="{{ s.aria_label | escape }}">
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          <li class="ws-rc__item" {{ block.shopify_attributes }}>
+            <figure class="ws-rc__card ws-rc__card--{{ s.card_style }} ws-text-{{ s.text_align }}">
+              {% render 'ws-stars', rating: b.rating, show_count: false, class: 'ws-rc__stars' %}
+              {%- if b.title != blank -%}
+                <p class="ws-rc__title">{{ b.title | escape }}</p>
+              {%- endif -%}
+              <blockquote class="ws-rc__quote">{{ b.quote }}</blockquote>
+              <figcaption class="ws-rc__author">
+                <span class="ws-rc__name">{{ b.author | escape }}</span>
+                {%- if b.verified -%}
+                  <span class="ws-rc__verified">{% render 'ws-icon', name: 'check', size: 12 %}{{ s.verified_label | escape }}</span>
+                {%- endif -%}
+              </figcaption>
+              {%- if b.product != blank -%}
+                <a href="{{ b.product.url }}" class="ws-rc__product">
+                  {%- if b.product.featured_image != blank -%}
+                    {{ b.product.featured_image | image_url: width: 160 | image_tag: width: 56, height: 56, loading: 'lazy', class: 'ws-rc__thumb', alt: '' }}
+                  {%- endif -%}
+                  <span>{{ b.product.title | escape }}</span>
+                </a>
+              {%- endif -%}
+            </figure>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </ws-carousel>
+</section>
+
+<script src="{{ 'ws-carousel.js' | asset_url }}" type="module" defer></script>
+
+{% stylesheet %}
+  .ws-rc__summary {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 0;
+    font-size: 13px;
+  }
+
+  .ws-rc .ws-head--with-arrows { text-align: left; }
+
+  .ws-rc__card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 28px 24px;
+  }
+
+  .ws-rc__card--plain { padding-inline: 0; }
+  .ws-rc__card--card { background-color: var(--ws-card-bg, #ffffff); border-radius: var(--ws-radius); }
+  .ws-rc__card--outline { border: 1px solid var(--ws-border); }
+
+  .ws-rc__card.ws-text-center { align-items: center; }
+
+  .ws-rc__title { margin: 0; font-weight: 500; font-size: 14px; }
+
+  .ws-rc__quote {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    flex: 1 1 auto;
+  }
+
+  .ws-rc__quote p { margin: 0 0 0.6em; }
+  .ws-rc__quote p:last-child { margin: 0; }
+
+  .ws-rc__author {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .ws-rc__card.ws-text-center .ws-rc__author { justify-content: center; }
+
+  .ws-rc__name { font-weight: 500; letter-spacing: 0.04em; }
+
+  .ws-rc__verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px 6px;
+    background-color: var(--ws-fg);
+    color: var(--ws-bg);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  .ws-rc__product {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ws-border);
+    color: inherit;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .ws-rc__card.ws-text-center .ws-rc__product { flex-direction: column; text-align: center; }
+
+  .ws-rc__product:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+  .ws-rc__thumb { width: 56px; height: 56px; object-fit: cover; flex: none; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Reviews carousel",
+  "disabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow label" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Recensioner" },
+    { "type": "select", "id": "heading_style", "label": "Heading style", "default": "label", "options": [
+      { "value": "label", "label": "Small uppercase label" }, { "value": "serif", "label": "Large serif" }
+    ] },
+    { "type": "text", "id": "aria_label", "label": "Accessible carousel name", "default": "Kundrecensioner" },
+    { "type": "header", "content": "Rating summary (social proof)" },
+    { "type": "range", "id": "summary_rating", "label": "Average rating (0 = hide)", "min": 0, "max": 5, "step": 0.1, "default": 4.8 },
+    { "type": "text", "id": "summary_text", "label": "Summary text", "default": "4,8 av 5 baserat på 1 200+ recensioner" },
+    { "type": "header", "content": "Cards" },
+    { "type": "range", "id": "per_view", "label": "Cards visible on desktop", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows on desktop", "default": true },
+    { "type": "select", "id": "card_style", "label": "Card style", "default": "plain", "options": [
+      { "value": "plain", "label": "Plain" }, { "value": "card", "label": "White card" }, { "value": "outline", "label": "Outline" }
+    ] },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "center", "options": [
+      { "value": "left", "label": "Left" }, { "value": "center", "label": "Centre" }
+    ] },
+    { "type": "text", "id": "verified_label", "label": "Verified badge text", "default": "Verifierad" },
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 0.5, "default": 5 },
+        { "type": "text", "id": "title", "label": "Title (optional)" },
+        { "type": "richtext", "id": "quote", "label": "Quote", "default": "<p>Fantastisk produkt! Jag märkte skillnad redan efter första veckan.</p>" },
+        { "type": "text", "id": "author", "label": "Name", "default": "Sara" },
+        { "type": "checkbox", "id": "verified", "label": "Show verified badge", "default": true },
+        { "type": "product", "id": "product", "label": "Linked product (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS · Reviews carousel",
+      "blocks": [
+        { "type": "review", "settings": { "author": "Henrietta", "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>" } },
+        { "type": "review", "settings": { "author": "Sofia", "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>" } },
+        { "type": "review", "settings": { "author": "Maria", "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>" } },
+        { "type": "review", "settings": { "author": "Olivia", "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

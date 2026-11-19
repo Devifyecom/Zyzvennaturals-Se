@@ -1,0 +1,75 @@
+{%- doc -%}
+  Renders a star rating with partial fill. Reads the standard reviews.rating / reviews.rating_count
+  metafields (written by Okendo and other review apps) when a product is passed, or explicit values.
+
+  @param {object} [product] - Product to read reviews.rating metafields from
+  @param {number} [rating] - Explicit rating (used when no product is passed)
+  @param {number} [scale_max] - Max of the scale (defaults to 5)
+  @param {number} [count] - Review count to show next to the stars
+  @param {boolean} [show_count] - Show the review count (defaults to true)
+  @param {string} [count_style] - 'brackets' (12) or 'text' (12 reviews). Defaults to 'brackets'
+  @param {string} [link] - Optional href (e.g. #ws-reviews) – wraps the rating in a link
+  @param {string} [class] - Extra class
+
+  @example
+  {% render 'ws-stars', product: product, link: '#ws-reviews' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign r_value = rating
+  assign r_max = scale_max | default: 5
+  assign r_count = count
+
+  if product != blank
+    assign r_value = product.metafields.reviews.rating.value.rating
+    assign r_max = product.metafields.reviews.rating.value.scale_max | default: 5
+    assign r_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
+  endif
+
+  assign display_count = true
+  if show_count == false
+    assign display_count = false
+  endif
+-%}
+
+{%- if r_value != blank and r_value != 0 -%}
+  {%- liquid
+    assign r_float = r_value | times: 1.0
+    assign fill_percent = r_float | divided_by: r_max | times: 100 | round: 1
+    assign rating_rounded = r_float | round: 1
+    assign rating_label = 'ws.reviews.rating_label' | t: rating: rating_rounded, max: r_max
+    if link != blank
+      assign tag = 'a'
+    else
+      assign tag = 'div'
+    endif
+  -%}
+  <{{ tag }}
+    class="ws-stars{% if class != blank %} {{ class }}{% endif %}"
+    {% if link != blank %}
+      href="{{ link }}"
+    {% endif %}
+  >
+    <span class="ws-stars__icons" style="--ws-stars-fill: {{ fill_percent }}%;" role="img" aria-label="{{ rating_label | escape }}">
+      {%- capture star_row -%}
+        <svg viewBox="0 0 120 24" width="100%" height="100%" aria-hidden="true" focusable="false">
+          {%- for i in (0..4) -%}
+            <path transform="translate({{ i | times: 24 }} 0)" d="M12 1.8l3.1 6.4 7 .9-5.1 4.9 1.3 6.9L12 17.6l-6.3 3.3L7 14l-5.1-4.9 7-.9z"/>
+          {%- endfor -%}
+        </svg>
+      {%- endcapture -%}
+      <span class="ws-stars__track" aria-hidden="true">{{ star_row }}</span>
+      <span class="ws-stars__fill" aria-hidden="true">{{ star_row }}</span>
+    </span>
+    {%- if display_count and r_count != blank -%}
+      <span class="ws-stars__count">
+        {%- if count_style == 'text' -%}
+          {{ 'ws.reviews.count_text' | t: count: r_count }}
+        {%- else -%}
+          <span aria-hidden="true">({{ r_count }})</span>
+          <span class="ws-sr-only">{{ 'ws.reviews.count_text' | t: count: r_count }}</span>
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+  </{{ tag }}>
+{%- endif -%}

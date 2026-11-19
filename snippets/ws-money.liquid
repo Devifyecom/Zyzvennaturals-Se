@@ -1,0 +1,6 @@
+{%- doc -%}
+  Formats a price for the product page, honouring the theme setting "show currency code on product pages".
+
+  @param {number} amount - Amount in minor units
+{%- enddoc -%}
+{%- if settings.currency_code_enabled_product_pages -%}{{ amount | money_with_currency }}{%- else -%}{{ amount | money }}{%- endif -%}

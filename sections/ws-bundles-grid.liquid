@@ -1,0 +1,59 @@
+{% render 'ws-assets', cart: true %}
+
+<section
+  class="ws-section ws-pgrid ws-bundles-grid"
+  style="{% render 'ws-section-style', settings: section.settings %}"
+>
+  {% render 'ws-product-grid-body', section_obj: section, bundles: true %}
+</section>
+
+{% schema %}
+{
+  "name": "WS · Bundles grid",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {"type": "text", "id": "eyebrow", "label": "Eyebrow label"},
+    {"type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Paket"},
+    {"type": "select", "id": "heading_style", "label": "Heading style", "default": "label", "options": [{"value": "label", "label": "Small uppercase label"}, {"value": "serif", "label": "Large serif"}]},
+    {"type": "select", "id": "heading_align", "label": "Heading alignment", "default": "center", "options": [{"value": "center", "label": "Centre"}, {"value": "left", "label": "Left"}]},
+    {"type": "richtext", "id": "subheading", "label": "Intro text"},
+    {"type": "header", "content": "Products"},
+    {"type": "select", "id": "source", "label": "Product source", "default": "collection", "options": [{"value": "collection", "label": "Collection", "info": "Used when source is Collection."}, {"value": "manual", "label": "Hand-picked products"}]},
+    {"type": "collection", "id": "collection", "label": "Collection", "info": "Used when source is Collection."},
+    {"type": "product_list", "id": "products", "label": "Products", "limit": 24, "info": "Used when source is Hand-picked products."},
+    {"type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 24, "step": 1, "default": 4},
+    {"type": "header", "content": "Grid"},
+    {"type": "range", "id": "columns", "label": "Desktop columns", "min": 2, "max": 5, "step": 1, "default": 4},
+    {"type": "select", "id": "columns_mobile", "label": "Mobile columns", "default": "2", "options": [{"value": "1", "label": "1"}, {"value": "2", "label": "2"}]},
+    {"type": "select", "id": "mobile_layout", "label": "Mobile layout", "default": "grid", "options": [{"value": "grid", "label": "Grid"}, {"value": "carousel", "label": "Swipe carousel"}]},
+    {"type": "header", "content": "Product cards"},
+    {"type": "select", "id": "image_ratio", "label": "Image ratio", "default": "4 / 5", "options": [{"value": "4 / 5", "label": "Portrait (4:5)"}, {"value": "3 / 4", "label": "Tall (3:4)"}, {"value": "1 / 1", "label": "Square"}]},
+    {"type": "checkbox", "id": "show_secondary_image", "label": "Show second image on hover", "default": true},
+    {"type": "checkbox", "id": "show_rating", "label": "Show star rating", "info": "Uses the reviews.rating metafield synced by Okendo.", "default": true},
+    {"type": "checkbox", "id": "show_badge", "label": "Show badges", "default": true},
+    {"type": "checkbox", "id": "show_savings", "label": "Show \"Spara X%\" badge", "info": "From the custom.ws_bundle_savings metafield, or calculated from compare-at price.", "default": true},
+    {"type": "checkbox", "id": "show_quick_add", "label": "Show quick add", "default": true},
+    {"type": "checkbox", "id": "open_drawer", "label": "Open cart drawer after quick add", "default": true},
+    {"type": "select", "id": "title_style", "label": "Title style", "default": "uppercase", "options": [{"value": "uppercase", "label": "Small uppercase"}, {"value": "serif", "label": "Serif"}]},
+    {"type": "select", "id": "card_align", "label": "Card text alignment", "default": "center", "options": [{"value": "center", "label": "Centre"}, {"value": "left", "label": "Left"}]},
+    {"type": "header", "content": "View all button"},
+    {"type": "text", "id": "view_all_label", "label": "Label", "default": "Alla produkter"},
+    {"type": "url", "id": "view_all_link", "label": "Link", "info": "Defaults to the selected collection."},
+    {"type": "select", "id": "view_all_style", "label": "Style", "default": "primary", "options": [{"value": "primary", "label": "Solid"}, {"value": "secondary", "label": "Outline"}, {"value": "link", "label": "Text link"}]},
+    {"type": "header", "content": "Colours"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
+    {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
+    {"type": "header", "content": "Layout"},
+    {"type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
+    {"type": "header", "content": "Spacing – desktop"},
+    {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56},
+    {"type": "header", "content": "Spacing – mobile"},
+    {"type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40},
+    {"type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40}
+  ],
+  "presets": [{ "name": "WS · Bundles grid" }]
+}
+{% endschema %}

@@ -3,6 +3,7 @@
   assign current_variant = product.selected_or_first_available_variant
 -%}
 
+{%- if product.available -%}
 {% render 'ws-assets' %}
 
 <ws-sticky-atc
@@ -53,6 +54,7 @@
 </ws-sticky-atc>
 
 <script src="{{ 'ws-sticky-atc.js' | asset_url }}" type="module" defer></script>
+{%- endif -%}
 
 {% stylesheet %}
   .ws-sticky {

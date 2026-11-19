@@ -17,7 +17,7 @@ class WsProductTabs extends HTMLElement {
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           this.observer.disconnect();
-          Promise.all([this.load('related'), this.load('recent')]).then(() => this.preferNonEmpty());
+          Promise.all([this.load('related'), this.load('recent')]).then(() => this.finalize());
         }
       },
       { rootMargin: '400px 0px' }
@@ -105,14 +105,40 @@ class WsProductTabs extends HTMLElement {
     }
   }
 
-  /** If "Related" ended up empty but "Recently viewed" has products, show that tab instead. */
-  preferNonEmpty() {
-    if (this.tabs.length < 2) return;
-    const related = this.panel('related');
-    const recent = this.panel('recent');
-    const recentTab = this.tabs.find((t) => t.dataset.wsTab === 'recent');
-    if (related?.querySelector('[data-ws-empty]') && recent && !recent.querySelector('[data-ws-empty]') && recentTab) {
-      this.select(recentTab);
+  /**
+   * Removes tabs whose panel ended up without products; hides the whole section when none have any,
+   * and turns a single remaining tab into a plain heading (no empty boxes on products without data).
+   */
+  finalize() {
+    const names = ['related', 'recent'];
+    const has = (n) => Boolean(this.panel(n)?.querySelector('.ws-card'));
+    const live = names.filter((n) => this.panel(n) && has(n));
+    const section = this.closest('.ws-section');
+
+    if (!live.length) {
+      if (section) section.hidden = true;
+      return;
+    }
+
+    names.forEach((n) => {
+      if (this.panel(n) && !has(n)) {
+        this.querySelector(`[data-ws-tab="${n}"]`)?.remove();
+        this.panel(n)?.remove();
+      }
+    });
+
+    const remainingTabs = [...this.querySelectorAll('[data-ws-tab]')];
+    if (remainingTabs.length === 1) {
+      const tablist = this.querySelector('.ws-ptabs__tablist');
+      tablist?.removeAttribute('role');
+      tablist?.removeAttribute('aria-label');
+      ['role', 'aria-controls', 'aria-selected', 'tabindex'].forEach((a) => remainingTabs[0].removeAttribute(a));
+      const panel = this.panel(live[0]);
+      ['role', 'aria-labelledby', 'tabindex', 'hidden'].forEach((a) => panel?.removeAttribute(a));
+      this.tabs = [];
+    } else {
+      this.tabs = remainingTabs;
+      this.select(this.tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || this.tabs[0]);
     }
   }
 }

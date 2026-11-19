@@ -51,8 +51,9 @@
   style="{% render 'ws-section-style', settings: s %} --ws-pm-cols: {{ cols }}; --ws-pm-gap: {{ s.block_gap }}px;"
 >
   <div class="ws-container">
-    <div class="ws-pm__grid{% if s.media_position == 'right' %} ws-pm__grid--media-right{% endif %}">
+    <div class="ws-pm__grid{% if s.media_position == 'right' %} ws-pm__grid--media-right{% endif %}{% if product.media.size == 0 %} ws-pm__grid--no-media{% endif %}">
       {%- comment -%} ======================= MEDIA ======================= {%- endcomment -%}
+      {%- if product.media.size > 0 -%}
       <div class="ws-pm__media{% if s.sticky_media %} ws-pm__media--sticky{% endif %}">
         <ws-gallery
           class="ws-gallery ws-gallery--thumbs-{{ s.thumbnails }} ws-gallery--m-{{ s.mobile_nav }}"
@@ -191,6 +192,7 @@
           {%- endif -%}
         </ws-gallery>
       </div>
+      {%- endif -%}
 
       {%- comment -%} ======================= INFO ======================= {%- endcomment -%}
       <div class="ws-pm__info{% if s.sticky_info %} ws-pm__info--sticky{% endif %}">
@@ -398,6 +400,12 @@
                   {%- if has_plans -%}
                     <input type="hidden" name="selling_plan" value="{{ initial_plan }}" data-ws-plan-input>
                   {%- endif -%}
+                  {%- if b.gift_card_form and product.gift_card? -%}
+                    {%- comment -%} Reuses Horizon's own recipient form (unchanged snippet) {%- endcomment -%}
+                    <div class="ws-pm__gift-card">
+                      {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
+                    </div>
+                  {%- endif -%}
                   <div class="ws-pm__buy-row">
                     {%- if b.show_quantity -%}
                       <div class="ws-qty" data-ws-qty-wrap>
@@ -440,13 +448,13 @@
               {%- liquid
                 assign stock_map = ''
                 for v in product.variants
-                  if v.inventory_management == 'shopify' and v.inventory_policy == 'deny' and v.inventory_quantity > 0 and v.inventory_quantity <= b.threshold
+                  if v.available and v.inventory_management == 'shopify' and v.inventory_policy == 'deny' and v.inventory_quantity > 0 and v.inventory_quantity <= b.threshold
                     assign stock_map = stock_map | append: '"' | append: v.id | append: '":' | append: v.inventory_quantity | append: ','
                   endif
                 endfor
                 assign stock_map = stock_map | remove_last: ','
                 assign low = false
-                if current_variant.inventory_management == 'shopify' and current_variant.inventory_policy == 'deny' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= b.threshold
+                if current_variant.available and current_variant.inventory_management == 'shopify' and current_variant.inventory_policy == 'deny' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= b.threshold
                   assign low = true
                 endif
               -%}
@@ -536,6 +544,7 @@
               {%- endif -%}
 
             {%- when 'delivery' -%}
+              {%- unless product.gift_card? -%}
               <div
                 class="ws-pm__block ws-pm__delivery"
                 {% if b.enable_countdown %}
@@ -548,6 +557,7 @@
                   <p class="ws-pm__countdown" data-ws-countdown-text hidden></p>
                 {%- endif -%}
               </div>
+              {%- endunless -%}
 
             {%- when 'trust' -%}
               <ul class="ws-pm__block ws-pm__trust" role="list" {{ block.shopify_attributes }}>
@@ -602,6 +612,7 @@
     }
 
     .ws-pm__grid--media-right .ws-pm__media { order: 2; }
+    .ws-pm__grid--no-media { grid-template-columns: minmax(0, 42rem); justify-content: center; }
 
     .ws-pm__media--sticky,
     .ws-pm__info--sticky {
@@ -1073,6 +1084,45 @@
   .ws-pm__form-msg.is-error { color: #a3271a; }
 
   .ws-pm__dynamic { margin-top: 10px; }
+  .ws-pm__gift-card { margin-bottom: 14px; }
+
+  /* Horizon's gift-card recipient form, styled only inside the ws- wrapper */
+  .ws-pm__gift-card .gift-card-form-option { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 0; border: 0; }
+  .ws-pm__gift-card .recipient-form__send-to { width: 100%; margin: 0 0 6px; padding: 0; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
+  .ws-pm__gift-card .gift-card-form-option__button-label {
+    position: relative;
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid var(--ws-border);
+    font-size: 13px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .ws-pm__gift-card .gift-card-form-option__button-label:has(input:checked) { border-color: var(--ws-fg); background-color: var(--ws-fg); color: var(--ws-bg); }
+  .ws-pm__gift-card .gift-card-form-option__button-label:has(input:focus-visible) { outline: 2px solid var(--ws-fg); outline-offset: 2px; }
+  .ws-pm__gift-card .gift-card-form-option__button-label input { position: absolute; opacity: 0; pointer-events: none; }
+  .ws-pm__gift-card .recipient-fields { display: flex; flex-direction: column; gap: 12px; }
+  .ws-pm__gift-card .field { position: relative; display: flex; flex-direction: column; gap: 4px; }
+  .ws-pm__gift-card .recipient-fields__input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid var(--ws-border);
+    border-radius: 0;
+    background-color: #ffffff;
+    color: inherit;
+    font: inherit;
+    font-size: 16px;
+  }
+  .ws-pm__gift-card .recipient-fields__input:focus { border-color: var(--ws-fg); outline: none; }
+  .ws-pm__gift-card .recipient-fields__textarea { min-height: 110px; resize: vertical; }
+  .ws-pm__gift-card .recipient-form-field-label { position: static; order: 2; inset: auto; transform: none; font-size: 12px; font-style: normal; text-align: right; color: var(--ws-muted); }
+  .ws-pm__gift-card .recipient-form__message { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #a3271a; }
+  .ws-pm__gift-card .recipient-form__message.hidden { display: none; }
 
   .ws-pm__proof {
     display: flex;
@@ -1252,6 +1302,7 @@
         { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": false },
         { "type": "checkbox", "id": "show_price_in_button", "label": "Show price in button", "default": false },
         { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "info": "Shop Pay / Apple Pay / Google Pay express buttons.", "default": false },
+        { "type": "checkbox", "id": "gift_card_form", "label": "Show recipient form on gift cards", "info": "Lets customers send a gift card to someone else's email on a chosen date.", "default": true },
         { "type": "inline_richtext", "id": "social_proof_text", "label": "Text under button", "info": "Real social proof only, e.g. \"Över 10 000 nöjda kunder\"." }
       ]
     },
@@ -1330,7 +1381,7 @@
         { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
           { "value": "truck", "label": "Truck" }, { "value": "package", "label": "Package" }, { "value": "clock", "label": "Clock" }
         ] },
-        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Leverans med Budbee inom 1–3 vardagar" },
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Leverans inom 1–3 vardagar" },
         { "type": "checkbox", "id": "enable_countdown", "label": "Show order cutoff countdown", "default": true },
         { "type": "range", "id": "cutoff_hour", "label": "Same-day dispatch cutoff (hour)", "min": 8, "max": 22, "step": 1, "default": 14 },
         { "type": "text", "id": "ship_days", "label": "Dispatch days (1 = Mon … 7 = Sun)", "default": "1,2,3,4,5" },
@@ -1350,12 +1401,12 @@
           { "value": "none", "label": "None" }, { "value": "lock", "label": "Lock" }, { "value": "shield", "label": "Shield" }, { "value": "return", "label": "Returns" },
           { "value": "award", "label": "Award" }, { "value": "truck", "label": "Truck" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" }
         ] },
-        { "type": "text", "id": "label_2", "label": "Label 2", "default": "30 dagars öppet köp" },
-        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "award", "options": [
+        { "type": "text", "id": "label_2", "label": "Label 2", "default": "14 dagars ångerrätt" },
+        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "truck", "options": [
           { "value": "none", "label": "None" }, { "value": "lock", "label": "Lock" }, { "value": "shield", "label": "Shield" }, { "value": "return", "label": "Returns" },
           { "value": "award", "label": "Award" }, { "value": "truck", "label": "Truck" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" }
         ] },
-        { "type": "text", "id": "label_3", "label": "Label 3", "default": "Nöjd-kund-garanti" }
+        { "type": "text", "id": "label_3", "label": "Label 3", "default": "Snabb leverans" }
       ]
     },
     {

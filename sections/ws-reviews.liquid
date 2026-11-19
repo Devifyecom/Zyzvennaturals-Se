@@ -14,8 +14,14 @@
 
   assign histogram = product.metafields.custom.ws_review_histogram.value
   assign app_blocks = section.blocks | where: 'type', '@app'
+
+  assign show_section = false
+  if rating != blank or app_blocks.size > 0 or request.design_mode
+    assign show_section = true
+  endif
 -%}
 
+{%- if show_section -%}
 {% render 'ws-assets' %}
 
 <section
@@ -85,6 +91,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% stylesheet %}
   .ws-reviews__heading { margin-bottom: 28px; text-align: center; }

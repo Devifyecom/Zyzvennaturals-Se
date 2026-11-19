@@ -35,7 +35,27 @@
   assign list_id = 'ws-bundle-list-' | append: block.id
 -%}
 
-{%- if bundle_collection != blank and tier_count > 0 -%}
+{%- liquid
+  assign listed = 0
+  # Gift cards never take part in bundles (discounts don't apply; recipient form would be skipped)
+  if bundle_collection != blank and tier_count > 0 and product.gift_card? != true
+    if b.include_current and product.available and product.requires_selling_plan == false
+      assign listed = 1
+    endif
+    for p in bundle_collection.products
+      if listed >= b.max_products
+        break
+      endif
+      if p.available and p.requires_selling_plan == false and p.gift_card? != true
+        unless b.include_current and p.id == product.id
+          assign listed = listed | plus: 1
+        endunless
+      endif
+    endfor
+  endif
+-%}
+
+{%- if listed >= 2 -%}
   <ws-bundle
     class="ws-bundle"
     data-tiers="{{ tiers_json | prepend: '[' | append: ']' | escape }}"
@@ -74,13 +94,13 @@
 
     <ul class="ws-bundle__list" id="{{ list_id }}" role="list" aria-label="{{ b.heading | escape }}">
       {%- assign listed = 0 -%}
-      {%- if b.include_current and product.available -%}
+      {%- if b.include_current and product.available and product.requires_selling_plan == false -%}
         {% render 'ws-bundle-row', p: product, add_label: b.add_label %}
         {%- assign listed = 1 -%}
       {%- endif -%}
       {%- for p in bundle_collection.products -%}
         {%- if listed >= b.max_products -%}{%- break -%}{%- endif -%}
-        {%- if p.available and p.requires_selling_plan == false -%}
+        {%- if p.available and p.requires_selling_plan == false and p.gift_card? != true -%}
           {%- unless b.include_current and p.id == product.id -%}
             {% render 'ws-bundle-row', p: p, add_label: b.add_label %}
             {%- assign listed = listed | plus: 1 -%}
@@ -112,5 +132,5 @@
     </div>
   </ws-bundle>
 {%- elsif request.design_mode -%}
-  <p class="ws-pm__editor-note">Bundle builder: choose a bundle collection in the block settings (or set the product's custom.ws_bundle_collection metafield) and at least one tier.</p>
+  <p class="ws-pm__editor-note">Bundle builder hidden: it needs a bundle collection (block setting, or the product's custom.ws_bundle_collection metafield) with at least 2 available products, and at least one tier.</p>
 {%- endif -%}

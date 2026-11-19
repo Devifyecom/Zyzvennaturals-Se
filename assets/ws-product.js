@@ -220,11 +220,14 @@ class WsProduct extends HTMLElement {
       }
     }
 
+    /* Cutoff countdown follows availability of the selected variant */
+    this.countdownTick?.();
+
     /* Low stock (honest – real inventory only) */
     const stock = this.querySelector('[data-ws-stock]');
     if (stock) {
       const qty = v ? this.inventory[String(v.id)] : undefined;
-      stock.hidden = !qty;
+      stock.hidden = !qty || !v?.available;
       const text = stock.querySelector('[data-ws-stock-text]');
       if (qty && text) text.textContent = (stock.dataset.template || '').replace('[count]', String(qty));
     }
@@ -259,10 +262,17 @@ class WsProduct extends HTMLElement {
   async addToCart(button = this.atc) {
     if (!this.variant || !this.variant.available) return { ok: false };
     const data = this.form ? new FormData(this.form) : new FormData();
+    /* Line item properties, e.g. gift card recipient fields from Horizon's recipient form */
+    const properties = {};
+    for (const [key, value] of data.entries()) {
+      const match = /^properties\[(.+)\]$/.exec(key);
+      if (match && typeof value === 'string' && value !== '') properties[match[1]] = value;
+    }
     const item = {
       id: data.get('id') || this.variant.id,
       quantity: Number(data.get('quantity') || 1),
       selling_plan: data.get('selling_plan') || this.plan || undefined,
+      properties: Object.keys(properties).length ? properties : undefined,
     };
 
     const buttons = [this.atc, button].filter(Boolean);
@@ -309,7 +319,7 @@ class WsProduct extends HTMLElement {
       const now = Number(get('hour')) * 60 + Number(get('minute'));
       const left = cutoff - now;
 
-      if (!days.includes(day) || left <= 0) {
+      if (!days.includes(day) || left <= 0 || !(this.variant && this.variant.available)) {
         out.hidden = true;
         return;
       }
@@ -326,6 +336,7 @@ class WsProduct extends HTMLElement {
     };
 
     tick();
+    this.countdownTick = tick;
     this.countdownTimer = window.setInterval(tick, 30000);
   }
 }

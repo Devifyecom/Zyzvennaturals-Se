@@ -13,6 +13,8 @@
   <div class="ws-bundle__thumb">
     {%- if p.featured_media != blank -%}
       {{ p.featured_media.preview_image | image_url: width: 160 | image_tag: width: 64, height: 64, loading: 'lazy', alt: '' }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'ws-bundle__placeholder' }}
     {%- endif -%}
   </div>
   <div class="ws-bundle__item-info">

@@ -550,7 +550,7 @@
       "settings": {
         "media_position": "left",
         "media_width": "55",
-        "media_ratio": "1",
+        "media_ratio": "adapt",
         "thumbnails": "below",
         "mobile_nav": "thumbs",
         "enable_zoom": true,

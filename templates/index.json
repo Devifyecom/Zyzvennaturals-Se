@@ -1,1 +1,3425 @@
-{"sections":{"hero_jVaWmY":{"type":"hero","blocks":{"text_YLPk4p":{"type":"text","name":"t:names.heading","settings":{"text":"<p><br\/>Balansera kroppen – inifrån och ut<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"custom","font":"var(--font-heading--family)","font_size":"3.5rem","line_height":"tight","letter_spacing":"loose","case":"none","wrap":"balance","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"ai_gen_block_d2d67de_dEKcVe":{"type":"ai_gen_block_d2d67de","settings":{"subheading_text":"Naturliga produkter för inre balans och yttre egenvård, utvecklademed omsorg och kunskap.","font_family":"inter_n4","font_size":18,"font_size_mobile":14,"letter_spacing":0.5,"text_transform":"none","text_color":"#ffffff","text_alignment":"left","padding_top":0,"padding_bottom":10,"padding_horizontal":0,"desktop_width_percent":55},"blocks":{}},"button_H9gpTf":{"type":"button","name":"t:names.button","settings":{"label":"HANDLA ONLINE","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.background }}","custom_button_text":"{{ settings.color_palette.color2 }}","custom_button_border":"{{ settings.color_palette.color2 }}","width":"custom","custom_width":33,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_YLPk4p","ai_gen_block_d2d67de_dEKcVe","button_H9gpTf"],"custom_css":[],"name":"t:names.hero","settings":{"media_type_1":"image","image_1":"shopify:\/\/shop_images\/diabetes-fotv-rd-create-for-collection-image.png","media_type_2":"image","stack_media_on_mobile":false,"custom_mobile_media":false,"media_type_1_mobile":"image","media_type_2_mobile":"image","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":20,"section_width":"page-width","section_height":"full-screen","section_height_custom":50,"background_color":"rgba(0,0,0,0)","toggle_overlay":false,"overlay_color":"#7b8c7826","overlay_style":"gradient","gradient_direction":"to bottom","blurred_reflection":false,"reflection_opacity":75,"padding-block-start":30,"padding-block-end":100}},"section_8kNV6X":{"type":"section","blocks":{"image_7AJg9B":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/image-with-1.png","link":"","image_ratio":"square","width":"custom","custom_width":80,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_UgCJKm":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":18,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_9E9JfF":{"type":"text","name":"t:names.heading","settings":{"text":"<p>Vår filosofi<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_jRFQTr":{"type":"text","settings":{"text":"<p><br\/>Zyzven Naturals är ett holistiskt wellnessvarumärke som förenar<br\/>traditionell örtmedicin med modern livsstil.<br\/><br\/>Vi skapar noggrant<br\/>utvecklade formuleringar med dokumenterade ingredienser – för både<br\/>inre balans och yttre egenvård.<\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-body--family)","font_size":"1.125rem","line_height":"tight","letter_spacing":"loose","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_7RxPiJ":{"type":"button","settings":{"label":"LÄS MER OM OSS","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_9E9JfF","text_jRFQTr","button_7RxPiJ"]}},"block_order":["image_7AJg9B","group_UgCJKm"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":74,"section_width":"page-width","section_height":"medium","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.color12 }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":40,"padding-block-end":40}},"collection_list_JnMyq7":{"type":"collection-list","blocks":{"group_9QRVyB":{"type":"group","name":"t:names.header","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_T6WecQ":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>Örtteer & kosttillskott för inre balans<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_Bh4rQX":{"type":"text","name":"t:names.text","settings":{"text":"<p>Växtbaserade formuleringar för daglig balans, matsmältning och<br\/>välbefinnande.<\/p>","width":"fit-content","max_width":"none","alignment":"center","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_T6WecQ","text_Bh4rQX"]},"static-collection-card":{"type":"_collection-card","name":"t:names.collection_card","static":true,"settings":{"placement":"below_image","horizontal_alignment":"center","vertical_alignment":"center","collection_card_gap":8,"border":"none","border_width":1,"border_opacity":100,"border_radius":0},"blocks":{"collection_title_daVA7J":{"type":"collection-title","name":"t:names.collection_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"collection-card-image":{"type":"_collection-card-image","name":"t:names.collection_card_image","static":true,"settings":{"image_ratio":"portrait","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0},"blocks":{}}},"block_order":["collection_title_daVA7J"]}},"block_order":["group_9QRVyB"],"disabled":true,"name":"t:names.collections_carousel","settings":{"collection_list":["all","frontpage","teas"],"layout_type":"carousel","carousel_on_mobile":false,"columns":3,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":8,"bento_gap":8,"rows_gap":8,"max_collections":4,"icons_style":"arrow","icons_shape":"circle","section_width":"page-width","gap":12,"background_color":"{{ settings.color_palette.color12 }}","padding-block-start":48,"padding-block-end":48}},"product_list_MEVLcE":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_list_text_JaQFfa":{"type":"_product-list-text","name":"t:names.collection_title","settings":{"text":"<h3>{{ closest.collection.title }}<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_NDJEkG":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"Visa alla","open_in_new_tab":false,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["product_list_text_JaQFfa","product_list_button_NDJEkG"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_xqEa3j":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_QwjEen":{"type":"product-title","name":"t:names.product_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_zGKW86":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_xqEa3j","product_title_QwjEen","price_zGKW86"]}},"name":"t:names.products_carousel","settings":{"collection":"moisturisers","layout_type":"carousel","carousel_on_mobile":false,"max_products":6,"columns":4,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":8,"rows_gap":24,"icons_style":"arrow","icons_shape":"circle","section_width":"page-width","horizontal_alignment":"flex-start","gap":28,"background_color":"{{ settings.color_palette.background }}","padding-block-start":48,"padding-block-end":48}},"hero_slider_WaUDdM":{"type":"hero-slider","blocks":{"slide_JAeFtd":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_gaha91gaha91gaha.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_W4EGJP":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_vu6v1qvu6v1qvu6v.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_a6FD3F":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_6dx5886dx5886dx5.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_WjYapN":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_vzl3p3vzl3p3vzl3.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_PMbnMy":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_u3gspuu3gspuu3gs.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_3GBfXG":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_e4o0qee4o0qee4o0.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_VYUVVz":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_x1ydlux1ydlux1yd.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_yUB9bE":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_nol2m6nol2m6nol2.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"Handla Nu","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}}},"block_order":["slide_JAeFtd","slide_W4EGJP","slide_a6FD3F","slide_WjYapN","slide_PMbnMy","slide_3GBfXG","slide_VYUVVz","slide_yUB9bE"],"disabled":true,"name":"Dynamic Hero Slider","settings":{"section_heading":"Lösningar för alla hudbehov"}},"product_list_KEtwTQ":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"column","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_MQCRHX":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>Hud- & hårvård för yttre egenvård<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_XW4YAG":{"type":"text","name":"t:names.text","settings":{"text":"<p>Skonsamma formuleringar för hud och hår, skapade med samma filosofi som våra örtteer.<\/p>","width":"fit-content","max_width":"none","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_jbtRgz":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"View all","open_in_new_tab":false,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_MQCRHX","text_XW4YAG","product_list_button_jbtRgz"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_rDkRyX":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"portrait","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_NkNzGU":{"type":"product-title","name":"t:names.product_title","settings":{"width":"100%","max_width":"none","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_na7FFi":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"","width":"100%","alignment":"center","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"custom_liquid_3qHix9":{"type":"custom-liquid","name":"t:names.custom_liquid","settings":{"custom_liquid":"<hr>\n\n{% assign current_product = closest.product %}\n\n{% if current_product and current_product.tags != blank %}\n  <ul class=\"product-tags\">\n    {% for tag in current_product.tags %}\n      <li class=\"product-tag\">{{ tag }}<\/li>\n    {% endfor %}\n  <\/ul>\n{% endif %}\n\n<style>\n\/* Divider *\/\nhr {\n  border: none;\n  height: 1px;\n  background-color: #f2f2f2;\n  margin: 10px 0;\n}\n\n\/* Tags wrapper *\/\n.product-tags {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center; \/* last row center *\/\n  gap: 6px;\n  padding: 0;\n  margin: 12px auto 10px;\n  list-style: none;\n}\n\n\/* Individual tag *\/\n.product-tag {\n  font-size: 11px;\n  color: #000;\n  background: #D4D4D4;\n  padding: 4px 10px;\n  border-radius: 4px;\n  white-space: nowrap;\n}\n\n\/* 📱 Mobile → 2 tags per row *\/\n@media (max-width: 480px) {\n  .product-tags {\n    max-width: 100px; \/* 👈 2 per row *\/\n  }\n}\n\n\/* 📱 Tablet → 3 tags per row, last one centered *\/\n@media (min-width: 481px) and (max-width: 768px) {\n  .product-tags {\n    max-width: 120px; \/* 👈 3 per row *\/\n  }\n}\n\n\/* 💻 Desktop → same as tablet (3 per row) *\/\n@media (min-width: 769px) {\n  .product-tags {\n    max-width: 300px;\n  }\n}\n<\/style>"},"blocks":{}},"buy_buttons_f46wa8":{"type":"buy-buttons","name":"t:names.product_buy_buttons","settings":{"stacking":false,"show_pickup_availability":true,"gift_card_form":true,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"quantity":{"type":"quantity","disabled":true,"static":true,"settings":{"input_style":"custom","input_background_color":"{{ settings.color_palette.background }}","input_text_color":"#00000087","input_border_color":"#00000021"},"blocks":{}},"add-to-cart":{"type":"add-to-cart","static":true,"settings":{"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.color2 }}","custom_button_text":"{{ settings.color_palette.background }}","custom_button_border":"{{ settings.color_palette.background }}"},"blocks":{}},"accelerated-checkout":{"type":"accelerated-checkout","disabled":true,"static":true,"settings":{},"blocks":{}}},"block_order":[]}},"block_order":["product_card_gallery_rDkRyX","product_title_NkNzGU","price_na7FFi","custom_liquid_3qHix9","buy_buttons_f46wa8"]}},"name":"t:names.products_carousel","settings":{"collection":"all","layout_type":"grid","carousel_on_mobile":true,"max_products":4,"columns":4,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":8,"rows_gap":24,"icons_style":"arrow","icons_shape":"circle","section_width":"page-width","horizontal_alignment":"flex-start","gap":28,"background_color":"{{ settings.color_palette.color12 }}","padding-block-start":48,"padding-block-end":48}},"product_list_fa6P9H":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"column","vertical_on_mobile":false,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":true,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":0,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_list_text_YFtzcL":{"type":"_product-list-text","name":"t:names.collection_title","settings":{"text":"<h3><strong>Våra Utvalda Hälsoprodukter<\/strong><\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h4","font":"var(--font-body--family)","font_size":"","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_dktxnK":{"type":"text","name":"t:names.text","settings":{"text":"<h3>Handplockade formulor utformade för balans, rotade i tradition och bevisade av naturen. Börja din balanserade resa inifrån.<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":15,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_MWeP9V":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"View all","open_in_new_tab":false,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["product_list_text_YFtzcL","text_dktxnK","product_list_button_MWeP9V"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"background_color":"{{ settings.color_palette.color12 }}","border":"none","border_width":1,"border_opacity":100,"border_radius":18,"padding-block-start":20,"padding-block-end":20,"padding-inline-start":20,"padding-inline-end":20},"blocks":{"product_title_YXxMTj":{"type":"product-title","name":"t:names.product_title","settings":{"width":"100%","max_width":"narrow","alignment":"center","type_preset":"custom","font":"var(--font-body--family)","font_size":"0.875rem","line_height":"normal","letter_spacing":"loose","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":10,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"okendo_star_rating_fD7iVQ":{"type":"shopify:\/\/apps\/okendo\/blocks\/star-rating\/bb689e69-ea70-4661-8fb7-ad24a2e23c29","settings":{"product":"{{closest.product}}"}},"product_card_gallery_677WP3":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_JQzVV4":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"","width":"100%","alignment":"center","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"swatches_nGrAx8":{"type":"swatches","name":"t:names.swatches","settings":{"product_swatches_alignment":"center","product_swatches_alignment_mobile":"center","hide_padding":false,"product_swatches_padding_top":4,"product_swatches_padding_bottom":0,"product_swatches_padding_left":0,"product_swatches_padding_right":0},"blocks":{}},"custom_liquid_4bLTBD":{"type":"custom-liquid","name":"t:names.custom_liquid","settings":{"custom_liquid":"<hr >\n{% assign current_product = closest.product %}\n\n{% if current_product and current_product.tags != blank %}\n  <ul style=\"    text-align: -webkit-center; margin-top:10px; padding:0; list-style:none;\">\n    {% for tag in current_product.tags %}\n      <li style=\"display:inline-block; margin-right:2px; margin-bottom: 4px; font-size:11px; background:#f2f2f2; padding:3px 7px; border-radius:4px; color: #8c7050;\">\n        {{ tag }}\n      <\/li>\n    {% endfor %}\n  <\/ul>\n{% endif %}\n\n\n<style>\nhr {\n    border: none;           \/* remove default border *\/\n    height: 1px;            \/* thickness of the line *\/\n    background-color: #f2f2f2;  \/* white line *\/\n}\n\n<\/style>"},"blocks":{}},"buy_buttons_TUedVJ":{"type":"buy-buttons","name":"t:names.product_buy_buttons","settings":{"stacking":false,"show_pickup_availability":true,"gift_card_form":true,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"quantity":{"type":"quantity","disabled":true,"static":true,"settings":{"input_style":"custom","input_background_color":"{{ settings.color_palette.background }}","input_text_color":"#00000087","input_border_color":"#00000021"},"blocks":{}},"add-to-cart":{"type":"add-to-cart","static":true,"settings":{"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.color2 }}","custom_button_text":"{{ settings.color_palette.background }}","custom_button_border":"{{ settings.color_palette.background }}"},"blocks":{}},"accelerated-checkout":{"type":"accelerated-checkout","disabled":true,"static":true,"settings":{},"blocks":{}}},"block_order":[]}},"block_order":["product_title_YXxMTj","okendo_star_rating_fD7iVQ","product_card_gallery_677WP3","price_JQzVV4","swatches_nGrAx8","custom_liquid_4bLTBD","buy_buttons_TUedVJ"]}},"disabled":true,"custom_css":[".product-media-container.media-fit img {height: 230px; object-fit: contain;}",".product-media-container.media-fit {height: 240px;}","@media screen and (min-width: 750px) {.resource-list--grid {margin: auto; max-width: 1400px; } .button[id^=\"BuyButtons-ProductSubmitButton-\"] {padding: 0px; margin: auto; text-transform: capitalize; font-size: 12px; height: 36px; border-radius: 50px !important; width: 139px !important; position: relative; overflow: hidden; }}"],"name":"Featured collection","settings":{"collection":"all","layout_type":"grid","carousel_on_mobile":true,"max_products":8,"columns":4,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":12,"rows_gap":24,"icons_style":"none","icons_shape":"none","section_width":"page-width","horizontal_alignment":"center","gap":28,"background_color":"{{ settings.color_palette.background }}","padding-block-start":48,"padding-block-end":12}},"17670913507ee9f697":{"type":"_blocks","blocks":{"okendo_reviews_carousel_it9PKY":{"type":"shopify:\/\/apps\/okendo\/blocks\/reviews-carousel\/bb689e69-ea70-4661-8fb7-ad24a2e23c29","settings":{"show_heading":true,"heading":"Reviews","badge_link":"","product":"{{closest.product}}"}}},"block_order":["okendo_reviews_carousel_it9PKY"],"settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.background }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0}},"section_JRmFVE":{"type":"section","blocks":{"group_KkqKP6":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_7gCcUQ":{"type":"text","name":"t:names.heading","settings":{"text":"<h2>Handla tryggt online – naturlig balans, var du än är<\/h2>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_DhBGcW":{"type":"text","settings":{"text":"<p>Upptäck vårt sortiment av örtteer, kosttillskott samt hud- och<br\/>hårvård – utvecklade med omsorg och respekt för både kropp och<br\/>natur.<br\/>Alla produkter beställs enkelt online och levereras<br\/>direkt till dig.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_xyGYxm":{"type":"button","settings":{"label":"UTFORSKA SORTIMENTET","link":"shopify:\/\/collections\/all","open_in_new_tab":true,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_7gCcUQ","text_DhBGcW","button_xyGYxm"]},"image_RwRp8E":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Rectangle_1340_2x_7dfc8446-ea45-405a-81b2-a4f0b5548f42.png","link":"","image_ratio":"adapt","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["group_KkqKP6","image_RwRp8E"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"medium","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.color12 }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":40,"padding-block-end":40}},"featured_blog_posts_CrWHWh":{"type":"featured-blog-posts","blocks":{"static-blog-title":{"type":"_featured-blog-posts-title","name":"t:names.title","static":true,"settings":{"text":"<h2>Från Zyzven Journalen<\/h2>","width":"100%","max_width":"none","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":20,"padding-block-end":20,"padding-inline-start":20,"padding-inline-end":20},"blocks":{}},"static-blog-post-card":{"type":"_featured-blog-posts-card","name":"t:names.blog_card","static":true,"settings":{"alignment":"left","gap":8,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"image":{"type":"_featured-blog-posts-image","static":true,"settings":{"image_ratio":"square","border":"none","border_width":1,"border_opacity":100,"border_radius":0},"blocks":{}},"title":{"type":"_heading","name":"t:names.title","static":true,"settings":{"type_preset":"h5","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text":"<h4>{{ closest.article.title }}<\/h4>","read_only":false,"alignment":"left","show_alignment":false,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"blog-post-info-text":{"type":"_blog-post-info-text","name":"t:names.details","static":true,"settings":{"show_date":true,"show_author":false,"type_preset":"h6","alignment":"left","show_alignment":false,"padding-block-start":0,"padding-block-end":0},"blocks":{}},"blog-post-description":{"type":"_blog-post-description","name":"t:names.excerpt","disabled":true,"static":true,"settings":{"type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","padding-block-start":3,"padding-block-end":0},"blocks":{}}},"block_order":[]}},"custom_css":["h4 {font-size: 18px !important;}","p {font-size: 12px;}",".paragraph.rte {font-size: 12px; width: 95%; height: 59px;}","time {color: #8c7050; font-size: 12px;}",".blog-post-details > span {font-size: 12px; color: #8c7050;}"],"name":"t:names.blog_posts_carousel","settings":{"blog":"news","layout_type":"grid","carousel_on_mobile":true,"post_limit":5,"columns":4,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":8,"rows_gap":16,"icons_style":"arrow","icons_shape":"circle","section_width":"page-width","gap":12,"background_color":"{{ settings.color_palette.color12 }}","padding-block-start":48,"padding-block-end":48}},"section_zrTQGm":{"type":"section","blocks":{"group_kEQqhe":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"flex-end","gap":15,"width":"fill","custom_width":50,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"background_media":"image","background_color":"rgba(0,0,0,0)","video_position":"cover","background_image":"shopify:\/\/shop_images\/banner_2.webp","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":18,"link":"","open_in_new_tab":false,"placeholder":"hero-apparel-2","padding-block-start":100,"padding-block-end":50,"padding-inline-start":50,"padding-inline-end":50},"blocks":{"spacer_b4tPzX":{"type":"spacer","settings":{"size":"pixel","percent_size":100,"pixel_size":16,"custom_mobile_size":false,"size_mobile":"percent","percent_size_mobile":100,"pixel_size_mobile":120},"blocks":{}},"text_Kh6dNm":{"type":"text","settings":{"text":"<h3>Kliniskt Effektiva Hälsovårds- & Hudvårdsprodukter<\/h3>","width":"fit-content","max_width":"narrow","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_dUMxPy":{"type":"text","settings":{"text":"<p>Utforska vårt sortiment av örtteer och premiumtillskott, noggrant framtagna för att stödja din inre balans och vitalitet.<\/p>","width":"fit-content","max_width":"narrow","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_EnDCmf":{"type":"button","settings":{"label":"Handla Hälsa","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.background }}","custom_button_text":"{{ settings.color_palette.color2 }}","custom_button_border":"{{ settings.color_palette.color2 }}","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["spacer_b4tPzX","text_Kh6dNm","text_dUMxPy","button_EnDCmf"]},"group_pwUnYC":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"flex-end","gap":15,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"background_media":"image","background_color":"rgba(0,0,0,0)","video_position":"cover","background_image":"shopify:\/\/shop_images\/banner_3.webp","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":18,"link":"","open_in_new_tab":false,"placeholder":"hero-apparel-2","padding-block-start":100,"padding-block-end":50,"padding-inline-start":50,"padding-inline-end":50},"blocks":{"spacer_4xwUGV":{"type":"spacer","settings":{"size":"pixel","percent_size":100,"pixel_size":16,"custom_mobile_size":false,"size_mobile":"percent","percent_size_mobile":100,"pixel_size_mobile":120},"blocks":{}},"text_xiqkKC":{"type":"text","settings":{"text":"<p>Naturlig lyster för din hud — Växtbaserad visdom<\/p>","width":"fit-content","max_width":"narrow","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_3BkY4i":{"type":"text","settings":{"text":"<p>Upptäck naturliga hår- och hudvårdslösningar utformade för att vårda dig från utsidan och framhäva din naturliga skönhet.<\/p>","width":"fit-content","max_width":"narrow","alignment":"center","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_rGYAme":{"type":"button","settings":{"label":"Handla Hälsa","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.background }}","custom_button_text":"{{ settings.color_palette.color2 }}","custom_button_border":"{{ settings.color_palette.color2 }}","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["spacer_4xwUGV","text_xiqkKC","text_3BkY4i","button_rGYAme"]}},"block_order":["group_kEQqhe","group_pwUnYC"],"disabled":true,"custom_css":[".custom-section-content {margin: auto; width: 100%; padding: 0px 40px; max-width: 1480px;}",".h4 p {line-height: 28px !important;}","a.size-style.button {height: 38px; border-radius: 50px;}"],"name":"t:names.split_showcase","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"full-width","section_height":"","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.background }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":18,"padding-block-start":0,"padding-block-end":0}},"section_Mrc8CC":{"type":"section","blocks":{"text_6ppFyn":{"type":"text","settings":{"text":"<p>I hjärtat av varje produkt finns en unik berättelse, driven av vår passion för kvalitet och innovation. Varje artikel förbättrar din vardag och sprider glädje.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_nUAp6e":{"type":"button","settings":{"label":"- Zyzven -","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_6ppFyn","button_nUAp6e"],"disabled":true,"custom_css":["a {color: black; font-size: 16px;}",".h4 p {letter-spacing: 1px; line-height: 33px !important;}"],"name":"t:names.pull_quote","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":16,"section_width":"full-width","section_height":"","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.color11 }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":64,"padding-block-end":64}},"section_YUF9B7":{"type":"section","blocks":{"image_MUWYnn":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/90056548-3615-4354-81A4-426F7E843A26.webp","link":"","image_ratio":"square","width":"fit-content","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":18,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_Eq6xLa":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":25,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":100,"padding-inline-end":0},"blocks":{"text_nbL8ar":{"type":"text","name":"t:names.heading","settings":{"text":"<h2><strong>Böcker<\/strong><\/h2>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_7nM3dP":{"type":"text","settings":{"text":"<p>Upptäck kraftfulla och helande berättelser som utforskar karibiska döttrars känslomässiga resor. Denna kollektion innehåller innerliga böcker som ger röst åt outtalad smärta, generationsöverskridande trauma och vägen till självupptäckt och läkning. Varje titel erbjuder hopp, motståndskraft och modet att återta din egen historia.<\/p><p><\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_A8FHx6":{"type":"button","settings":{"label":"Utforska Mer","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-unstyled","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_nbL8ar","text_7nM3dP","button_A8FHx6"]}},"block_order":["image_MUWYnn","group_Eq6xLa"],"disabled":true,"custom_css":["a {background: #dad5cb; color: black; padding: 10px 30px; border-radius: 50px;}",".border-style.custom-section-content {margin: auto; width: 100%; padding: 0px 40px; max-width: 1280px;}",".image-block__image {width: 500px; max-width: 500px;}","a:hover {background: #8c7050; color: white; padding: 10px 30px; border-radius: 50px;}","h4 {width: 300px; margin: auto;}"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"background_media":"none","background_color":"rgba(0,0,0,0)","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":40,"padding-block-end":0}},"hero_slider_aDWHVG":{"type":"hero-slider","blocks":{"slide_tRfdnY":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_ypjbptypjbptypjb.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_KgHRq8":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_hzmg7khzmg7khzmg.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_KRy63E":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_1g48fc1g48fc1g48.png","slide_link":"shopify:\/\/products\/alki-detox-loose-herb-tea","button_text":"","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_MgGUwc":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_vpphe9vpphe9vpph.png","slide_link":"","button_text":"","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_3wXF8P":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_jr0k20jr0k20jr0k.png","slide_link":"","button_text":"","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}},"slide_iMFkJV":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/Gemini_Generated_Image_dj9noodj9noodj9n.png","slide_link":"","button_text":"","button_link":"shopify:\/\/products\/alki-detox-loose-herb-tea"}}},"block_order":["slide_tRfdnY","slide_KgHRq8","slide_KRy63E","slide_MgGUwc","slide_3wXF8P","slide_iMFkJV"],"disabled":true,"custom_css":[".hero-slider-section {max-width: 1480px; margin: auto; padding: 40px;}",".hero-slider .hero-slide {width: calc(20% - 9px); height: 200px;}",".hero-slide-btn {display: none;}"],"name":"Dynamic Hero Slider","settings":{"section_heading":"Strålande Inifrån och Ut"}},"section_WFf7TR":{"type":"section","blocks":{"group_jDUNkp":{"type":"group","name":"t:names.column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"flex-start","gap":10,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_493yfR":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Rectangle_1343.png","width":66,"link":"","open_in_new_tab":false},"blocks":{}},"text_9VAAef":{"type":"text","name":"t:names.heading","settings":{"text":"<h4><strong>Expertvägledning<\/strong><\/h4>","width":"100%","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_wtkcX8":{"type":"text","name":"t:names.description","settings":{"text":"<p>Få personlig vägledning om kosttillskott och hudvård från våra utbildade hälsokonsulter.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"custom","font":"var(--font-accent--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_493yfR","text_9VAAef","text_wtkcX8"]},"divider_aJeknR":{"type":"_divider","name":"t:names.divider","settings":{"thickness":2,"corner_radius":"square","width_percent":100,"padding-block-start":0,"padding-block-end":0},"blocks":{}},"group_LgW9aa":{"type":"group","name":"t:names.column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":0,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":10,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_mGGJta":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Rectangle_1344.png","width":66,"link":"","open_in_new_tab":false},"blocks":{}},"text_pJKjt9":{"type":"text","name":"t:names.heading","settings":{"text":"<h4><strong>Exklusiva lokala erbjudanden<\/strong><\/h4>","width":"100%","max_width":"none","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_L9dwC6":{"type":"text","name":"t:names.description","settings":{"text":"<p>Få tillgång till butiksexklusiva produkter, unika evenemang och kampanjer som endast är tillgängliga för våra lokala kunder.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"custom","font":"var(--font-accent--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_mGGJta","text_pJKjt9","text_L9dwC6"]},"divider_mpzUtT":{"type":"_divider","name":"t:names.divider","settings":{"thickness":2,"corner_radius":"square","width_percent":100,"padding-block-start":0,"padding-block-end":0},"blocks":{}},"group_bwqWim":{"type":"group","name":"t:names.column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":10,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_L74Xbd":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Rectangle_1345.png","width":66,"link":"","open_in_new_tab":false},"blocks":{}},"text_RCgCHp":{"type":"text","name":"t:names.heading","settings":{"text":"<h4><strong>Upphämtning i butik<\/strong><\/h4>","width":"100%","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_H7t8zr":{"type":"text","name":"t:names.description","settings":{"text":"<p>Lägg din beställning online och hämta eller betala dina varor enkelt direkt i vår butik.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"custom","font":"var(--font-accent--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_L74Xbd","text_RCgCHp","text_H7t8zr"]}},"block_order":["group_jDUNkp","divider_aJeknR","group_LgW9aa","divider_mpzUtT","group_bwqWim"],"custom_css":[],"name":"t:names.multicolumn","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":100,"section_width":"page-width","section_height":"","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.color13 }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":40,"padding-block-end":60}},"section_xrqBVY":{"type":"section","blocks":{"group_77FtGi":{"type":"group","name":"t:names.column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"flex-start","gap":0,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":10,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_q7jLLE":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Gemini_Generated_Image_c1ingxc1ingxc1in.png","width":72,"link":"","open_in_new_tab":false},"blocks":{}},"text_fKi7ih":{"type":"text","name":"t:names.heading","settings":{"text":"<h5>Expertvägledning<\/h5>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":10,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_dheFRJ":{"type":"text","name":"t:names.description","settings":{"text":"<p>Få personlig rådgivning om kosttillskott och hudvård från våra utbildade wellnesskonsulter.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_q7jLLE","text_fKi7ih","text_dheFRJ"]},"divider_A4gkEz":{"type":"_divider","name":"t:names.divider","settings":{"thickness":2,"corner_radius":"square","width_percent":100,"padding-block-start":0,"padding-block-end":0},"blocks":{}},"group_Q7ytnH":{"type":"group","name":"t:names.column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":0,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":10,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_gkhH76":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Gemini_Generated_Image_zs49nzs49nzs49nz.png","width":150,"link":"","open_in_new_tab":false},"blocks":{}},"text_BCEBbi":{"type":"text","name":"t:names.heading","settings":{"text":"<h5>Exklusiva Lokala Erbjudanden<\/h5>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":10,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_6i6YtT":{"type":"text","name":"t:names.description","settings":{"text":"<p><br\/>Få tillgång till butiksexklusiva produkter, unika evenemang och kampanjer endast för våra lokala kunder.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_gkhH76","text_BCEBbi","text_6i6YtT"]},"divider_QhKmQm":{"type":"_divider","name":"t:names.divider","settings":{"thickness":2,"corner_radius":"square","width_percent":100,"padding-block-start":0,"padding-block-end":0},"blocks":{}},"group_CfBMTx":{"type":"group","name":"t:names.column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":0,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":10,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_6WUeFA":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Gemini_Generated_Image_nkbhz1nkbhz1nkbh.png","width":150,"link":"","open_in_new_tab":false},"blocks":{}},"text_m3fWKE":{"type":"text","name":"t:names.heading","settings":{"text":"<h5>Upphämtning i butik<\/h5>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":10,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_PzGMdP":{"type":"text","name":"t:names.description","settings":{"text":"<p>Lägg din beställning online och hämta eller betala dina varor bekvämt direkt i vår butik.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_6WUeFA","text_m3fWKE","text_PzGMdP"]}},"block_order":["group_77FtGi","divider_A4gkEz","group_Q7ytnH","divider_QhKmQm","group_CfBMTx"],"disabled":true,"custom_css":["h5 {font-size: 20px;}",".border-style.custom-section-content {margin: auto; max-width: 1284px;}"],"name":"t:names.multicolumn","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":100,"section_width":"page-width","section_height":"","section_height_custom":50,"background_media":"none","background_color":"{{ settings.color_palette.color13 }}","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":20,"padding-block-end":60}},"promo_banner_ZyzB01":{"type":"promo-banner","settings":{"subheading":"Naturligt välmående","heading":"Upptäck kraften i naturen","text":"<p>Noga utvalda naturliga produkter för inre balans och yttre egenvård.<\/p>","button_1_label":"Shop now","button_1_link":"shopify:\/\/collections\/all","button_2_label":"Shop now","button_2_link":"shopify:\/\/collections\/all"}}},"ws_announcement_bar":{"type":"ws-announcement-bar","settings":{},"blocks":{"message_1":{"type":"message","settings":{"icon":"check","text":"Leverans inom 1–3 vardagar"}},"message_2":{"type":"message","settings":{"icon":"return","text":"Fri retur inom 30 dagar"}}},"block_order":["message_1","message_2"]},"ws_hero":{"type":"ws-hero","settings":{"button_1_link":"shopify:\/\/collections\/all"}},"ws_press_logos":{"type":"ws-press-logos","settings":{},"blocks":{"logo_1":{"type":"logo","settings":{"name":"Vogue"}},"logo_2":{"type":"logo","settings":{"name":"Elle"}},"logo_3":{"type":"logo","settings":{"name":"Expressen"}},"logo_4":{"type":"logo","settings":{"name":"Femina"}},"logo_5":{"type":"logo","settings":{"name":"Hälsa"}},"logo_6":{"type":"logo","settings":{"name":"Amelia"}}},"block_order":["logo_1","logo_2","logo_3","logo_4","logo_5","logo_6"]},"ws_founder_story":{"type":"ws-founder-story","settings":{}},"ws_product_grid":{"type":"ws-product-grid","settings":{"collection":"all","products_to_show":8,"view_all_link":"shopify:\/\/collections\/all"}},"ws_reviews_carousel":{"type":"ws-reviews-carousel","settings":{},"blocks":{"review_1":{"type":"review","settings":{"author":"Henrietta","quote":"<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!<\/p>"}},"review_2":{"type":"review","settings":{"author":"Sofia","quote":"<p>Ny favorit! Både ingredienserna och smaken är otroliga.<\/p>"}},"review_3":{"type":"review","settings":{"author":"Maria","quote":"<p>Så gott och så läskande. Beställer igen direkt.<\/p>"}},"review_4":{"type":"review","settings":{"author":"Olivia","quote":"<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.<\/p>"}}},"block_order":["review_1","review_2","review_3","review_4"]},"ws_feature_banner":{"type":"ws-feature-banner","settings":{"button_link":"shopify:\/\/collections\/all"}},"ws_blog_cards":{"type":"ws-blog-cards","settings":{"blog":"news"}},"order":["hero_jVaWmY","section_8kNV6X","collection_list_JnMyq7","promo_banner_ZyzB01","product_list_MEVLcE","hero_slider_WaUDdM","product_list_KEtwTQ","product_list_fa6P9H","17670913507ee9f697","section_JRmFVE","featured_blog_posts_CrWHWh","section_zrTQGm","section_Mrc8CC","section_YUF9B7","hero_slider_aDWHVG","section_WFf7TR","section_xrqBVY","ws_announcement_bar","ws_hero","ws_press_logos","ws_founder_story","ws_product_grid","ws_reviews_carousel","ws_feature_banner","ws_blog_cards"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "text_YLPk4p": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p><br/>Balansera kroppen – inifrån och ut</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "3.5rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "none",
+            "wrap": "balance",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_d2d67de_dEKcVe": {
+          "type": "ai_gen_block_d2d67de",
+          "settings": {
+            "subheading_text": "Naturliga produkter för inre balans och yttre egenvård, utvecklademed omsorg och kunskap.",
+            "font_family": "inter_n4",
+            "font_size": 18,
+            "font_size_mobile": 14,
+            "letter_spacing": 0.5,
+            "text_transform": "none",
+            "text_color": "#ffffff",
+            "text_alignment": "left",
+            "padding_top": 0,
+            "padding_bottom": 10,
+            "padding_horizontal": 0,
+            "desktop_width_percent": 55
+          },
+          "blocks": {}
+        },
+        "button_H9gpTf": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "HANDLA ONLINE",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "{{ settings.color_palette.background }}",
+            "custom_button_text": "{{ settings.color_palette.color2 }}",
+            "custom_button_border": "{{ settings.color_palette.color2 }}",
+            "link_text_color": "",
+            "width": "custom",
+            "custom_width": 33,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YLPk4p",
+        "ai_gen_block_d2d67de_dEKcVe",
+        "button_H9gpTf"
+      ],
+      "custom_css": [],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "shopify://collections/all",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 20,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": false,
+        "overlay_color": "#7b8c7826",
+        "overlay_style": "gradient",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 30,
+        "padding-block-end": 100
+      }
+    },
+    "section_8kNV6X": {
+      "type": "section",
+      "blocks": {
+        "image_7AJg9B": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image-with-1.png",
+            "link": "",
+            "image_ratio": "square",
+            "width": "custom",
+            "custom_width": 80,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_UgCJKm": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 18,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_9E9JfF": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Vår filosofi</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_jRFQTr": {
+              "type": "text",
+              "settings": {
+                "text": "<p><br/>Zyzven Naturals är ett holistiskt wellnessvarumärke som förenar<br/>traditionell örtmedicin med modern livsstil.<br/><br/>Vi skapar noggrant<br/>utvecklade formuleringar med dokumenterade ingredienser – för både<br/>inre balans och yttre egenvård.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "tight",
+                "letter_spacing": "loose",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_7RxPiJ": {
+              "type": "button",
+              "settings": {
+                "label": "LÄS MER OM OSS",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_9E9JfF",
+            "text_jRFQTr",
+            "button_7RxPiJ"
+          ]
+        }
+      },
+      "block_order": [
+        "image_7AJg9B",
+        "group_UgCJKm"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 74,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color12 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "collection_list_JnMyq7": {
+      "type": "collection-list",
+      "blocks": {
+        "group_9QRVyB": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_T6WecQ": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Örtteer & kosttillskott för inre balans</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_Bh4rQX": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Växtbaserade formuleringar för daglig balans, matsmältning och<br/>välbefinnande.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_T6WecQ",
+            "text_Bh4rQX"
+          ]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "collection_card_gap": 8,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection_title_daVA7J": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "text_color": "{{ settings.color_palette.foreground }}",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "portrait",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_title_daVA7J"
+          ]
+        }
+      },
+      "block_order": [
+        "group_9QRVyB"
+      ],
+      "disabled": true,
+      "name": "t:names.collections_carousel",
+      "settings": {
+        "collection_list": [
+          "all",
+          "frontpage",
+          "teas"
+        ],
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "columns": 3,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "bento_gap": 8,
+        "rows_gap": 8,
+        "max_collections": 4,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 12,
+        "background_color": "{{ settings.color_palette.color12 }}",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "product_list_MEVLcE": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_JaQFfa": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_NDJEkG": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "Visa alla",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_JaQFfa",
+            "product_list_button_NDJEkG"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_xqEa3j": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_QwjEen": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_zGKW86": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_xqEa3j",
+            "product_title_QwjEen",
+            "price_zGKW86"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "moisturisers",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 6,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "hero_slider_WaUDdM": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_JAeFtd": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_gaha91gaha91gaha.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_W4EGJP": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_vu6v1qvu6v1qvu6v.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_a6FD3F": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_6dx5886dx5886dx5.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_WjYapN": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_vzl3p3vzl3p3vzl3.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_PMbnMy": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_u3gspuu3gspuu3gs.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_3GBfXG": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_e4o0qee4o0qee4o0.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_VYUVVz": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_x1ydlux1ydlux1yd.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_yUB9bE": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_nol2m6nol2m6nol2.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "Handla Nu",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        }
+      },
+      "block_order": [
+        "slide_JAeFtd",
+        "slide_W4EGJP",
+        "slide_a6FD3F",
+        "slide_WjYapN",
+        "slide_PMbnMy",
+        "slide_3GBfXG",
+        "slide_VYUVVz",
+        "slide_yUB9bE"
+      ],
+      "disabled": true,
+      "name": "Dynamic Hero Slider",
+      "settings": {
+        "section_heading": "Lösningar för alla hudbehov"
+      }
+    },
+    "product_list_KEtwTQ": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_MQCRHX": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Hud- & hårvård för yttre egenvård</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_XW4YAG": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Skonsamma formuleringar för hud och hår, skapade med samma filosofi som våra örtteer.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_jbtRgz": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_MQCRHX",
+            "text_XW4YAG",
+            "product_list_button_jbtRgz"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_rDkRyX": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_NkNzGU": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_na7FFi": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "center",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_liquid_3qHix9": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "<hr>\n\n{% assign current_product = closest.product %}\n\n{% if current_product and current_product.tags != blank %}\n  <ul class=\"product-tags\">\n    {% for tag in current_product.tags %}\n      <li class=\"product-tag\">{{ tag }}</li>\n    {% endfor %}\n  </ul>\n{% endif %}\n\n<style>\n/* Divider */\nhr {\n  border: none;\n  height: 1px;\n  background-color: #f2f2f2;\n  margin: 10px 0;\n}\n\n/* Tags wrapper */\n.product-tags {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center; /* last row center */\n  gap: 6px;\n  padding: 0;\n  margin: 12px auto 10px;\n  list-style: none;\n}\n\n/* Individual tag */\n.product-tag {\n  font-size: 11px;\n  color: #000;\n  background: #D4D4D4;\n  padding: 4px 10px;\n  border-radius: 4px;\n  white-space: nowrap;\n}\n\n/* 📱 Mobile → 2 tags per row */\n@media (max-width: 480px) {\n  .product-tags {\n    max-width: 100px; /* 👈 2 per row */\n  }\n}\n\n/* 📱 Tablet → 3 tags per row, last one centered */\n@media (min-width: 481px) and (max-width: 768px) {\n  .product-tags {\n    max-width: 120px; /* 👈 3 per row */\n  }\n}\n\n/* 💻 Desktop → same as tablet (3 per row) */\n@media (min-width: 769px) {\n  .product-tags {\n    max-width: 300px;\n  }\n}\n</style>"
+              },
+              "blocks": {}
+            },
+            "buy_buttons_f46wa8": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "text_color": "",
+                "show_pickup_availability": true,
+                "show_physical_stores": true,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "input_style": "custom",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "#00000087",
+                    "input_border_color": "#00000021",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-custom",
+                    "custom_button_background": "{{ settings.color_palette.color2 }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_card_gallery_rDkRyX",
+            "product_title_NkNzGU",
+            "price_na7FFi",
+            "custom_liquid_3qHix9",
+            "buy_buttons_f46wa8"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.color12 }}",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "product_list_fa6P9H": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_YFtzcL": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3><strong>Våra Utvalda Hälsoprodukter</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_dktxnK": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h3>Handplockade formulor utformade för balans, rotade i tradition och bevisade av naturen. Börja din balanserade resa inifrån.</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 15,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_MWeP9V": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "text_dktxnK",
+            "product_list_button_MWeP9V"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "background_color": "{{ settings.color_palette.color12 }}",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 18,
+            "padding-block-start": 20,
+            "padding-block-end": 20,
+            "padding-inline-start": 20,
+            "padding-inline-end": 20
+          },
+          "blocks": {
+            "product_title_YXxMTj": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 10,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "okendo_star_rating_fD7iVQ": {
+              "type": "shopify://apps/okendo/blocks/star-rating/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+              "settings": {
+                "product": "{{closest.product}}"
+              }
+            },
+            "product_card_gallery_677WP3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_JQzVV4": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "center",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "swatches_nGrAx8": {
+              "type": "swatches",
+              "name": "t:names.swatches",
+              "settings": {
+                "product_swatches_alignment": "center",
+                "product_swatches_alignment_mobile": "center",
+                "hide_padding": false,
+                "product_swatches_padding_top": 4,
+                "product_swatches_padding_bottom": 0,
+                "product_swatches_padding_left": 0,
+                "product_swatches_padding_right": 0
+              },
+              "blocks": {}
+            },
+            "custom_liquid_4bLTBD": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "<hr >\n{% assign current_product = closest.product %}\n\n{% if current_product and current_product.tags != blank %}\n  <ul style=\"    text-align: -webkit-center; margin-top:10px; padding:0; list-style:none;\">\n    {% for tag in current_product.tags %}\n      <li style=\"display:inline-block; margin-right:2px; margin-bottom: 4px; font-size:11px; background:#f2f2f2; padding:3px 7px; border-radius:4px; color: #8c7050;\">\n        {{ tag }}\n      </li>\n    {% endfor %}\n  </ul>\n{% endif %}\n\n\n<style>\nhr {\n    border: none;           /* remove default border */\n    height: 1px;            /* thickness of the line */\n    background-color: #f2f2f2;  /* white line */\n}\n\n</style>"
+              },
+              "blocks": {}
+            },
+            "buy_buttons_TUedVJ": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "text_color": "",
+                "show_pickup_availability": true,
+                "show_physical_stores": true,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "input_style": "custom",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "#00000087",
+                    "input_border_color": "#00000021",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-custom",
+                    "custom_button_background": "{{ settings.color_palette.color2 }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_title_YXxMTj",
+            "okendo_star_rating_fD7iVQ",
+            "product_card_gallery_677WP3",
+            "price_JQzVV4",
+            "swatches_nGrAx8",
+            "custom_liquid_4bLTBD",
+            "buy_buttons_TUedVJ"
+          ]
+        }
+      },
+      "disabled": true,
+      "custom_css": [
+        ".product-media-container.media-fit img {height: 230px; object-fit: contain;}",
+        ".product-media-container.media-fit {height: 240px;}",
+        "@media screen and (min-width: 750px) {.resource-list--grid {margin: auto; max-width: 1400px; } .button[id^=\"BuyButtons-ProductSubmitButton-\"] {padding: 0px; margin: auto; text-transform: capitalize; font-size: 12px; height: 36px; border-radius: 50px !important; width: 139px !important; position: relative; overflow: hidden; }}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 48,
+        "padding-block-end": 12
+      }
+    },
+    "17670913507ee9f697": {
+      "type": "_blocks",
+      "blocks": {
+        "okendo_reviews_carousel_it9PKY": {
+          "type": "shopify://apps/okendo/blocks/reviews-carousel/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "show_heading": true,
+            "heading": "Reviews",
+            "badge_link": "",
+            "product": "{{closest.product}}"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_carousel_it9PKY"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "section_JRmFVE": {
+      "type": "section",
+      "blocks": {
+        "group_KkqKP6": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_7gCcUQ": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Handla tryggt online – naturlig balans, var du än är</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_DhBGcW": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Upptäck vårt sortiment av örtteer, kosttillskott samt hud- och<br/>hårvård – utvecklade med omsorg och respekt för både kropp och<br/>natur.<br/>Alla produkter beställs enkelt online och levereras<br/>direkt till dig.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_xyGYxm": {
+              "type": "button",
+              "settings": {
+                "label": "UTFORSKA SORTIMENTET",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": true,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_7gCcUQ",
+            "text_DhBGcW",
+            "button_xyGYxm"
+          ]
+        },
+        "image_RwRp8E": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1340_2x_7dfc8446-ea45-405a-81b2-a4f0b5548f42.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_KkqKP6",
+        "image_RwRp8E"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color12 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "featured_blog_posts_CrWHWh": {
+      "type": "featured-blog-posts",
+      "blocks": {
+        "static-blog-title": {
+          "type": "_featured-blog-posts-title",
+          "name": "t:names.title",
+          "static": true,
+          "settings": {
+            "text": "<h2>Från Zyzven Journalen</h2>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 20,
+            "padding-block-end": 20,
+            "padding-inline-start": 20,
+            "padding-inline-end": 20
+          },
+          "blocks": {}
+        },
+        "static-blog-post-card": {
+          "type": "_featured-blog-posts-card",
+          "name": "t:names.blog_card",
+          "static": true,
+          "settings": {
+            "alignment": "left",
+            "gap": 8,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image": {
+              "type": "_featured-blog-posts-image",
+              "static": true,
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "_heading",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text": "<h4>{{ closest.article.title }}</h4>",
+                "read_only": false,
+                "alignment": "left",
+                "show_alignment": false,
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "blog-post-info-text": {
+              "type": "_blog-post-info-text",
+              "name": "t:names.details",
+              "static": true,
+              "settings": {
+                "show_date": true,
+                "show_author": false,
+                "type_preset": "h6",
+                "alignment": "left",
+                "text_color": "",
+                "show_alignment": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "blog-post-description": {
+              "type": "_blog-post-description",
+              "name": "t:names.excerpt",
+              "disabled": true,
+              "static": true,
+              "settings": {
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "padding-block-start": 3,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "custom_css": [
+        "h4 {font-size: 18px !important;}",
+        "p {font-size: 12px;}",
+        ".paragraph.rte {font-size: 12px; width: 95%; height: 59px;}",
+        "time {color: #8c7050; font-size: 12px;}",
+        ".blog-post-details > span {font-size: 12px; color: #8c7050;}"
+      ],
+      "name": "t:names.blog_posts_carousel",
+      "settings": {
+        "blog": "news",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "post_limit": 5,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 12,
+        "background_color": "{{ settings.color_palette.color12 }}",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "section_zrTQGm": {
+      "type": "section",
+      "blocks": {
+        "group_kEQqhe": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 15,
+            "width": "fill",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "image",
+            "background_color": "rgba(0,0,0,0)",
+            "video_position": "cover",
+            "background_image": "shopify://shop_images/banner_2.webp",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 18,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "hero-apparel-2",
+            "padding-block-start": 100,
+            "padding-block-end": 50,
+            "padding-inline-start": 50,
+            "padding-inline-end": 50
+          },
+          "blocks": {
+            "spacer_b4tPzX": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "percent_size": 100,
+                "pixel_size": 16,
+                "custom_mobile_size": false,
+                "size_mobile": "percent",
+                "percent_size_mobile": 100,
+                "pixel_size_mobile": 120
+              },
+              "blocks": {}
+            },
+            "text_Kh6dNm": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Kliniskt Effektiva Hälsovårds- & Hudvårdsprodukter</h3>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_dUMxPy": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Utforska vårt sortiment av örtteer och premiumtillskott, noggrant framtagna för att stödja din inre balans och vitalitet.</p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_EnDCmf": {
+              "type": "button",
+              "settings": {
+                "label": "Handla Hälsa",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-custom",
+                "custom_button_background": "{{ settings.color_palette.background }}",
+                "custom_button_text": "{{ settings.color_palette.color2 }}",
+                "custom_button_border": "{{ settings.color_palette.color2 }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "spacer_b4tPzX",
+            "text_Kh6dNm",
+            "text_dUMxPy",
+            "button_EnDCmf"
+          ]
+        },
+        "group_pwUnYC": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 15,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "image",
+            "background_color": "rgba(0,0,0,0)",
+            "video_position": "cover",
+            "background_image": "shopify://shop_images/banner_3.webp",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 18,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "hero-apparel-2",
+            "padding-block-start": 100,
+            "padding-block-end": 50,
+            "padding-inline-start": 50,
+            "padding-inline-end": 50
+          },
+          "blocks": {
+            "spacer_4xwUGV": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "percent_size": 100,
+                "pixel_size": 16,
+                "custom_mobile_size": false,
+                "size_mobile": "percent",
+                "percent_size_mobile": 100,
+                "pixel_size_mobile": 120
+              },
+              "blocks": {}
+            },
+            "text_xiqkKC": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Naturlig lyster för din hud — Växtbaserad visdom</p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_3BkY4i": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Upptäck naturliga hår- och hudvårdslösningar utformade för att vårda dig från utsidan och framhäva din naturliga skönhet.</p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_rGYAme": {
+              "type": "button",
+              "settings": {
+                "label": "Handla Hälsa",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-custom",
+                "custom_button_background": "{{ settings.color_palette.background }}",
+                "custom_button_text": "{{ settings.color_palette.color2 }}",
+                "custom_button_border": "{{ settings.color_palette.color2 }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "spacer_4xwUGV",
+            "text_xiqkKC",
+            "text_3BkY4i",
+            "button_rGYAme"
+          ]
+        }
+      },
+      "block_order": [
+        "group_kEQqhe",
+        "group_pwUnYC"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".custom-section-content {margin: auto; width: 100%; padding: 0px 40px; max-width: 1480px;}",
+        ".h4 p {line-height: 28px !important;}",
+        "a.size-style.button {height: 38px; border-radius: 50px;}"
+      ],
+      "name": "t:names.split_showcase",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 18,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "section_Mrc8CC": {
+      "type": "section",
+      "blocks": {
+        "text_6ppFyn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>I hjärtat av varje produkt finns en unik berättelse, driven av vår passion för kvalitet och innovation. Varje artikel förbättrar din vardag och sprider glädje.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_nUAp6e": {
+          "type": "button",
+          "settings": {
+            "label": "- Zyzven -",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-unstyled",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_6ppFyn",
+        "button_nUAp6e"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "a {color: black; font-size: 16px;}",
+        ".h4 p {letter-spacing: 1px; line-height: 33px !important;}"
+      ],
+      "name": "t:names.pull_quote",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color11 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "section_YUF9B7": {
+      "type": "section",
+      "blocks": {
+        "image_MUWYnn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/90056548-3615-4354-81A4-426F7E843A26.webp",
+            "link": "",
+            "image_ratio": "square",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 18,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_Eq6xLa": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 25,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 100,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_nbL8ar": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2><strong>Böcker</strong></h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_7nM3dP": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Upptäck kraftfulla och helande berättelser som utforskar karibiska döttrars känslomässiga resor. Denna kollektion innehåller innerliga böcker som ger röst åt outtalad smärta, generationsöverskridande trauma och vägen till självupptäckt och läkning. Varje titel erbjuder hopp, motståndskraft och modet att återta din egen historia.</p><p></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_A8FHx6": {
+              "type": "button",
+              "settings": {
+                "label": "Utforska Mer",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_nbL8ar",
+            "text_7nM3dP",
+            "button_A8FHx6"
+          ]
+        }
+      },
+      "block_order": [
+        "image_MUWYnn",
+        "group_Eq6xLa"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "a {background: #dad5cb; color: black; padding: 10px 30px; border-radius: 50px;}",
+        ".border-style.custom-section-content {margin: auto; width: 100%; padding: 0px 40px; max-width: 1280px;}",
+        ".image-block__image {width: 500px; max-width: 500px;}",
+        "a:hover {background: #8c7050; color: white; padding: 10px 30px; border-radius: 50px;}",
+        "h4 {width: 300px; margin: auto;}"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "rgba(0,0,0,0)",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "hero_slider_aDWHVG": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_tRfdnY": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_ypjbptypjbptypjb.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_KgHRq8": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_hzmg7khzmg7khzmg.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_KRy63E": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_1g48fc1g48fc1g48.png",
+            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
+            "button_text": "",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_MgGUwc": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_vpphe9vpphe9vpph.png",
+            "slide_link": "",
+            "button_text": "",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_3wXF8P": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_jr0k20jr0k20jr0k.png",
+            "slide_link": "",
+            "button_text": "",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        },
+        "slide_iMFkJV": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Gemini_Generated_Image_dj9noodj9noodj9n.png",
+            "slide_link": "",
+            "button_text": "",
+            "button_link": "shopify://products/alki-detox-loose-herb-tea"
+          }
+        }
+      },
+      "block_order": [
+        "slide_tRfdnY",
+        "slide_KgHRq8",
+        "slide_KRy63E",
+        "slide_MgGUwc",
+        "slide_3wXF8P",
+        "slide_iMFkJV"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".hero-slider-section {max-width: 1480px; margin: auto; padding: 40px;}",
+        ".hero-slider .hero-slide {width: calc(20% - 9px); height: 200px;}",
+        ".hero-slide-btn {display: none;}"
+      ],
+      "name": "Dynamic Hero Slider",
+      "settings": {
+        "section_heading": "Strålande Inifrån och Ut"
+      }
+    },
+    "section_WFf7TR": {
+      "type": "section",
+      "blocks": {
+        "group_jDUNkp": {
+          "type": "group",
+          "name": "t:names.column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 10,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_493yfR": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Rectangle_1343.png",
+                "width": 66,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "text_9VAAef": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h4><strong>Expertvägledning</strong></h4>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_wtkcX8": {
+              "type": "text",
+              "name": "t:names.description",
+              "settings": {
+                "text": "<p>Få personlig vägledning om kosttillskott och hudvård från våra utbildade hälsokonsulter.</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-accent--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_493yfR",
+            "text_9VAAef",
+            "text_wtkcX8"
+          ]
+        },
+        "divider_aJeknR": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 2,
+            "corner_radius": "square",
+            "divider_color": "",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "group_LgW9aa": {
+          "type": "group",
+          "name": "t:names.column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 10,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_mGGJta": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Rectangle_1344.png",
+                "width": 66,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "text_pJKjt9": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h4><strong>Exklusiva lokala erbjudanden</strong></h4>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_L9dwC6": {
+              "type": "text",
+              "name": "t:names.description",
+              "settings": {
+                "text": "<p>Få tillgång till butiksexklusiva produkter, unika evenemang och kampanjer som endast är tillgängliga för våra lokala kunder.</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-accent--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_mGGJta",
+            "text_pJKjt9",
+            "text_L9dwC6"
+          ]
+        },
+        "divider_mpzUtT": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 2,
+            "corner_radius": "square",
+            "divider_color": "",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "group_bwqWim": {
+          "type": "group",
+          "name": "t:names.column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 10,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_L74Xbd": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Rectangle_1345.png",
+                "width": 66,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "text_RCgCHp": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h4><strong>Upphämtning i butik</strong></h4>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_H7t8zr": {
+              "type": "text",
+              "name": "t:names.description",
+              "settings": {
+                "text": "<p>Lägg din beställning online och hämta eller betala dina varor enkelt direkt i vår butik.</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-accent--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_L74Xbd",
+            "text_RCgCHp",
+            "text_H7t8zr"
+          ]
+        }
+      },
+      "block_order": [
+        "group_jDUNkp",
+        "divider_aJeknR",
+        "group_LgW9aa",
+        "divider_mpzUtT",
+        "group_bwqWim"
+      ],
+      "custom_css": [],
+      "name": "t:names.multicolumn",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 100,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color13 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 60
+      }
+    },
+    "section_xrqBVY": {
+      "type": "section",
+      "blocks": {
+        "group_77FtGi": {
+          "type": "group",
+          "name": "t:names.column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_q7jLLE": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Gemini_Generated_Image_c1ingxc1ingxc1in.png",
+                "width": 72,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "text_fKi7ih": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h5>Expertvägledning</h5>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 10,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_dheFRJ": {
+              "type": "text",
+              "name": "t:names.description",
+              "settings": {
+                "text": "<p>Få personlig rådgivning om kosttillskott och hudvård från våra utbildade wellnesskonsulter.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_q7jLLE",
+            "text_fKi7ih",
+            "text_dheFRJ"
+          ]
+        },
+        "divider_A4gkEz": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 2,
+            "corner_radius": "square",
+            "divider_color": "",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "group_Q7ytnH": {
+          "type": "group",
+          "name": "t:names.column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_gkhH76": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Gemini_Generated_Image_zs49nzs49nzs49nz.png",
+                "width": 150,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "text_BCEBbi": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h5>Exklusiva Lokala Erbjudanden</h5>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 10,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_6i6YtT": {
+              "type": "text",
+              "name": "t:names.description",
+              "settings": {
+                "text": "<p><br/>Få tillgång till butiksexklusiva produkter, unika evenemang och kampanjer endast för våra lokala kunder.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_gkhH76",
+            "text_BCEBbi",
+            "text_6i6YtT"
+          ]
+        },
+        "divider_QhKmQm": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 2,
+            "corner_radius": "square",
+            "divider_color": "",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "group_CfBMTx": {
+          "type": "group",
+          "name": "t:names.column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_6WUeFA": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Gemini_Generated_Image_nkbhz1nkbhz1nkbh.png",
+                "width": 150,
+                "link": "",
+                "open_in_new_tab": false,
+                "icon_color": ""
+              },
+              "blocks": {}
+            },
+            "text_m3fWKE": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h5>Upphämtning i butik</h5>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 10,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_PzGMdP": {
+              "type": "text",
+              "name": "t:names.description",
+              "settings": {
+                "text": "<p>Lägg din beställning online och hämta eller betala dina varor bekvämt direkt i vår butik.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_6WUeFA",
+            "text_m3fWKE",
+            "text_PzGMdP"
+          ]
+        }
+      },
+      "block_order": [
+        "group_77FtGi",
+        "divider_A4gkEz",
+        "group_Q7ytnH",
+        "divider_QhKmQm",
+        "group_CfBMTx"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h5 {font-size: 20px;}",
+        ".border-style.custom-section-content {margin: auto; max-width: 1284px;}"
+      ],
+      "name": "t:names.multicolumn",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 100,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color13 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 20,
+        "padding-block-end": 60
+      }
+    },
+    "ws_announcement_bar": {
+      "type": "ws-announcement-bar",
+      "disabled": true,
+      "settings": {},
+      "blocks": {
+        "message_1": {
+          "type": "message",
+          "settings": {
+            "icon": "check",
+            "text": "Leverans inom 1–3 vardagar"
+          }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": {
+            "icon": "return",
+            "text": "Fri retur inom 30 dagar"
+          }
+        }
+      },
+      "block_order": [
+        "message_1",
+        "message_2"
+      ]
+    },
+    "ws_hero": {
+      "type": "ws-hero",
+      "disabled": true,
+      "settings": {
+        "button_1_link": "shopify://collections/all"
+      }
+    },
+    "ws_press_logos": {
+      "type": "ws-press-logos",
+      "disabled": true,
+      "settings": {},
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "name": "Vogue"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Elle"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "name": "Expressen"
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "name": "Femina"
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "name": "Hälsa"
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "name": "Amelia"
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
+      ]
+    },
+    "ws_founder_story": {
+      "type": "ws-founder-story",
+      "disabled": true,
+      "settings": {}
+    },
+    "ws_product_grid": {
+      "type": "ws-product-grid",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "view_all_link": "shopify://collections/all"
+      }
+    },
+    "ws_reviews_carousel": {
+      "type": "ws-reviews-carousel",
+      "disabled": true,
+      "settings": {},
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "author": "Henrietta",
+            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "author": "Sofia",
+            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "author": "Maria",
+            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "author": "Olivia",
+            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4"
+      ]
+    },
+    "ws_feature_banner": {
+      "type": "ws-feature-banner",
+      "disabled": true,
+      "settings": {
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "ws_blog_cards": {
+      "type": "ws-blog-cards",
+      "disabled": true,
+      "settings": {
+        "blog": "news"
+      }
+    }
+  },
+  "order": [
+    "hero_jVaWmY",
+    "section_8kNV6X",
+    "collection_list_JnMyq7",
+    "product_list_MEVLcE",
+    "hero_slider_WaUDdM",
+    "product_list_KEtwTQ",
+    "product_list_fa6P9H",
+    "17670913507ee9f697",
+    "section_JRmFVE",
+    "featured_blog_posts_CrWHWh",
+    "section_zrTQGm",
+    "section_Mrc8CC",
+    "section_YUF9B7",
+    "hero_slider_aDWHVG",
+    "section_WFf7TR",
+    "section_xrqBVY",
+    "ws_announcement_bar",
+    "ws_hero",
+    "ws_press_logos",
+    "ws_founder_story",
+    "ws_product_grid",
+    "ws_reviews_carousel",
+    "ws_feature_banner",
+    "ws_blog_cards"
+  ]
+}

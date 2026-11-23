@@ -44,19 +44,6 @@
         "padding_bottom_mobile": 0
       }
     },
-    "promo_banner_FdtfKG": {
-      "type": "promo-banner",
-      "name": "Promo banner",
-      "settings": {
-        "heading": "Upptäck kraften i naturen",
-        "text": "<p>Noga utvalda naturliga produkter för inre balans och yttre egenvård.</p>",
-        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
-        "heading_size": 48,
-        "background_color": "#2f4a3a",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -3005,7 +2992,6 @@
   },
   "order": [
     "ws_hero_tX4H9j",
-    "promo_banner_FdtfKG",
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",
     "ws_ugc_strip_wJafFz",

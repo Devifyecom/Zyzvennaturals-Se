@@ -46,6 +46,7 @@
     },
     "promo_banner_Vg6Ycb": {
       "type": "promo-banner",
+      "disabled": true,
       "name": "Promo banner",
       "settings": {
         "overlay_color": "#000000",

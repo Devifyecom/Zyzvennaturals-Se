@@ -407,6 +407,93 @@
         "padding-block-end": 40
       }
     },
+    "ws_ugc_strip_wJafFz": {
+      "type": "ws-ugc-strip",
+      "blocks": {
+        "photo_4kRDjn": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/88F96222-E5B5-4AB8-9B0E-0EE7B91544A8.png",
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_b8H6fp": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/1B96107B-E9B0-4516-9FC1-39270E165333_2e3cdf82-d80e-4986-8f61-d3daedc749d3.png",
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_QJtANz": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/999A8C05-F096-4B8F-8E71-532F677B7CF7.png",
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_Rtmt7w": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/C84FF070-A9C8-4F92-A45A-35AA59256888.png",
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_NEnhaX": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/B844137E-9A68-4AFD-9FB1-63AF0FA5B0AC.png",
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_P3RgJr": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/5F494F74-317F-4C97-A121-06BD86051374_edb87519-7492-4415-9c5b-5af9e99ff1dd.png",
+            "alt": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "photo_4kRDjn",
+        "photo_b8H6fp",
+        "photo_QJtANz",
+        "photo_Rtmt7w",
+        "photo_NEnhaX",
+        "photo_P3RgJr"
+      ],
+      "name": "WS · Customer photo strip",
+      "settings": {
+        "heading_bold": "Våra kunder",
+        "heading_italic": "har valt sitt välmående",
+        "italic_layout": "break",
+        "reveal": true,
+        "bold_font": "inter_n8",
+        "italic_font": "instrument_serif_i4",
+        "heading_size": 50,
+        "heading_size_mobile": 32,
+        "italic_scale": 118,
+        "letter_spacing": -55,
+        "tile_width": 288,
+        "tile_width_mobile": 65,
+        "aspect_ratio": "0.8",
+        "tile_gap": 0,
+        "tile_radius": 0,
+        "background_color": "#FFF9EC",
+        "text_color": "#1B1424",
+        "padding_top": 64,
+        "heading_gap": 56,
+        "padding_bottom": 152,
+        "padding_top_mobile": 52,
+        "heading_gap_mobile": 36,
+        "padding_bottom_mobile": 84
+      }
+    },
     "ws_founder_story_mBF7Bw": {
       "type": "ws-founder-story",
       "name": "WS · Founder story",
@@ -882,6 +969,86 @@
         "padding_bottom": 56,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
+      }
+    },
+    "ws_ugc_strip": {
+      "type": "ws-ugc-strip",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_5": {
+          "type": "photo",
+          "settings": {
+            "alt": "",
+            "link": ""
+          }
+        },
+        "photo_6": {
+          "type": "photo",
+          "settings": {
+            "alt": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4",
+        "photo_5",
+        "photo_6"
+      ],
+      "settings": {
+        "heading_bold": "Våra kunder",
+        "heading_italic": "har valt sitt välmående",
+        "italic_layout": "break",
+        "reveal": true,
+        "bold_font": "inter_n8",
+        "italic_font": "instrument_serif_i4",
+        "heading_size": 50,
+        "heading_size_mobile": 32,
+        "italic_scale": 118,
+        "letter_spacing": -55,
+        "tile_width": 288,
+        "tile_width_mobile": 65,
+        "aspect_ratio": "0.8",
+        "tile_gap": 0,
+        "tile_radius": 0,
+        "background_color": "#fff9ec",
+        "text_color": "#1b1424",
+        "padding_top": 64,
+        "heading_gap": 56,
+        "padding_bottom": 152,
+        "padding_top_mobile": 52,
+        "heading_gap_mobile": 36,
+        "padding_bottom_mobile": 84
       }
     },
     "product_list_J4XkXM": {
@@ -3410,44 +3577,6 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
-    },
-    "ws_ugc_strip": {
-      "type": "ws-ugc-strip",
-      "blocks": {
-        "photo_1": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo_2": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo_3": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo_4": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo_5": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo_6": {
-          "type": "photo",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "photo_1",
-        "photo_2",
-        "photo_3",
-        "photo_4",
-        "photo_5",
-        "photo_6"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -3455,6 +3584,7 @@
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",
     "section_8kNV6X",
+    "ws_ugc_strip_wJafFz",
     "ws_founder_story_mBF7Bw",
     "collection_list_JnMyq7",
     "product_list_MEVLcE",

@@ -2622,65 +2622,58 @@
         "padding-block-end": 48
       }
     },
-    "ws_collection_tabs_reXNQe": {
-      "type": "ws-collection-tabs",
+    "ws_collection_tiles_enzPgE": {
+      "type": "ws-collection-tiles",
       "blocks": {
-        "collection_XMbrpK": {
-          "type": "collection",
+        "tile_eWxhUF": {
+          "type": "tile",
           "settings": {
             "collection": "aromatherapy",
-            "label": ""
+            "label": "",
+            "link": ""
           }
         },
-        "collection_trRJXT": {
-          "type": "collection",
+        "tile_XRyxzb": {
+          "type": "tile",
           "settings": {
-            "collection": "",
-            "label": ""
+            "collection": "bar-soap",
+            "label": "",
+            "link": ""
           }
         },
-        "collection_j64VQa": {
-          "type": "collection",
+        "tile_9TRBtz": {
+          "type": "tile",
           "settings": {
-            "collection": "",
-            "label": ""
+            "collection": "teas",
+            "label": "",
+            "link": ""
           }
         },
-        "collection_BQ4VjM": {
-          "type": "collection",
+        "tile_iAmYKp": {
+          "type": "tile",
           "settings": {
-            "collection": "",
-            "label": ""
+            "collection": "diabetic-care",
+            "label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "collection_XMbrpK",
-        "collection_trRJXT",
-        "collection_j64VQa",
-        "collection_BQ4VjM"
+        "tile_eWxhUF",
+        "tile_XRyxzb",
+        "tile_9TRBtz",
+        "tile_iAmYKp"
       ],
-      "name": "WS · Collection tabs",
+      "name": "WS · Collection tiles",
       "settings": {
         "eyebrow": "",
-        "heading": "Utforska våra kollektioner",
-        "heading_style": "serif",
-        "aria_label": "Kollektioner",
-        "show_counts": true,
-        "products_per_page": 8,
+        "heading": "Kollektioner",
+        "heading_style": "label",
         "columns": 4,
-        "columns_mobile": "2",
-        "image_ratio": "4 / 5",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_badge": true,
-        "show_quick_add": true,
-        "open_drawer": true,
-        "title_style": "uppercase",
-        "card_align": "center",
-        "load_more_label": "Visa fler",
-        "view_all_label": "Gå till [collection]",
-        "empty_text": "Inga produkter i den här kollektionen ännu.",
+        "mobile_layout": "grid",
+        "image_ratio": "1 / 1",
+        "label_style": "italic",
+        "placeholder_label": "Kollektion",
         "background_color": "#F3F0EB",
         "text_color": "#111111",
         "accent_color": "#000000",
@@ -3301,7 +3294,7 @@
     "featured_blog_posts_CrWHWh",
     "ws_blog_cards_emCCmC",
     "product_list_6Pg7Nt",
-    "ws_collection_tabs_reXNQe",
+    "ws_collection_tiles_enzPgE",
     "section_YUF9B7",
     "section_WFf7TR"
   ]

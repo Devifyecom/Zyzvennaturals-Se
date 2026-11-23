@@ -14,7 +14,7 @@
 >
   <div class="ws-container">
     {%- if s.eyebrow != blank or s.heading != blank -%}
-      <div class="ws-head">
+      <div class="ws-head ws-rc__head ws-rc__head--{{ s.header_align | default: 'center' }}">
         {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
         {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
       </div>
@@ -41,15 +41,15 @@
 >
   <ws-carousel class="ws-rc__carousel">
     <div class="ws-container">
-      <div class="ws-head{% if s.show_arrows %} ws-head--with-arrows{% endif %}">
+      <div class="ws-head ws-rc__head ws-rc__head--{{ s.header_align | default: 'center' }}{% if s.show_arrows %} ws-rc__head--arrows{% endif %}">
         <div class="ws-head__text">
           {%- if s.eyebrow != blank -%}<p class="ws-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
           {% render 'ws-heading', text: s.heading, look: s.heading_style, size: 'h2', id: heading_id %}
           {%- if s.summary_rating > 0 and s.summary_text != blank -%}
-            <p class="ws-rc__summary">
+            <div class="ws-rc__summary">
               {% render 'ws-stars', rating: s.summary_rating, show_count: false %}
               <span>{{ s.summary_text | escape }}</span>
-            </p>
+            </div>
           {%- endif -%}
         </div>
         {%- if s.show_arrows -%}
@@ -107,7 +107,23 @@
     font-size: 13px;
   }
 
-  .ws-rc .ws-head--with-arrows { text-align: left; }
+  /* Header: heading + rating summary, centred by default; arrows pinned right on desktop */
+  .ws-rc__head { position: relative; }
+  .ws-rc__head .ws-head__text { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .ws-rc__head--center { align-items: center; text-align: center; }
+  .ws-rc__head--center .ws-head__text { align-items: center; }
+  .ws-rc__head--center .ws-rc__summary { justify-content: center; }
+  .ws-rc__head--left { align-items: flex-start; text-align: left; }
+  .ws-rc__head--left .ws-head__text { align-items: flex-start; }
+  .ws-rc__head--left .ws-section-title,
+  .ws-rc__head--left .ws-heading { text-align: left; }
+
+  @media screen and (min-width: 990px) {
+    .ws-rc__head .ws-arrows { position: absolute; right: 0; bottom: 0; }
+    /* keep centred text clear of the arrows */
+    .ws-rc__head--center.ws-rc__head--arrows .ws-head__text { padding-inline: 112px; }
+    .ws-rc__head--left.ws-rc__head--arrows .ws-head__text { padding-right: 112px; }
+  }
 
   .ws-rc__card {
     display: flex;
@@ -194,6 +210,9 @@
     { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Recensioner" },
     { "type": "select", "id": "heading_style", "label": "Heading style", "default": "label", "options": [
       { "value": "label", "label": "Small uppercase label" }, { "value": "serif", "label": "Large serif" }
+    ] },
+    { "type": "select", "id": "header_align", "label": "Header alignment", "default": "center", "options": [
+      { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" }
     ] },
     { "type": "text", "id": "aria_label", "label": "Accessible carousel name", "default": "Kundrecensioner" },
     { "type": "header", "content": "Rating summary (social proof)" },

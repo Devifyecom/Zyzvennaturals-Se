@@ -113,7 +113,8 @@
         "reflection_opacity": 75,
         "padding-block-start": 30,
         "padding-block-end": 100
-      }
+      },
+      "disabled": true
     },
     "ws_press_logos_rkFL9Y": {
       "type": "ws-press-logos",
@@ -2952,9 +2953,21 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "ws_arch_hero": {
+      "type": "ws-arch-hero",
+      "settings": {
+        "heading_bold": "Balansera kroppen",
+        "heading_italic": "inifrån och ut",
+        "text": "<p>Naturliga produkter för inre balans och yttre egenvård, utvecklade med omsorg och kunskap.</p>",
+        "button_label": "Handla online",
+        "button_link": "shopify://collections/all",
+        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png"
+      }
     }
   },
   "order": [
+    "ws_arch_hero",
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",
     "ws_ugc_strip_wJafFz",

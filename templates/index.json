@@ -9,41 +9,6 @@
  */
 {
   "sections": {
-    "ws_hero_FkJRJm": {
-      "type": "ws-hero",
-      "disabled": true,
-      "name": "WS · Hero",
-      "settings": {
-        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
-        "height": "medium",
-        "height_mobile": "medium",
-        "overlay_color": "#000000",
-        "overlay_opacity": 15,
-        "text_position": "center",
-        "text_position_mobile": "center",
-        "eyebrow": "",
-        "heading": "För ett liv i synk med din kvinnliga biologi",
-        "heading_size": "medium",
-        "heading_italic": true,
-        "heading_is_h1": false,
-        "text": "",
-        "button_1_label": "Se produkter",
-        "button_1_link": "",
-        "button_1_style": "light",
-        "button_2_label": "",
-        "button_2_link": "",
-        "button_2_style": "secondary",
-        "background_color": "#d9d2c7",
-        "text_color": "#ffffff",
-        "accent_color": "#000000",
-        "accent_text_color": "#ffffff",
-        "container_width": "normal",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -484,8 +449,8 @@
         "aspect_ratio": "0.8",
         "tile_gap": 0,
         "tile_radius": 0,
-        "background_color": "#FFF9EC",
-        "text_color": "#1B1424",
+        "background_color": "#fff9ec",
+        "text_color": "#1b1424",
         "padding_top": 64,
         "heading_gap": 56,
         "padding_bottom": 152,
@@ -3497,16 +3462,9 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
-    },
-    "ws_arch_hero": {
-      "type": "ws-arch-hero",
-      "settings": {},
-      "disabled": true
     }
   },
   "order": [
-    "ws_arch_hero",
-    "ws_hero_FkJRJm",
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",
     "section_8kNV6X",

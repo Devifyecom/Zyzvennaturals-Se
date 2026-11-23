@@ -2466,6 +2466,19 @@
               },
               "blocks": {}
             },
+            "review_ACKUdK": {
+              "type": "review",
+              "name": "t:names.product_review_stars",
+              "settings": {
+                "stars_style": "shaded",
+                "show_number": true,
+                "text_color": "",
+                "type_preset": "paragraph",
+                "width": "100%",
+                "alignment": "center"
+              },
+              "blocks": {}
+            },
             "product_title_GbKLnH": {
               "type": "product-title",
               "name": "t:names.product_title",
@@ -2581,6 +2594,7 @@
           },
           "block_order": [
             "product_card_gallery_87YJyj",
+            "review_ACKUdK",
             "product_title_GbKLnH",
             "price_3MFWke",
             "buy_buttons_aPGtYW"

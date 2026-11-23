@@ -17,7 +17,10 @@ class WsCollectionTabs extends HTMLElement {
     this.panel = this.querySelector('[data-ws-ctabs-panel]');
     this.tabs = [...this.querySelectorAll('[role="tab"]')];
     this.cache = new Map();
-    if (!this.panel || !this.tabs.length) return;
+    if (!this.panel) return;
+    /* "Visa fler" works with or without tabs (single-collection sections have no tab row) */
+    this.panel.addEventListener('click', this.onPanelClick);
+    if (!this.tabs.length) return;
 
     const active = this.tabs.find((t) => t.getAttribute('aria-selected') === 'true');
     if (active) this.cache.set(active.dataset.url, this.panel.innerHTML);
@@ -26,7 +29,6 @@ class WsCollectionTabs extends HTMLElement {
       tab.addEventListener('click', () => this.select(tab));
       tab.addEventListener('keydown', this.onKeydown);
     });
-    this.panel.addEventListener('click', this.onPanelClick);
     this.addEventListener('shopify:block:select', (e) => {
       const tab = /** @type {HTMLElement} */ (e.target).closest?.('[role="tab"]');
       if (tab) this.select(tab);

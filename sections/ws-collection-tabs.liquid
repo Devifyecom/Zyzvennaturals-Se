@@ -20,6 +20,18 @@
   endif
   assign tab_prefix = 'ws-ctab-' | append: section.id | append: '-'
 
+  # Tabs only make sense with 2+ collections; with one, the section is a plain collection view
+  assign tab_count = 0
+  for block in section.blocks
+    if block.settings.collection != blank
+      assign tab_count = tab_count | plus: 1
+    endif
+  endfor
+  assign show_tabs = false
+  if tab_count > 1
+    assign show_tabs = true
+  endif
+
   assign cols_m = s.columns_mobile | plus: 0
   case s.columns
     when 3
@@ -56,6 +68,7 @@
         <p class="ws-ctabs__empty ws-muted">WS · Collection tabs: add "Collection" blocks and pick a collection in each.</p>
       {%- endif -%}
     {%- else -%}
+      {%- if show_tabs -%}
       <div class="ws-ctabs__tabs" role="tablist" aria-label="{{ s.aria_label | escape }}">
         {%- for block in section.blocks -%}
           {%- assign c = block.settings.collection -%}
@@ -79,12 +92,18 @@
           {%- endif -%}
         {%- endfor -%}
       </div>
+      {%- endif -%}
 
       <div
         class="ws-ctabs__panel"
         id="{{ panel_id }}"
-        role="tabpanel"
-        aria-labelledby="{{ tab_prefix }}{{ active.handle }}"
+        {% if show_tabs %}
+          role="tabpanel" aria-labelledby="{{ tab_prefix }}{{ active.handle }}"
+        {% elsif s.heading != blank %}
+          role="region" aria-labelledby="{{ heading_id }}"
+        {% else %}
+          role="region" aria-label="{{ active.title | escape }}"
+        {% endif %}
         tabindex="-1"
         data-ws-ctabs-panel
       >
@@ -115,7 +134,15 @@
                   </button>
                 {%- endif -%}
                 {%- if s.view_all_label != blank -%}
-                  <a href="{{ active.url }}" class="ws-btn ws-btn--link">{{ s.view_all_label | replace: '[collection]', active.title | escape }}</a>
+                  {%- if s.view_all_style == 'link' -%}
+                    <a href="{{ active.url }}" class="ws-btn ws-btn--link">{{ s.view_all_label | replace: '[collection]', active.title | escape }}</a>
+                  {%- else -%}
+                    <a href="{{ active.url }}" class="ws-ctabs__cta">
+                      <span>{{ s.view_all_label | replace: '[collection]', active.title | escape }}</span>
+                      {%- if s.show_counts -%}<span class="ws-ctabs__tab-count" aria-hidden="true">{{ active.products_count }}</span>{%- endif -%}
+                      {% render 'ws-icon', name: 'arrow-right', size: 16, class: 'ws-ctabs__cta-icon' %}
+                    </a>
+                  {%- endif -%}
                 {%- endif -%}
               </div>
             </div>
@@ -193,6 +220,28 @@
 
   .ws-ctabs__count { margin: 0; font-size: 13px; }
   .ws-ctabs__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; }
+
+  /* "Go to collection" pill – same look as the selected tab */
+  .ws-ctabs__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 14px 10px 22px;
+    border: 1px solid var(--ws-fg);
+    border-radius: 999px;
+    background-color: var(--ws-fg);
+    color: var(--ws-bg);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .ws-ctabs__cta:hover { background-color: color-mix(in srgb, var(--ws-fg) 85%, var(--ws-bg)); }
+  .ws-ctabs__cta .ws-ctabs__tab-count { background-color: color-mix(in srgb, var(--ws-bg) 18%, transparent); }
+  .ws-ctabs__cta-icon { flex: none; transition: transform 0.2s; }
+  .ws-ctabs__cta:hover .ws-ctabs__cta-icon { transform: translateX(3px); }
   .ws-ctabs__empty { margin: 0; padding: 40px 0; text-align: center; font-size: 14px; }
   .ws-ctabs__error { text-align: center; padding: 32px 0; }
 {% endstylesheet %}
@@ -232,6 +281,9 @@
     { "type": "header", "content": "Texts" },
     { "type": "text", "id": "load_more_label", "label": "Load more button", "default": "Visa fler" },
     { "type": "text", "id": "view_all_label", "label": "View collection link", "info": "[collection] is replaced with the collection name. Leave empty to hide.", "default": "Gå till [collection]" },
+    { "type": "select", "id": "view_all_style", "label": "Collection link style", "default": "pill", "options": [
+      { "value": "pill", "label": "Pill button with product count" }, { "value": "link", "label": "Underlined text link" }
+    ] },
     { "type": "text", "id": "empty_text", "label": "Empty collection text", "default": "Inga produkter i den här kollektionen ännu." },
     {"type": "header", "content": "Colours"},
     {"type": "color", "id": "background_color", "label": "Background", "default": "#F3F0EB"},

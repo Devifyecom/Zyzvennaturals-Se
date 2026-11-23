@@ -424,7 +424,11 @@
         },
         "payment_icons": {
           "type": "payment_icons",
-          "settings": {}
+          "settings": {
+            "source": "auto_plus",
+            "extra_types": "american_express, apple_pay, google_pay, klarna, maestro, master, mobilepay, shopify_pay, unionpay, visa",
+            "icon_height": 26
+          }
         },
         "description": {
           "type": "description",

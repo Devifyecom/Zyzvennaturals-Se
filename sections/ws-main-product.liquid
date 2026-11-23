@@ -471,11 +471,66 @@
               </p>
 
             {%- when 'payment_icons' -%}
-              <ul class="ws-pm__block ws-pm__payments" role="list" aria-label="{{ 'ws.product.payment_methods' | t | escape }}" {{ block.shopify_attributes }}>
-                {%- for type in shop.enabled_payment_types -%}
-                  <li>{{ type | payment_type_svg_tag: class: 'ws-pm__pay-icon' }}</li>
-                {%- endfor -%}
-              </ul>
+              {%- liquid
+                # Icon names that exist in Shopify's payment icon set (payment_type_svg_tag). Unknown names are skipped.
+                assign pay_known = ',afterpay,alipay,amazon,american_express,apple_pay,bancontact,bitcoin,dankort,diners_club,discover,elo,google_pay,ideal,jcb,klarna,klarna-pay-later,klarna-pay-now,klarna-slice-it,maestro,master,mobilepay,paypal,samsung_pay,shopify_pay,sofort,swish,trustly,unionpay,vipps,visa,visaelectron,'
+                assign pay_list = ''
+                assign pay_source = b.source | default: 'auto'
+
+                # 1. Merchant's own list first (keeps their order)
+                if pay_source != 'auto' and b.extra_types != blank
+                  assign raw_types = b.extra_types | downcase | split: ','
+                  for raw in raw_types
+                    assign n = raw | strip | replace: ' ', '_'
+                    case n
+                      when 'amex', 'american-express'
+                        assign n = 'american_express'
+                      when 'mastercard', 'master_card'
+                        assign n = 'master'
+                      when 'shop', 'shop_pay', 'shoppay'
+                        assign n = 'shopify_pay'
+                      when 'gpay', 'google', 'googlepay'
+                        assign n = 'google_pay'
+                      when 'applepay', 'apple'
+                        assign n = 'apple_pay'
+                      when 'union_pay', 'union-pay'
+                        assign n = 'unionpay'
+                      when 'mobile_pay', 'mobile-pay'
+                        assign n = 'mobilepay'
+                    endcase
+                    assign needle = ',' | append: n | append: ','
+                    assign list_needle = '|' | append: n | append: '|'
+                    assign padded_list = '|' | append: pay_list
+                    if n != blank and pay_known contains needle
+                      unless padded_list contains list_needle
+                        assign pay_list = pay_list | append: n | append: '|'
+                      endunless
+                    endif
+                  endfor
+                endif
+
+                # 2. Methods enabled in Shopify (unless "only my list")
+                if pay_source != 'custom'
+                  for type in shop.enabled_payment_types
+                    assign list_needle = '|' | append: type | append: '|'
+                    assign padded_list = '|' | append: pay_list
+                    unless padded_list contains list_needle
+                      assign pay_list = pay_list | append: type | append: '|'
+                    endunless
+                  endfor
+                endif
+
+                assign pay_types = pay_list | split: '|'
+              -%}
+              {%- if pay_types.size > 0 -%}
+                <ul class="ws-pm__block ws-pm__payments" role="list" aria-label="{{ 'ws.product.payment_methods' | t | escape }}" style="--ws-pay-h: {{ b.icon_height | default: 28 }}px;" {{ block.shopify_attributes }}>
+                  {%- for type in pay_types -%}
+                    {%- if type != blank -%}
+                      <li>{{ type | payment_type_svg_tag: class: 'ws-pm__pay-icon' }}</li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
 
             {%- when 'description' -%}
               {%- if product.description != blank -%}
@@ -1140,7 +1195,8 @@
 
   /* Payments */
   .ws-pm__payments { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
-  .ws-pm__pay-icon { display: block; width: 38px; height: 24px; }
+  .ws-pm__payments { gap: 8px; }
+  .ws-pm__pay-icon { display: block; height: var(--ws-pay-h, 28px); width: calc(var(--ws-pay-h, 28px) * 38 / 24); }
 
   /* Benefits */
   .ws-pm__benefit {
@@ -1342,7 +1398,18 @@
         { "type": "text", "id": "text", "label": "Text", "info": "[count] is replaced.", "default": "Endast [count] kvar i lager" }
       ]
     },
-    { "type": "payment_icons", "name": "Payment icons", "limit": 1, "settings": [] },
+    {
+      "type": "payment_icons", "name": "Payment icons", "limit": 1,
+      "settings": [
+        { "type": "select", "id": "source", "label": "Icons to show", "default": "auto", "options": [
+          { "value": "auto", "label": "Automatic – methods enabled in Shopify" },
+          { "value": "auto_plus", "label": "My list first + methods enabled in Shopify" },
+          { "value": "custom", "label": "Only my list" }
+        ] },
+        { "type": "text", "id": "extra_types", "label": "My list (comma separated)", "info": "Only list methods customers can really pay with at checkout. E.g. american_express, apple_pay, google_pay, klarna, maestro, master, swish, mobilepay, shopify_pay, unionpay, visa, paypal, trustly. Names like amex, mastercard, shop pay, gpay also work." },
+        { "type": "range", "id": "icon_height", "label": "Icon height", "min": 20, "max": 48, "step": 2, "unit": "px", "default": 28 }
+      ]
+    },
     { "type": "description", "name": "Description", "limit": 1, "settings": [] },
     {
       "type": "benefit", "name": "Benefit bullet",

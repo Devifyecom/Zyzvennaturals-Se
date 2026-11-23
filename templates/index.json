@@ -949,7 +949,7 @@
             "show_heading": true,
             "heading": "Reviews",
             "badge_link": "",
-            "product": "alki-detox-loose-herb-tea"
+            "product": "{{closest.product}}"
           }
         }
       },

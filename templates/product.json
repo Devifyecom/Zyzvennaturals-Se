@@ -426,6 +426,10 @@
           "type": "payment_icons",
           "settings": {}
         },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
         "delivery": {
           "type": "delivery",
           "settings": {
@@ -437,11 +441,6 @@
             "timezone": "Europe/Stockholm",
             "countdown_text": "Beställ inom [time] så skickas din order idag"
           }
-        },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {}
         },
         "benefits": {
           "type": "benefits_metafield",
@@ -536,8 +535,8 @@
         "bundle",
         "stock",
         "payment_icons",
-        "delivery",
         "description",
+        "delivery",
         "benefits",
         "acc_info",
         "acc_usage",
@@ -646,6 +645,7 @@
       ],
       "settings": {
         "heading": "Kundrecensioner",
+        "okendo_widget": true,
         "show_summary": false,
         "out_of_text": "av [max]",
         "based_on_text": "Baserat på [count] recensioner",
@@ -665,8 +665,11 @@
     },
     "ws_reviews_carousel": {
       "type": "ws-reviews-carousel",
+      "disabled": true,
       "settings": {
         "eyebrow": "",
+        "source": "okendo",
+        "okendo_scope": "store",
         "heading": "Våra kunder säger",
         "heading_style": "label",
         "aria_label": "Kundrecensioner",
@@ -685,9 +688,7 @@
         "padding_top": 56,
         "padding_bottom": 56,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "source": "okendo",
-        "okendo_scope": "store"
+        "padding_bottom_mobile": 40
       }
     },
     "product_recommendations_qggXJq": {

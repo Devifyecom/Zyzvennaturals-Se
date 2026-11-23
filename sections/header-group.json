@@ -18,22 +18,13 @@
           "type": "message",
           "settings": {
             "icon": "check",
-            "text": "Leverans inom 1–3 vardagar",
-            "link": ""
-          }
-        },
-        "message_kJwwFM": {
-          "type": "message",
-          "settings": {
-            "icon": "return",
-            "text": "Fri retur inom 30 dagar",
+            "text": "🇸🇪 Fri frakt på alla beställningar över 500 kr inom Sverige! Tidsbegränsat erbjudande.",
             "link": ""
           }
         }
       },
       "block_order": [
-        "message_Y9Ftbx",
-        "message_kJwwFM"
+        "message_Y9Ftbx"
       ],
       "name": "WS · Announcement bar",
       "settings": {

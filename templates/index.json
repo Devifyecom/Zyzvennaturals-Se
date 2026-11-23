@@ -1043,8 +1043,8 @@
       "name": "WS · Reviews carousel",
       "settings": {
         "eyebrow": "",
-        "source": "okendo",
-        "okendo_scope": "product",
+        "source": "manual",
+        "okendo_scope": "store",
         "heading": "Recensioner",
         "heading_style": "label",
         "aria_label": "Kundrecensioner",

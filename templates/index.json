@@ -406,6 +406,38 @@
         "padding-block-end": 40
       }
     },
+    "ws_founder_story_mBF7Bw": {
+      "type": "ws-founder-story",
+      "name": "WS · Founder story",
+      "settings": {
+        "image": "shopify://shop_images/banner_3.webp",
+        "image_ratio": "4 / 5",
+        "image_position": "left",
+        "image_width": "50",
+        "mobile_image_first": true,
+        "vertical_align": "center",
+        "text_align": "left",
+        "eyebrow": "Om oss",
+        "heading": "Vår filosofi",
+        "heading_size": "h3",
+        "heading_italic": false,
+        "text": "<p><br/>Zyzven Naturals är ett holistiskt wellnessvarumärke som förenar<br/>traditionell örtmedicin med modern livsstil.<br/><br/>Vi skapar noggrant<br/>utvecklade formuleringar med dokumenterade ingredienser – för både<br/>inre balans och yttre egenvård.</p>",
+        "signature_width": 160,
+        "signature_name": "",
+        "button_label": "LÄS MER OM OSS",
+        "button_link": "shopify://collections/all",
+        "button_style": "link",
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "narrow",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
     "collection_list_JnMyq7": {
       "type": "collection-list",
       "blocks": {
@@ -3493,6 +3525,7 @@
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",
     "section_8kNV6X",
+    "ws_founder_story_mBF7Bw",
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
     "ws_collection_tabs_bpC43r",

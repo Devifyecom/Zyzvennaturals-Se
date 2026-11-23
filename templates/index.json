@@ -2408,6 +2408,270 @@
         "padding_bottom_mobile": 40
       }
     },
+    "product_list_6Pg7Nt": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_WaWrM7": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_3gcHC9": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "Visa alla",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_WaWrM7",
+            "product_list_button_3gcHC9"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_87YJyj": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_GbKLnH": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_3MFWke": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "center",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_aPGtYW": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "text_color": "",
+                "show_pickup_availability": true,
+                "show_physical_stores": true,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-secondary",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "product_card_gallery_87YJyj",
+            "product_title_GbKLnH",
+            "price_3MFWke",
+            "buy_buttons_aPGtYW"
+          ]
+        }
+      },
+      "name": "t:names.products_grid",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 3,
+        "columns": 3,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 28,
+        "background_color": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "section_zrTQGm": {
       "type": "section",
       "blocks": {
@@ -2978,83 +3242,6 @@
         "border_radius": 0,
         "padding-block-start": 40,
         "padding-block-end": 0
-      }
-    },
-    "hero_slider_aDWHVG": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_tRfdnY": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_ypjbptypjbptypjb.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_KgHRq8": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_hzmg7khzmg7khzmg.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_KRy63E": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_1g48fc1g48fc1g48.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_MgGUwc": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_vpphe9vpphe9vpph.png",
-            "slide_link": "",
-            "button_text": "",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_3wXF8P": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_jr0k20jr0k20jr0k.png",
-            "slide_link": "",
-            "button_text": "",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_iMFkJV": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_dj9noodj9noodj9n.png",
-            "slide_link": "",
-            "button_text": "",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        }
-      },
-      "block_order": [
-        "slide_tRfdnY",
-        "slide_KgHRq8",
-        "slide_KRy63E",
-        "slide_MgGUwc",
-        "slide_3wXF8P",
-        "slide_iMFkJV"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".hero-slider-section {max-width: 1480px; margin: auto; padding: 40px;}",
-        ".hero-slider .hero-slide {width: calc(20% - 9px); height: 200px;}",
-        ".hero-slide-btn {display: none;}"
-      ],
-      "name": "Dynamic Hero Slider",
-      "settings": {
-        "section_heading": "Strålande Inifrån och Ut"
       }
     },
     "section_WFf7TR": {
@@ -3890,10 +4077,10 @@
     "featured_blog_posts_CrWHWh",
     "ws_blog_cards_emCCmC",
     "ws_collection_tiles_Ukb6J3",
+    "product_list_6Pg7Nt",
     "section_zrTQGm",
     "section_Mrc8CC",
     "section_YUF9B7",
-    "hero_slider_aDWHVG",
     "section_WFf7TR",
     "section_xrqBVY"
   ]

@@ -971,86 +971,6 @@
         "padding_bottom_mobile": 40
       }
     },
-    "ws_ugc_strip": {
-      "type": "ws-ugc-strip",
-      "blocks": {
-        "photo_1": {
-          "type": "photo",
-          "settings": {
-            "alt": "",
-            "link": ""
-          }
-        },
-        "photo_2": {
-          "type": "photo",
-          "settings": {
-            "alt": "",
-            "link": ""
-          }
-        },
-        "photo_3": {
-          "type": "photo",
-          "settings": {
-            "alt": "",
-            "link": ""
-          }
-        },
-        "photo_4": {
-          "type": "photo",
-          "settings": {
-            "alt": "",
-            "link": ""
-          }
-        },
-        "photo_5": {
-          "type": "photo",
-          "settings": {
-            "alt": "",
-            "link": ""
-          }
-        },
-        "photo_6": {
-          "type": "photo",
-          "settings": {
-            "alt": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "photo_1",
-        "photo_2",
-        "photo_3",
-        "photo_4",
-        "photo_5",
-        "photo_6"
-      ],
-      "settings": {
-        "heading_bold": "Våra kunder",
-        "heading_italic": "har valt sitt välmående",
-        "italic_layout": "break",
-        "reveal": true,
-        "bold_font": "inter_n8",
-        "italic_font": "instrument_serif_i4",
-        "heading_size": 50,
-        "heading_size_mobile": 32,
-        "italic_scale": 118,
-        "letter_spacing": -55,
-        "tile_width": 288,
-        "tile_width_mobile": 65,
-        "aspect_ratio": "0.8",
-        "tile_gap": 0,
-        "tile_radius": 0,
-        "background_color": "#fff9ec",
-        "text_color": "#1b1424",
-        "padding_top": 64,
-        "heading_gap": 56,
-        "padding_bottom": 152,
-        "padding_top_mobile": 52,
-        "heading_gap_mobile": 36,
-        "padding_bottom_mobile": 84
-      }
-    },
     "product_list_J4XkXM": {
       "type": "product-list",
       "blocks": {
@@ -3589,7 +3509,6 @@
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
     "ws_collection_tabs_bpC43r",
-    "ws_ugc_strip",
     "product_list_J4XkXM",
     "hero_slider_WaUDdM",
     "17670913507ee9f697",

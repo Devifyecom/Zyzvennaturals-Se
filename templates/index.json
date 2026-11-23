@@ -376,6 +376,7 @@
         "image_7AJg9B",
         "group_UgCJKm"
       ],
+      "disabled": true,
       "name": "t:names.image_with_text",
       "settings": {
         "content_direction": "row",

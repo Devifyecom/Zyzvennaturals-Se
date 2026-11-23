@@ -2,7 +2,10 @@
   "sections": {
     "ws_announcement_bar": {
       "type": "ws-announcement-bar",
-      "settings": {},
+      "settings": {
+        "uppercase": true,
+        "text_color": "#1b1424"
+      },
       "blocks": {
         "message_1": {
           "type": "message",

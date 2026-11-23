@@ -30,8 +30,8 @@
 
 {%- if slide_count > 0 -%}
   <div
-    class="ws-section ws-announce{% if s.uppercase %} ws-announce--upper{% endif %}"
-    style="{% render 'ws-section-style', settings: s %} --ws-announce-size: {{ s.font_size }}px;"
+    class="ws-section ws-announce{% if s.uppercase %} ws-announce--upper{% endif %}{% if s.show_dots %} ws-announce--dots{% endif %}{% if s.bottom_border %} ws-announce--border{% endif %} ws-announce--{{ s.arrow_style | default: 'caret' }}"
+    style="{% render 'ws-section-style', settings: s %} --ws-announce-size: {{ s.font_size }}px; --ws-announce-size-m: {{ s.font_size_mobile | default: s.font_size }}px; --ws-announce-weight: {{ s.font_weight | default: 700 }}; --ws-announce-ls: {{ s.letter_spacing | divided_by: 1000.0 }}em; --ws-announce-ls-m: {{ s.letter_spacing_mobile | divided_by: 1000.0 }}em; --ws-announce-h: {{ s.bar_height | default: 40 }}px;{% if s.background_gradient != blank %} --ws-announce-bg: {{ s.background_gradient }};{% endif %}"
     role="region"
     aria-label="{{ s.aria_label | escape }}"
   >
@@ -41,8 +41,12 @@
       data-autoplay="{{ s.autoplay }}"
     >
       {%- if slide_count > 1 and s.show_arrows -%}
-        <button type="button" class="ws-announce__arrow" data-ws-prev aria-label="{{ 'ws.a11y.previous' | t }}">
-          {%- render 'ws-icon', name: 'arrow-left', size: 16 -%}
+        <button type="button" class="ws-announce__arrow ws-announce__arrow--prev" data-ws-prev aria-label="{{ 'ws.a11y.previous' | t }}">
+          {%- if s.arrow_style == 'arrow' -%}
+            {%- render 'ws-icon', name: 'arrow-left', size: 16 -%}
+          {%- else -%}
+            <svg class="ws-announce__caret" viewBox="0 0 6 10" width="6" height="10" aria-hidden="true" focusable="false"><path d="M5.5.5 1 5l4.5 4.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {%- endif -%}
         </button>
       {%- endif -%}
 
@@ -93,6 +97,9 @@
             {%- endif -%}
             <span>{{ block.settings.text }}</span>
             {%- if block.settings.link != blank -%}
+              {%- if s.show_link_arrow -%}
+                <svg class="ws-announce__link-arrow" viewBox="0 0 14 10" width="14" height="10" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"/></svg>
+              {%- endif -%}
               </a>
             {%- else -%}
               </p>
@@ -102,8 +109,12 @@
       </div>
 
       {%- if slide_count > 1 and s.show_arrows -%}
-        <button type="button" class="ws-announce__arrow" data-ws-next aria-label="{{ 'ws.a11y.next' | t }}">
-          {%- render 'ws-icon', name: 'arrow-right', size: 16 -%}
+        <button type="button" class="ws-announce__arrow ws-announce__arrow--next" data-ws-next aria-label="{{ 'ws.a11y.next' | t }}">
+          {%- if s.arrow_style == 'arrow' -%}
+            {%- render 'ws-icon', name: 'arrow-right', size: 16 -%}
+          {%- else -%}
+            <svg class="ws-announce__caret" viewBox="0 0 6 10" width="6" height="10" aria-hidden="true" focusable="false"><path d="M.5.5 5 5 .5 9.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {%- endif -%}
         </button>
       {%- endif -%}
     </ws-announcement>
@@ -112,12 +123,19 @@
 {%- endif -%}
 
 {% stylesheet %}
-  .ws-announce__inner {
+  .ws-announce {
+    background: var(--ws-announce-bg, var(--ws-bg));
+  }
+
+  .ws-announce--border { border-bottom: 1px solid color-mix(in srgb, var(--ws-fg) 8%, transparent); }
+
+  /* Two classes so this beats .ws-container { display: block } in ws-base.css (loaded later) */
+  .ws-announce .ws-announce__inner {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: 38px;
+    min-height: var(--ws-announce-h, 40px);
   }
 
   .ws-announce__slides {
@@ -134,10 +152,10 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding-block: 9px;
+    padding-block: 6px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.45s var(--ws-ease), visibility 0.45s;
+    transition: opacity 0.5s var(--ws-ease), visibility 0.5s;
   }
 
   .ws-announce__slide.is-active {
@@ -152,20 +170,34 @@
     gap: 8px;
     margin: 0;
     color: inherit;
-    font-size: var(--ws-announce-size, 12px);
+    font-size: var(--ws-announce-size-m, 12px);
+    font-weight: var(--ws-announce-weight, 700);
     line-height: 1.35;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--ws-announce-ls-m, 0.02em);
     text-decoration: none;
   }
 
-  .ws-announce--upper .ws-announce__text {
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
+  .ws-announce--upper .ws-announce__text { text-transform: uppercase; }
 
   .ws-announce__text p { margin: 0; }
   .ws-announce__text .ws-icon { flex: none; }
   .ws-announce__text--link:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Link arrow: hidden on mobile like the reference; nudges right on hover */
+  .ws-announce__link-arrow {
+    display: none;
+    flex: none;
+    width: 14px;
+    height: 10px;
+    margin-inline-start: 13px;
+  }
+
+  .ws-announce__link-arrow path {
+    transform: translateX(-2px);
+    transition: transform 0.2s var(--ws-ease);
+  }
+
+  .ws-announce__text--link:hover .ws-announce__link-arrow path { transform: none; }
 
   .ws-announce__progress {
     display: block;
@@ -187,18 +219,70 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     flex: none;
+    margin-block: -2px;
     padding: 0;
     border: 0;
     background: none;
     color: inherit;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.75;
+    transition: opacity 0.2s var(--ws-ease);
   }
 
   .ws-announce__arrow:hover { opacity: 1; }
+
+  .ws-announce__caret {
+    display: block;
+    width: 6px;
+    height: 10px;
+    transition: transform 0.2s var(--ws-ease);
+  }
+
+  .ws-announce__arrow--prev:hover .ws-announce__caret { transform: translateX(-2px); }
+  .ws-announce__arrow--next:hover .ws-announce__caret { transform: translateX(2px); }
+
+  /* Mobile: text only (arrows hidden; messages still auto-rotate) */
+  @media screen and (max-width: 749px) {
+    .ws-announce--caret .ws-announce__arrow { display: none; }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ws-announce__text {
+      font-size: var(--ws-announce-size, 12px);
+      letter-spacing: var(--ws-announce-ls, 0.135em);
+    }
+
+    .ws-announce__link-arrow { display: block; }
+
+    /* Decorative dots either side of the message */
+    .ws-announce--dots .ws-announce__text::before,
+    .ws-announce--dots .ws-announce__text::after {
+      content: '';
+      flex: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: currentColor;
+      opacity: 0.55;
+    }
+
+    .ws-announce--dots .ws-announce__text::before { margin-inline-end: 6px; }
+    .ws-announce--dots .ws-announce__text::after { margin-inline-start: 6px; }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ws-announce.ws-announce--caret .ws-announce__inner {
+      max-width: 1292px;
+      padding-inline: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ws-announce__slide { transition: none; }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -211,8 +295,20 @@
     { "type": "checkbox", "id": "autoplay", "label": "Auto-rotate messages", "default": true },
     { "type": "range", "id": "interval", "label": "Seconds per message", "min": 3, "max": 10, "step": 1, "unit": "s", "default": 5 },
     { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
-    { "type": "range", "id": "font_size", "label": "Text size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
-    { "type": "checkbox", "id": "uppercase", "label": "Uppercase text", "default": false },
+    { "type": "select", "id": "arrow_style", "label": "Arrow style", "default": "caret", "options": [
+      { "value": "caret", "label": "Thin chevrons at the edges (desktop only)" }, { "value": "arrow", "label": "Arrows next to the text" }
+    ] },
+    { "type": "header", "content": "Text" },
+    { "type": "range", "id": "font_size", "label": "Desktop text size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "font_size_mobile", "label": "Mobile text size", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
+    { "type": "select", "id": "font_weight", "label": "Text weight", "default": "700", "options": [
+      { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semibold" }, { "value": "700", "label": "Bold" }
+    ] },
+    { "type": "checkbox", "id": "uppercase", "label": "Uppercase text", "default": true },
+    { "type": "range", "id": "letter_spacing", "label": "Desktop letter spacing", "min": 0, "max": 250, "step": 5, "unit": "‰", "default": 135 },
+    { "type": "range", "id": "letter_spacing_mobile", "label": "Mobile letter spacing", "min": 0, "max": 250, "step": 5, "unit": "‰", "default": 20 },
+    { "type": "checkbox", "id": "show_link_arrow", "label": "Show arrow after linked messages", "info": "Desktop only.", "default": true },
+    { "type": "checkbox", "id": "show_dots", "label": "Show dots either side of the message", "info": "Desktop only.", "default": true },
     { "type": "header", "content": "Free shipping progress" },
     { "type": "checkbox", "id": "enable_free_shipping", "label": "Show live free-shipping message", "info": "Updates instantly as the cart changes.", "default": true },
     { "type": "number", "id": "free_shipping_threshold", "label": "Free shipping threshold", "info": "In your store's default currency (e.g. 499 = 499 kr). Must match your shipping rate settings.", "default": 499 },
@@ -223,11 +319,14 @@
     { "type": "text", "id": "shipping_reached_text", "label": "Message when reached", "default": "Grattis – du har gratis frakt!" },
     { "type": "checkbox", "id": "show_progress_bar", "label": "Show progress bar", "default": false },
     {"type": "header", "content": "Colours"},
-    {"type": "color", "id": "background_color", "label": "Background", "default": "#EAE5DD"},
-    {"type": "color", "id": "text_color", "label": "Text", "default": "#111111"},
+    {"type": "color", "id": "background_color", "label": "Background", "default": "#F9A06F"},
+    {"type": "color_background", "id": "background_gradient", "label": "Background gradient", "info": "Overrides the background colour. Clear it for a solid colour.", "default": "linear-gradient(90deg, rgba(247, 130, 189, 1), rgba(255, 192, 22, 1) 100%)"},
+    {"type": "color", "id": "text_color", "label": "Text", "default": "#1B1424"},
     {"type": "color", "id": "accent_color", "label": "Button background", "default": "#000000"},
     {"type": "color", "id": "accent_text_color", "label": "Button text", "default": "#FFFFFF"},
     {"type": "header", "content": "Layout"},
+    {"type": "range", "id": "bar_height", "label": "Bar height", "min": 28, "max": 64, "step": 2, "unit": "px", "default": 40},
+    {"type": "checkbox", "id": "bottom_border", "label": "Thin bottom border", "default": true},
     {"type": "select", "id": "container_width", "label": "Content width", "default": "full", "options": [{"value": "narrow", "label": "Narrow"}, {"value": "normal", "label": "Normal"}, {"value": "full", "label": "Full width"}]},
     {"type": "header", "content": "Spacing – desktop"},
     {"type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 0},

@@ -867,7 +867,7 @@
         "open_drawer": true,
         "title_style": "uppercase",
         "card_align": "center",
-        "load_more_label": "",
+        "load_more_label": "Visa fler",
         "view_all_label": "Gå till [collection]",
         "empty_text": "Inga produkter i den här kollektionen ännu.",
         "background_color": "#F3F0EB",
@@ -2622,6 +2622,52 @@
         "padding-block-end": 48
       }
     },
+    "ws_collection_tabs_aJmfU9": {
+      "type": "ws-collection-tabs",
+      "blocks": {
+        "collection_JrLWDX": {
+          "type": "collection",
+          "settings": {
+            "collection": "all",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_JrLWDX"
+      ],
+      "name": "WS · Collection tabs",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Utforska våra kollektioner",
+        "heading_style": "serif",
+        "aria_label": "Kollektioner",
+        "show_counts": false,
+        "products_per_page": 4,
+        "columns": 3,
+        "columns_mobile": "2",
+        "image_ratio": "4 / 5",
+        "show_secondary_image": true,
+        "show_rating": true,
+        "show_badge": true,
+        "show_quick_add": true,
+        "open_drawer": true,
+        "title_style": "uppercase",
+        "card_align": "center",
+        "load_more_label": "Visa fler",
+        "view_all_label": "Gå till [collection]",
+        "empty_text": "Inga produkter i den här kollektionen ännu.",
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
     "section_zrTQGm": {
       "type": "section",
       "blocks": {
@@ -4027,6 +4073,7 @@
     "featured_blog_posts_CrWHWh",
     "ws_blog_cards_emCCmC",
     "product_list_6Pg7Nt",
+    "ws_collection_tabs_aJmfU9",
     "section_zrTQGm",
     "section_Mrc8CC",
     "section_YUF9B7",

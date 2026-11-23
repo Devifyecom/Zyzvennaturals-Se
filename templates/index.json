@@ -2344,70 +2344,6 @@
         "padding_bottom_mobile": 40
       }
     },
-    "ws_collection_tiles_Ukb6J3": {
-      "type": "ws-collection-tiles",
-      "blocks": {
-        "tile_MfzDeQ": {
-          "type": "tile",
-          "settings": {
-            "collection": "aromatherapy",
-            "label": "",
-            "link": ""
-          }
-        },
-        "tile_QMA89T": {
-          "type": "tile",
-          "settings": {
-            "collection": "",
-            "label": "",
-            "link": ""
-          }
-        },
-        "tile_jQpnCE": {
-          "type": "tile",
-          "settings": {
-            "collection": "",
-            "label": "",
-            "link": ""
-          }
-        },
-        "tile_cyia7D": {
-          "type": "tile",
-          "disabled": true,
-          "settings": {
-            "collection": "",
-            "label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "tile_MfzDeQ",
-        "tile_QMA89T",
-        "tile_jQpnCE",
-        "tile_cyia7D"
-      ],
-      "name": "WS · Collection tiles",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Kollektioner",
-        "heading_style": "label",
-        "columns": 4,
-        "mobile_layout": "grid",
-        "image_ratio": "1 / 1",
-        "label_style": "italic",
-        "placeholder_label": "Kollektion",
-        "background_color": "#F3F0EB",
-        "text_color": "#111111",
-        "accent_color": "#000000",
-        "accent_text_color": "#FFFFFF",
-        "container_width": "normal",
-        "padding_top": 56,
-        "padding_bottom": 56,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
-      }
-    },
     "product_list_6Pg7Nt": {
       "type": "product-list",
       "blocks": {
@@ -4076,7 +4012,6 @@
     "ws_feature_banner_eXdLfX",
     "featured_blog_posts_CrWHWh",
     "ws_blog_cards_emCCmC",
-    "ws_collection_tiles_Ukb6J3",
     "product_list_6Pg7Nt",
     "section_zrTQGm",
     "section_Mrc8CC",

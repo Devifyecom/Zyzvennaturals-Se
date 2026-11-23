@@ -126,7 +126,8 @@
               assign shown = paginate.current_offset | plus: active.products.size
             -%}
             <div class="ws-ctabs__footer" data-ws-ctabs-footer>
-              <p class="ws-ctabs__count ws-muted" aria-live="polite">{{ 'ws.collection_tabs.showing' | t: shown: shown, total: paginate.items }}</p>
+              {%- comment -%} Hidden visually by default; still announced to screen readers after "Visa fler" {%- endcomment -%}
+              <p class="ws-ctabs__count{% if s.show_count_text %} ws-muted{% else %} ws-sr-only{% endif %}" aria-live="polite">{{ 'ws.collection_tabs.showing' | t: shown: shown, total: paginate.items }}</p>
               <div class="ws-ctabs__actions">
                 {%- if paginate.next -%}
                   <button type="button" class="ws-btn ws-btn--secondary" data-ws-ctabs-more data-url="{{ active.url }}" data-next-page="{{ paginate.current_page | plus: 1 }}">
@@ -258,6 +259,7 @@
     ] },
     { "type": "text", "id": "aria_label", "label": "Accessible name for the tabs", "default": "Kollektioner" },
     { "type": "checkbox", "id": "show_counts", "label": "Show product count on tabs", "default": true },
+    { "type": "checkbox", "id": "show_count_text", "label": "Show \"Visar X av Y produkter\" text", "default": false },
     { "type": "header", "content": "Products" },
     { "type": "range", "id": "products_per_page", "label": "Products per load", "info": "\"Visa fler\" loads the next batch until all products in the collection are shown.", "min": 4, "max": 24, "step": 1, "default": 8 },
     { "type": "range", "id": "columns", "label": "Desktop columns", "min": 2, "max": 5, "step": 1, "default": 4 },

@@ -956,6 +956,7 @@
       "block_order": [
         "okendo_reviews_carousel_it9PKY"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1612,6 +1613,86 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 12
+      }
+    },
+    "ws_reviews_carousel_EBpXcb": {
+      "type": "ws-reviews-carousel",
+      "blocks": {
+        "review_RfDKMH": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "<p>God smak och gör stor skillnad vid träning. Jag märker att jag orkar mer!</p>",
+            "author": "Henrietta",
+            "verified": true,
+            "product": ""
+          }
+        },
+        "review_mYVTMc": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "<p>Ny favorit! Både ingredienserna och smaken är otroliga.</p>",
+            "author": "Sofia",
+            "verified": true,
+            "product": ""
+          }
+        },
+        "review_f89xK9": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "<p>Så gott och så läskande. Beställer igen direkt.</p>",
+            "author": "Maria",
+            "verified": true,
+            "product": ""
+          }
+        },
+        "review_96bjnV": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "<p>Jättegod smak, fräsch! Absolut de godaste på marknaden.</p>",
+            "author": "Olivia",
+            "verified": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_RfDKMH",
+        "review_mYVTMc",
+        "review_f89xK9",
+        "review_96bjnV"
+      ],
+      "name": "WS · Reviews carousel",
+      "settings": {
+        "eyebrow": "",
+        "source": "manual",
+        "okendo_scope": "store",
+        "heading": "Recensioner",
+        "heading_style": "label",
+        "aria_label": "Kundrecensioner",
+        "summary_rating": 4.8,
+        "summary_text": "4,8 av 5 baserat på 1 200+ recensioner",
+        "per_view": 4,
+        "show_arrows": true,
+        "card_style": "plain",
+        "text_align": "center",
+        "verified_label": "Verifierad",
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
     "section_JRmFVE": {
@@ -3417,6 +3498,7 @@
     "ws_collection_tabs_bpC43r",
     "hero_slider_WaUDdM",
     "17670913507ee9f697",
+    "ws_reviews_carousel_EBpXcb",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",
     "section_JRmFVE",

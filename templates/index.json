@@ -9,6 +9,41 @@
  */
 {
   "sections": {
+    "ws_hero_tX4H9j": {
+      "type": "ws-hero",
+      "name": "WS · Hero",
+      "settings": {
+        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "image_mobile": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "height": "medium",
+        "height_mobile": "medium",
+        "overlay_color": "#000000",
+        "overlay_opacity": 15,
+        "text_position": "center",
+        "text_position_mobile": "center",
+        "eyebrow": "",
+        "heading": "För ett liv i synk med din kvinnliga biologi",
+        "heading_size": "medium",
+        "heading_italic": true,
+        "heading_is_h1": false,
+        "text": "",
+        "button_1_label": "Se produkter",
+        "button_1_link": "",
+        "button_1_style": "light",
+        "button_2_label": "",
+        "button_2_link": "",
+        "button_2_style": "secondary",
+        "background_color": "#D9D2C7",
+        "text_color": "#FFFFFF",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -81,6 +116,7 @@
         "ai_gen_block_d2d67de_dEKcVe",
         "button_H9gpTf"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "t:names.hero",
       "settings": {
@@ -113,8 +149,7 @@
         "reflection_opacity": 75,
         "padding-block-start": 30,
         "padding-block-end": 100
-      },
-      "disabled": true
+      }
     },
     "ws_press_logos_rkFL9Y": {
       "type": "ws-press-logos",
@@ -2953,21 +2988,10 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
-    },
-    "ws_arch_hero": {
-      "type": "ws-arch-hero",
-      "settings": {
-        "heading_bold": "Balansera kroppen",
-        "heading_italic": "inifrån och ut",
-        "text": "<p>Naturliga produkter för inre balans och yttre egenvård, utvecklade med omsorg och kunskap.</p>",
-        "button_label": "Handla online",
-        "button_link": "shopify://collections/all",
-        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png"
-      }
     }
   },
   "order": [
-    "ws_arch_hero",
+    "ws_hero_tX4H9j",
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",
     "ws_ugc_strip_wJafFz",

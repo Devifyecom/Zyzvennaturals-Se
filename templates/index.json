@@ -33,10 +33,10 @@
         "button_2_label": "",
         "button_2_link": "",
         "button_2_style": "secondary",
-        "background_color": "#D9D2C7",
-        "text_color": "#FFFFFF",
+        "background_color": "#d9d2c7",
+        "text_color": "#ffffff",
         "accent_color": "#000000",
-        "accent_text_color": "#FFFFFF",
+        "accent_text_color": "#ffffff",
         "container_width": "normal",
         "padding_top": 0,
         "padding_bottom": 0,
@@ -1125,6 +1125,7 @@
       "block_order": [
         "okendo_reviews_carousel_it9PKY"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1152,6 +1153,87 @@
         "border_radius": 0,
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "ws_testimonial_cards_qE44q7": {
+      "type": "ws-testimonial-cards",
+      "blocks": {
+        "testimonial_WDWqjg": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/1B96107B-E9B0-4516-9FC1-39270E165333_2e3cdf82-d80e-4986-8f61-d3daedc749d3.png",
+            "rating": 5,
+            "quote": "",
+            "author": "",
+            "verified": true
+          }
+        },
+        "testimonial_PG7ETj": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/C84FF070-A9C8-4F92-A45A-35AA59256888.png",
+            "rating": 5,
+            "quote": "",
+            "author": "",
+            "verified": true
+          }
+        },
+        "testimonial_4TTGWK": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/B844137E-9A68-4AFD-9FB1-63AF0FA5B0AC.png",
+            "rating": 5,
+            "quote": "",
+            "author": "",
+            "verified": true
+          }
+        },
+        "testimonial_F44Xqd": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/25D72E03-E69E-46CA-9FEA-1FF57966AD47.png",
+            "rating": 5,
+            "quote": "",
+            "author": "",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_WDWqjg",
+        "testimonial_PG7ETj",
+        "testimonial_4TTGWK",
+        "testimonial_F44Xqd"
+      ],
+      "name": "WS · Testimonial cards",
+      "settings": {
+        "heading": "Se varför våra kunder gör Zyzven Naturals till en del av vardagen",
+        "uppercase_heading": true,
+        "heading_font": "heading",
+        "heading_size": 33,
+        "heading_size_mobile": 24,
+        "verified_label": "Verifierad köpare",
+        "cards_per_view": 218,
+        "photo_width": 40,
+        "card_radius": 8,
+        "border_width": 2,
+        "background_color": "#FFFFFF",
+        "background_color_2": "#F4F1EC",
+        "text_color": "#000000",
+        "card_color": "#FFFFFF",
+        "border_color": "#000000",
+        "quote_color": "#333333",
+        "star_color": "#7B8C78",
+        "star_empty_color": "#DFDFDF",
+        "check_color": "#7B8C78",
+        "verified_color": "#4A4A4A",
+        "dot_color": "#DFDFDF",
+        "dot_active_color": "#000000",
+        "container_width": "normal",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 40
       }
     },
     "ws_reviews_carousel_EBpXcb": {
@@ -2988,34 +3070,6 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
-    },
-    "ws_testimonial_cards": {
-      "type": "ws-testimonial-cards",
-      "blocks": {
-        "testimonial_1": {
-          "type": "testimonial",
-          "settings": {}
-        },
-        "testimonial_2": {
-          "type": "testimonial",
-          "settings": {}
-        },
-        "testimonial_3": {
-          "type": "testimonial",
-          "settings": {}
-        },
-        "testimonial_4": {
-          "type": "testimonial",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "testimonial_1",
-        "testimonial_2",
-        "testimonial_3",
-        "testimonial_4"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -3030,8 +3084,8 @@
     "product_list_J4XkXM",
     "hero_slider_WaUDdM",
     "17670913507ee9f697",
+    "ws_testimonial_cards_qE44q7",
     "ws_reviews_carousel_EBpXcb",
-    "ws_testimonial_cards",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",
     "ws_feature_banner_eXdLfX",

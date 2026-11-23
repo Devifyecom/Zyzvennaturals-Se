@@ -3497,9 +3497,15 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "ws_arch_hero": {
+      "type": "ws-arch-hero",
+      "settings": {},
+      "disabled": true
     }
   },
   "order": [
+    "ws_arch_hero",
     "ws_hero_FkJRJm",
     "hero_jVaWmY",
     "ws_press_logos_rkFL9Y",

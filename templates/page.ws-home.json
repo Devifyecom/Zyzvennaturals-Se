@@ -282,9 +282,14 @@
         "collection_4"
       ],
       "settings": {}
+    },
+    "ws_arch_hero": {
+      "type": "ws-arch-hero",
+      "settings": {}
     }
   },
   "order": [
+    "ws_arch_hero",
     "ws_announcement_bar",
     "ws_hero",
     "ws_press_logos",

@@ -2604,7 +2604,7 @@
       "name": "t:names.products_grid",
       "settings": {
         "collection": "all",
-        "layout_type": "grid",
+        "layout_type": "carousel",
         "carousel_on_mobile": false,
         "max_products": 3,
         "columns": 3,
@@ -2636,6 +2636,7 @@
       "block_order": [
         "collection_JrLWDX"
       ],
+      "disabled": true,
       "name": "WS · Collection tabs",
       "settings": {
         "eyebrow": "",

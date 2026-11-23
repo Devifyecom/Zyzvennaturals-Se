@@ -1,239 +1,498 @@
+{%- comment -%}
+  Promo banner — arch layout: two-line headline (second line in a brand gradient), intro text,
+  pill button with a round arrow, optional rating line, and a photo in an arch frame with a soft
+  glow. Uses the theme's own fonts (heading / body) and the Zyzven brand palette by default.
+  Mobile: photo first, then text. Optional badge card on the photo (block).
+{%- endcomment -%}
 {%- liquid
-  assign sid = section.id
+  assign s = section.settings
+  assign heading_id = 'promo-arch-h-' | append: section.id
+  assign h_tag = s.heading_tag | default: 'h2'
+  assign badge = section.blocks | where: 'type', 'badge' | first
+
+  case s.heading_font
+    when 'body'
+      assign heading_family = 'var(--font-body--family)'
+    when 'subheading'
+      assign heading_family = 'var(--font-subheading--family)'
+    when 'accent'
+      assign heading_family = 'var(--font-accent--family)'
+    else
+      assign heading_family = 'var(--font-heading--family)'
+  endcase
 -%}
 
-{% style %}
-  .promo-banner-{{ sid }} {
+<div
+  class="promo-arch promo-arch--media-{{ s.image_position }}{% if s.animate %} promo-arch--animate{% endif %}{% if s.italic_line2 %} promo-arch--italic{% endif %}"
+  style="--pa-bg: {{ s.background_color }}; --pa-glow-1: {{ s.glow_color }}; --pa-glow-2: {{ s.glow_color_2 }}; --pa-heading: {{ s.heading_color }}; --pa-g1: {{ s.gradient_start }}; --pa-g2: {{ s.gradient_end }}; --pa-body: {{ s.body_color }}; --pa-btn-bg: {{ s.button_color }}; --pa-btn-fg: {{ s.button_text_color }}; --pa-btn-edge: {{ s.button_edge_color }}; --pa-btn-glow: {{ s.button_glow_color }}; --pa-circle: {{ s.circle_color }}; --pa-arrow: {{ s.arrow_color }}; --pa-star: {{ s.star_color }}; --pa-ring: {{ s.ring_color }}; --pa-heading-family: {{ heading_family }}; --pa-size: {{ s.heading_size }}px; --pa-size-m: {{ s.heading_size_mobile }}px; --pa-line2-scale: {{ s.line2_scale | divided_by: 100.0 }}; --pa-media-w: {{ s.media_width }}px; --pa-ratio: {{ s.image_ratio }}; --pa-ratio-m: {{ s.image_ratio_mobile }}; --pa-pt: {{ s.padding_top }}px; --pa-pb: {{ s.padding_bottom }}px; --pa-pt-m: {{ s.padding_top_mobile }}px; --pa-pb-m: {{ s.padding_bottom_mobile }}px;"
+  aria-labelledby="{{ heading_id }}"
+  role="region"
+>
+  <div class="promo-arch__grid">
+    <div class="promo-arch__text">
+      <{{ h_tag }} id="{{ heading_id }}" class="promo-arch__heading">
+        {%- if s.heading != blank -%}<span class="promo-arch__line1">{{ s.heading | escape }}</span>{%- endif -%}
+        {%- if s.heading != blank and s.heading_line2 != blank %} {% endif -%}
+        {%- if s.heading_line2 != blank -%}<span class="promo-arch__line2">{{ s.heading_line2 | escape }}</span>{%- endif -%}
+      </{{ h_tag }}>
+
+      {%- if s.text != blank -%}
+        <div class="promo-arch__lede">{{ s.text }}</div>
+      {%- endif -%}
+
+      {%- if s.button_label != blank -%}
+        <div class="promo-arch__ctas">
+          <a class="promo-arch__btn" href="{{ s.button_link | default: routes.all_products_collection_url }}">
+            <span>{{ s.button_label | escape }}</span>
+            <span class="promo-arch__btn-circle" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        </div>
+      {%- endif -%}
+
+      {%- if s.rating_text != blank -%}
+        <p class="promo-arch__rating">
+          <span class="promo-arch__stars" aria-hidden="true">★★★★★</span>
+          <span>{{ s.rating_text | escape }}</span>
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="promo-arch__media">
+      <div class="promo-arch__arch">
+        <div class="promo-arch__frame">
+          {%- if s.image != blank -%}
+            {%- liquid
+              assign pa_alt = s.image_alt | default: s.image.alt | escape
+              assign pa_pos = s.image.presentation.focal_point | default: '50% 50%'
+              assign pa_pos_m = pa_pos
+              if s.image_mobile != blank
+                assign pa_pos_m = s.image_mobile.presentation.focal_point | default: '50% 50%'
+              endif
+              assign pa_style = '--pa-pos: ' | append: pa_pos | append: '; --pa-pos-m: ' | append: pa_pos_m | append: ';'
+              if section.index <= 2
+                assign pa_loading = 'eager'
+                assign pa_priority = 'high'
+              else
+                assign pa_loading = 'lazy'
+                assign pa_priority = 'auto'
+              endif
+            -%}
+            <picture>
+              {%- if s.image_mobile != blank -%}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ s.image_mobile | image_url: width: 480 }} 480w, {{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1100 }} 1100w"
+                  sizes="90vw"
+                  width="{{ s.image_mobile.width }}"
+                  height="{{ s.image_mobile.height }}"
+                >
+              {%- endif -%}
+              {{
+                s.image
+                | image_url: width: 1400
+                | image_tag:
+                  widths: '480, 640, 800, 1000, 1200, 1400',
+                  sizes: '(max-width: 749px) 90vw, 579px',
+                  loading: pa_loading,
+                  fetchpriority: pa_priority,
+                  alt: pa_alt,
+                  class: 'promo-arch__img',
+                  style: pa_style
+              }}
+            </picture>
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'promo-arch__img promo-arch__img--ph' }}
+          {%- endif -%}
+        </div>
+
+        {%- if badge -%}
+          {%- assign bs = badge.settings -%}
+          <div class="promo-arch__badge" {{ badge.shopify_attributes }}>
+            {%- if bs.icon != blank -%}
+              {{ bs.icon | image_url: width: 240 | image_tag: class: 'promo-arch__badge-icon', alt: '' }}
+            {%- endif -%}
+            <div>
+              {%- if bs.text != blank -%}<div class="promo-arch__badge-text">{{ bs.text }}</div>{%- endif -%}
+              {%- if bs.link_label != blank and bs.link != blank -%}
+                <a class="promo-arch__badge-link" href="{{ bs.link }}">{{ bs.link_label | escape }}</a>
+              {%- endif -%}
+            </div>
+            {%- if bs.closable -%}
+              <button type="button" class="promo-arch__badge-close" aria-label="{{ 'ws.a11y.close' | t }}" onclick="this.parentElement.hidden = true">
+                <svg viewBox="0 0 10 10" width="8" height="8" aria-hidden="true" focusable="false"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </button>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .promo-arch {
+    --pa-gutter: 20px;
     position: relative;
-    display: flex;
-    align-items: center;
-    min-height: {{ section.settings.min_height_mobile }}px;
-    padding: {{ section.settings.padding_top | times: 0.6 | round }}px 20px {{ section.settings.padding_bottom | times: 0.6 | round }}px;
-    background-color: {{ section.settings.background_color }};
     overflow: hidden;
-    isolation: isolate;
+    padding-block: var(--pa-pt-m, 20px) var(--pa-pb-m, 48px);
+    color: var(--pa-heading);
+    background:
+      radial-gradient(ellipse 70% 30% at 50% 22%, color-mix(in srgb, var(--pa-glow-1) 85%, transparent), transparent 70%),
+      radial-gradient(ellipse 60% 18% at 50% 50%, color-mix(in srgb, var(--pa-glow-2) 75%, transparent), transparent 72%),
+      var(--pa-bg);
   }
-  .promo-banner-{{ sid }} .promo-banner__media {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-  }
-  .promo-banner-{{ sid }} .promo-banner__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .promo-banner-{{ sid }} .promo-banner__overlay {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: {{ section.settings.overlay_color }};
-    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-  }
-  .promo-banner-{{ sid }} .promo-banner__inner {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+
+  .promo-arch *,
+  .promo-arch *::before,
+  .promo-arch *::after { box-sizing: border-box; }
+
+  .promo-arch [hidden] { display: none !important; }
+
+  .promo-arch__grid {
     display: flex;
     flex-direction: column;
-    align-items: {{ section.settings.alignment }};
-    text-align: {% if section.settings.alignment == 'center' %}center{% elsif section.settings.alignment == 'flex-end' %}right{% else %}left{% endif %};
-    color: {{ section.settings.text_color }};
-    gap: 16px;
+    gap: 44px;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: var(--pa-gutter);
   }
-  .promo-banner-{{ sid }} .promo-banner__subheading {
+
+  .promo-arch__grid:has(.promo-arch__badge:not([hidden])) { gap: 60px; }
+
+  /* ---------- Text ---------- */
+  .promo-arch__text { order: 2; }
+
+  .promo-arch__heading {
     margin: 0;
-    font-size: 13px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.9;
+    color: var(--pa-heading);
+    font-family: var(--pa-heading-family);
+    font-weight: 400;
+    font-size: var(--pa-size-m, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
-  .promo-banner-{{ sid }} .promo-banner__heading {
-    margin: 0;
-    font-family: var(--font-heading--family);
-    font-size: {{ section.settings.heading_size | times: 0.65 | round }}px;
-    line-height: 1.15;
-    color: inherit;
-    max-width: 800px;
+
+  .promo-arch__line1 { display: block; }
+
+  .promo-arch__line2 {
+    display: inline-block;
+    padding: 0.02em 0.1em 0.12em 0;
+    margin: -0.02em -0.1em -0.12em 0;
+    font-size: calc(1em * var(--pa-line2-scale, 1));
+    color: var(--pa-g1);
+    background-image: linear-gradient(90deg, var(--pa-g1), var(--pa-g2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .promo-banner-{{ sid }} .promo-banner__text {
-    max-width: 640px;
-    font-size: 15px;
+
+  .promo-arch--italic .promo-arch__line2 { font-style: italic; }
+
+  .promo-arch__lede {
+    max-width: 30em;
+    margin-top: 24px;
+    color: var(--pa-body);
+    font-family: var(--font-body--family);
+    font-size: 17px;
     line-height: 1.6;
+    letter-spacing: 0.01em;
   }
-  .promo-banner-{{ sid }} .promo-banner__text p { margin: 0; }
-  .promo-banner-{{ sid }} .promo-banner__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
-    justify-content: {{ section.settings.alignment }};
-    width: 100%;
+
+  .promo-arch__lede p { margin: 0; }
+
+  .promo-arch__ctas { margin-top: 34px; }
+
+  .promo-arch__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 54px;
+    padding: 6px 7px 6px 27px;
+    border-radius: 999px;
+    background-color: var(--pa-btn-bg);
+    color: var(--pa-btn-fg);
+    font-family: var(--font-body--family);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    box-shadow:
+      0 3px 0 var(--pa-btn-edge),
+      0 16px 30px -8px var(--pa-btn-glow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .promo-banner-{{ sid }} .promo-banner__btn {
+
+  .promo-arch__btn-circle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 180px;
-    padding: 14px 32px;
+    width: 43px;
+    height: 43px;
+    flex: none;
+    border-radius: 50%;
+    background-color: var(--pa-circle);
+    color: var(--pa-arrow);
+  }
+
+  .promo-arch__btn-circle svg { width: 22px; height: 22px; transition: transform 0.25s ease; }
+
+  .promo-arch__btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 5px 0 var(--pa-btn-edge),
+      0 20px 34px -8px var(--pa-btn-glow);
+  }
+
+  .promo-arch__btn:hover .promo-arch__btn-circle svg { transform: translateX(3px); }
+
+  .promo-arch__btn:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 var(--pa-btn-edge),
+      0 10px 22px -8px var(--pa-btn-glow);
+  }
+
+  .promo-arch__btn:focus-visible { outline: 2px solid var(--pa-heading); outline-offset: 4px; }
+
+  .promo-arch__rating {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 32px 0 0;
+    color: var(--pa-body);
+    font-family: var(--font-body--family);
     font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 2px solid;
-    border-radius: {{ section.settings.button_radius }}px;
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-  }
-  .promo-banner-{{ sid }} .promo-banner__btn--1 {
-    background-color: {{ section.settings.button_1_bg }};
-    color: {{ section.settings.button_1_text }};
-    border-color: {{ section.settings.button_1_bg }};
-  }
-  .promo-banner-{{ sid }} .promo-banner__btn--1:hover {
-    background-color: transparent;
-    color: {{ section.settings.button_1_bg }};
-  }
-  .promo-banner-{{ sid }} .promo-banner__btn--2 {
-    background-color: transparent;
-    color: {{ section.settings.button_2_color }};
-    border-color: {{ section.settings.button_2_color }};
-  }
-  .promo-banner-{{ sid }} .promo-banner__btn--2:hover {
-    background-color: {{ section.settings.button_2_color }};
-    color: {{ section.settings.button_2_hover_text }};
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
-  @media screen and (max-width: 749px) {
-    .promo-banner-{{ sid }} .promo-banner__buttons { flex-direction: column; align-items: stretch; }
-    .promo-banner-{{ sid }} .promo-banner__btn { width: 100%; }
+  .promo-arch__stars { color: var(--pa-star); font-size: 16px; letter-spacing: 0.06em; line-height: 1; }
+
+  /* ---------- Arch photo ---------- */
+  .promo-arch__media {
+    order: 1;
+    container-type: inline-size;
+    width: calc(100% + 2 * var(--pa-gutter) - 20px);
+    margin-inline: calc(10px - var(--pa-gutter));
   }
 
-  @media screen and (min-width: 750px) {
-    .promo-banner-{{ sid }} {
-      min-height: {{ section.settings.min_height }}px;
-      padding: {{ section.settings.padding_top }}px 40px {{ section.settings.padding_bottom }}px;
+  .promo-arch__arch {
+    position: relative;
+    padding: 9px;
+    border-radius: 50cqi 50cqi 20px 20px;
+    background-color: color-mix(in srgb, var(--pa-ring) 75%, transparent);
+    box-shadow: 0 24px 60px -20px color-mix(in srgb, var(--pa-glow-2) 95%, transparent);
+  }
+
+  .promo-arch__frame {
+    overflow: hidden;
+    border-radius: calc(50cqi - 9px) calc(50cqi - 9px) 13px 13px;
+    aspect-ratio: var(--pa-ratio-m, 1);
+    background-color: color-mix(in srgb, var(--pa-heading) 6%, var(--pa-bg));
+  }
+
+  .promo-arch__frame picture { display: contents; }
+
+  .promo-arch__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--pa-pos-m, 50% 50%);
+  }
+
+  .promo-arch__img--ph { fill: color-mix(in srgb, var(--pa-heading) 30%, transparent); }
+
+  /* ---------- Badge ---------- */
+  .promo-arch__badge {
+    position: absolute;
+    left: 0;
+    bottom: -28px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: calc(100% - 8px);
+    padding: 10px 58px 10px 12px;
+    background: #fff;
+    color: #1a1a1a;
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.08);
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 100%, 0 100%);
+  }
+
+  .promo-arch__badge-icon { width: 72px; height: auto; flex: none; }
+  .promo-arch__badge-text p { margin: 0; }
+  .promo-arch__badge-link { display: inline-block; margin-top: 4px; color: inherit; font-weight: 600; text-underline-offset: 3px; }
+
+  .promo-arch__badge-close {
+    position: absolute;
+    top: 8px;
+    right: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #ececec;
+    color: #1a1a1a;
+    cursor: pointer;
+  }
+
+  /* ---------- Load-in ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .promo-arch--animate .promo-arch__text,
+    .promo-arch--animate .promo-arch__arch { animation: promo-arch-in 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) both; }
+    .promo-arch--animate .promo-arch__arch { animation-delay: 0.1s; }
+  }
+
+  @keyframes promo-arch-in {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ---------- Tablet: stacked, arch centred ---------- */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .promo-arch { --pa-gutter: 32px; }
+    .promo-arch__media { width: min(100%, 560px); margin-inline: auto; }
+    .promo-arch__heading { font-size: calc(var(--pa-size-m) + (var(--pa-size) - var(--pa-size-m)) * 0.4); }
+    .promo-arch__badge { bottom: 0; left: 9px; max-width: calc(100% - 18px); }
+    .promo-arch__grid:has(.promo-arch__badge:not([hidden])) { gap: 44px; }
+  }
+
+  /* ---------- Desktop ---------- */
+  @media screen and (min-width: 990px) {
+    .promo-arch {
+      --pa-gutter: 48px;
+      padding-block: var(--pa-pt, 20px) var(--pa-pb, 44px);
+      background:
+        radial-gradient(ellipse 38% 55% at 74% 42%, color-mix(in srgb, var(--pa-glow-1) 85%, transparent), transparent 70%),
+        radial-gradient(ellipse 34% 28% at 58% 100%, color-mix(in srgb, var(--pa-glow-2) 80%, transparent), transparent 72%),
+        var(--pa-bg);
     }
-    .promo-banner-{{ sid }} .promo-banner__heading {
-      font-size: {{ section.settings.heading_size }}px;
+
+    .promo-arch__grid,
+    .promo-arch__grid:has(.promo-arch__badge:not([hidden])) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
     }
-    .promo-banner-{{ sid }} .promo-banner__text { font-size: 17px; }
+
+    .promo-arch--media-left .promo-arch__grid { flex-direction: row-reverse; }
+
+    .promo-arch__text { order: 0; flex: 1 1 0; min-width: 0; padding-inline-start: 12px; }
+
+    .promo-arch__heading { font-size: calc(var(--pa-size-m) + (var(--pa-size) - var(--pa-size-m)) * 0.7); }
+
+    .promo-arch__lede { max-width: 470px; margin-top: 24px; font-size: 18px; }
+
+    .promo-arch__ctas { margin-top: 38px; }
+
+    .promo-arch__rating { column-gap: 14px; font-size: 15px; }
+
+    .promo-arch__media { order: 0; flex: 0 1 var(--pa-media-w, 597px); width: auto; margin-inline: 0; }
+
+    .promo-arch__frame { aspect-ratio: var(--pa-ratio, 0.8); }
+
+    .promo-arch__img { object-position: var(--pa-pos, 50% 50%); }
+
+    .promo-arch__badge { bottom: 0; left: 9px; max-width: calc(100% - 18px); }
   }
-{% endstyle %}
 
-<div class="promo-banner promo-banner-{{ sid }}">
-  {%- if section.settings.image != blank -%}
-    <div class="promo-banner__media">
-      {%- if section.settings.image_mobile != blank -%}
-        <picture>
-          <source
-            media="(max-width: 749px)"
-            srcset="{{ section.settings.image_mobile | image_url: width: 750 }} 750w, {{ section.settings.image_mobile | image_url: width: 1100 }} 1100w"
-          >
-          {{
-            section.settings.image
-            | image_url: width: 2400
-            | image_tag: loading: 'lazy', sizes: '100vw', widths: '750, 1100, 1500, 1920, 2400', alt: section.settings.image.alt
-          }}
-        </picture>
-      {%- else -%}
-        {{
-          section.settings.image
-          | image_url: width: 2400
-          | image_tag: loading: 'lazy', sizes: '100vw', widths: '750, 1100, 1500, 1920, 2400', alt: section.settings.image.alt
-        }}
-      {%- endif -%}
-    </div>
-    <div class="promo-banner__overlay"></div>
-  {%- endif -%}
-
-  <div class="promo-banner__inner">
-    {%- if section.settings.subheading != blank -%}
-      <p class="promo-banner__subheading">{{ section.settings.subheading | escape }}</p>
-    {%- endif -%}
-    {%- if section.settings.heading != blank -%}
-      <h2 class="promo-banner__heading">{{ section.settings.heading | escape }}</h2>
-    {%- endif -%}
-    {%- if section.settings.text != blank -%}
-      <div class="promo-banner__text">{{ section.settings.text }}</div>
-    {%- endif -%}
-
-    {%- if section.settings.button_1_label != blank or section.settings.button_2_label != blank -%}
-      <div class="promo-banner__buttons">
-        {%- if section.settings.button_1_label != blank -%}
-          <a
-            class="promo-banner__btn promo-banner__btn--1"
-            href="{{ section.settings.button_1_link | default: routes.all_products_collection_url }}"
-          >
-            {{- section.settings.button_1_label | escape -}}
-          </a>
-        {%- endif -%}
-        {%- if section.settings.button_2_label != blank -%}
-          <a
-            class="promo-banner__btn promo-banner__btn--2"
-            href="{{ section.settings.button_2_link | default: routes.all_products_collection_url }}"
-          >
-            {{- section.settings.button_2_label | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
-  </div>
-</div>
+  @media screen and (min-width: 1200px) {
+    .promo-arch { --pa-gutter: 64px; }
+    .promo-arch__heading { font-size: var(--pa-size, 72px); }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "Promo banner",
   "tag": "section",
   "class": "section promo-banner-section",
+  "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
-    { "type": "header", "content": "Media" },
-    { "type": "image_picker", "id": "image", "label": "Background image" },
-    { "type": "image_picker", "id": "image_mobile", "label": "Mobile background image (optional)" },
-    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
-    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 90, "step": 5, "unit": "%", "default": 30 },
-    { "type": "color", "id": "background_color", "label": "Background color (no image)", "default": "#2f4a3a" },
-
-    { "type": "header", "content": "Content" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Naturligt välmående" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Upptäck kraften i naturen" },
-    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Noga utvalda naturliga produkter för inre balans och yttre egenvård.</p>" },
-    { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" },
-    { "type": "range", "id": "heading_size", "label": "Heading size (desktop)", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 48 },
-    {
-      "type": "select",
-      "id": "alignment",
-      "label": "Content alignment",
-      "options": [
-        { "value": "flex-start", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "flex-end", "label": "Right" }
-      ],
-      "default": "center"
-    },
-
-    { "type": "header", "content": "Button 1" },
-    { "type": "text", "id": "button_1_label", "label": "Label", "default": "Shop now" },
-    { "type": "url", "id": "button_1_link", "label": "Link" },
-    { "type": "color", "id": "button_1_bg", "label": "Background color", "default": "#ffffff" },
-    { "type": "color", "id": "button_1_text", "label": "Text color", "default": "#1a1a1a" },
-
-    { "type": "header", "content": "Button 2" },
-    { "type": "text", "id": "button_2_label", "label": "Label", "default": "Shop now" },
-    { "type": "url", "id": "button_2_link", "label": "Link" },
-    { "type": "color", "id": "button_2_color", "label": "Border & text color", "default": "#ffffff" },
-    { "type": "color", "id": "button_2_hover_text", "label": "Hover text color", "default": "#1a1a1a" },
-    { "type": "range", "id": "button_radius", "label": "Button corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
-
-    { "type": "header", "content": "Layout" },
-    { "type": "range", "id": "min_height", "label": "Minimum height (desktop)", "min": 200, "max": 900, "step": 20, "unit": "px", "default": 520 },
-    { "type": "range", "id": "min_height_mobile", "label": "Minimum height (mobile)", "min": 200, "max": 900, "step": 20, "unit": "px", "default": 420 },
-    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 80 }
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "heading", "label": "Heading – line 1", "default": "Balansera kroppen" },
+    { "type": "text", "id": "heading_line2", "label": "Heading – line 2 (gradient)", "default": "inifrån och ut" },
+    { "type": "select", "id": "heading_tag", "label": "Heading tag (SEO)", "default": "h2", "options": [
+      { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }
+    ], "info": "Your header already outputs an H1 on the home page." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Naturliga produkter för inre balans och yttre egenvård, utvecklade med omsorg och kunskap.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Handla online" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "rating_text", "label": "Rating line", "info": "Shown next to five stars. Only use real, current numbers. Leave empty to hide." },
+    { "type": "checkbox", "id": "animate", "label": "Fade in on load", "default": true },
+    { "type": "header", "content": "Photo" },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Portrait, at least 1200 × 1500 px. Set the focal point in the image picker." },
+    { "type": "image_picker", "id": "image_mobile", "label": "Mobile photo (optional)" },
+    { "type": "text", "id": "image_alt", "label": "Alt text", "info": "Leave empty to use the image's own alt text." },
+    { "type": "select", "id": "image_position", "label": "Photo on desktop", "default": "right", "options": [
+      { "value": "right", "label": "Right" }, { "value": "left", "label": "Left" }
+    ] },
+    { "type": "range", "id": "media_width", "label": "Desktop arch width", "min": 480, "max": 720, "step": 3, "unit": "px", "default": 597 },
+    { "type": "select", "id": "image_ratio", "label": "Desktop photo shape", "default": "0.8", "options": [
+      { "value": "0.75", "label": "3:4" }, { "value": "0.8", "label": "4:5" }, { "value": "0.9", "label": "9:10" }, { "value": "1", "label": "Square" }
+    ] },
+    { "type": "select", "id": "image_ratio_mobile", "label": "Mobile photo shape", "default": "1", "options": [
+      { "value": "0.8", "label": "4:5" }, { "value": "0.9", "label": "9:10" }, { "value": "1", "label": "Square" }, { "value": "1.2", "label": "Landscape 6:5" }
+    ] },
+    { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "heading_font", "label": "Heading font", "default": "heading", "options": [
+      { "value": "heading", "label": "Theme heading font" }, { "value": "subheading", "label": "Theme subheading font" },
+      { "value": "body", "label": "Theme body font" }, { "value": "accent", "label": "Theme accent font" }
+    ], "info": "Fonts come from Theme settings › Typography." },
+    { "type": "range", "id": "heading_size", "label": "Desktop heading size", "min": 36, "max": 100, "step": 1, "unit": "px", "default": 72 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Mobile heading size", "min": 26, "max": 60, "step": 1, "unit": "px", "default": 40 },
+    { "type": "range", "id": "line2_scale", "label": "Line 2 size (relative to line 1)", "min": 80, "max": 150, "step": 2, "unit": "%", "default": 100 },
+    { "type": "checkbox", "id": "italic_line2", "label": "Italic line 2", "default": false, "info": "Only if your heading font has an italic style." },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F6F4EE" },
+    { "type": "color", "id": "glow_color", "label": "Glow behind photo", "default": "#ECE8E0" },
+    { "type": "color", "id": "glow_color_2", "label": "Glow below photo", "default": "#E1CFC7" },
+    { "type": "color", "id": "heading_color", "label": "Heading line 1", "default": "#000000" },
+    { "type": "color", "id": "gradient_start", "label": "Line 2 gradient – start", "default": "#B98E7F" },
+    { "type": "color", "id": "gradient_end", "label": "Line 2 gradient – end", "default": "#7B8C78" },
+    { "type": "color", "id": "body_color", "label": "Text", "default": "#4A4A4A" },
+    { "type": "color", "id": "button_color", "label": "Button", "default": "#000000" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_edge_color", "label": "Button bottom edge", "default": "#333333" },
+    { "type": "color", "id": "button_glow_color", "label": "Button glow", "default": "#E1CFC7" },
+    { "type": "color", "id": "circle_color", "label": "Arrow circle", "default": "#F6F4EE" },
+    { "type": "color", "id": "arrow_color", "label": "Arrow", "default": "#000000" },
+    { "type": "color", "id": "star_color", "label": "Stars", "default": "#B98E7F" },
+    { "type": "color", "id": "ring_color", "label": "Arch frame", "default": "#FFFFFF" },
+    { "type": "header", "content": "Spacing – desktop" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Spacing – mobile" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 48 }
   ],
-  "presets": [
-    { "name": "Promo banner" }
-  ]
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge on photo",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Badge image / logo" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p><strong>Rekommenderas</strong> av våra kunder.</p>" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Läs omdömen" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "closable", "label": "Show close button", "default": true }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Promo banner" }]
 }
 {% endschema %}

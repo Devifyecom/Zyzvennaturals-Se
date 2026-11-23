@@ -855,7 +855,7 @@
         "heading": "Utforska våra kollektioner",
         "heading_style": "serif",
         "aria_label": "Kollektioner",
-        "show_counts": true,
+        "show_counts": false,
         "products_per_page": 8,
         "columns": 4,
         "columns_mobile": "2",
@@ -1874,6 +1874,7 @@
         "group_KkqKP6",
         "image_RwRp8E"
       ],
+      "disabled": true,
       "name": "t:names.image_with_text",
       "settings": {
         "content_direction": "row",
@@ -1902,6 +1903,37 @@
         "border_radius": 0,
         "padding-block-start": 40,
         "padding-block-end": 40
+      }
+    },
+    "ws_feature_banner_eXdLfX": {
+      "type": "ws-feature-banner",
+      "name": "WS · Feature banner",
+      "settings": {
+        "layout": "split",
+        "panel_color": "#ECE8E0",
+        "image": "shopify://shop_images/5F494F74-317F-4C97-A121-06BD86051374_edb87519-7492-4415-9c5b-5af9e99ff1dd.png",
+        "image_link": "",
+        "image_ratio": "1 / 1",
+        "image_position": "right",
+        "mobile_image_first": false,
+        "text_align": "center",
+        "eyebrow": "",
+        "heading": "Handla tryggt online naturlig balans, var du än är",
+        "heading_size": "h2",
+        "heading_italic": false,
+        "text": "<p>Upptäck vårt sortiment av örtteer, kosttillskott samt hud- och<br/>hårvård – utvecklade med omsorg och respekt för både kropp och<br/>natur.<br/>Alla produkter beställs enkelt online och levereras<br/>direkt till dig.</p>",
+        "button_label": "UTFORSKA SORTIMENTET",
+        "button_link": "",
+        "button_style": "primary",
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
     "featured_blog_posts_CrWHWh": {
@@ -2032,6 +2064,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "custom_css": [
         "h4 {font-size: 18px !important;}",
         "p {font-size: 12px;}",
@@ -2057,6 +2090,36 @@
         "background_color": "{{ settings.color_palette.color12 }}",
         "padding-block-start": 48,
         "padding-block-end": 48
+      }
+    },
+    "ws_blog_cards_emCCmC": {
+      "type": "ws-blog-cards",
+      "name": "WS · Blog cards",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Från Zyzven Journalen",
+        "heading_style": "label",
+        "blog": "news",
+        "post_count": 4,
+        "image_ratio": "1 / 1",
+        "show_overlay_title": true,
+        "overlay_opacity": 25,
+        "category_source": "tag",
+        "show_date": false,
+        "mobile_layout": "carousel",
+        "placeholder_title": "Artikelns rubrik",
+        "view_all_label": "Alla artiklar",
+        "view_all_link": "",
+        "view_all_style": "secondary",
+        "background_color": "#F3F0EB",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
     "section_zrTQGm": {
@@ -3536,7 +3599,9 @@
     "product_list_KEtwTQ",
     "product_list_fa6P9H",
     "section_JRmFVE",
+    "ws_feature_banner_eXdLfX",
     "featured_blog_posts_CrWHWh",
+    "ws_blog_cards_emCCmC",
     "section_zrTQGm",
     "section_Mrc8CC",
     "section_YUF9B7",

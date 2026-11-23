@@ -867,7 +867,7 @@
         "open_drawer": true,
         "title_style": "uppercase",
         "card_align": "center",
-        "load_more_label": "Visa fler",
+        "load_more_label": "",
         "view_all_label": "Gå till [collection]",
         "empty_text": "Inga produkter i den här kollektionen ännu.",
         "background_color": "#F3F0EB",

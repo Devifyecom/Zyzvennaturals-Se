@@ -849,6 +849,7 @@
       "block_order": [
         "collection_n7thP7"
       ],
+      "disabled": true,
       "name": "WS · Collection tabs",
       "settings": {
         "eyebrow": "",

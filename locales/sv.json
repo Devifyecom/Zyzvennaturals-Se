@@ -409,7 +409,8 @@
     "a11y": {
       "previous": "Föregående",
       "next": "Nästa",
-      "close": "Stäng"
+      "close": "Stäng",
+      "customer_photos": "Kundbilder"
     },
     "product": {
       "add_to_cart": "Lägg i varukorg",

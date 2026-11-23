@@ -430,7 +430,8 @@
     "a11y": {
       "previous": "Previous",
       "next": "Next",
-      "close": "Close"
+      "close": "Close",
+      "customer_photos": "Customer photos"
     },
     "product": {
       "add_to_cart": "Add to cart",

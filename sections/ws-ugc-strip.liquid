@@ -1,0 +1,251 @@
+{%- comment -%}
+  WS · Customer photo strip — a two-font headline ("bold sans" + "italic serif") above an
+  edge-to-edge row of 4:5 customer photos that scrolls sideways when it doesn't fit.
+  Hidden on the storefront until at least one photo is uploaded (editor shows placeholders).
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-ugc-h-' | append: section.id
+  assign photo_count = 0
+  for block in section.blocks
+    if block.settings.image != blank
+      assign photo_count = photo_count | plus: 1
+    endif
+  endfor
+  assign show = true
+  if photo_count == 0 and request.design_mode == false
+    assign show = false
+  endif
+  assign bold_font = s.bold_font
+  assign italic_font = s.italic_font
+-%}
+
+{%- if show -%}
+  {% render 'ws-assets' %}
+
+  <style>
+    {{ bold_font | font_face: font_display: 'swap' }}
+    {{ italic_font | font_face: font_display: 'swap' }}
+  </style>
+
+  <section
+    class="ws-section ws-ugc{% if s.italic_layout == 'break' %} ws-ugc--break{% endif %}{% if s.reveal %} ws-ugc--reveal{% endif %}"
+    style="{% render 'ws-section-style', settings: s %} --ws-ugc-bold-family: {{ bold_font.family }}, {{ bold_font.fallback_families }}; --ws-ugc-bold-weight: {{ bold_font.weight }}; --ws-ugc-italic-family: {{ italic_font.family }}, {{ italic_font.fallback_families }}; --ws-ugc-italic-weight: {{ italic_font.weight }}; --ws-ugc-italic-style: {{ italic_font.style }}; --ws-ugc-size: {{ s.heading_size }}px; --ws-ugc-size-m: {{ s.heading_size_mobile }}px; --ws-ugc-italic-scale: {{ s.italic_scale | divided_by: 100.0 }}; --ws-ugc-track: {{ s.letter_spacing | divided_by: 1000.0 }}em; --ws-ugc-gap: {{ s.heading_gap }}px; --ws-ugc-gap-m: {{ s.heading_gap_mobile }}px; --ws-ugc-tile: {{ s.tile_width }}px; --ws-ugc-tile-m: {{ s.tile_width_mobile }}vw; --ws-ugc-tile-gap: {{ s.tile_gap }}px; --ws-ugc-ratio: {{ s.aspect_ratio }}; --ws-ugc-radius: {{ s.tile_radius }}px;"
+    {% if s.heading_bold != blank or s.heading_italic != blank %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="{{ 'ws.a11y.customer_photos' | t }}"{% endif %}
+  >
+    {%- if s.heading_bold != blank or s.heading_italic != blank -%}
+      <div class="ws-container ws-ugc__head">
+        <h2 id="{{ heading_id }}" class="ws-ugc__heading">
+          {%- if s.heading_bold != blank -%}<span class="ws-ugc__bold">{{ s.heading_bold | escape }}</span>{%- endif -%}
+          {%- if s.heading_bold != blank and s.heading_italic != blank %} {% endif -%}
+          {%- if s.heading_italic != blank -%}<em class="ws-ugc__italic">{{ s.heading_italic | escape }}</em>{%- endif -%}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    <div class="ws-ugc__viewport" tabindex="0" role="region" aria-label="{{ 'ws.a11y.customer_photos' | t }}">
+      <ul class="ws-ugc__strip" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          {%- if b.image == blank and request.design_mode == false -%}{%- continue -%}{%- endif -%}
+          <li class="ws-ugc__tile" {{ block.shopify_attributes }}>
+            {%- if b.link != blank -%}<a class="ws-ugc__link" href="{{ b.link }}">{%- endif -%}
+            {%- if b.image != blank -%}
+              {%- liquid
+                assign ws_img_alt = b.alt | default: b.image.alt | escape
+                if forloop.index <= 2
+                  assign ws_loading = 'eager'
+                else
+                  assign ws_loading = 'lazy'
+                endif
+              -%}
+              {{
+                b.image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '360, 480, 640, 800, 1000, 1200',
+                  sizes: '(max-width: 749px) 65vw, 288px',
+                  loading: ws_loading,
+                  alt: ws_img_alt,
+                  class: 'ws-ugc__img'
+              }}
+            {%- else -%}
+              {%- assign ph = forloop.index0 | modulo: 2 | plus: 1 -%}
+              {{ 'lifestyle-' | append: ph | placeholder_svg_tag: 'ws-ugc__img ws-ugc__img--ph' }}
+            {%- endif -%}
+            {%- if b.link != blank -%}</a>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-ugc { overflow: hidden; }
+
+  .ws-ugc__head { margin-bottom: var(--ws-ugc-gap-m, 36px); text-align: center; }
+
+  .ws-ugc__heading {
+    margin: 0 auto;
+    max-width: 22ch;
+    font-family: var(--ws-ugc-bold-family);
+    font-weight: var(--ws-ugc-bold-weight, 800);
+    font-size: var(--ws-ugc-size-m, 32px);
+    line-height: 1.06;
+    letter-spacing: var(--ws-ugc-track, -0.055em);
+    color: inherit;
+    text-wrap: balance;
+  }
+
+  .ws-ugc__italic {
+    font-family: var(--ws-ugc-italic-family);
+    font-weight: var(--ws-ugc-italic-weight, 400);
+    font-style: var(--ws-ugc-italic-style, italic);
+    font-size: calc(1em * var(--ws-ugc-italic-scale, 1.18));
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+  }
+
+  .ws-ugc__viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .ws-ugc__viewport::-webkit-scrollbar { display: none; }
+
+  .ws-ugc__viewport:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+
+  .ws-ugc__strip {
+    display: flex;
+    gap: var(--ws-ugc-tile-gap, 0px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Centre the row when it is narrower than the screen; scrolls normally when it isn't. */
+  .ws-ugc__tile:first-child { margin-inline-start: auto; }
+  .ws-ugc__tile:last-child { margin-inline-end: auto; }
+
+  .ws-ugc__tile {
+    flex: 0 0 var(--ws-ugc-tile-m, 65vw);
+    scroll-snap-align: start;
+    overflow: hidden;
+    border-radius: var(--ws-ugc-radius, 0px);
+    aspect-ratio: var(--ws-ugc-ratio, 0.8);
+    background: color-mix(in srgb, var(--ws-fg) 6%, var(--ws-bg));
+  }
+
+  .ws-ugc__link { display: block; width: 100%; height: 100%; color: inherit; }
+
+  .ws-ugc__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-ugc__img--ph { fill: color-mix(in srgb, var(--ws-fg) 30%, transparent); }
+
+  @media screen and (min-width: 750px) {
+    .ws-ugc__head { margin-bottom: var(--ws-ugc-gap, 56px); }
+
+    .ws-ugc__heading {
+      max-width: none;
+      line-height: 0.98;
+      font-size: calc(var(--ws-ugc-size-m, 32px) + (var(--ws-ugc-size, 50px) - var(--ws-ugc-size-m, 32px)) * 0.6);
+    }
+
+    .ws-ugc--break .ws-ugc__italic { display: block; margin-top: 0.08em; }
+
+    .ws-ugc__tile { flex-basis: var(--ws-ugc-tile, 288px); }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ws-ugc__heading { font-size: var(--ws-ugc-size, 50px); }
+  }
+
+  /* Soft rise-in as the section scrolls into view (no JS; skipped where unsupported). */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .ws-ugc--reveal .ws-ugc__heading {
+        animation: ws-ugc-rise linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 60%;
+      }
+    }
+  }
+
+  @keyframes ws-ugc-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Customer photo strip",
+  "tag": "div",
+  "class": "ws-ugc-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "heading_bold", "label": "Heading – bold part", "default": "Våra kunder", "info": "Use a real, verifiable number if you add one, e.g. \"Fler än 10 000 kunder\"." },
+    { "type": "text", "id": "heading_italic", "label": "Heading – italic part", "default": "har valt sitt välmående" },
+    { "type": "select", "id": "italic_layout", "label": "Italic part on desktop", "default": "break", "options": [
+      { "value": "break", "label": "On its own line" }, { "value": "inline", "label": "Same line" }
+    ], "info": "On mobile it always follows the bold text." },
+    { "type": "checkbox", "id": "reveal", "label": "Fade heading in on scroll", "default": true },
+    { "type": "header", "content": "Typography" },
+    { "type": "font_picker", "id": "bold_font", "label": "Bold font", "default": "inter_n8" },
+    { "type": "font_picker", "id": "italic_font", "label": "Italic font", "default": "instrument_serif_i4" },
+    { "type": "range", "id": "heading_size", "label": "Desktop heading size", "min": 28, "max": 80, "step": 1, "unit": "px", "default": 50 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Mobile heading size", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 32 },
+    { "type": "range", "id": "italic_scale", "label": "Italic size (relative to bold)", "min": 90, "max": 140, "step": 2, "unit": "%", "default": 118 },
+    { "type": "range", "id": "letter_spacing", "label": "Bold letter spacing", "min": -80, "max": 20, "step": 5, "unit": "‰", "default": -55 },
+    { "type": "header", "content": "Photos" },
+    { "type": "range", "id": "tile_width", "label": "Desktop photo width", "min": 200, "max": 480, "step": 8, "unit": "px", "default": 288 },
+    { "type": "range", "id": "tile_width_mobile", "label": "Mobile photo width", "min": 40, "max": 90, "step": 5, "unit": "%", "default": 65, "info": "Share of the screen width." },
+    { "type": "select", "id": "aspect_ratio", "label": "Photo shape", "default": "0.8", "options": [
+      { "value": "0.8", "label": "Portrait 4:5" }, { "value": "0.75", "label": "Portrait 3:4" },
+      { "value": "0.5625", "label": "Story 9:16" }, { "value": "1", "label": "Square" }
+    ] },
+    { "type": "range", "id": "tile_gap", "label": "Space between photos", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "tile_radius", "label": "Corner radius", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFF9EC" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1B1424" },
+    { "type": "header", "content": "Spacing – desktop" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "heading_gap", "label": "Space below heading", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 152 },
+    { "type": "header", "content": "Spacing – mobile" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 52 },
+    { "type": "range", "id": "heading_gap_mobile", "label": "Space below heading", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 36 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 84 }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "limit": 16,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Portrait 1080 × 1350 px works best. Only use photos you have the customer's permission to publish." },
+        { "type": "text", "id": "alt", "label": "Alt text", "info": "Describe the photo for screen readers, e.g. \"Kund som håller upp sin beställning\"." },
+        { "type": "url", "id": "link", "label": "Link (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS · Customer photo strip",
+      "blocks": [
+        { "type": "photo" }, { "type": "photo" }, { "type": "photo" },
+        { "type": "photo" }, { "type": "photo" }, { "type": "photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

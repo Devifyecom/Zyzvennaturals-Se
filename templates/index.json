@@ -3410,6 +3410,44 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "ws_ugc_strip": {
+      "type": "ws-ugc-strip",
+      "blocks": {
+        "photo_1": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_5": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_6": {
+          "type": "photo",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4",
+        "photo_5",
+        "photo_6"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -3421,6 +3459,7 @@
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
     "ws_collection_tabs_bpC43r",
+    "ws_ugc_strip",
     "product_list_J4XkXM",
     "hero_slider_WaUDdM",
     "17670913507ee9f697",

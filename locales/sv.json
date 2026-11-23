@@ -410,7 +410,10 @@
       "previous": "Föregående",
       "next": "Nästa",
       "close": "Stäng",
-      "customer_photos": "Kundbilder"
+      "customer_photos": "Kundbilder",
+      "testimonials": "Kundomdömen",
+      "go_to_testimonial": "Visa omdöme {{ index }}",
+      "star_rating": "{{ rating }} av 5 stjärnor"
     },
     "product": {
       "add_to_cart": "Lägg i varukorg",

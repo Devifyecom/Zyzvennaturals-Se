@@ -2988,6 +2988,34 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "ws_testimonial_cards": {
+      "type": "ws-testimonial-cards",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {}
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {}
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {}
+        },
+        "testimonial_4": {
+          "type": "testimonial",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3",
+        "testimonial_4"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -3003,6 +3031,7 @@
     "hero_slider_WaUDdM",
     "17670913507ee9f697",
     "ws_reviews_carousel_EBpXcb",
+    "ws_testimonial_cards",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",
     "ws_feature_banner_eXdLfX",

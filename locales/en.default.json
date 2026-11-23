@@ -431,7 +431,10 @@
       "previous": "Previous",
       "next": "Next",
       "close": "Close",
-      "customer_photos": "Customer photos"
+      "customer_photos": "Customer photos",
+      "testimonials": "Customer testimonials",
+      "go_to_testimonial": "Show testimonial {{ index }}",
+      "star_rating": "{{ rating }} out of 5 stars"
     },
     "product": {
       "add_to_cart": "Add to cart",

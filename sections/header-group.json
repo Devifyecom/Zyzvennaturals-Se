@@ -26,6 +26,7 @@
       "block_order": [
         "message_Y9Ftbx"
       ],
+      "disabled": true,
       "name": "WS · Announcement bar",
       "settings": {
         "aria_label": "Meddelanden",
@@ -118,7 +119,6 @@
         "message_MUCwJP",
         "message_6F7tEA"
       ],
-      "disabled": true,
       "name": "WS · Announcement bar",
       "settings": {
         "aria_label": "Meddelanden",

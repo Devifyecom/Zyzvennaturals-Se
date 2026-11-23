@@ -841,7 +841,7 @@
         "collection_n7thP7": {
           "type": "collection",
           "settings": {
-            "collection": "moisturisers",
+            "collection": "all",
             "label": ""
           }
         }
@@ -849,7 +849,6 @@
       "block_order": [
         "collection_n7thP7"
       ],
-      "disabled": true,
       "name": "WS · Collection tabs",
       "settings": {
         "eyebrow": "",
@@ -1082,6 +1081,7 @@
       "block_order": [
         "button_zkJXNC"
       ],
+      "disabled": true,
       "name": "t:names.products_grid",
       "settings": {
         "collection": "all",

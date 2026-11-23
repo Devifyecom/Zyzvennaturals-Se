@@ -129,12 +129,18 @@
               {%- comment -%} Hidden visually by default; still announced to screen readers after "Visa fler" {%- endcomment -%}
               <p class="ws-ctabs__count{% if s.show_count_text %} ws-muted{% else %} ws-sr-only{% endif %}" aria-live="polite">{{ 'ws.collection_tabs.showing' | t: shown: shown, total: paginate.items }}</p>
               <div class="ws-ctabs__actions">
-                {%- if paginate.next -%}
+                {%- liquid
+                  assign footer_buttons = s.footer_buttons | default: 'link'
+                  if s.view_all_label == blank
+                    assign footer_buttons = 'load_more'
+                  endif
+                -%}
+                {%- if paginate.next and footer_buttons != 'link' -%}
                   <button type="button" class="ws-btn ws-btn--secondary" data-ws-ctabs-more data-url="{{ active.url }}" data-next-page="{{ paginate.current_page | plus: 1 }}">
                     {{- s.load_more_label | escape -}}
                   </button>
                 {%- endif -%}
-                {%- if s.view_all_label != blank -%}
+                {%- if s.view_all_label != blank and footer_buttons != 'load_more' -%}
                   {%- if s.view_all_style == 'link' -%}
                     <a href="{{ active.url }}" class="ws-btn ws-btn--link">{{ s.view_all_label | replace: '[collection]', active.title | escape }}</a>
                   {%- else -%}
@@ -281,6 +287,11 @@
       { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" }
     ] },
     { "type": "header", "content": "Texts" },
+    { "type": "select", "id": "footer_buttons", "label": "Buttons below products", "default": "link", "options": [
+      { "value": "link", "label": "\"Gå till kollektion\" button only" },
+      { "value": "load_more", "label": "\"Visa fler\" button only" },
+      { "value": "both", "label": "Both buttons" }
+    ] },
     { "type": "text", "id": "load_more_label", "label": "Load more button", "default": "Visa fler" },
     { "type": "text", "id": "view_all_label", "label": "View collection link", "info": "[collection] is replaced with the collection name. Leave empty to hide.", "default": "Gå till [collection]" },
     { "type": "select", "id": "view_all_style", "label": "Collection link style", "default": "pill", "options": [

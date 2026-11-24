@@ -1163,7 +1163,7 @@
           "settings": {
             "image": "shopify://shop_images/1B96107B-E9B0-4516-9FC1-39270E165333_2e3cdf82-d80e-4986-8f61-d3daedc749d3.png",
             "rating": 5,
-            "quote": "",
+            "quote": "<p>hello</p>",
             "author": "",
             "verified": true
           }

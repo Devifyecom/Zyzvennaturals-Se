@@ -1197,18 +1197,28 @@
             "author": "",
             "verified": true
           }
+        },
+        "testimonial_k7hKWm": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "",
+            "author": "",
+            "verified": true
+          }
         }
       },
       "block_order": [
         "testimonial_WDWqjg",
         "testimonial_PG7ETj",
         "testimonial_4TTGWK",
-        "testimonial_F44Xqd"
+        "testimonial_F44Xqd",
+        "testimonial_k7hKWm"
       ],
       "name": "WS · Testimonial cards",
       "settings": {
         "heading": "Se varför våra kunder gör Zyzven Naturals till en del av vardagen",
-        "uppercase_heading": false,
+        "uppercase_heading": true,
         "heading_font": "heading",
         "heading_size": 33,
         "heading_size_mobile": 24,

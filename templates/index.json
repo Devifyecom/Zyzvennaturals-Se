@@ -1173,7 +1173,7 @@
           "settings": {
             "image": "shopify://shop_images/C84FF070-A9C8-4F92-A45A-35AA59256888.png",
             "rating": 5,
-            "quote": "",
+            "quote": "<p>Hello</p>",
             "author": "",
             "verified": true
           }
@@ -1183,7 +1183,7 @@
           "settings": {
             "image": "shopify://shop_images/B844137E-9A68-4AFD-9FB1-63AF0FA5B0AC.png",
             "rating": 5,
-            "quote": "",
+            "quote": "<p>hello</p>",
             "author": "",
             "verified": true
           }
@@ -1193,7 +1193,7 @@
           "settings": {
             "image": "shopify://shop_images/25D72E03-E69E-46CA-9FEA-1FF57966AD47.png",
             "rating": 5,
-            "quote": "",
+            "quote": "<p>hello</p>",
             "author": "",
             "verified": true
           }

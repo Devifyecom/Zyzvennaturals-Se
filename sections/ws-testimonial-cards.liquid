@@ -24,7 +24,7 @@
 
   assign card_count = 0
   for block in section.blocks
-    if block.settings.quote != blank or request.design_mode
+    if block.settings.quote != blank or block.settings.image != blank or block.settings.author != blank or request.design_mode
       assign card_count = card_count | plus: 1
     endif
   endfor
@@ -47,7 +47,7 @@
         <ul class="ws-tc__track" data-ws-track tabindex="0" role="list" aria-label="{{ 'ws.a11y.testimonials' | t }}">
           {%- for block in section.blocks -%}
             {%- assign b = block.settings -%}
-            {%- if b.quote == blank and request.design_mode == false -%}{%- continue -%}{%- endif -%}
+            {%- if b.quote == blank and b.image == blank and b.author == blank and request.design_mode == false -%}{%- continue -%}{%- endif -%}
             {%- assign rating = b.rating | plus: 0 -%}
             <li class="ws-tc__card{% if b.image == blank and request.design_mode == false %} ws-tc__card--no-photo{% endif %}" data-ws-card {{ block.shopify_attributes }}>
               {%- if b.image != blank -%}
@@ -84,7 +84,7 @@
 
                 {%- if b.quote != blank -%}
                   <blockquote class="ws-tc__quote">{{ b.quote }}</blockquote>
-                {%- else -%}
+                {%- elsif request.design_mode -%}
                   <blockquote class="ws-tc__quote ws-muted">{{ 'ws.a11y.testimonials' | t }}</blockquote>
                 {%- endif -%}
 
@@ -346,7 +346,7 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Customer photo", "info": "Square or portrait. Only use photos you have permission to publish." },
         { "type": "range", "id": "rating", "label": "Stars", "min": 0, "max": 5, "step": 1, "default": 5, "info": "0 hides the stars." },
-        { "type": "richtext", "id": "quote", "label": "Quote", "info": "Use real customer reviews only. Cards without a quote are hidden on the store." },
+        { "type": "richtext", "id": "quote", "label": "Quote", "info": "Use real customer reviews only. A card shows on the store once it has a photo, quote or name." },
         { "type": "text", "id": "author", "label": "Customer name", "info": "E.g. first name and initial: \"Anna K.\"" },
         { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
       ]

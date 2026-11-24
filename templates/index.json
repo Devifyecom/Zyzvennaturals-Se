@@ -1208,7 +1208,7 @@
       "name": "WS · Testimonial cards",
       "settings": {
         "heading": "Se varför våra kunder gör Zyzven Naturals till en del av vardagen",
-        "uppercase_heading": true,
+        "uppercase_heading": false,
         "heading_font": "heading",
         "heading_size": 33,
         "heading_size_mobile": 24,

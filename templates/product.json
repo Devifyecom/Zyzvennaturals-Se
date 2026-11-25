@@ -457,7 +457,7 @@
             "title": "Information",
             "icon": "none",
             "metafield_key": "custom.ws_info",
-            "content": "",
+            "content": "<p>hello</p>",
             "page": "",
             "open": false
           }
@@ -677,6 +677,7 @@
         "okendo_scope": "store",
         "heading": "Våra kunder säger",
         "heading_style": "label",
+        "header_align": "center",
         "aria_label": "Kundrecensioner",
         "summary_rating": 0,
         "summary_text": "4,8 av 5 baserat på 1 200+ recensioner",

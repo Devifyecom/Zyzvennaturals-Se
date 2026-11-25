@@ -1,0 +1,351 @@
+{%- comment -%}
+  WS · Brand standards — eyebrow + large heading with an intro paragraph beside it, then a row of
+  numbered principle cards (number, small label, circle badge, title, text, short rule). One card is
+  highlighted (dark); tapping or hovering another card moves the highlight. Desktop: 4 across.
+  Tablet: 2 across. Mobile: stacked, with a short hint underneath. Brand fonts and colours by default.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-std-h-' | append: section.id
+
+  case s.heading_font
+    when 'body'
+      assign heading_family = 'var(--font-body--family)'
+      assign heading_weight = '500'
+    when 'subheading'
+      assign heading_family = 'var(--font-subheading--family)'
+      assign heading_weight = 'var(--font-subheading--weight, 400)'
+    when 'accent'
+      assign heading_family = 'var(--font-accent--family)'
+      assign heading_weight = 'var(--font-accent--weight, 400)'
+    else
+      assign heading_family = 'var(--font-heading--family)'
+      assign heading_weight = 'var(--font-heading--weight, 400)'
+  endcase
+
+  assign card_count = 0
+  for block in section.blocks
+    if block.settings.title != blank or block.settings.text != blank
+      assign card_count = card_count | plus: 1
+    endif
+  endfor
+  assign active = s.active_card | at_most: card_count
+  assign cols = card_count | at_most: 4 | at_least: 1
+-%}
+
+{%- if card_count > 0 or request.design_mode -%}
+  {% render 'ws-assets' %}
+
+  <section
+    class="ws-section ws-std"
+    style="{% render 'ws-section-style', settings: s %} --ws-std-heading-family: {{ heading_family }}; --ws-std-heading-weight: {{ heading_weight }}; --ws-std-heading-size: {{ s.heading_size }}px; --ws-std-heading-size-m: {{ s.heading_size_mobile }}px; --ws-std-muted: {{ s.muted_color }}; --ws-std-card-bg: {{ s.card_color }}; --ws-std-card-fg: {{ s.card_text_color }}; --ws-std-card-body: {{ s.card_body_color }}; --ws-std-border: {{ s.border_color }}; --ws-std-border-hover: {{ s.border_hover_color }}; --ws-std-active-bg: {{ s.active_color }}; --ws-std-active-fg: {{ s.active_text_color }}; --ws-std-radius: {{ s.card_radius }}px; --ws-std-card-h: {{ s.card_min_height }}px; --ws-std-cols: {{ cols }};{% if s.container_width == 'normal' %} --ws-max-width: calc(1200px + 2 * var(--ws-gutter));{% endif %}"
+    {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  >
+    <div class="ws-container">
+      {%- if s.eyebrow != blank or s.heading != blank or s.intro != blank -%}
+        <div class="ws-std__head">
+          <div class="ws-std__titles">
+            {%- if s.eyebrow != blank -%}
+              <p class="ws-std__eyebrow">{{ s.eyebrow | escape }}</p>
+            {%- endif -%}
+            {%- if s.heading != blank -%}
+              <h2 id="{{ heading_id }}" class="ws-std__heading">{{ s.heading | escape }}</h2>
+            {%- endif -%}
+          </div>
+          {%- if s.intro != blank -%}
+            <div class="ws-std__intro">{{ s.intro }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <ws-standards class="ws-std__grid" {% if s.highlight_on_hover %}data-hover{% endif %}>
+        {%- assign n = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          {%- if b.title == blank and b.text == blank -%}{%- continue -%}{%- endif -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- assign title_id = 'ws-std-t-' | append: block.id -%}
+          {%- if b.number != blank -%}
+            {%- assign num = b.number -%}
+          {%- elsif n < 10 -%}
+            {%- assign num = '0' | append: n -%}
+          {%- else -%}
+            {%- assign num = n | append: '' -%}
+          {%- endif -%}
+          <article class="ws-std__card{% if n == active %} is-active{% endif %}" data-ws-card {{ block.shopify_attributes }}>
+            <button
+              type="button"
+              class="ws-std__select"
+              aria-pressed="{% if n == active %}true{% else %}false{% endif %}"
+              aria-labelledby="{{ title_id }}"
+            ></button>
+            <div class="ws-std__meta" aria-hidden="true">
+              <span>{{ num | escape }}</span>
+              {%- if s.card_label != blank -%}<span>{{ s.card_label | escape }}</span>{%- endif -%}
+            </div>
+            {%- if b.icon != blank -%}
+              <span class="ws-std__badge ws-std__badge--img" aria-hidden="true">
+                {{ b.icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: '', class: 'ws-std__icon' }}
+              </span>
+            {%- elsif b.badge != blank -%}
+              <span class="ws-std__badge" aria-hidden="true">{{ b.badge | escape }}</span>
+            {%- endif -%}
+            {%- if b.title != blank -%}
+              <h3 id="{{ title_id }}" class="ws-std__title">{{ b.title | escape }}</h3>
+            {%- endif -%}
+            {%- if b.text != blank -%}
+              <div class="ws-std__text">{{ b.text }}</div>
+            {%- endif -%}
+            {%- if s.show_rule -%}<span class="ws-std__rule" aria-hidden="true"></span>{%- endif -%}
+          </article>
+        {%- endfor -%}
+      </ws-standards>
+
+      {%- if s.hint != blank and card_count > 1 -%}
+        <p class="ws-std__hint">{{ s.hint | escape }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+  <script src="{{ 'ws-standards.js' | asset_url }}" type="module" defer></script>
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-std__head { margin-bottom: 30px; }
+
+  .ws-std__eyebrow {
+    margin: 0 0 14px;
+    color: var(--ws-std-muted);
+    font-family: var(--font-body--family);
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .ws-std__heading {
+    margin: 0;
+    color: var(--ws-fg);
+    font-family: var(--ws-std-heading-family);
+    font-weight: var(--ws-std-heading-weight, 400);
+    font-size: var(--ws-std-heading-size-m, 38px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .ws-std__intro {
+    margin-top: 20px;
+    color: var(--ws-std-muted);
+    font-family: var(--font-body--family);
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  .ws-std__intro p { margin: 0; }
+  .ws-std__intro p + p { margin-top: 0.8em; }
+
+  .ws-std__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ws-std__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
+    padding: 28px 23px 22px;
+    border: 1px solid var(--ws-std-border);
+    border-radius: var(--ws-std-radius, 10px);
+    background-color: var(--ws-std-card-bg);
+    color: var(--ws-std-card-fg);
+    font-family: var(--font-body--family);
+    transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+  }
+
+  .ws-std__card:hover { border-color: var(--ws-std-border-hover); }
+
+  .ws-std__card.is-active {
+    border-color: var(--ws-std-active-bg);
+    background-color: var(--ws-std-active-bg);
+    color: var(--ws-std-active-fg);
+  }
+
+  /* Full-card button: the whole card is the tap target */
+  .ws-std__select {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: inherit;
+    background: none;
+    cursor: pointer;
+  }
+
+  .ws-std__select:focus-visible { outline: 2px solid var(--ws-fg); outline-offset: 3px; }
+
+  .ws-std__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, currentColor 72%, transparent);
+  }
+
+  .ws-std__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-top: 2px;
+    overflow: hidden;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .ws-std__badge--img { padding: 8px; }
+  .ws-std__icon { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+  .ws-std__title {
+    margin: 26px 0 0;
+    color: inherit;
+    font-family: var(--ws-std-heading-family);
+    font-weight: var(--ws-std-heading-weight, 400);
+    font-size: 25px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .ws-std__text {
+    margin-top: 10px;
+    color: var(--ws-std-card-body);
+    font-size: 15px;
+    line-height: 1.45;
+    transition: color 0.35s ease;
+  }
+
+  .ws-std__text p { margin: 0; }
+  .ws-std__card.is-active .ws-std__text { color: color-mix(in srgb, var(--ws-std-active-fg) 85%, transparent); }
+
+  .ws-std__rule {
+    display: block;
+    width: 30px;
+    height: 1px;
+    margin-top: 20px;
+    background-color: currentColor;
+  }
+
+  .ws-std__hint {
+    margin: 22px 0 0;
+    color: color-mix(in srgb, var(--ws-std-muted) 85%, transparent);
+    font-family: var(--font-body--family);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ws-std__heading { font-size: calc((var(--ws-std-heading-size-m, 38px) + var(--ws-std-heading-size, 52px)) / 2); }
+    .ws-std__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .ws-std__card { min-height: var(--ws-std-card-h, 313px); padding: 32px 24px; }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ws-std__head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 47px;
+    }
+
+    .ws-std__eyebrow { margin-bottom: 18px; }
+    .ws-std__heading { font-size: var(--ws-std-heading-size, 52px); }
+    .ws-std__intro { margin-top: 0; padding-left: 6%; font-size: 16px; }
+    .ws-std__grid { grid-template-columns: repeat(var(--ws-std-cols, 4), minmax(0, 1fr)); }
+    .ws-std__card { padding: 64px 24px 40px; }
+    .ws-std__title { font-size: 24px; }
+    .ws-std__hint { display: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Brand standards",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Skillnaden med Zyzven Naturals" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bättre val börjar med bättre standarder." },
+    { "type": "richtext", "id": "intro", "label": "Intro text", "default": "<p>Noga utvalda ingredienser och tydlig produktinformation – för ett mer genomtänkt sätt att ta hand om ditt dagliga välmående.</p>" },
+    { "type": "select", "id": "heading_font", "label": "Heading font", "default": "heading", "options": [
+      { "value": "heading", "label": "Theme heading font" }, { "value": "subheading", "label": "Theme subheading font" },
+      { "value": "body", "label": "Theme body font" }, { "value": "accent", "label": "Theme accent font" }
+    ], "info": "Used for the heading and card titles. Fonts come from Theme settings › Typography." },
+    { "type": "range", "id": "heading_size", "label": "Desktop heading size", "min": 24, "max": 80, "step": 1, "unit": "px", "default": 52 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Mobile heading size", "min": 20, "max": 56, "step": 1, "unit": "px", "default": 38 },
+    { "type": "header", "content": "Cards" },
+    { "type": "text", "id": "card_label", "label": "Card label", "default": "ZN / Standard", "info": "Small text in the top right of every card." },
+    { "type": "range", "id": "active_card", "label": "Highlighted card", "min": 1, "max": 8, "step": 1, "default": 1 },
+    { "type": "checkbox", "id": "highlight_on_hover", "label": "Move highlight on hover (desktop)", "default": true, "info": "Tapping a card always highlights it." },
+    { "type": "checkbox", "id": "show_rule", "label": "Show short line under text", "default": true },
+    { "type": "text", "id": "hint", "label": "Mobile hint", "default": "Tryck på en princip för att markera den.", "info": "Shown under the cards on mobile and tablet. Leave empty to hide." },
+    { "type": "range", "id": "card_min_height", "label": "Card height (tablet and desktop)", "min": 200, "max": 500, "step": 4, "unit": "px", "default": 312 },
+    { "type": "range", "id": "card_radius", "label": "Corner radius", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 10 },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F6F4EE" },
+    { "type": "color", "id": "text_color", "label": "Heading", "default": "#000000" },
+    { "type": "color", "id": "muted_color", "label": "Eyebrow and intro", "default": "#4A4A4A" },
+    { "type": "color", "id": "card_color", "label": "Card", "default": "#ECE8E0" },
+    { "type": "color", "id": "card_text_color", "label": "Card title, badge and line", "default": "#000000" },
+    { "type": "color", "id": "card_body_color", "label": "Card text", "default": "#4A4A4A" },
+    { "type": "color", "id": "border_color", "label": "Card border", "default": "#DFDFDF" },
+    { "type": "color", "id": "border_hover_color", "label": "Card border on hover", "default": "#4A4A4A" },
+    { "type": "color", "id": "active_color", "label": "Highlighted card", "default": "#333333" },
+    { "type": "color", "id": "active_text_color", "label": "Highlighted card text", "default": "#FFFFFF" },
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{ "value": "narrow", "label": "Narrow" }, { "value": "normal", "label": "Normal" }, { "value": "full", "label": "Full width" }] },
+    { "type": "header", "content": "Spacing – desktop" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64 },
+    { "type": "header", "content": "Spacing – mobile" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Principle",
+      "limit": 8,
+      "settings": [
+        { "type": "text", "id": "badge", "label": "Badge letters", "info": "1–2 characters shown in the circle, e.g. \"R\"." },
+        { "type": "image_picker", "id": "icon", "label": "Badge icon (optional)", "info": "Replaces the letters. Use a simple transparent PNG or SVG." },
+        { "type": "text", "id": "number", "label": "Number", "info": "Leave empty to number the cards 01, 02, 03 …" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Principle" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS · Brand standards",
+      "blocks": [
+        { "type": "card", "settings": { "badge": "F", "title": "Forskningsbaserad formulering", "text": "<p>Formulerad utifrån etablerad näringsforskning och erkända ingrediensdata.</p>" } },
+        { "type": "card", "settings": { "badge": "I", "title": "Utvalda ingredienser", "text": "<p>Noga utvalda ingredienser och leverantörer som granskas mot våra egna krav.</p>" } },
+        { "type": "card", "settings": { "badge": "K", "title": "Kvalitetssäkrad", "text": "<p>Kvalitetskontroller som stödjer jämn kvalitet, renhet och transparent produktinformation.</p>" } },
+        { "type": "card", "settings": { "badge": "T", "title": "Tydlig information", "text": "<p>Tydliga innehållsförteckningar och doseringar, så att du vet exakt vad du får.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

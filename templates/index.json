@@ -2582,6 +2582,50 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "ws_standards_Zn4k1Q": {
+      "type": "ws-standards",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "badge": "F",
+            "title": "Forskningsbaserad formulering",
+            "text": "<p>Formulerad utifrån etablerad näringsforskning och erkända ingrediensdata.</p>"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "badge": "I",
+            "title": "Utvalda ingredienser",
+            "text": "<p>Noga utvalda ingredienser och leverantörer som granskas mot våra egna krav.</p>"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "badge": "K",
+            "title": "Kvalitetssäkrad",
+            "text": "<p>Kvalitetskontroller som stödjer jämn kvalitet, renhet och transparent produktinformation.</p>"
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "badge": "T",
+            "title": "Tydlig information",
+            "text": "<p>Tydliga innehållsförteckningar och doseringar, så att du vet exakt vad du får.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -2595,6 +2639,7 @@
     "ws_collection_tabs_bpC43r",
     "17670913507ee9f697",
     "ws_testimonial_cards_qE44q7",
+    "ws_standards_Zn4k1Q",
     "ws_reviews_carousel_EBpXcb",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",

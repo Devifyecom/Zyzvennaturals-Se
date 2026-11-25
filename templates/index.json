@@ -231,6 +231,55 @@
         "padding_bottom_mobile": 20
       }
     },
+    "ws_collection_tabs_bpC43r": {
+      "type": "ws-collection-tabs",
+      "blocks": {
+        "collection_n7thP7": {
+          "type": "collection",
+          "settings": {
+            "collection": "all",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_n7thP7"
+      ],
+      "name": "WS · Collection tabs",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Utforska våra kollektioner",
+        "heading_style": "serif",
+        "aria_label": "Kollektioner",
+        "show_counts": false,
+        "show_count_text": false,
+        "products_per_page": 8,
+        "columns": 4,
+        "columns_mobile": "2",
+        "image_ratio": "4 / 5",
+        "show_secondary_image": true,
+        "show_rating": true,
+        "show_badge": true,
+        "show_quick_add": true,
+        "open_drawer": true,
+        "title_style": "uppercase",
+        "card_align": "center",
+        "footer_buttons": "link",
+        "load_more_label": "Visa fler",
+        "view_all_label": "Gå till [collection]",
+        "view_all_style": "pill",
+        "empty_text": "Inga produkter i den här kollektionen ännu.",
+        "background_color": "#f3f0eb",
+        "text_color": "#111111",
+        "accent_color": "#000000",
+        "accent_text_color": "#ffffff",
+        "container_width": "normal",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
     "ws_standards_kA86bL": {
       "type": "ws-standards",
       "blocks": {
@@ -399,6 +448,7 @@
     },
     "ws_founder_story_mBF7Bw": {
       "type": "ws-founder-story",
+      "disabled": true,
       "name": "WS · Founder story",
       "settings": {
         "image": "shopify://shop_images/banner_3.webp",
@@ -823,55 +873,6 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
-    },
-    "ws_collection_tabs_bpC43r": {
-      "type": "ws-collection-tabs",
-      "blocks": {
-        "collection_n7thP7": {
-          "type": "collection",
-          "settings": {
-            "collection": "all",
-            "label": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection_n7thP7"
-      ],
-      "name": "WS · Collection tabs",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Utforska våra kollektioner",
-        "heading_style": "serif",
-        "aria_label": "Kollektioner",
-        "show_counts": false,
-        "show_count_text": false,
-        "products_per_page": 8,
-        "columns": 4,
-        "columns_mobile": "2",
-        "image_ratio": "4 / 5",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_badge": true,
-        "show_quick_add": true,
-        "open_drawer": true,
-        "title_style": "uppercase",
-        "card_align": "center",
-        "footer_buttons": "link",
-        "load_more_label": "Visa fler",
-        "view_all_label": "Gå till [collection]",
-        "view_all_style": "pill",
-        "empty_text": "Inga produkter i den här kollektionen ännu.",
-        "background_color": "#f3f0eb",
-        "text_color": "#111111",
-        "accent_color": "#000000",
-        "accent_text_color": "#ffffff",
-        "container_width": "normal",
-        "padding_top": 56,
-        "padding_bottom": 56,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
       }
     },
     "17670913507ee9f697": {
@@ -2661,93 +2662,20 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
-    },
-    "ws_collection_cards_Rk7m2P": {
-      "type": "ws-collection-cards",
-      "blocks": {
-        "collection_1": {
-          "type": "collection",
-          "settings": {
-            "collection": "aromatherapy",
-            "style": "dark"
-          }
-        },
-        "collection_2": {
-          "type": "collection",
-          "settings": {
-            "collection": "bar-soap",
-            "style": "light"
-          }
-        },
-        "collection_3": {
-          "type": "collection",
-          "settings": {
-            "collection": "teas",
-            "style": "light"
-          }
-        },
-        "collection_4": {
-          "type": "collection",
-          "settings": {
-            "collection": "diabetic-care",
-            "style": "white"
-          }
-        },
-        "collection_5": {
-          "type": "collection",
-          "settings": {
-            "collection": "eye-care",
-            "style": "light"
-          }
-        },
-        "collection_6": {
-          "type": "collection",
-          "settings": {
-            "collection": "face-serums",
-            "style": "light"
-          }
-        },
-        "collection_7": {
-          "type": "collection",
-          "settings": {
-            "collection": "foot-care",
-            "style": "white"
-          }
-        },
-        "collection_8": {
-          "type": "collection",
-          "settings": {
-            "collection": "lotions-moisturizers",
-            "style": "light"
-          }
-        }
-      },
-      "block_order": [
-        "collection_1",
-        "collection_2",
-        "collection_3",
-        "collection_4",
-        "collection_5",
-        "collection_6",
-        "collection_7",
-        "collection_8"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "hero_jVaWmY",
     "ws_hero_tX4H9j",
     "ws_press_logos_rkFL9Y",
+    "ws_collection_tabs_bpC43r",
     "ws_standards_kA86bL",
     "ws_ugc_strip_wJafFz",
     "ws_founder_story_mBF7Bw",
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
-    "ws_collection_tabs_bpC43r",
     "17670913507ee9f697",
     "ws_testimonial_cards_qE44q7",
-    "ws_collection_cards_Rk7m2P",
     "ws_reviews_carousel_EBpXcb",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",

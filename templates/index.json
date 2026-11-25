@@ -2661,6 +2661,78 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "ws_collection_cards_Rk7m2P": {
+      "type": "ws-collection-cards",
+      "blocks": {
+        "collection_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "aromatherapy",
+            "style": "dark"
+          }
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "bar-soap",
+            "style": "light"
+          }
+        },
+        "collection_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "teas",
+            "style": "light"
+          }
+        },
+        "collection_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "diabetic-care",
+            "style": "white"
+          }
+        },
+        "collection_5": {
+          "type": "collection",
+          "settings": {
+            "collection": "eye-care",
+            "style": "light"
+          }
+        },
+        "collection_6": {
+          "type": "collection",
+          "settings": {
+            "collection": "face-serums",
+            "style": "light"
+          }
+        },
+        "collection_7": {
+          "type": "collection",
+          "settings": {
+            "collection": "foot-care",
+            "style": "white"
+          }
+        },
+        "collection_8": {
+          "type": "collection",
+          "settings": {
+            "collection": "lotions-moisturizers",
+            "style": "light"
+          }
+        }
+      },
+      "block_order": [
+        "collection_1",
+        "collection_2",
+        "collection_3",
+        "collection_4",
+        "collection_5",
+        "collection_6",
+        "collection_7",
+        "collection_8"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -2675,6 +2747,7 @@
     "ws_collection_tabs_bpC43r",
     "17670913507ee9f697",
     "ws_testimonial_cards_qE44q7",
+    "ws_collection_cards_Rk7m2P",
     "ws_reviews_carousel_EBpXcb",
     "product_list_KEtwTQ",
     "product_list_fa6P9H",

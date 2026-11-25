@@ -462,6 +462,12 @@
       "showing": "Showing {{ shown }} of {{ total }} products",
       "error": "Products could not be loaded. Please try again.",
       "retry": "Try again"
+    },
+    "collection_cards": {
+      "products_count": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      }
     }
   }
 }

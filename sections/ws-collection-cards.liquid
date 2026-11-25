@@ -1,0 +1,374 @@
+{%- comment -%}
+  WS · Collection cards — eyebrow, heading and subheading, then a grid of numbered collection cards.
+  Each card: number, small asterisk badge, collection title, product count, arrow, and a large faint
+  initial letter clipped in the top-right corner. Card style per block: light, white or dark
+  (highlighted). Light cards turn white on hover. Desktop 4 across, mobile 2. Brand fonts and colours.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign heading_id = 'ws-cc-h-' | append: section.id
+
+  case s.heading_font
+    when 'body'
+      assign heading_family = 'var(--font-body--family)'
+      assign heading_weight = '500'
+    when 'subheading'
+      assign heading_family = 'var(--font-subheading--family)'
+      assign heading_weight = 'var(--font-subheading--weight, 400)'
+    when 'accent'
+      assign heading_family = 'var(--font-accent--family)'
+      assign heading_weight = 'var(--font-accent--weight, 400)'
+    else
+      assign heading_family = 'var(--font-heading--family)'
+      assign heading_weight = 'var(--font-heading--weight, 400)'
+  endcase
+
+  assign card_count = 0
+  for block in section.blocks
+    if block.settings.collection != blank or request.design_mode
+      assign card_count = card_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if card_count > 0 -%}
+  {% render 'ws-assets' %}
+
+  <section
+    class="ws-section ws-cc{% if s.uppercase_titles %} ws-cc--upper{% endif %}"
+    style="{% render 'ws-section-style', settings: s %} --ws-cc-heading-family: {{ heading_family }}; --ws-cc-heading-weight: {{ heading_weight }}; --ws-cc-heading-size: {{ s.heading_size }}px; --ws-cc-heading-size-m: {{ s.heading_size_mobile }}px; --ws-cc-muted: {{ s.muted_color }}; --ws-cc-card-bg: {{ s.card_color }}; --ws-cc-white: {{ s.card_white_color }}; --ws-cc-card-fg: {{ s.card_text_color }}; --ws-cc-card-muted: {{ s.card_muted_color }}; --ws-cc-border: {{ s.border_color }}; --ws-cc-dark: {{ s.dark_color }}; --ws-cc-dark-fg: {{ s.dark_text_color }}; --ws-cc-badge: {{ s.badge_color }}; --ws-cc-badge-dark: {{ s.badge_dark_color }}; --ws-cc-letter-op: {{ s.letter_opacity | divided_by: 100.0 }}; --ws-cc-radius: {{ s.card_radius }}px; --ws-cc-cols: {{ s.columns }}; --ws-cc-cols-t: {{ s.columns | at_most: 3 }}; --ws-cc-cols-m: {{ s.columns_mobile }}; --ws-cc-card-h: {{ s.card_height }}px; --ws-cc-card-h-m: {{ s.card_height_mobile }}px;{% if s.container_width == 'normal' %} --ws-max-width: calc(1320px + 2 * var(--ws-gutter));{% endif %}"
+    {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  >
+    <div class="ws-container">
+      {%- if s.eyebrow != blank or s.heading != blank or s.subheading != blank -%}
+        <div class="ws-cc__head">
+          {%- if s.eyebrow != blank -%}<p class="ws-cc__eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+          {%- if s.heading != blank -%}<h2 id="{{ heading_id }}" class="ws-cc__heading">{{ s.heading | escape }}</h2>{%- endif -%}
+          {%- if s.subheading != blank -%}<div class="ws-cc__sub">{{ s.subheading }}</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <ul class="ws-cc__grid" role="list">
+        {%- assign n = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          {%- assign c = b.collection -%}
+          {%- if c == blank and request.design_mode == false -%}{%- continue -%}{%- endif -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- liquid
+            if b.title != blank
+              assign title = b.title
+            elsif c != blank
+              assign title = c.title
+            else
+              assign title = 'Kollektion'
+            endif
+            if b.letter != blank
+              assign letter = b.letter | slice: 0, 2
+            else
+              assign letter = title | strip | slice: 0 | upcase
+            endif
+            if n < 10
+              assign num = '0' | append: n
+            else
+              assign num = n | append: ''
+            endif
+            if c != blank
+              assign url = c.url
+              assign count = c.all_products_count
+            else
+              assign url = routes.collections_url
+              assign count = 0
+            endif
+          -%}
+          <li class="ws-cc__item" {{ block.shopify_attributes }}>
+            <a href="{{ url }}" class="ws-cc__card ws-cc__card--{{ b.style }}">
+              <span class="ws-cc__letter" aria-hidden="true">{{ letter | escape }}</span>
+              <span class="ws-cc__top">
+                <span class="ws-cc__num" aria-hidden="true">{{ num }}</span>
+                {%- if s.show_badge -%}
+                  <span class="ws-cc__badge" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  </span>
+                {%- endif -%}
+              </span>
+              <span class="ws-cc__title">{{ title | escape }}</span>
+              <span class="ws-cc__bottom">
+                {%- if s.show_count and c != blank -%}
+                  <span class="ws-cc__count">{{ 'ws.collection_cards.products_count' | t: count: count }}</span>
+                {%- else -%}
+                  <span></span>
+                {%- endif -%}
+                <span class="ws-cc__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M4 20L20 4M8.5 4H20v11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-cc__head { margin-bottom: 26px; }
+
+  .ws-cc__eyebrow {
+    margin: 0 0 12px;
+    color: var(--ws-fg);
+    font-family: var(--font-body--family);
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ws-cc__heading {
+    margin: 0;
+    color: var(--ws-fg);
+    font-family: var(--ws-cc-heading-family);
+    font-weight: var(--ws-cc-heading-weight, 400);
+    font-size: var(--ws-cc-heading-size-m, 30px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .ws-cc__sub {
+    margin-top: 12px;
+    color: var(--ws-cc-muted);
+    font-family: var(--font-body--family);
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+  }
+
+  .ws-cc__sub p { margin: 0; }
+
+  .ws-cc__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ws-cc-cols-m, 2), minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ws-cc__item { display: flex; min-width: 0; }
+
+  .ws-cc__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: var(--ws-cc-card-h-m, 184px);
+    padding: 16px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--ws-cc-border);
+    border-radius: var(--ws-cc-radius, 6px);
+    background-color: var(--ws-cc-card-bg);
+    color: var(--ws-cc-card-fg);
+    font-family: var(--font-body--family);
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    --ws-cc-letter-color: var(--ws-cc-card-fg);
+    --ws-cc-badge-bg: var(--ws-cc-badge);
+    --ws-cc-sub-color: var(--ws-cc-card-muted);
+  }
+
+  .ws-cc__card--white { background-color: var(--ws-cc-white); }
+
+  .ws-cc__card--dark {
+    border-color: var(--ws-cc-dark);
+    background-color: var(--ws-cc-dark);
+    color: var(--ws-cc-dark-fg);
+    --ws-cc-letter-color: var(--ws-cc-dark-fg);
+    --ws-cc-badge-bg: var(--ws-cc-badge-dark);
+    --ws-cc-sub-color: var(--ws-cc-dark-fg);
+  }
+
+  @media (hover: hover) {
+    .ws-cc__card--light:hover { background-color: var(--ws-cc-white); }
+    .ws-cc__card:hover { box-shadow: 0 6px 18px rgb(0 0 0 / 0.05); }
+    .ws-cc__card:hover .ws-cc__arrow { transform: translate(3px, -3px); }
+  }
+
+  .ws-cc__card:focus-visible { outline: 2px solid var(--ws-fg); outline-offset: 3px; }
+
+  .ws-cc__letter {
+    position: absolute;
+    z-index: -1;
+    top: -0.13em;
+    right: -0.06em;
+    color: var(--ws-cc-letter-color);
+    opacity: var(--ws-cc-letter-op, 0.06);
+    font-family: var(--ws-cc-heading-family);
+    font-weight: var(--ws-cc-heading-weight, 400);
+    font-size: 132px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ws-cc__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .ws-cc__num {
+    padding-top: 12px;
+    color: var(--ws-cc-sub-color);
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+  }
+
+  .ws-cc__badge {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--ws-cc-badge-bg);
+    color: var(--ws-cc-card-fg);
+  }
+
+  .ws-cc__badge svg { width: 15px; height: 15px; }
+
+  .ws-cc__title {
+    margin-block: auto;
+    padding-block: 14px;
+    font-family: var(--ws-cc-heading-family);
+    font-weight: var(--ws-cc-heading-weight, 400);
+    font-size: 17px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+  }
+
+  .ws-cc--upper .ws-cc__title { text-transform: uppercase; letter-spacing: 0; }
+
+  .ws-cc__bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .ws-cc__count {
+    color: var(--ws-cc-sub-color);
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+  }
+
+  .ws-cc__arrow { display: inline-flex; flex: none; transition: transform 0.3s ease; }
+  .ws-cc__arrow svg { width: 19px; height: 19px; }
+
+  @media screen and (min-width: 750px) {
+    .ws-cc__heading { font-size: calc((var(--ws-cc-heading-size-m, 30px) + var(--ws-cc-heading-size, 46px)) / 2); }
+    .ws-cc__grid { grid-template-columns: repeat(var(--ws-cc-cols-t, 3), minmax(0, 1fr)); gap: 14px; }
+    .ws-cc__card { min-height: var(--ws-cc-card-h, 242px); padding: 23px; }
+    .ws-cc__title { font-size: 22px; }
+    .ws-cc__letter { font-size: 210px; }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ws-cc__head { margin-bottom: 45px; }
+    .ws-cc__eyebrow { font-size: 12px; margin-bottom: 14px; }
+    .ws-cc__heading { font-size: var(--ws-cc-heading-size, 46px); }
+    .ws-cc__sub { margin-top: 18px; font-size: 16px; }
+    .ws-cc__grid { grid-template-columns: repeat(var(--ws-cc-cols, 4), minmax(0, 1fr)); }
+    .ws-cc__num { padding-top: 16px; font-size: 12px; }
+    .ws-cc__badge { width: 39px; height: 39px; }
+    .ws-cc__badge svg { width: 17px; height: 17px; }
+    .ws-cc__title { font-size: 25px; }
+    .ws-cc__count { font-size: 13px; }
+    .ws-cc__arrow svg { width: 22px; height: 22px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WS · Collection cards",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Utforska sortimentet" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Hitta dina vardagsfavoriter" },
+    { "type": "richtext", "id": "subheading", "label": "Subheading", "default": "<p>Noga utvalda kosttillskott för din dagliga rutin.</p>" },
+    { "type": "select", "id": "heading_font", "label": "Heading font", "default": "heading", "options": [
+      { "value": "heading", "label": "Theme heading font" }, { "value": "subheading", "label": "Theme subheading font" },
+      { "value": "body", "label": "Theme body font" }, { "value": "accent", "label": "Theme accent font" }
+    ], "info": "Used for the heading, card titles and big letters. Fonts come from Theme settings › Typography." },
+    { "type": "range", "id": "heading_size", "label": "Desktop heading size", "min": 24, "max": 80, "step": 1, "unit": "px", "default": 46 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Mobile heading size", "min": 20, "max": 56, "step": 1, "unit": "px", "default": 30 },
+    { "type": "header", "content": "Cards" },
+    { "type": "checkbox", "id": "uppercase_titles", "label": "Uppercase card titles", "default": true },
+    { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
+    { "type": "checkbox", "id": "show_badge", "label": "Show asterisk badge", "default": true },
+    { "type": "range", "id": "letter_opacity", "label": "Big letter strength", "min": 0, "max": 30, "step": 1, "unit": "%", "default": 6 },
+    { "type": "range", "id": "columns", "label": "Cards per row (desktop)", "min": 2, "max": 6, "step": 1, "default": 4 },
+    { "type": "select", "id": "columns_mobile", "label": "Cards per row (mobile)", "default": "2", "options": [{ "value": "1", "label": "1" }, { "value": "2", "label": "2" }] },
+    { "type": "range", "id": "card_height", "label": "Card height (desktop)", "min": 162, "max": 402, "step": 4, "unit": "px", "default": 242 },
+    { "type": "range", "id": "card_height_mobile", "label": "Card height (mobile)", "min": 120, "max": 320, "step": 2, "unit": "px", "default": 184 },
+    { "type": "range", "id": "card_radius", "label": "Corner radius", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 6 },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F4F1EC" },
+    { "type": "color", "id": "text_color", "label": "Heading and eyebrow", "default": "#000000" },
+    { "type": "color", "id": "muted_color", "label": "Subheading", "default": "#4A4A4A" },
+    { "type": "color", "id": "card_color", "label": "Light card", "default": "#F6F4EE" },
+    { "type": "color", "id": "card_white_color", "label": "White card (and light card on hover)", "default": "#FFFFFF" },
+    { "type": "color", "id": "card_text_color", "label": "Card title and arrow", "default": "#000000" },
+    { "type": "color", "id": "card_muted_color", "label": "Card number and count", "default": "#4A4A4A" },
+    { "type": "color", "id": "border_color", "label": "Card border", "default": "#DFDFDF" },
+    { "type": "color", "id": "badge_color", "label": "Badge", "default": "#ECE8E0" },
+    { "type": "color", "id": "dark_color", "label": "Dark card", "default": "#333333" },
+    { "type": "color", "id": "dark_text_color", "label": "Dark card text", "default": "#FFFFFF" },
+    { "type": "color", "id": "badge_dark_color", "label": "Dark card badge", "default": "#E1CFC7" },
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "container_width", "label": "Content width", "default": "normal", "options": [{ "value": "narrow", "label": "Narrow" }, { "value": "normal", "label": "Normal" }, { "value": "full", "label": "Full width" }] },
+    { "type": "header", "content": "Spacing – desktop" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64 },
+    { "type": "header", "content": "Spacing – mobile" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 16,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Title", "info": "Leave empty to use the collection's name." },
+        { "type": "text", "id": "letter", "label": "Big letter", "info": "Leave empty to use the first letter of the title." },
+        { "type": "select", "id": "style", "label": "Card style", "default": "light", "options": [
+          { "value": "light", "label": "Light" }, { "value": "white", "label": "White" }, { "value": "dark", "label": "Dark (highlighted)" }
+        ] }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS · Collection cards",
+      "blocks": [
+        { "type": "collection", "settings": { "style": "dark" } },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection", "settings": { "style": "white" } },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection", "settings": { "style": "white" } },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

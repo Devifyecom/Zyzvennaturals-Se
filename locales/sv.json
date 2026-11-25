@@ -441,6 +441,12 @@
       "showing": "Visar {{ shown }} av {{ total }} produkter",
       "error": "Produkterna kunde inte laddas. Försök igen.",
       "retry": "Försök igen"
+    },
+    "collection_cards": {
+      "products_count": {
+        "one": "{{ count }} produkt",
+        "other": "{{ count }} produkter"
+      }
     }
   }
 }

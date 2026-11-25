@@ -25,7 +25,7 @@
 
   assign card_count = 0
   for block in section.blocks
-    if block.settings.collection != blank or request.design_mode
+    if block.settings.collection != blank or block.settings.title != blank or request.design_mode
       assign card_count = card_count | plus: 1
     endif
   endfor
@@ -53,7 +53,7 @@
         {%- for block in section.blocks -%}
           {%- assign b = block.settings -%}
           {%- assign c = b.collection -%}
-          {%- if c == blank and request.design_mode == false -%}{%- continue -%}{%- endif -%}
+          {%- if c == blank and b.title == blank and request.design_mode == false -%}{%- continue -%}{%- endif -%}
           {%- assign n = n | plus: 1 -%}
           {%- liquid
             if b.title != blank
@@ -347,7 +347,7 @@
       "limit": 16,
       "settings": [
         { "type": "collection", "id": "collection", "label": "Collection" },
-        { "type": "text", "id": "title", "label": "Title", "info": "Leave empty to use the collection's name." },
+        { "type": "text", "id": "title", "label": "Title", "info": "Leave empty to use the collection's name. A card shows once it has a collection or a title." },
         { "type": "text", "id": "letter", "label": "Big letter", "info": "Leave empty to use the first letter of the title." },
         { "type": "select", "id": "style", "label": "Card style", "default": "light", "options": [
           { "value": "light", "label": "Light" }, { "value": "white", "label": "White" }, { "value": "dark", "label": "Dark (highlighted)" }

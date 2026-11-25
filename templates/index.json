@@ -231,6 +231,84 @@
         "padding_bottom_mobile": 20
       }
     },
+    "ws_standards_kA86bL": {
+      "type": "ws-standards",
+      "blocks": {
+        "card_HWkpf8": {
+          "type": "card",
+          "settings": {
+            "badge": "F",
+            "number": "",
+            "title": "Forskningsbaserad formulering",
+            "text": "<p>Formulerad utifrån etablerad näringsforskning och erkända ingrediensdata.</p>"
+          }
+        },
+        "card_XLMJkB": {
+          "type": "card",
+          "settings": {
+            "badge": "I",
+            "number": "",
+            "title": "Utvalda ingredienser",
+            "text": "<p>Noga utvalda ingredienser och leverantörer som granskas mot våra egna krav.</p>"
+          }
+        },
+        "card_VR4jGM": {
+          "type": "card",
+          "settings": {
+            "badge": "K",
+            "number": "",
+            "title": "Kvalitetssäkrad",
+            "text": "<p>Kvalitetskontroller som stödjer jämn kvalitet, renhet och transparent produktinformation.</p>"
+          }
+        },
+        "card_FNYnj4": {
+          "type": "card",
+          "settings": {
+            "badge": "T",
+            "number": "",
+            "title": "Tydlig information",
+            "text": "<p>Tydliga innehållsförteckningar och doseringar, så att du vet exakt vad du får.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_HWkpf8",
+        "card_XLMJkB",
+        "card_VR4jGM",
+        "card_FNYnj4"
+      ],
+      "name": "WS · Brand standards",
+      "settings": {
+        "eyebrow": "Skillnaden med Zyzven Naturals",
+        "heading": "Bättre val börjar med bättre standarder.",
+        "intro": "<p>Noga utvalda ingredienser och tydlig produktinformation – för ett mer genomtänkt sätt att ta hand om ditt dagliga välmående.</p>",
+        "heading_font": "heading",
+        "heading_size": 52,
+        "heading_size_mobile": 38,
+        "card_label": "ZN / Standard",
+        "active_card": 1,
+        "highlight_on_hover": true,
+        "show_rule": true,
+        "hint": "Tryck på en princip för att markera den.",
+        "card_min_height": 312,
+        "card_radius": 10,
+        "background_color": "#F6F4EE",
+        "text_color": "#000000",
+        "muted_color": "#4A4A4A",
+        "card_color": "#ECE8E0",
+        "card_text_color": "#000000",
+        "card_body_color": "#4A4A4A",
+        "border_color": "#DFDFDF",
+        "border_hover_color": "#4A4A4A",
+        "active_color": "#333333",
+        "active_text_color": "#FFFFFF",
+        "container_width": "normal",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 48
+      }
+    },
     "ws_ugc_strip_wJafFz": {
       "type": "ws-ugc-strip",
       "blocks": {
@@ -291,6 +369,7 @@
         "photo_NEnhaX",
         "photo_P3RgJr"
       ],
+      "disabled": true,
       "name": "WS · Customer photo strip",
       "settings": {
         "heading_bold": "Våra kunder",
@@ -2588,6 +2667,7 @@
     "hero_jVaWmY",
     "ws_hero_tX4H9j",
     "ws_press_logos_rkFL9Y",
+    "ws_standards_kA86bL",
     "ws_ugc_strip_wJafFz",
     "ws_founder_story_mBF7Bw",
     "collection_list_JnMyq7",

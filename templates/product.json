@@ -468,7 +468,7 @@
             "title": "Användning",
             "icon": "none",
             "metafield_key": "custom.ws_usage",
-            "content": "",
+            "content": "<p>hello</p>",
             "page": "",
             "open": false
           }
@@ -479,7 +479,7 @@
             "title": "Vid graviditet & amning",
             "icon": "none",
             "metafield_key": "custom.ws_pregnancy",
-            "content": "",
+            "content": "<p>hello</p>",
             "page": "",
             "open": false
           }
@@ -490,7 +490,7 @@
             "title": "Ingredienser",
             "icon": "none",
             "metafield_key": "custom.ws_ingredients",
-            "content": "",
+            "content": "<p>hello</p>",
             "page": "",
             "open": false
           }
@@ -501,7 +501,7 @@
             "title": "Förvaring",
             "icon": "none",
             "metafield_key": "custom.ws_storage",
-            "content": "",
+            "content": "<p>hello</p>",
             "page": "",
             "open": false
           }
@@ -512,7 +512,7 @@
             "title": "Ursprung",
             "icon": "none",
             "metafield_key": "custom.ws_origin",
-            "content": "",
+            "content": "<p>hello</p>",
             "page": "",
             "open": false
           }

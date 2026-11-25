@@ -9,41 +9,6 @@
  */
 {
   "sections": {
-    "ws_hero_tX4H9j": {
-      "type": "ws-hero",
-      "name": "WS · Hero",
-      "settings": {
-        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
-        "image_mobile": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
-        "height": "medium",
-        "height_mobile": "medium",
-        "overlay_color": "#000000",
-        "overlay_opacity": 15,
-        "text_position": "left",
-        "text_position_mobile": "center",
-        "eyebrow": "",
-        "heading": "För ett liv i synk med din kvinnliga biologi",
-        "heading_size": "medium",
-        "heading_italic": false,
-        "heading_is_h1": false,
-        "text": "",
-        "button_1_label": "Se produkter",
-        "button_1_link": "",
-        "button_1_style": "light",
-        "button_2_label": "",
-        "button_2_link": "",
-        "button_2_style": "secondary",
-        "background_color": "#d9d2c7",
-        "text_color": "#ffffff",
-        "accent_color": "#000000",
-        "accent_text_color": "#ffffff",
-        "container_width": "normal",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -149,6 +114,41 @@
         "reflection_opacity": 75,
         "padding-block-start": 30,
         "padding-block-end": 100
+      }
+    },
+    "ws_hero_tX4H9j": {
+      "type": "ws-hero",
+      "name": "WS · Hero",
+      "settings": {
+        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "image_mobile": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "height": "medium",
+        "height_mobile": "medium",
+        "overlay_color": "#000000",
+        "overlay_opacity": 15,
+        "text_position": "left",
+        "text_position_mobile": "center",
+        "eyebrow": "",
+        "heading": "För ett liv i synk med din kvinnliga biologi",
+        "heading_size": "medium",
+        "heading_italic": false,
+        "heading_is_h1": false,
+        "text": "",
+        "button_1_label": "Se produkter",
+        "button_1_link": "",
+        "button_1_style": "light",
+        "button_2_label": "",
+        "button_2_link": "",
+        "button_2_style": "secondary",
+        "background_color": "#d9d2c7",
+        "text_color": "#ffffff",
+        "accent_color": "#000000",
+        "accent_text_color": "#ffffff",
+        "container_width": "normal",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
     "ws_press_logos_rkFL9Y": {
@@ -793,320 +793,6 @@
         "padding_bottom": 56,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
-      }
-    },
-    "product_list_J4XkXM": {
-      "type": "product-list",
-      "blocks": {
-        "button_zkJXNC": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Handla nu",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        },
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_iF6fVz": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_WBVJzd": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "Visa alla",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_iF6fVz",
-            "product_list_button_WBVJzd"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 4,
-            "background_color": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_KMQWif": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "portrait",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_H8RXmV": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_eNcbp8": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_KMQWif",
-            "product_title_H8RXmV",
-            "price_eNcbp8"
-          ]
-        }
-      },
-      "block_order": [
-        "button_zkJXNC"
-      ],
-      "disabled": true,
-      "name": "t:names.products_grid",
-      "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "center",
-        "gap": 28,
-        "background_color": "",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    },
-    "hero_slider_WaUDdM": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_JAeFtd": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_gaha91gaha91gaha.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_W4EGJP": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_vu6v1qvu6v1qvu6v.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_a6FD3F": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_6dx5886dx5886dx5.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_WjYapN": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_vzl3p3vzl3p3vzl3.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_PMbnMy": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_u3gspuu3gspuu3gs.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_3GBfXG": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_e4o0qee4o0qee4o0.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_VYUVVz": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_x1ydlux1ydlux1yd.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        },
-        "slide_yUB9bE": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/Gemini_Generated_Image_nol2m6nol2m6nol2.png",
-            "slide_link": "shopify://products/alki-detox-loose-herb-tea",
-            "button_text": "Handla Nu",
-            "button_link": "shopify://products/alki-detox-loose-herb-tea"
-          }
-        }
-      },
-      "block_order": [
-        "slide_JAeFtd",
-        "slide_W4EGJP",
-        "slide_a6FD3F",
-        "slide_WjYapN",
-        "slide_PMbnMy",
-        "slide_3GBfXG",
-        "slide_VYUVVz",
-        "slide_yUB9bE"
-      ],
-      "disabled": true,
-      "name": "Dynamic Hero Slider",
-      "settings": {
-        "section_heading": "Lösningar för alla hudbehov"
       }
     },
     "17670913507ee9f697": {
@@ -2432,190 +2118,6 @@
         "padding_bottom_mobile": 40
       }
     },
-    "section_YUF9B7": {
-      "type": "section",
-      "blocks": {
-        "image_MUWYnn": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/90056548-3615-4354-81A4-426F7E843A26.webp",
-            "link": "",
-            "image_ratio": "square",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 18,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "group_Eq6xLa": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 25,
-            "width": "custom",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 100,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_nbL8ar": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2><strong>Böcker</strong></h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_7nM3dP": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Upptäck kraftfulla och helande berättelser som utforskar karibiska döttrars känslomässiga resor. Denna kollektion innehåller innerliga böcker som ger röst åt outtalad smärta, generationsöverskridande trauma och vägen till självupptäckt och läkning. Varje titel erbjuder hopp, motståndskraft och modet att återta din egen historia.</p><p></p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_A8FHx6": {
-              "type": "button",
-              "settings": {
-                "label": "Utforska Mer",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_nbL8ar",
-            "text_7nM3dP",
-            "button_A8FHx6"
-          ]
-        }
-      },
-      "block_order": [
-        "image_MUWYnn",
-        "group_Eq6xLa"
-      ],
-      "disabled": true,
-      "custom_css": [
-        "a {background: #dad5cb; color: black; padding: 10px 30px; border-radius: 50px;}",
-        ".border-style.custom-section-content {margin: auto; width: 100%; padding: 0px 40px; max-width: 1280px;}",
-        ".image-block__image {width: 500px; max-width: 500px;}",
-        "a:hover {background: #8c7050; color: white; padding: 10px 30px; border-radius: 50px;}",
-        "h4 {width: 300px; margin: auto;}"
-      ],
-      "name": "t:names.image_with_text",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "rgba(0,0,0,0)",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 40,
-        "padding-block-end": 0
-      }
-    },
     "ws_usp_bar_EgHWzr": {
       "type": "ws-usp-bar",
       "blocks": {
@@ -3091,8 +2593,6 @@
     "collection_list_JnMyq7",
     "product_list_MEVLcE",
     "ws_collection_tabs_bpC43r",
-    "product_list_J4XkXM",
-    "hero_slider_WaUDdM",
     "17670913507ee9f697",
     "ws_testimonial_cards_qE44q7",
     "ws_reviews_carousel_EBpXcb",
@@ -3102,7 +2602,6 @@
     "ws_blog_cards_emCCmC",
     "product_list_6Pg7Nt",
     "ws_collection_tiles_enzPgE",
-    "section_YUF9B7",
     "ws_usp_bar_EgHWzr",
     "section_WFf7TR"
   ]

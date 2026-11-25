@@ -231,6 +231,128 @@
         "padding_bottom_mobile": 20
       }
     },
+    "ws_collection_cards_E9LwQX": {
+      "type": "ws-collection-cards",
+      "blocks": {
+        "collection_HJdpAc": {
+          "type": "collection",
+          "settings": {
+            "collection": "aromatherapy",
+            "title": "",
+            "letter": "",
+            "style": "dark"
+          }
+        },
+        "collection_PnKGK9": {
+          "type": "collection",
+          "settings": {
+            "collection": "menopause-wellness",
+            "title": "",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_WMcKqk": {
+          "type": "collection",
+          "settings": {
+            "collection": "bar-soap",
+            "title": "",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_maLifw": {
+          "type": "collection",
+          "settings": {
+            "collection": "diabetic-care",
+            "title": "",
+            "letter": "",
+            "style": "white"
+          }
+        },
+        "collection_pqzLzD": {
+          "type": "collection",
+          "settings": {
+            "collection": "eye-care",
+            "title": "",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_QgeabV": {
+          "type": "collection",
+          "settings": {
+            "collection": "face-serums",
+            "title": "",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_eWJxzg": {
+          "type": "collection",
+          "settings": {
+            "collection": "nafi-collection",
+            "title": "",
+            "letter": "",
+            "style": "white"
+          }
+        },
+        "collection_wt93Bk": {
+          "type": "collection",
+          "settings": {
+            "collection": "harolja",
+            "title": "",
+            "letter": "",
+            "style": "light"
+          }
+        }
+      },
+      "block_order": [
+        "collection_HJdpAc",
+        "collection_PnKGK9",
+        "collection_WMcKqk",
+        "collection_maLifw",
+        "collection_pqzLzD",
+        "collection_QgeabV",
+        "collection_eWJxzg",
+        "collection_wt93Bk"
+      ],
+      "name": "WS · Collection cards",
+      "settings": {
+        "eyebrow": "Utforska sortimentet",
+        "heading": "Hitta dina vardagsfavoriter",
+        "subheading": "<p>Noga utvalda kosttillskott för din dagliga rutin.</p>",
+        "heading_font": "heading",
+        "heading_size": 46,
+        "heading_size_mobile": 30,
+        "uppercase_titles": true,
+        "show_count": true,
+        "show_badge": true,
+        "letter_opacity": 6,
+        "columns": 4,
+        "columns_mobile": "2",
+        "card_height": 242,
+        "card_height_mobile": 184,
+        "card_radius": 6,
+        "background_color": "#F4F1EC",
+        "text_color": "#000000",
+        "muted_color": "#4A4A4A",
+        "card_color": "#F6F4EE",
+        "card_white_color": "#FFFFFF",
+        "card_text_color": "#000000",
+        "card_muted_color": "#4A4A4A",
+        "border_color": "#DFDFDF",
+        "badge_color": "#ECE8E0",
+        "dark_color": "#333333",
+        "dark_text_color": "#FFFFFF",
+        "badge_dark_color": "#E1CFC7",
+        "container_width": "normal",
+        "padding_top": 48,
+        "padding_bottom": 64,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 40
+      }
+    },
     "ws_standards_kA86bL": {
       "type": "ws-standards",
       "blocks": {
@@ -292,16 +414,16 @@
         "hint": "Tryck på en princip för att markera den.",
         "card_min_height": 312,
         "card_radius": 10,
-        "background_color": "#F6F4EE",
+        "background_color": "#f6f4ee",
         "text_color": "#000000",
-        "muted_color": "#4A4A4A",
-        "card_color": "#ECE8E0",
+        "muted_color": "#4a4a4a",
+        "card_color": "#ece8e0",
         "card_text_color": "#000000",
-        "card_body_color": "#4A4A4A",
-        "border_color": "#DFDFDF",
-        "border_hover_color": "#4A4A4A",
+        "card_body_color": "#4a4a4a",
+        "border_color": "#dfdfdf",
+        "border_hover_color": "#4a4a4a",
         "active_color": "#333333",
-        "active_text_color": "#FFFFFF",
+        "active_text_color": "#ffffff",
         "container_width": "normal",
         "padding_top": 64,
         "padding_bottom": 64,
@@ -2427,8 +2549,8 @@
     "hero_jVaWmY",
     "ws_hero_tX4H9j",
     "ws_press_logos_rkFL9Y",
+    "ws_collection_cards_E9LwQX",
     "ws_standards_kA86bL",
-    "ws_collection_cards_Rk7m2P",
     "ws_ugc_strip_wJafFz",
     "ws_founder_story_mBF7Bw",
     "product_list_MEVLcE",

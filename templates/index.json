@@ -2058,6 +2058,7 @@
         "tile_FMdWGH",
         "tile_EtijkQ"
       ],
+      "disabled": true,
       "name": "WS · Collection tiles",
       "settings": {
         "eyebrow": "",

@@ -2117,5 +2117,176 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "WS · Cart drawer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Free shipping bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "ws_cart_bar_enable",
+        "label": "Show progress bar",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "ws_cart_free_shipping_threshold",
+        "label": "Free shipping from",
+        "default": 500,
+        "info": "Amount in your store currency (e.g. 500 = 500 kr). Must match the free shipping rate in Settings › Shipping. 0 hides the shipping step."
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_shipping_label",
+        "label": "Shipping step label",
+        "default": "Fri frakt"
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_msg_shipping",
+        "label": "Message before free shipping",
+        "default": "Endast [amount] kvar till fri frakt!",
+        "info": "[amount] is replaced with the remaining amount."
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_msg_shipping_done",
+        "label": "Message when free shipping is reached",
+        "default": "Grattis! Du har fri frakt."
+      },
+      {
+        "type": "header",
+        "content": "Free gift"
+      },
+      {
+        "type": "product",
+        "id": "ws_cart_gift_product",
+        "label": "Gift product",
+        "info": "Added to the cart automatically when the amount below is reached, and removed if the cart drops below it. Leave empty to turn the gift off."
+      },
+      {
+        "type": "number",
+        "id": "ws_cart_gift_threshold",
+        "label": "Free gift from",
+        "default": 1000,
+        "info": "Amount in your store currency."
+      },
+      {
+        "type": "paragraph",
+        "content": "Important: create an automatic discount in Shopify admin (Discounts › Amount off products, 100% off the gift product, minimum purchase = the amount above) so the gift is charged 0 kr. The theme cannot change prices."
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_gift_label",
+        "label": "Gift step label",
+        "default": "Gratisprodukt"
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_msg_gift",
+        "label": "Message before the gift",
+        "default": "Endast [amount] kvar till en gratisprodukt!",
+        "info": "[amount] is replaced with the remaining amount."
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_msg_all_done",
+        "label": "Message when everything is reached",
+        "default": "Grattis! Du har fri frakt och en gratisprodukt."
+      },
+      {
+        "type": "header",
+        "content": "Recommended products"
+      },
+      {
+        "type": "checkbox",
+        "id": "ws_cart_recs_enable",
+        "label": "Show recommended products",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "ws_cart_recs_heading",
+        "label": "Heading",
+        "default": "Rekommenderade produkter"
+      },
+      {
+        "type": "product_list",
+        "id": "ws_cart_recs_products",
+        "label": "Products",
+        "limit": 12,
+        "info": "Products already in the cart are skipped. Leave empty to use the collection below."
+      },
+      {
+        "type": "collection",
+        "id": "ws_cart_recs_collection",
+        "label": "Or a collection",
+        "info": "Used when no products are picked. If both are empty, products from \"all\" are used."
+      },
+      {
+        "type": "range",
+        "id": "ws_cart_recs_limit",
+        "label": "Number of products",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "header",
+        "content": "Colours"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_bar_bg",
+        "label": "Bar background",
+        "default": "#F4F1EC"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_bar_text",
+        "label": "Bar text",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_bar_track",
+        "label": "Bar track",
+        "default": "#DFDFDF"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_bar_fill",
+        "label": "Bar fill and reached steps",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_bar_icon_bg",
+        "label": "Step circle",
+        "default": "#ECE8E0"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_accent",
+        "label": "Cart icon and remove icon",
+        "default": "#7B8C78"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_button_bg",
+        "label": "Add to cart button",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "ws_cart_button_text",
+        "label": "Add to cart button text",
+        "default": "#FFFFFF"
+      }
+    ]
   }
 ]

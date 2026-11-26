@@ -1,0 +1,173 @@
+{%- doc -%}
+  WS · Cart drawer — "Recommended products" list under the cart lines, each with an add button.
+  Rendered from snippets/cart-drawer.liquid (one hook line). Products come from Theme settings ›
+  WS · Cart drawer (picked products, else a collection, else "all"). Products already in the cart,
+  the free gift and sold-out products are skipped.
+{%- enddoc -%}
+{%- liquid
+  assign limit = settings.ws_cart_recs_limit | default: 2
+  assign source = settings.ws_cart_recs_products
+  if source == blank or source.size == 0
+    if settings.ws_cart_recs_collection != blank
+      assign source = settings.ws_cart_recs_collection.products
+    else
+      assign source = collections['all'].products
+    endif
+  endif
+
+  assign in_cart = cart.items | map: 'product_id'
+  assign gift_id = settings.ws_cart_gift_product.id
+  assign shown = 0
+-%}
+
+{%- if settings.ws_cart_recs_enable and source != blank -%}
+  {%- capture recs_items -%}
+    {%- for product in source -%}
+      {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+      {%- unless product.available -%}{%- continue -%}{%- endunless -%}
+      {%- if in_cart contains product.id or product.id == gift_id -%}{%- continue -%}{%- endif -%}
+      {%- assign shown = shown | plus: 1 -%}
+      {%- assign variant = product.selected_or_first_available_variant -%}
+      <li class="ws-cart-recs__item">
+        <a href="{{ product.url }}" class="ws-cart-recs__media" tabindex="-1" aria-hidden="true">
+          {%- if product.featured_media -%}
+            {{ product.featured_media | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 180, 240', sizes: '95px', alt: '', class: 'ws-cart-recs__img' }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'ws-cart-recs__img ws-cart-recs__img--ph' }}
+          {%- endif -%}
+        </a>
+        <div class="ws-cart-recs__body">
+          <div class="ws-cart-recs__row">
+            <a href="{{ product.url }}" class="ws-cart-recs__title">{{ product.title | escape }}</a>
+            <span class="ws-cart-recs__price">{{ variant.price | money }}</span>
+          </div>
+          {%- if product.has_only_default_variant -%}
+            <ws-add-button
+              class="ws-cart-recs__add"
+              data-variant-id="{{ variant.id }}"
+              data-open-drawer="false"
+              data-added-text="{{ 'ws.card.added' | t | escape }}"
+              data-error-text="{{ 'ws.cart.error' | t | escape }}"
+            >
+              <button type="button" class="ws-cart-recs__btn">
+                <span data-label>{{ 'ws.card.add_to_cart' | t }}</span>
+                <span class="visually-hidden">: {{ product.title | escape }}</span>
+              </button>
+              <span class="visually-hidden" role="status" aria-live="polite" data-status></span>
+            </ws-add-button>
+          {%- else -%}
+            <a href="{{ product.url }}" class="ws-cart-recs__btn">
+              {{ 'ws.card.choose_options' | t }}<span class="visually-hidden">: {{ product.title | escape }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if shown > 0 -%}
+    <div
+      class="ws-cart-recs"
+      style="--wscr-btn: {{ settings.ws_cart_button_bg }}; --wscr-btn-text: {{ settings.ws_cart_button_text }};"
+    >
+      {%- if settings.ws_cart_recs_heading != blank -%}
+        <h3 class="ws-cart-recs__heading">{{ settings.ws_cart_recs_heading | escape }}</h3>
+      {%- endif -%}
+      <ul class="ws-cart-recs__list" role="list">{{ recs_items }}</ul>
+    </div>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .ws-cart-recs {
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid #dfdfdf;
+    font-family: var(--font-body--family);
+  }
+
+  .ws-cart-recs__heading {
+    margin: 0 0 18px;
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight, 400);
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .ws-cart-recs__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0 0 20px;
+    list-style: none;
+  }
+
+  .ws-cart-recs__item {
+    display: grid;
+    grid-template-columns: 95px minmax(0, 1fr);
+    gap: 15px;
+    align-items: start;
+  }
+
+  .ws-cart-recs__media {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background-color: #f4f1ec;
+  }
+
+  .ws-cart-recs__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ws-cart-recs__img--ph { fill: #b5b5b5; }
+
+  .ws-cart-recs__body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+  .ws-cart-recs__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+
+  .ws-cart-recs__title {
+    min-width: 0;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ws-cart-recs__title:hover { text-decoration: underline; }
+  .ws-cart-recs__price { flex: none; }
+
+  .ws-cart-recs__add { display: block; }
+
+  .ws-cart-recs__btn {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--wscr-btn, #000000);
+    border-radius: 0;
+    background-color: var(--wscr-btn, #000000);
+    color: var(--wscr-btn-text, #ffffff);
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .ws-cart-recs__btn:hover { opacity: 0.85; }
+  .ws-cart-recs__btn:focus-visible { outline: 2px solid var(--wscr-btn, #000000); outline-offset: 2px; }
+  .ws-cart-recs__add[aria-busy='true'] .ws-cart-recs__btn,
+  .ws-cart-recs__add.is-loading .ws-cart-recs__btn { opacity: 0.6; cursor: progress; }
+{% endstylesheet %}

@@ -1,0 +1,249 @@
+{%- doc -%}
+  WS · Cart drawer — free-shipping / free-gift progress bar shown under the cart drawer header.
+  Rendered from snippets/cart-drawer.liquid (one hook line), so it re-renders with every cart
+  update. Settings live in Theme settings › WS · Cart drawer. Also loads ws-cart-drawer.js
+  (automatic free gift) and ws-cart.js (add buttons in the recommendations).
+
+  @param {string} [part] - 'assets' outputs only the gift config and scripts (rendered once,
+    outside the drawer panel, so they exist even while the cart is empty); default outputs the bar.
+{%- enddoc -%}
+{%- liquid
+  assign gift_product = settings.ws_cart_gift_product
+  assign has_gift = false
+  if gift_product != blank and gift_product.available
+    assign has_gift = true
+    assign gift_variant = gift_product.selected_or_first_available_variant
+  endif
+
+  comment
+    Amounts in the cart exclude the gift line itself, so adding the gift never counts towards it.
+  endcomment
+  assign gift_total = 0
+  for item in cart.items
+    if item.properties._ws_gift != blank
+      assign gift_total = gift_total | plus: item.final_line_price
+    endif
+  endfor
+  assign total = cart.total_price | minus: gift_total | at_least: 0
+
+  assign ship_cents = settings.ws_cart_free_shipping_threshold | default: 0 | times: 100 | round
+  assign gift_cents = 0
+  if has_gift
+    assign gift_cents = settings.ws_cart_gift_threshold | default: 0 | times: 100 | round
+  endif
+
+  comment
+    Thresholds are in the shop currency; Liquid can't convert them, so the bar only shows when the
+    customer is shopping in the shop currency (the gift logic in JS converts with Shopify.currency.rate).
+  endcomment
+  assign same_currency = true
+  if cart.currency.iso_code != shop.currency
+    assign same_currency = false
+  endif
+
+  assign show_bar = false
+  if settings.ws_cart_bar_enable and same_currency
+    if ship_cents > 0 or gift_cents > 0
+      assign show_bar = true
+    endif
+  endif
+
+  assign max_cents = ship_cents | at_least: gift_cents
+-%}
+
+{%- if part == 'assets' -%}
+  {%- if has_gift -%}
+    <script type="application/json" id="ws-cart-gift-config">
+      {"variant": {{ gift_variant.id | json }}, "threshold": {{ settings.ws_cart_gift_threshold | default: 0 | json }}}
+    </script>
+  {%- endif -%}
+  <style>#cart-drawer { --wscb-accent: {{ settings.ws_cart_accent }}; }</style>
+  <script src="{{ 'ws-cart-drawer.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  <script src="{{ 'ws-cart.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{%- elsif show_bar and max_cents > 0 -%}
+  {%- liquid
+    assign pct = total | times: 100.0 | divided_by: max_cents | at_most: 100 | round: 2
+    assign ship_pos = ship_cents | times: 100.0 | divided_by: max_cents | round: 2
+    assign ship_done = false
+    if ship_cents == 0 or total >= ship_cents
+      assign ship_done = true
+    endif
+    assign gift_done = false
+    if gift_cents > 0 and total >= gift_cents
+      assign gift_done = true
+    endif
+
+    if ship_cents > 0 and ship_done == false
+      assign remaining = ship_cents | minus: total
+      assign message = settings.ws_cart_msg_shipping
+    elsif gift_cents > 0 and gift_done == false
+      assign remaining = gift_cents | minus: total
+      assign message = settings.ws_cart_msg_gift
+    elsif gift_cents > 0
+      assign message = settings.ws_cart_msg_all_done
+    else
+      assign message = settings.ws_cart_msg_shipping_done
+    endif
+
+    if remaining
+      assign amount_html = remaining | money | prepend: '<strong>' | append: '</strong>'
+      assign message = message | escape | replace: '[amount]', amount_html
+    else
+      assign message = message | escape
+    endif
+  -%}
+  <div
+    class="ws-cart-bar"
+    style="--wscb-bg: {{ settings.ws_cart_bar_bg }}; --wscb-track: {{ settings.ws_cart_bar_track }}; --wscb-fill: {{ settings.ws_cart_bar_fill }}; --wscb-icon-bg: {{ settings.ws_cart_bar_icon_bg }}; --wscb-text: {{ settings.ws_cart_bar_text }};"
+  >
+    <p class="ws-cart-bar__msg" role="status">{{ message }}</p>
+
+    <div class="ws-cart-bar__track-wrap">
+      <div
+        class="ws-cart-bar__track"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="{{ pct | round }}"
+        aria-label="{{ message | strip_html | escape }}"
+      >
+        <span class="ws-cart-bar__fill" style="width: {{ pct }}%;"></span>
+      </div>
+
+      {%- if ship_cents > 0 -%}
+        <div class="ws-cart-bar__step{% if ship_done %} is-done{% endif %}{% if ship_cents == max_cents %} is-end{% endif %}" style="--pos: {{ ship_pos }}%;">
+          <span class="ws-cart-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3.2v2.8h-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="6.5" cy="16.8" r="1.7" fill="var(--wscb-icon-bg)" stroke="currentColor" stroke-width="1.5"/><circle cx="16.8" cy="16.8" r="1.7" fill="var(--wscb-icon-bg)" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+          <span class="ws-cart-bar__label">{{ settings.ws_cart_shipping_label | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- if gift_cents > 0 -%}
+        {%- assign gift_pos = gift_cents | times: 100.0 | divided_by: max_cents | round: 2 -%}
+        <div class="ws-cart-bar__step{% if gift_done %} is-done{% endif %}{% if gift_cents == max_cents %} is-end{% endif %}" style="--pos: {{ gift_pos }}%;">
+          <span class="ws-cart-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><rect x="3.5" y="8" width="17" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3.5-5.5-3.5-5.5-1.2C6.5 8 9 8 12 8zm0 0c1.5-3.5 5.5-3.5 5.5-1.2C17.5 8 15 8 12 8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="ws-cart-bar__label">{{ settings.ws_cart_gift_label | escape }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  /* ---------- Cart drawer: header bag icon + line restyle (scoped to #cart-drawer) ---------- */
+  #cart-drawer .theme-drawer__header { border-bottom: 1px solid #dfdfdf; }
+
+  #cart-drawer #cart-drawer-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  #cart-drawer #cart-drawer-heading::before {
+    content: '';
+    flex: none;
+    width: 26px;
+    height: 28px;
+    background-color: var(--wscb-accent, #7b8c78);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 28'%3E%3Cpath d='M8 8V6.5a5 5 0 0 1 10 0V8h4.2a2 2 0 0 1 2 1.8l1.3 14A3.5 3.5 0 0 1 22 27.6H4A3.5 3.5 0 0 1 .5 23.8l1.3-14A2 2 0 0 1 3.8 8zm2.4 0h5.2V6.5a2.6 2.6 0 0 0-5.2 0zM8.5 12.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm9 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 28'%3E%3Cpath d='M8 8V6.5a5 5 0 0 1 10 0V8h4.2a2 2 0 0 1 2 1.8l1.3 14A3.5 3.5 0 0 1 22 27.6H4A3.5 3.5 0 0 1 .5 23.8l1.3-14A2 2 0 0 1 3.8 8zm2.4 0h5.2V6.5a2.6 2.6 0 0 0-5.2 0zM8.5 12.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm9 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  #cart-drawer .cart-items .quantity-selector {
+    border: 1px solid #333333;
+    border-radius: 999px;
+  }
+
+  #cart-drawer .cart-items__remove { color: var(--wscb-accent, #7b8c78); }
+
+  /* ---------- Progress bar ---------- */
+  .ws-cart-bar {
+    padding: 16px var(--cart-drawer-padding, 20px) 14px;
+    background-color: var(--wscb-bg, #f4f1ec);
+    color: var(--wscb-text, #333333);
+    font-family: var(--font-body--family);
+  }
+
+  .ws-cart-bar__msg {
+    margin: 0 0 12px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+  }
+
+  .ws-cart-bar__msg strong { font-weight: 700; }
+
+  .ws-cart-bar__track-wrap {
+    position: relative;
+    height: 62px;
+    margin-inline: 2px 4px;
+  }
+
+  .ws-cart-bar__track {
+    position: absolute;
+    top: 17px;
+    right: 0;
+    left: 0;
+    height: 9px;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: var(--wscb-track, #dfdfdf);
+  }
+
+  .ws-cart-bar__fill {
+    display: block;
+    height: 100%;
+    min-width: 9px;
+    border-radius: inherit;
+    background-color: var(--wscb-fill, #333333);
+    transition: width 0.5s ease;
+  }
+
+  .ws-cart-bar__step {
+    position: absolute;
+    top: 0;
+    left: var(--pos);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transform: translateX(-50%);
+  }
+
+  /* Keep the last step (100%) inside the drawer */
+  .ws-cart-bar__step.is-end { left: auto; right: 0; transform: none; align-items: flex-end; }
+  .ws-cart-bar__step.is-end .ws-cart-bar__icon { margin-right: 4px; }
+
+  .ws-cart-bar__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--wscb-icon-bg, #ece8e0);
+    color: var(--wscb-fill, #333333);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .ws-cart-bar__step.is-done .ws-cart-bar__icon {
+    --wscb-icon-bg: var(--wscb-fill, #333333);
+    background-color: var(--wscb-fill, #333333);
+    color: #ffffff;
+  }
+
+  .ws-cart-bar__label {
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ws-cart-bar__fill, .ws-cart-bar__icon { transition: none; }
+  }
+{% endstylesheet %}

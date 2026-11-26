@@ -21,6 +21,7 @@
     src="{{ 'cart-drawer.js' | asset_url }}"
     fetchpriority="low"
   ></script>
+  {% render 'ws-cart-drawer-top', part: 'assets' %}
 
   {% capture empty_cart_drawer_content %}
     <div
@@ -100,6 +101,7 @@
               heading_id: 'cart-drawer-heading',
               title_append: cart_badge_html
             %}
+            {% render 'ws-cart-drawer-top' %}
           {%- endif -%}
 
           {% capture cart_items_children %}
@@ -112,6 +114,7 @@
               >
                 <scroll-hint class="cart-drawer__items">
                   {% render 'cart-products', context: 'drawer' %}
+                  {% render 'ws-cart-drawer-recs' %}
                 </scroll-hint>
 
                 <div class="cart-drawer__summary">

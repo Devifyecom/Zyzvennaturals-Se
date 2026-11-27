@@ -120,12 +120,13 @@
       "type": "ws-hero",
       "name": "WS · Hero",
       "settings": {
-        "image": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
-        "image_mobile": "shopify://shop_images/diabetes-fotv-rd-create-for-collection-image.png",
+        "image": "shopify://shop_images/medicinal-herbal-teas.png",
+        "image_mobile": "shopify://shop_images/medicinal-herbal-teas.png",
         "height": "medium",
         "height_mobile": "medium",
         "overlay_color": "#000000",
         "overlay_opacity": 20,
+        "overlay_style": "side",
         "text_position": "left",
         "text_position_mobile": "center",
         "eyebrow": "",
@@ -148,8 +149,7 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
-        "overlay_style": "side"
+        "padding_bottom_mobile": 0
       }
     },
     "ws_press_logos_rkFL9Y": {
@@ -235,20 +235,47 @@
     "ws_collection_cards_E9LwQX": {
       "type": "ws-collection-cards",
       "blocks": {
-        "collection_HJdpAc": {
-          "type": "collection",
-          "settings": {
-            "collection": "aromatherapy",
-            "title": "",
-            "letter": "",
-            "style": "dark"
-          }
-        },
         "collection_PnKGK9": {
           "type": "collection",
           "settings": {
             "collection": "menopause-wellness",
-            "title": "",
+            "title": "Klimakteriet",
+            "letter": "",
+            "style": "dark"
+          }
+        },
+        "collection_QgeabV": {
+          "type": "collection",
+          "settings": {
+            "collection": "face-serums",
+            "title": "Ansiktsserum",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_HJdpAc": {
+          "type": "collection",
+          "settings": {
+            "collection": "aromatherapy",
+            "title": "Aromaterapi",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_wt93Bk": {
+          "type": "collection",
+          "settings": {
+            "collection": "harolja",
+            "title": "Hårolja",
+            "letter": "",
+            "style": "light"
+          }
+        },
+        "collection_pqzLzD": {
+          "type": "collection",
+          "settings": {
+            "collection": "eye-care",
+            "title": "Ögonvård",
             "letter": "",
             "style": "light"
           }
@@ -257,34 +284,7 @@
           "type": "collection",
           "settings": {
             "collection": "bar-soap",
-            "title": "",
-            "letter": "",
-            "style": "light"
-          }
-        },
-        "collection_maLifw": {
-          "type": "collection",
-          "settings": {
-            "collection": "diabetic-care",
-            "title": "",
-            "letter": "",
-            "style": "white"
-          }
-        },
-        "collection_pqzLzD": {
-          "type": "collection",
-          "settings": {
-            "collection": "eye-care",
-            "title": "",
-            "letter": "",
-            "style": "light"
-          }
-        },
-        "collection_QgeabV": {
-          "type": "collection",
-          "settings": {
-            "collection": "face-serums",
-            "title": "",
+            "title": "Tvålar",
             "letter": "",
             "style": "light"
           }
@@ -293,30 +293,30 @@
           "type": "collection",
           "settings": {
             "collection": "nafi-collection",
-            "title": "",
+            "title": "NAFI-kollektionen",
             "letter": "",
-            "style": "white"
+            "style": "light"
           }
         },
-        "collection_wt93Bk": {
+        "collection_maLifw": {
           "type": "collection",
           "settings": {
-            "collection": "harolja",
-            "title": "",
+            "collection": "diabetic-care",
+            "title": "Diabetesvård",
             "letter": "",
             "style": "light"
           }
         }
       },
       "block_order": [
-        "collection_HJdpAc",
         "collection_PnKGK9",
-        "collection_WMcKqk",
-        "collection_maLifw",
-        "collection_pqzLzD",
         "collection_QgeabV",
+        "collection_HJdpAc",
+        "collection_wt93Bk",
+        "collection_pqzLzD",
+        "collection_WMcKqk",
         "collection_eWJxzg",
-        "collection_wt93Bk"
+        "collection_maLifw"
       ],
       "name": "WS · Collection cards",
       "settings": {
@@ -326,27 +326,29 @@
         "heading_font": "heading",
         "heading_size": 46,
         "heading_size_mobile": 30,
-        "uppercase_titles": true,
+        "uppercase_titles": false,
         "show_count": true,
-        "show_badge": true,
+        "show_number": false,
+        "show_badge": false,
+        "show_letter": false,
         "letter_opacity": 6,
         "columns": 4,
         "columns_mobile": "2",
         "card_height": 242,
         "card_height_mobile": 184,
         "card_radius": 6,
-        "background_color": "#F4F1EC",
+        "background_color": "#f4f1ec",
         "text_color": "#000000",
-        "muted_color": "#4A4A4A",
-        "card_color": "#F6F4EE",
-        "card_white_color": "#FFFFFF",
+        "muted_color": "#4a4a4a",
+        "card_color": "#f6f4ee",
+        "card_white_color": "#ffffff",
         "card_text_color": "#000000",
-        "card_muted_color": "#4A4A4A",
-        "border_color": "#DFDFDF",
-        "badge_color": "#ECE8E0",
+        "card_muted_color": "#4a4a4a",
+        "border_color": "#dfdfdf",
+        "badge_color": "#ece8e0",
         "dark_color": "#333333",
-        "dark_text_color": "#FFFFFF",
-        "badge_dark_color": "#E1CFC7",
+        "dark_text_color": "#ffffff",
+        "badge_dark_color": "#e1cfc7",
         "container_width": "normal",
         "padding_top": 48,
         "padding_bottom": 64,
@@ -1604,6 +1606,7 @@
         "testimonial_F44Xqd",
         "testimonial_k7hKWm"
       ],
+      "disabled": true,
       "name": "WS · Testimonial cards",
       "settings": {
         "heading": "Se varför våra kunder gör Zyzven Naturals till en del av vardagen",
@@ -1633,8 +1636,7 @@
         "padding_bottom": 48,
         "padding_top_mobile": 28,
         "padding_bottom_mobile": 40
-      },
-      "disabled": true
+      }
     },
     "ws_blog_cards_emCCmC": {
       "type": "ws-blog-cards",

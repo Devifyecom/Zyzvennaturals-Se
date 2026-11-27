@@ -22,7 +22,7 @@
 
 <section
   id="ws-hero-{{ section.id }}"
-  class="ws-section ws-hero ws-hero--{{ s.text_position }} ws-hero--m-{{ s.text_position_mobile }} ws-hero--h-{{ s.height }} ws-hero--hm-{{ s.height_mobile }}"
+  class="ws-section ws-hero{% if s.overlay_style == 'side' %} ws-hero--overlay-side{% endif %} ws-hero--{{ s.text_position }} ws-hero--m-{{ s.text_position_mobile }} ws-hero--h-{{ s.height }} ws-hero--hm-{{ s.height_mobile }}"
   style="{% render 'ws-section-style', settings: s %} --ws-overlay-color: {{ s.overlay_color }}; --ws-overlay: {{ overlay }};{% if s.image != blank %} --ws-hero-ratio: {{ s.image.aspect_ratio }};{% endif %}{% if img_m != blank %} --ws-hero-ratio-m: {{ img_m.aspect_ratio }};{% endif %}"
 >
   {%- liquid
@@ -194,6 +194,17 @@
     opacity: var(--ws-overlay, 0.2);
   }
 
+  /* Side fade: strongest behind the text, clear over the rest of the photo */
+  .ws-hero--overlay-side .ws-hero__overlay {
+    background: linear-gradient(0deg, var(--ws-overlay-color, #000) 0%, transparent 75%);
+    opacity: min(1, calc(var(--ws-overlay, 0.2) * 2.5));
+  }
+
+  @media screen and (min-width: 750px) {
+    .ws-hero--overlay-side.ws-hero--left .ws-hero__overlay { background: linear-gradient(90deg, var(--ws-overlay-color, #000) 0%, transparent 60%); }
+    .ws-hero--overlay-side.ws-hero--right .ws-hero__overlay { background: linear-gradient(270deg, var(--ws-overlay-color, #000) 0%, transparent 60%); }
+  }
+
   .ws-hero__content {
     display: flex;
     padding-block: 40px;
@@ -281,6 +292,7 @@
     { "type": "header", "content": "Overlay" },
     { "type": "color", "id": "overlay_color", "label": "Overlay colour", "default": "#000000" },
     { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 15 },
+    { "type": "select", "id": "overlay_style", "label": "Overlay style", "default": "solid", "options": [{ "value": "solid", "label": "Even" }, { "value": "side", "label": "Fade behind the text" }], "info": "Fade keeps the photo clear and darkens only the text side (bottom on mobile)." },
     { "type": "header", "content": "Content" },
     { "type": "select", "id": "text_position", "label": "Desktop text position", "default": "center", "options": [
       { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" },

@@ -533,7 +533,17 @@
               {%- endif -%}
 
             {%- when 'description' -%}
-              {%- if product.description != blank -%}
+              {%- liquid
+                assign summary = product.metafields.custom.ws_summary.value
+                if b.style == 'summary' and summary == blank and product.description != blank
+                  assign summary = product.description | strip_html | strip_newlines | truncatewords: b.summary_words
+                endif
+              -%}
+              {%- if b.style == 'summary' -%}
+                {%- if summary != blank -%}
+                  <p class="ws-pm__block ws-pm__summary" {{ block.shopify_attributes }}>{{ summary | escape }}</p>
+                {%- endif -%}
+              {%- elsif product.description != blank -%}
                 <div class="ws-pm__block ws-rte ws-pm__description" {{ block.shopify_attributes }}>{{ product.description }}</div>
               {%- endif -%}
 
@@ -1199,6 +1209,13 @@
   .ws-pm__pay-icon { display: block; height: var(--ws-pay-h, 28px); width: calc(var(--ws-pay-h, 28px) * 38 / 24); }
 
   /* Benefits */
+  .ws-pm__summary {
+    margin: 0;
+    color: color-mix(in srgb, var(--ws-fg, #111) 80%, transparent);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
   .ws-pm__benefit {
     display: flex;
     align-items: flex-start;
@@ -1410,7 +1427,13 @@
         { "type": "range", "id": "icon_height", "label": "Icon height", "min": 20, "max": 48, "step": 2, "unit": "px", "default": 28 }
       ]
     },
-    { "type": "description", "name": "Description", "limit": 1, "settings": [] },
+    {
+      "type": "description", "name": "Description", "limit": 1,
+      "settings": [
+        { "type": "select", "id": "style", "label": "Show", "default": "full", "options": [{ "value": "full", "label": "Full description" }, { "value": "summary", "label": "Short summary" }] },
+        { "type": "range", "id": "summary_words", "label": "Summary length (words)", "min": 10, "max": 60, "step": 2, "default": 26, "info": "Uses the custom.ws_summary metafield when filled, otherwise the start of the description." }
+      ]
+    },
     {
       "type": "benefit", "name": "Benefit bullet",
       "settings": [

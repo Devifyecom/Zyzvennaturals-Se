@@ -432,8 +432,10 @@
         },
         "description": {
           "type": "description",
-          "disabled": true,
-          "settings": {}
+          "settings": {
+            "style": "summary",
+            "summary_words": 26
+          }
         },
         "delivery": {
           "type": "delivery",
@@ -457,7 +459,7 @@
             "title": "Information",
             "icon": "none",
             "metafield_key": "custom.ws_info",
-            "content": "<p>hello</p>",
+            "content": "",
             "page": "",
             "open": false
           }
@@ -468,7 +470,7 @@
             "title": "Användning",
             "icon": "none",
             "metafield_key": "custom.ws_usage",
-            "content": "<p>hello</p>",
+            "content": "",
             "page": "",
             "open": false
           }
@@ -479,7 +481,7 @@
             "title": "Vid graviditet & amning",
             "icon": "none",
             "metafield_key": "custom.ws_pregnancy",
-            "content": "<p>hello</p>",
+            "content": "",
             "page": "",
             "open": false
           }
@@ -490,7 +492,7 @@
             "title": "Ingredienser",
             "icon": "none",
             "metafield_key": "custom.ws_ingredients",
-            "content": "<p>hello</p>",
+            "content": "",
             "page": "",
             "open": false
           }
@@ -501,7 +503,7 @@
             "title": "Förvaring",
             "icon": "none",
             "metafield_key": "custom.ws_storage",
-            "content": "<p>hello</p>",
+            "content": "",
             "page": "",
             "open": false
           }
@@ -512,7 +514,7 @@
             "title": "Ursprung",
             "icon": "none",
             "metafield_key": "custom.ws_origin",
-            "content": "<p>hello</p>",
+            "content": "",
             "page": "",
             "open": false
           }
@@ -534,14 +536,14 @@
         "title",
         "rating",
         "price",
+        "description",
         "variant_picker",
         "subscription",
-        "buy_buttons",
-        "bundle",
         "stock",
-        "payment_icons",
-        "description",
+        "buy_buttons",
         "delivery",
+        "trust",
+        "payment_icons",
         "benefits",
         "acc_info",
         "acc_usage",
@@ -549,7 +551,7 @@
         "acc_ingredients",
         "acc_storage",
         "acc_origin",
-        "trust"
+        "bundle"
       ],
       "settings": {
         "media_position": "left",
@@ -632,7 +634,8 @@
         "padding_bottom": 32,
         "padding_top_mobile": 32,
         "padding_bottom_mobile": 32
-      }
+      },
+      "disabled": true
     },
     "ws_reviews": {
       "type": "ws-reviews",

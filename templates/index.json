@@ -125,7 +125,7 @@
         "height": "medium",
         "height_mobile": "medium",
         "overlay_color": "#000000",
-        "overlay_opacity": 15,
+        "overlay_opacity": 20,
         "text_position": "left",
         "text_position_mobile": "center",
         "eyebrow": "",
@@ -135,8 +135,8 @@
         "heading_is_h1": false,
         "text": "",
         "button_1_label": "Se produkter",
-        "button_1_link": "",
-        "button_1_style": "light",
+        "button_1_link": "shopify://collections/all",
+        "button_1_style": "primary",
         "button_2_label": "",
         "button_2_link": "",
         "button_2_style": "secondary",
@@ -148,7 +148,8 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
+        "padding_bottom_mobile": 0,
+        "overlay_style": "side"
       }
     },
     "ws_press_logos_rkFL9Y": {
@@ -238,25 +239,25 @@
           "type": "collection",
           "settings": {
             "collection": "aromatherapy",
-            "title": "",
+            "title": "Aromaterapi",
             "letter": "",
-            "style": "dark"
+            "style": "light"
           }
         },
         "collection_PnKGK9": {
           "type": "collection",
           "settings": {
             "collection": "menopause-wellness",
-            "title": "",
+            "title": "Klimakteriet",
             "letter": "",
-            "style": "light"
+            "style": "dark"
           }
         },
         "collection_WMcKqk": {
           "type": "collection",
           "settings": {
             "collection": "bar-soap",
-            "title": "",
+            "title": "Tvålar",
             "letter": "",
             "style": "light"
           }
@@ -265,16 +266,16 @@
           "type": "collection",
           "settings": {
             "collection": "diabetic-care",
-            "title": "",
+            "title": "Diabetesvård",
             "letter": "",
-            "style": "white"
+            "style": "light"
           }
         },
         "collection_pqzLzD": {
           "type": "collection",
           "settings": {
             "collection": "eye-care",
-            "title": "",
+            "title": "Ögonvård",
             "letter": "",
             "style": "light"
           }
@@ -283,7 +284,7 @@
           "type": "collection",
           "settings": {
             "collection": "face-serums",
-            "title": "",
+            "title": "Ansiktsserum",
             "letter": "",
             "style": "light"
           }
@@ -292,30 +293,30 @@
           "type": "collection",
           "settings": {
             "collection": "nafi-collection",
-            "title": "",
+            "title": "NAFI-kollektionen",
             "letter": "",
-            "style": "white"
+            "style": "light"
           }
         },
         "collection_wt93Bk": {
           "type": "collection",
           "settings": {
             "collection": "harolja",
-            "title": "",
+            "title": "Hårolja",
             "letter": "",
             "style": "light"
           }
         }
       },
       "block_order": [
-        "collection_HJdpAc",
         "collection_PnKGK9",
-        "collection_WMcKqk",
-        "collection_maLifw",
-        "collection_pqzLzD",
         "collection_QgeabV",
+        "collection_HJdpAc",
+        "collection_wt93Bk",
+        "collection_pqzLzD",
+        "collection_WMcKqk",
         "collection_eWJxzg",
-        "collection_wt93Bk"
+        "collection_maLifw"
       ],
       "name": "WS · Collection cards",
       "settings": {
@@ -325,9 +326,9 @@
         "heading_font": "heading",
         "heading_size": 46,
         "heading_size_mobile": 30,
-        "uppercase_titles": true,
+        "uppercase_titles": false,
         "show_count": true,
-        "show_badge": true,
+        "show_badge": false,
         "letter_opacity": 6,
         "columns": 4,
         "columns_mobile": "2",
@@ -350,7 +351,9 @@
         "padding_top": 48,
         "padding_bottom": 64,
         "padding_top_mobile": 24,
-        "padding_bottom_mobile": 40
+        "padding_bottom_mobile": 40,
+        "show_number": false,
+        "show_letter": false
       }
     },
     "ws_standards_kA86bL": {
@@ -1632,7 +1635,8 @@
         "padding_bottom": 48,
         "padding_top_mobile": 28,
         "padding_bottom_mobile": 40
-      }
+      },
+      "disabled": true
     },
     "ws_blog_cards_emCCmC": {
       "type": "ws-blog-cards",

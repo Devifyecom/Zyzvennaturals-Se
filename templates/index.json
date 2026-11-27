@@ -239,25 +239,25 @@
           "type": "collection",
           "settings": {
             "collection": "aromatherapy",
-            "title": "Aromaterapi",
+            "title": "",
             "letter": "",
-            "style": "light"
+            "style": "dark"
           }
         },
         "collection_PnKGK9": {
           "type": "collection",
           "settings": {
             "collection": "menopause-wellness",
-            "title": "Klimakteriet",
+            "title": "",
             "letter": "",
-            "style": "dark"
+            "style": "light"
           }
         },
         "collection_WMcKqk": {
           "type": "collection",
           "settings": {
             "collection": "bar-soap",
-            "title": "Tvålar",
+            "title": "",
             "letter": "",
             "style": "light"
           }
@@ -266,16 +266,16 @@
           "type": "collection",
           "settings": {
             "collection": "diabetic-care",
-            "title": "Diabetesvård",
+            "title": "",
             "letter": "",
-            "style": "light"
+            "style": "white"
           }
         },
         "collection_pqzLzD": {
           "type": "collection",
           "settings": {
             "collection": "eye-care",
-            "title": "Ögonvård",
+            "title": "",
             "letter": "",
             "style": "light"
           }
@@ -284,7 +284,7 @@
           "type": "collection",
           "settings": {
             "collection": "face-serums",
-            "title": "Ansiktsserum",
+            "title": "",
             "letter": "",
             "style": "light"
           }
@@ -293,30 +293,30 @@
           "type": "collection",
           "settings": {
             "collection": "nafi-collection",
-            "title": "NAFI-kollektionen",
+            "title": "",
             "letter": "",
-            "style": "light"
+            "style": "white"
           }
         },
         "collection_wt93Bk": {
           "type": "collection",
           "settings": {
             "collection": "harolja",
-            "title": "Hårolja",
+            "title": "",
             "letter": "",
             "style": "light"
           }
         }
       },
       "block_order": [
-        "collection_PnKGK9",
-        "collection_QgeabV",
         "collection_HJdpAc",
-        "collection_wt93Bk",
-        "collection_pqzLzD",
+        "collection_PnKGK9",
         "collection_WMcKqk",
+        "collection_maLifw",
+        "collection_pqzLzD",
+        "collection_QgeabV",
         "collection_eWJxzg",
-        "collection_maLifw"
+        "collection_wt93Bk"
       ],
       "name": "WS · Collection cards",
       "settings": {
@@ -326,9 +326,9 @@
         "heading_font": "heading",
         "heading_size": 46,
         "heading_size_mobile": 30,
-        "uppercase_titles": false,
+        "uppercase_titles": true,
         "show_count": true,
-        "show_badge": false,
+        "show_badge": true,
         "letter_opacity": 6,
         "columns": 4,
         "columns_mobile": "2",
@@ -351,9 +351,7 @@
         "padding_top": 48,
         "padding_bottom": 64,
         "padding_top_mobile": 24,
-        "padding_bottom_mobile": 40,
-        "show_number": false,
-        "show_letter": false
+        "padding_bottom_mobile": 40
       }
     },
     "ws_standards_kA86bL": {
